@@ -8,6 +8,7 @@ import java.util.Vector;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import br.com.lindbergframework.exception.ValidationClassCastException;
 import br.com.lindbergframework.exception.ValidationException;
 import br.com.lindbergframework.validation.IValidation;
 import br.com.lindbergframework.validation.IValidationComposite;
@@ -30,7 +31,7 @@ public class ValidationComposite implements IValidationComposite{
 	private List<ValidacaoElement> validacoes = new Vector<ValidacaoElement>();
 	
 	public static final String MSG_INDEXES_VALIDACAO_INVALIDO = "Não foi possível adicionar a(s) validação(ões). " +
-									"Um ou mais items tem um ou mais de seus índices de validação inválido"; 
+									"Um ou mais items tem seus índices ou mensagens de validações inválidos"; 
 	
 	
 	
@@ -38,7 +39,7 @@ public class ValidationComposite implements IValidationComposite{
 		//
 	}
 	
-	public void addValidations(List<ValidationItem> items,IValidation... validacoes){
+	public void addValidations(ValidationItem[] items,IValidation... validacoes){
 	   if (! isIndexValidacoesItemsOK(validacoes, items))
 		   throw new IllegalStateException(MSG_INDEXES_VALIDACAO_INVALIDO);
 		
@@ -48,28 +49,53 @@ public class ValidationComposite implements IValidationComposite{
 	}
 	
 	public void addValidationForSeveralItems(IValidation validacao,ValidationItem... items){
-	   for (ValidationItem item : items)
-		   addValidation(validacao, item);
+	   for (ValidationItem item : items){
+		   int lengthMsgs = item.getMessages().length;
+		   addValidation(validacao, item,(lengthMsgs == 0 ? null : item.getMessages()[0]));
+	   }
 	}
 	
 	public void addValidationsForItem(ValidationItem item,IValidation... validacoes){
-	   for (IValidation validacao : validacoes)
-		   addValidation(validacao, item);
+	   for (int i = 0;i < validacoes.length;i++){
+		   addValidationForSeveralItems(validacoes[i], item);
+	   }
+	}
+	
+	public void addValidationForSeveralItemsValidating(ValidationMode mode,
+			IValidation validacao, ValidationItem... items) {
+	   addValidationForSeveralItems(validacao, items);
+	   executarValidacaoes(mode);
+	}
+	
+	public void addValidationsForItemValidating(ValidationMode mode,
+			ValidationItem item, IValidation... validacoes) {
+	   addValidationsForItem(item, validacoes);
+	   executarValidacaoes(mode);
+	}
+	
+	public void addValidationsValidating(ValidationMode mode,
+			ValidationItem[] items, IValidation... validacoes) {
+	   addValidations(items, validacoes);
+	   executarValidacaoes(mode);
 	}
 	
 	private void addItem(IValidation[] validacoes,ValidationItem item){
 		for (Integer index : item.getIndexValidacoes()){
 			IValidation validacao = validacoes[index];
-			addValidation(validacao, item);
+			String msgCustom = item.getMessages()[index];
+			addValidation(validacao, item,msgCustom);
 		}
 	}
 	
-	private void addValidation(IValidation validacao,ValidationItem item){
-		   validacoes.add(new ValidacaoElement(validacao,item));	
+	private void addValidation(IValidation validacao,ValidationItem item,String msgCustom){
+		   validacoes.add(new ValidacaoElement(validacao,item,msgCustom));	
     }
 	
-	private boolean isIndexValidacoesItemsOK(IValidation[] validacoes, List<ValidationItem> items){
+	private boolean isIndexValidacoesItemsOK(IValidation[] validacoes, ValidationItem[] items){
 		for (ValidationItem item : items){
+		   if (item.getMessages().length != item.getIndexValidacoes().length)
+			   return false;
+		   
 		   Integer[] indexes = item.getIndexValidacoes();
 		
 		   for (Integer index : indexes){
@@ -87,20 +113,15 @@ public class ValidationComposite implements IValidationComposite{
 	 * @param mode
 	 * @throws ValidationException
 	 */
-	public void executarValidacaoes(ValidationMode mode) throws ValidationException{
+	public void executarValidacaoes(ValidationMode mode) throws ValidationException, ValidationClassCastException{
 		List<String> mensagensValidacao = new ArrayList<String>();
 		for (int indexValidacao = 0;indexValidacao < validacoes.size();indexValidacao++){
 			ValidacaoElement element = validacoes.get(indexValidacao);
 			try {
 				validarItem(element);
-			} catch (ValidationException e) {
-				List<String> msgs;
-				ValidationItem item = element.getValidacaoItem();
-				if (item.getMessages().isEmpty())
-					msgs = e.getMessages();
-				else
-					msgs = formatMsgsParaItemValidacao(e, item,indexValidacao);
-				
+			}
+			catch (ValidationException ex) {
+				List<String> msgs = formatMsgsParaItemValidacao(ex, element,indexValidacao);
 				mensagensValidacao.addAll(msgs);
 				lancarExcecaoSeModeImediatamente(mensagensValidacao, mode);
 			}
@@ -114,7 +135,7 @@ public class ValidationComposite implements IValidationComposite{
 	 * 
 	 * @throws ValidationException
 	 */
-	public void executarValidacaoes() throws ValidationException{
+	public void executarValidacaoes() throws ValidationException,ValidationClassCastException{
 		executarValidacaoes(ValidationMode.LANCAR_NO_FINAL);
 	}
 	
@@ -135,11 +156,12 @@ public class ValidationComposite implements IValidationComposite{
 		}
 	}
 	
-    private List<String> formatMsgsParaItemValidacao(ValidationException ex,ValidationItem item,int indexValidacao){
+    private List<String> formatMsgsParaItemValidacao(ValidationException ex,ValidacaoElement element,int indexValidacao){
+    	ValidationItem item = element.getValidacaoItem();
     	MsgType msgType = item.getMsgType();
-    	String msgCustom = item.getMessages().get(indexValidacao);
 		if (msgType.isUsandoMsgPersonalizada())
 		{
+		   String msgCustom = element.getMsgCustom();
 		   if (msgType.isConcatenarComMsgValidacao())
 		   {
 		      List<String> msgs = new Vector<String>();
@@ -160,7 +182,13 @@ public class ValidationComposite implements IValidationComposite{
 	
 	private void validarItem(ValidacaoElement validacaoElement) {
 		IValidation<Object> validacao = validacaoElement.getValidacao();
-		validacao.validate(validacaoElement.getValidacaoItem().getValor());
+		try{
+		   validacao.validate(validacaoElement.getValidacaoItem().getValor());
+		}catch(ClassCastException ex){
+			throw new ValidationClassCastException("Não foi possível efetuar a validação de um ou mais " +
+					"items pois o valor a ser validado não corresponde com o tipo esperado para a validação",ex);
+		}
+		
 	}
 	
 	public void reset(){
@@ -175,32 +203,42 @@ public class ValidationComposite implements IValidationComposite{
 
 		private IValidation<Object> validacao;
 		private ValidationItem validacaoItem;
-		
+		private String msgCustom;
 		
 		public ValidacaoElement(){
 			//
 		}
 		
-		public ValidacaoElement(IValidation<Object> validacao, ValidationItem validacaoItem) {
-			super();
+		public ValidacaoElement(IValidation<Object> validacao, ValidationItem validacaoItem,String msgCustom) {
 			this.validacao = validacao;
 			this.validacaoItem = validacaoItem;
+			this.msgCustom = msgCustom;
 		}
+		
+		public void setMsgCustom(String msgCustom) {
+			this.msgCustom = msgCustom;
+		}
+		
+		
+		public String getMsgCustom() {
+			return msgCustom;
+		}
+		
 		public IValidation<Object> getValidacao() {
 			return validacao;
 		}
+		
 		public void setValidacao(IValidation<Object> validacao) {
 			this.validacao = validacao;
 		}
+		
 		public ValidationItem getValidacaoItem() {
 			return validacaoItem;
 		}
+		
 		public void setValidacaoItem(ValidationItem validacaoItem) {
 			this.validacaoItem = validacaoItem;
 		}
-		
-		
-
 		
 	}
 

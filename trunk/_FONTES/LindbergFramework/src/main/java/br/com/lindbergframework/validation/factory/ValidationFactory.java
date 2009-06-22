@@ -2,6 +2,7 @@ package br.com.lindbergframework.validation.factory;
 
 import br.com.lindbergframework.spring.LindbergSpringFactory;
 import br.com.lindbergframework.validation.ICampoRequeridoValidacao;
+import br.com.lindbergframework.validation.ICastValidation;
 import br.com.lindbergframework.validation.IDateValidation;
 import br.com.lindbergframework.validation.IDocumentValidation;
 import br.com.lindbergframework.validation.IHasBeNullValidacao;
@@ -68,7 +69,7 @@ public class ValidationFactory {
 		return springFactory.getBean(NOT_NULL_VALIDACAO);
 	}
 
-	public static INumberValidation createDoubleValidacao() {
+	public static ICastValidation<String> createStringToDoubleCastValidacao() {
 		return springFactory.getBean(DOUBLE_VALIDACAO_BEAN);
 	}
 	
