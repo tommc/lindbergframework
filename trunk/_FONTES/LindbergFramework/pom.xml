@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>br.com.lindberg</groupId>
   <artifactId>LindbergFramework</artifactId>
-  <name>LindbergFramework</name>
+  <name>LindbergFramework</name> 
   <version>1.0</version>
   <description>LindbergFramework</description>
   
