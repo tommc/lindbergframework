@@ -30,21 +30,22 @@ public class Teste {
 				                                new ValidationItem(cnpj,0,1),
 				                                new ValidationItem(cnpj2,MsgType.CUSTOM_ONLY,"CNPJ NÃO ESTÁ OK","CNPJ É REQUERUDO"),
 				                                new ValidationItem(cnpj3,MsgType.USING_CUSTOM_SUFFIX,
-				                                		                 new String[] {"****CNPJ NÃO ESTÁ OK","****CNPJ É REQUERUDO"},0,1)}, 
+				                                 		                 new String[] {"****CNPJ NÃO ESTÁ OK","****CNPJ É REQUERUDO"},0,1)}, 
 				                      ValidationFactory.createCnpjValidacao(),
 				                      ValidationFactory.createCampoRequeridoNaoPermitindoInfoVaziaValidacao());
-		
+		     
 		validationComposite.addValidationForSeveralItems(ValidationFactory.createHasBeNullValidacao(), new ValidationItem(""));
-		validationComposite.addValidationsForItem(new ValidationItem("  ",MsgType.USING_CUSTOM_PREFIX,"????"), 
+		validationComposite.addValidationsForItem(new ValidationItem("  ",MsgType.USING_CUSTOM_PREFIX,"?? msg ??"), 
 				                      ValidationFactory.createHasBeNullValidacao(),
 				                      ValidationFactory.createStringToDoubleCastValidacao());
-		
-		try{
+		  
+		try{ 
 		   validationComposite.executarValidacaoes(ValidationMode.LANCAR_NO_FINAL);
 		   System.out.println("OK");
 		}
 		catch(LindbergException ex){
-			System.out.println(ex.getMessage());
+			for (String msg : ex.getMessages())
+				System.out.println(msg);
 		}
 		
 		

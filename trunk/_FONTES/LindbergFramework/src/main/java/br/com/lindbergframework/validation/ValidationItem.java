@@ -46,9 +46,9 @@ public class ValidationItem {
 		this(valor,indexesValidacoes);
 		setMessages(messages);
 		setMsgType(msgType);
-	}
+	} 
 	
-	
+	 
 	public ValidationItem(Object valor,String message,MsgType msgType,Integer... indexesValidacoes){
 		this(valor,msgType,new String[] {message},indexesValidacoes);
 	}

@@ -19,7 +19,7 @@ import br.com.lindbergframework.validation.IValidationComposite;
  * 
  */
 public class ValidationFactory {
-	
+	 
 	public static final String CAMPO_REQUERIDO_VALIDACAO_BEAN = "campoRequeridoValidacao";
 	public static final String CAMPO_REQUERIDO_NAO_PERMITINDO_INFO_VAZIA_VALIDACAO_BEAN = "campoRequeridoNaoPermitindoInformacaoVazia";
 	public static final String NOT_NULL_VALIDACAO = "notNullValidacao";
@@ -45,7 +45,7 @@ public class ValidationFactory {
 		return springFactory.getBean(
 				CAMPO_REQUERIDO_VALIDACAO_BEAN);
 	}
-	
+	 
 	public static ICampoRequeridoValidacao createCampoRequeridoNaoPermitindoInfoVaziaValidacao() {
 		return springFactory.getBean(
 				CAMPO_REQUERIDO_NAO_PERMITINDO_INFO_VAZIA_VALIDACAO_BEAN);

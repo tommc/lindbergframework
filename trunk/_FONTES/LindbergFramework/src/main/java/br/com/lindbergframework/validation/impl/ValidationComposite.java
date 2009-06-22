@@ -66,13 +66,13 @@ public class ValidationComposite implements IValidationComposite{
 	   addValidationForSeveralItems(validacao, items);
 	   executarValidacaoes(mode);
 	}
-	
+	 
 	public void addValidationsForItemValidating(ValidationMode mode,
 			ValidationItem item, IValidation... validacoes) {
 	   addValidationsForItem(item, validacoes);
 	   executarValidacaoes(mode);
 	}
-	
+	  
 	public void addValidationsValidating(ValidationMode mode,
 			ValidationItem[] items, IValidation... validacoes) {
 	   addValidations(items, validacoes);
