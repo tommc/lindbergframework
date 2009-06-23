@@ -10,8 +10,8 @@ import br.com.lindbergframework.validation.IRequiredFieldValidation;
  * @author Victor Linndberg
  *
  */
-@Component("fieldRequiredDoesNotAllowInformationEmpty")
-public class FieldRequiredDoesNotAllowInformationEmpty implements IRequiredFieldValidation {
+@Component("requiredFieldDoesNotAllowInformationEmpty")
+public class RequiredFieldDoesNotAllowInformationEmpty implements IRequiredFieldValidation {
 	
 	public void validate(Object valor) throws ValidationException {
 		if (valor == null || valor.toString().trim().length() == 0)

@@ -8,7 +8,7 @@ import br.com.lindbergframework.validation.settings.MsgType;
  *
  */
 public class ValidationItem {
-
+ 
 	public static final String SEPARADOR_PADRAO = ":";
 	
 	private Object valor;
