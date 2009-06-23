@@ -10,8 +10,8 @@ import br.com.lindbergframework.validation.INumberValidation;
  * @author Victor Lindberg
  *
  */
-@Component("numberMaiorQueZeroValidacao")
-public class NumberMaiorQueZeroValidacao implements INumberValidation{
+@Component("numberGreaterThanZeroValidation")
+public class NumberGreaterThanZeroValidation implements INumberValidation{
 	 
 	public void validate(Number valor) throws ValidationException {
 	   if (valor != null && valor.doubleValue() <= 0)

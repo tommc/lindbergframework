@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import br.com.lindbergframework.exception.ValidationClassCastException;
 import br.com.lindbergframework.exception.ValidationException;
 import br.com.lindbergframework.validation.IValidation;
-import br.com.lindbergframework.validation.IValidationComposite;
+import br.com.lindbergframework.validation.IExecutorValidation;
 import br.com.lindbergframework.validation.ValidationItem;
 import br.com.lindbergframework.validation.settings.MsgType;
 import br.com.lindbergframework.validation.settings.ValidationMode;
@@ -23,10 +23,10 @@ import br.com.lindbergframework.validation.settings.ValidationMode;
  * @author Victor Lindberg
  * 
  */
-@Component("validacaoComposite")
+@Component("executorValidation")
 @Scope("prototype")
 @SuppressWarnings("unchecked")
-public class ValidationComposite implements IValidationComposite{
+public class ExecutorValidationImpl implements IExecutorValidation{
 
 	private List<ValidacaoElement> validacoes = new Vector<ValidacaoElement>();
 	
@@ -35,7 +35,7 @@ public class ValidationComposite implements IValidationComposite{
 	
 	
 	
-	public ValidationComposite() {
+	public ExecutorValidationImpl() {
 		//
 	}
 	

@@ -10,7 +10,7 @@ import br.com.lindbergframework.validation.settings.ValidationMode;
  *
  */
 @SuppressWarnings("unchecked")
-public interface IValidationComposite {
+public interface IExecutorValidation {
 
 	public void addValidations(ValidationItem[] items,IValidation... validacoes);
 		

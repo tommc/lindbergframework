@@ -16,10 +16,10 @@ public class Teste {
 		String cnpj2 = "   ";
 		String cnpj3 = null;
 		
-		IValidationComposite validationComposite = ValidationFactory.createValidationComposite();
+		IExecutorValidation validationComposite = ValidationFactory.createExecutorValidation();
 		
 		validationComposite.addValidationsForItem(new ValidationItem(cpf,MsgType.USING_CUSTOM_SUFFIX,"cpf","Informe um cpf válido"),
-				                              ValidationFactory.createCampoRequeridoNaoPermitindoInfoVaziaValidacao(),
+				                              ValidationFactory.createFieldRequiredDoesNotAllowInformationEmpty(),
 				                              ValidationFactory.createCpfValidacao());
         
 		
@@ -32,7 +32,7 @@ public class Teste {
 				                                new ValidationItem(cnpj3,MsgType.USING_CUSTOM_SUFFIX,
 				                                 		                 new String[] {"****CNPJ NÃO ESTÁ OK","****CNPJ É REQUERUDO"},0,1)}, 
 				                      ValidationFactory.createCnpjValidacao(),
-				                      ValidationFactory.createCampoRequeridoNaoPermitindoInfoVaziaValidacao());
+				                      ValidationFactory.createFieldRequiredDoesNotAllowInformationEmpty());
 		     
 		validationComposite.addValidationForSeveralItems(ValidationFactory.createHasBeNullValidacao(), new ValidationItem(""));
 		validationComposite.addValidationsForItem(new ValidationItem("  ",MsgType.USING_CUSTOM_PREFIX,"?? msg ??"), 
@@ -41,7 +41,7 @@ public class Teste {
 		  
 		try{ 
 		   validationComposite.executarValidacaoes(ValidationMode.LANCAR_NO_FINAL);
-		   System.out.println("OK");
+		   System.out.println("OK"); 
 		}
 		catch(LindbergException ex){
 			for (String msg : ex.getMessages())
