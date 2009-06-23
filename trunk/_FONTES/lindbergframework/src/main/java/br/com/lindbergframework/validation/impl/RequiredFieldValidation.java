@@ -3,7 +3,7 @@ package br.com.lindbergframework.validation.impl;
 import org.springframework.stereotype.Component;
 
 import br.com.lindbergframework.exception.ValidationException;
-import br.com.lindbergframework.validation.ICampoRequeridoValidacao;
+import br.com.lindbergframework.validation.IRequiredFieldValidation;
 
 /**
  * Validador de campo requerido
@@ -12,8 +12,8 @@ import br.com.lindbergframework.validation.ICampoRequeridoValidacao;
  * @author Victor Lindberg
  *
  */
-@Component("campoRequeridoValidacao")
-public class CampoRequeridoValidacao implements ICampoRequeridoValidacao 
+@Component("requiredFieldValidation")
+public class RequiredFieldValidation implements IRequiredFieldValidation 
 {
 
 	/**

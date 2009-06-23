@@ -7,7 +7,7 @@ package br.com.lindbergframework.validation;
  * @author Victor Lindberg
  *
  */
-public interface ICampoRequeridoValidacao extends IValidation<Object> 
+public interface IRequiredFieldValidation extends IValidation<Object> 
 {
 
 }

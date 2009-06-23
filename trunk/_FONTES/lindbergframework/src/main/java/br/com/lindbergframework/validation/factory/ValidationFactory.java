@@ -1,7 +1,7 @@
 package br.com.lindbergframework.validation.factory;
 
 import br.com.lindbergframework.spring.LindbergSpringFactory;
-import br.com.lindbergframework.validation.ICampoRequeridoValidacao;
+import br.com.lindbergframework.validation.IRequiredFieldValidation;
 import br.com.lindbergframework.validation.ICastValidation;
 import br.com.lindbergframework.validation.IDateValidation;
 import br.com.lindbergframework.validation.IDocumentValidation;
@@ -9,7 +9,7 @@ import br.com.lindbergframework.validation.IHasBeNullValidacao;
 import br.com.lindbergframework.validation.INotEmptyListValidacao;
 import br.com.lindbergframework.validation.INotNullValidacao;
 import br.com.lindbergframework.validation.INumberValidation;
-import br.com.lindbergframework.validation.IValidationComposite;
+import br.com.lindbergframework.validation.IExecutorValidation;
 
 /**
  * Fábrica de validadores
@@ -20,14 +20,14 @@ import br.com.lindbergframework.validation.IValidationComposite;
  */
 public class ValidationFactory {
 	 
-	public static final String CAMPO_REQUERIDO_VALIDACAO_BEAN = "campoRequeridoValidacao";
-	public static final String CAMPO_REQUERIDO_NAO_PERMITINDO_INFO_VAZIA_VALIDACAO_BEAN = "campoRequeridoNaoPermitindoInformacaoVazia";
+	public static final String REQUIRED_FIELD_VALIDATION_BEAN = "requiredFieldValidation";
+	public static final String FIELD_REQUIRED_DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN = "fieldRequiredDoesNotAllowInformationEmpty";
 	public static final String NOT_NULL_VALIDACAO = "notNullValidacao";
-	public static final String VALIDACAO_COMPOSITE_BEAN = "validacaoComposite";
+	public static final String EXECUTOR_VALIDATION_BEAN = "executorValidation";
 	public static final String DOUBLE_VALIDACAO_BEAN = "doubleValidacao";
 	public static final String NOT_EMPTY_VALIDACAO_BEAN = "notEmptyListValidacao";
 	public static final String HAS_BE_NULL_VALIDACAO_BEAN = "hasBeNullValidacao";
-	public static final String NUMBER_MAIOR_QUE_ZERO_VALIDACAO_BEAN = "numberMaiorQueZeroValidacao";
+	public static final String NUMBER_GREATER_THAN_ZERO_VALIDATION_BEAN = "numberGreaterThanZeroValidation";
 	public static final String CPF_VALIDACAO_BEAN = "cpfValidation";
 	public static final String CNPJ_VALIDACAO_BEAN = "cnpjValidation";
 	public static final String CPF_CNPJ_VALIDACAO_BEAN = "cpfAndCnpjValidation";
@@ -41,19 +41,19 @@ public class ValidationFactory {
 	
 	private static LindbergSpringFactory springFactory = LindbergSpringFactory.getInstance();
 	
-	public static ICampoRequeridoValidacao createCampoRequeridoValidacao() {
+	public static IRequiredFieldValidation createRequiredFieldValidation() {
 		return springFactory.getBean(
-				CAMPO_REQUERIDO_VALIDACAO_BEAN);
+				REQUIRED_FIELD_VALIDATION_BEAN);
 	}
 	 
-	public static ICampoRequeridoValidacao createCampoRequeridoNaoPermitindoInfoVaziaValidacao() {
+	public static IRequiredFieldValidation createFieldRequiredDoesNotAllowInformationEmpty() {
 		return springFactory.getBean(
-				CAMPO_REQUERIDO_NAO_PERMITINDO_INFO_VAZIA_VALIDACAO_BEAN);
+				FIELD_REQUIRED_DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN);
 	}
 
-	public static INumberValidation createNumberMaiorQueZeroValidacao() {
+	public static INumberValidation createNumberGreaterThanZeroValidation() {
 		return springFactory.getBean(
-				NUMBER_MAIOR_QUE_ZERO_VALIDACAO_BEAN);
+				NUMBER_GREATER_THAN_ZERO_VALIDATION_BEAN);
 	}
 
 	public static IHasBeNullValidacao createHasBeNullValidacao() {
@@ -111,10 +111,10 @@ public class ValidationFactory {
 	
 
 	/**
-	 * Cria um ValidationComposite
+	 * Cria um IExecutorValidation
 	 */
-	public static IValidationComposite createValidationComposite() {
-		return springFactory.getBean(VALIDACAO_COMPOSITE_BEAN);
+	public static IExecutorValidation createExecutorValidation() {
+		return springFactory.getBean(EXECUTOR_VALIDATION_BEAN);
 	}
 
 	
