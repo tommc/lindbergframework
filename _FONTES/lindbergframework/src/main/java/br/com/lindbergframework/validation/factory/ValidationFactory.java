@@ -21,7 +21,7 @@ import br.com.lindbergframework.validation.IExecutorValidation;
 public class ValidationFactory {
 	 
 	public static final String REQUIRED_FIELD_VALIDATION_BEAN = "requiredFieldValidation";
-	public static final String FIELD_REQUIRED_DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN = "fieldRequiredDoesNotAllowInformationEmpty";
+	public static final String REQUIRED_FIELD_DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN = "requiredFieldDoesNotAllowInformationEmpty";
 	public static final String NOT_NULL_VALIDACAO = "notNullValidacao";
 	public static final String EXECUTOR_VALIDATION_BEAN = "executorValidation";
 	public static final String DOUBLE_VALIDACAO_BEAN = "doubleValidacao";
@@ -46,9 +46,9 @@ public class ValidationFactory {
 				REQUIRED_FIELD_VALIDATION_BEAN);
 	}
 	 
-	public static IRequiredFieldValidation createFieldRequiredDoesNotAllowInformationEmpty() {
+	public static IRequiredFieldValidation createRequiredFieldDoesNotAllowInformationEmpty() {
 		return springFactory.getBean(
-				FIELD_REQUIRED_DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN);
+				REQUIRED_FIELD_DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN);
 	}
 
 	public static INumberValidation createNumberGreaterThanZeroValidation() {
