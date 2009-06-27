@@ -7,8 +7,19 @@ package br.com.lindbergframework.validation.settings;
  */
 public enum ValidationMode {
 	
-	LANCAR_NO_FINAL("FINAL","Lançar exceções no final"),
-	LANCAR_IMEDIATAMENTE("IMEDIATAMENTE","Lançar exceções imediatamente");
+	/**
+	 * Lançar exceções no final aninhando as exceções. Este modo indica que um <br>
+	 * executor validation vai aninhar as mensagens as exceções que ocorrerem na <br>
+	 * validação e lançar apenas no final da validação caso tenha havido alguma exceção
+	 */
+	THROW_FINAL("THROW FINAL","Throw exceptions in the final"),
+	
+	/**
+	 * Lançar exceções imediatamente não aninhando as exceções. Este modo indica <br>
+	 * que um executor validation não vai aninhar as exceções ou seja que assim que <br>
+	 * alguma validação falhar será lançada uma exceção
+	 */
+	THROW_IMMEDIATELY("THROW IMMEDIATELY","immediately Throw exceptions");
 	
 	public String nome,descricao;
 	
