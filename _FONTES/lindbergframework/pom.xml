@@ -81,7 +81,7 @@
 				<configuration>
 					<finalName>lindbergframework-1.0</finalName>
 				</configuration> 
-			</plugin>
+			</plugin> 
 
 		</plugins>
 	</build>

@@ -80,9 +80,10 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	}
 	
 	private void addItem(IValidation[] validacoes,ValidationItem item){
-		for (Integer index : item.getIndexValidacoes()){
-			IValidation validacao = validacoes[index];
-			String msgCustom = item.getMessages()[index];
+		Integer[] indexes = item.getIndexValidacoes();
+		for (int i = 0;i < indexes.length;i++){
+			IValidation validacao = validacoes[indexes[i]];
+			String msgCustom = item.getMessages()[i];
 			addValidation(validacao, item,msgCustom);
 		}
 	}
@@ -136,16 +137,16 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	 * @throws ValidationException
 	 */
 	public void executarValidacaoes() throws ValidationException,ValidationClassCastException{
-		executarValidacaoes(ValidationMode.LANCAR_NO_FINAL);
+		executarValidacaoes(ValidationMode.THROW_FINAL);
 	}
 	
 	private void lancarExcecaoSeModeImediatamente(List<String> mensagensValidacao,ValidationMode mode){
-		if (mode.equals(ValidationMode.LANCAR_IMEDIATAMENTE))
+		if (mode.equals(ValidationMode.THROW_IMMEDIATELY))
 			   lancarExcecaoSeNecessario(mensagensValidacao);   	
 	}
 	
 	private void lancarExcecaoSeModeFinal(List<String> mensagensValidacao,ValidationMode mode){
-		if (mode.equals(ValidationMode.LANCAR_NO_FINAL))
+		if (mode.equals(ValidationMode.THROW_FINAL))
 			lancarExcecaoSeNecessario(mensagensValidacao);   	
 	}
 	
