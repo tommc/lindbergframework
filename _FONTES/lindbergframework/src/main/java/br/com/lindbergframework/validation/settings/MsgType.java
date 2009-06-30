@@ -6,7 +6,7 @@ package br.com.lindbergframework.validation.settings;
  *
  */
 public enum MsgType {
-	
+	 
 	CUSTOM_ONLY("CUSTOM_ONLY",true,false,false),
 	USING_CUSTOM_SUFFIX("USING_CUSTOM_SUFFIX",true,true,true),
 	USING_CUSTOM_PREFIX("USING_CUSTOM_PREFIX",true,true,false),
