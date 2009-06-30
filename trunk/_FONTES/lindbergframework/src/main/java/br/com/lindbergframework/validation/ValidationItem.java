@@ -32,6 +32,11 @@ public class ValidationItem {
 		setIndexValidacoes(indexes);
 	}
 	
+	public ValidationItem(Object valor,String separador,MsgType msgType,String... messages){
+		this(valor, msgType, messages);
+		setSeparador(separador);
+	}
+	
 	public ValidationItem(Object valor,Integer... indexesValidacoes){
 		setValor(valor);
 		setIndexValidacoes(indexesValidacoes);
@@ -47,6 +52,12 @@ public class ValidationItem {
 		setMessages(messages);
 		setMsgType(msgType);
 	} 
+	
+	public ValidationItem(MsgType msgType,Object valor,String separador,
+			   String[] messages,Integer... indexesValidacoes){
+		this(valor,msgType,messages,indexesValidacoes);
+		setSeparador(separador);
+	}
 	
 	 
 	public ValidationItem(Object valor,String message,MsgType msgType,Integer... indexesValidacoes){

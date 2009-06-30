@@ -17,5 +17,5 @@ public class NotNullValidacao implements INotNullValidacao{
 	   if (objeto == null)
 		   throw new ValidationException("Validação not null falhou");
 	}
-
+	
 }

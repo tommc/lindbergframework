@@ -49,15 +49,17 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	}
 	
 	public void addValidationForSeveralItems(IValidation validacao,ValidationItem... items){
-	   for (ValidationItem item : items){
-		   int lengthMsgs = item.getMessages().length;
-		   addValidation(validacao, item,(lengthMsgs == 0 ? null : item.getMessages()[0]));
+	   for (int i = 0; i < items.length;i++){
+		   ValidationItem item = items[i];
+		   int length = item.getMessages().length;
+		   addValidation(validacao, item,(length == 0 || length-1 < i ? null : item.getMessages()[0]));
 	   }
 	}
 	
 	public void addValidationsForItem(ValidationItem item,IValidation... validacoes){
 	   for (int i = 0;i < validacoes.length;i++){
-		   addValidationForSeveralItems(validacoes[i], item);
+		   int length = item.getMessages().length;
+		   addValidation(validacoes[i], item, (length == 0 || length-1 < i ? null : item.getMessages()[i]));
 	   }
 	}
 	
