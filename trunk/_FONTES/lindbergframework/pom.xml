@@ -6,7 +6,7 @@
 	<name>lindbergframework</name>
 	<version>1.0</version>
 	<description>lindbergframework</description>
-<!-- arthur lindberg -->
+
 	<properties>
 		<versao-spring>2.5.5</versao-spring>
 		<versao-commons-annotations>1.0</versao-commons-annotations>
