@@ -9,15 +9,15 @@ import br.com.lindbergframework.validation.IListValidacao;
 
 /**
  * 
- * @author Victor Lindberg
+ * @author Lindberg
  *
  */
-@Component("notEmptyListValidacao")
-public class NotEmptyListValidacao implements IListValidacao<Object>{
+@Component("hasBeEmptyListValidation")
+public class HasBeEmptyListValidation implements IListValidacao<Object>{
 	
 	public void validate(List<Object> lista) throws ValidationException {
-	   if (lista != null && lista.isEmpty())
-		   throw new ValidationException("Validação not empty list falhou");
+	   if (lista != null && ! lista.isEmpty())
+		   throw new ValidationException("Lista nao esta vazia");
 	}
 
 }
