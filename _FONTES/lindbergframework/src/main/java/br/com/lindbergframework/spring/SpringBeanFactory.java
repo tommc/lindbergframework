@@ -11,10 +11,14 @@ import org.springframework.context.ApplicationContext;
  */
 public class SpringBeanFactory {
 
-	private ApplicationContext context;
+	private ApplicationContext applicationContext;
 
 	public SpringBeanFactory(ApplicationContext appContext) {
-		context = appContext;
+		applicationContext = appContext;
+	}
+	
+	public ApplicationContext getApplicationContext() {
+		return applicationContext;
 	}
 
 	/**
@@ -28,7 +32,7 @@ public class SpringBeanFactory {
 	@SuppressWarnings("unchecked")
 	public <E> E getBean(String bean) {
 		try {
-			return (E) context.getBean(bean);
+			return (E) applicationContext.getBean(bean);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

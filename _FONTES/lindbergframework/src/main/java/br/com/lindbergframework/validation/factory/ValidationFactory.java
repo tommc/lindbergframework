@@ -6,7 +6,7 @@ import br.com.lindbergframework.validation.ICastValidation;
 import br.com.lindbergframework.validation.IDateValidation;
 import br.com.lindbergframework.validation.IDocumentValidation;
 import br.com.lindbergframework.validation.IHasBeNullValidacao;
-import br.com.lindbergframework.validation.INotEmptyListValidacao;
+import br.com.lindbergframework.validation.IListValidacao;
 import br.com.lindbergframework.validation.INotNullValidacao;
 import br.com.lindbergframework.validation.INumberValidation;
 import br.com.lindbergframework.validation.IExecutorValidation;
@@ -37,6 +37,7 @@ public class ValidationFactory {
 	public static final String DATE_CAN_NOT_BE_FUTURE_VALIDACAO_BEAN = "dateCanNotBeFutureValidation";
 	public static final String DATE_CAN_NOT_BE_PAST_VALIDACAO_BEAN = "dateCanNotBePastValidation";
 	public static final String DATE_CAN_NOT_BE_PRESENT_VALIDACAO_BEAN = "dateCanNotBePresentValidation";
+	public static final String HAS_BE_EMPTY_VALIDACAO_BEAN = "hasBeEmptyListValidation";
 
 	
 	private static LindbergSpringFactory springFactory = LindbergSpringFactory.getInstance();
@@ -61,8 +62,12 @@ public class ValidationFactory {
 				HAS_BE_NULL_VALIDACAO_BEAN);
 	}
 
-	public static INotEmptyListValidacao createNotEmptyListValidacao() {
+	public static  IListValidacao<Object> createNotEmptyListValidacao() {
 		return springFactory.getBean(NOT_EMPTY_VALIDACAO_BEAN);
+	}
+	
+	public static  IListValidacao<Object> createHasBeEmptyListValidation() {
+		return springFactory.getBean(HAS_BE_EMPTY_VALIDACAO_BEAN);
 	}
 
 	public static INotNullValidacao createNotNullValidacao() {
@@ -109,7 +114,7 @@ public class ValidationFactory {
 		return springFactory.getBean(DATE_CAN_NOT_BE_PRESENT_VALIDACAO_BEAN);
 	}
 	
-
+	
 	/**
 	 * Cria um IExecutorValidation
 	 */
