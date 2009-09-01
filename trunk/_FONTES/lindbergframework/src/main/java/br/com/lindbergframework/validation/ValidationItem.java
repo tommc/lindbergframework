@@ -22,6 +22,10 @@ public class ValidationItem {
 		setValor(valor);
 	}
 	
+	public ValidationItem(Object valor,String msg){
+		this(valor,MsgType.CUSTOM_ONLY,msg);
+	}
+	
 	public ValidationItem(Object valor,MsgType msgType,String... messages){
 		setValor(valor);
 		setMessages(messages);
