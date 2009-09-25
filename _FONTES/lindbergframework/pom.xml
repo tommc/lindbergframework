@@ -13,7 +13,7 @@
 
 		<versao-commons-lang>2.4</versao-commons-lang>
 		<versao-commons-beanutils>1.7.0</versao-commons-beanutils>
-	</properties>
+	</properties> 
 
 	<dependencies>
 
@@ -28,6 +28,14 @@
 			<groupId>javax.annotation</groupId>
 			<artifactId>jsr250-api</artifactId>
 			<version>${versao-commons-annotations}</version>
+		</dependency>
+		
+		<!-- depedências jee -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- dependências diversas -->

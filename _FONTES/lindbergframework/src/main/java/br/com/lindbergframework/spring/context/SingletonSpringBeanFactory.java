@@ -1,4 +1,4 @@
-package br.com.lindbergframework.spring;
+package br.com.lindbergframework.spring.context;
 
 import org.springframework.context.ApplicationContext;
 
