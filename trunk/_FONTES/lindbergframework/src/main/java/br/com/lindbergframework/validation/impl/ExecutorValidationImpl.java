@@ -118,8 +118,13 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	 */
 	public void executarValidacaoes(ValidationMode mode) throws ValidationException, ValidationClassCastException{
 		List<String> mensagensValidacao = new ArrayList<String>();
-		for (int indexValidacao = 0;indexValidacao < validacoes.size();indexValidacao++){
-			ValidacaoElement element = validacoes.get(indexValidacao);
+		List<ValidacaoElement> validElements = new Vector<ValidacaoElement>();
+		validElements.addAll(validacoes);
+		
+		clearValidations();
+		
+		for (int indexValidacao = 0;indexValidacao < validElements.size();indexValidacao++){
+			ValidacaoElement element = validElements.get(indexValidacao);
 			try {
 				validarItem(element);
 			}
@@ -131,7 +136,6 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 		}
 		
 		lancarExcecaoSeModeFinal(mensagensValidacao, mode);
-		clearValidations();
 	}
 	
 	/**

@@ -65,7 +65,7 @@ public class LindbergException extends RuntimeException  {
 		String str = "";
 
 		for (int i=0; i < msgs.size();i++)
-			str = str + msgs.get(i) + (i == msgs.size()-1 ? "" : "; ");
+			str = str + (i == 0 ? "" : " ") + msgs.get(i) + (i == msgs.size()-1 ? "" : ";");
 
 		return str;
 	}
