@@ -24,6 +24,12 @@ public interface IExecutorValidation {
 	
 	public void addValidationsForItemValidating(ValidationMode mode, ValidationItem item,IValidation... validacoes);
 	
+	public void addValidationsValidating(ValidationItem[] items,IValidation... validacoes);
+	
+	public void addValidationForSeveralItemsValidating(IValidation validacao,ValidationItem... items);
+	
+	public void addValidationsForItemValidating(ValidationItem item,IValidation... validacoes);
+	
 	public void executarValidacaoes(ValidationMode mode) 
 	                     throws ValidationException, ValidationClassCastException;
 	
