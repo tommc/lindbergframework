@@ -81,6 +81,21 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	   executarValidacaoes(mode);
 	}
 	
+	public void addValidationForSeveralItemsValidating(IValidation validacao,
+			ValidationItem... items) {
+		addValidationForSeveralItemsValidating(ValidationMode.THROW_FINAL, validacao, items);
+	}
+	
+	public void addValidationsForItemValidating(ValidationItem item,
+			IValidation... validacoes) {
+		addValidationsForItemValidating(ValidationMode.THROW_FINAL, item, validacoes);
+	}
+	
+	public void addValidationsValidating(ValidationItem[] items,
+			IValidation... validacoes) {
+		addValidationsValidating(ValidationMode.THROW_FINAL, items, validacoes);		
+	}
+	
 	private void addItem(IValidation[] validacoes,ValidationItem item){
 		Integer[] indexes = item.getIndexValidacoes();
 		for (int i = 0;i < indexes.length;i++){
