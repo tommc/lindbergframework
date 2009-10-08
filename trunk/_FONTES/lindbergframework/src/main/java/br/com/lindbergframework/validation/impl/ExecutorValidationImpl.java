@@ -144,6 +144,9 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 				validarItem(element);
 			}
 			catch (ValidationException ex) {
+				if (ex.getMessages().isEmpty())
+					ex.addMessage(String.format("Validation %s failed", element.getValidacao().getClass().toString()));
+				
 				List<String> msgs = formatMsgsParaItemValidacao(ex, element,indexValidacao);
 				mensagensValidacao.addAll(msgs);
 				lancarExcecaoSeModeImediatamente(mensagensValidacao, mode);

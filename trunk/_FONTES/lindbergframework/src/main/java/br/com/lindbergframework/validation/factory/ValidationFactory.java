@@ -1,15 +1,22 @@
 package br.com.lindbergframework.validation.factory;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import br.com.lindbergframework.spring.LindbergSpringFactory;
-import br.com.lindbergframework.validation.IRequiredFieldValidation;
+import br.com.lindbergframework.validation.AbstractComparableValidation;
 import br.com.lindbergframework.validation.ICastValidation;
+import br.com.lindbergframework.validation.IComparableValidation;
 import br.com.lindbergframework.validation.IDateValidation;
 import br.com.lindbergframework.validation.IDocumentValidation;
+import br.com.lindbergframework.validation.IExecutorValidation;
 import br.com.lindbergframework.validation.IHasBeNullValidacao;
 import br.com.lindbergframework.validation.IListValidacao;
 import br.com.lindbergframework.validation.INotNullValidacao;
 import br.com.lindbergframework.validation.INumberValidation;
-import br.com.lindbergframework.validation.IExecutorValidation;
+import br.com.lindbergframework.validation.IRequiredFieldValidation;
+import br.com.lindbergframework.validation.ValidationItem;
+import br.com.lindbergframework.validation.AbstractComparableValidation.FatorComparacao;
+import br.com.lindbergframework.validation.impl.NumberComparableValidation;
 
 /**
  * Fábrica de validadores
@@ -38,6 +45,7 @@ public class ValidationFactory {
 	public static final String DATE_CAN_NOT_BE_PAST_VALIDACAO_BEAN = "dateCanNotBePastValidation";
 	public static final String DATE_CAN_NOT_BE_PRESENT_VALIDACAO_BEAN = "dateCanNotBePresentValidation";
 	public static final String HAS_BE_EMPTY_VALIDACAO_BEAN = "hasBeEmptyListValidation";
+	public static final String NUMBER_COMPARABLE_VALIDATION_BEAN = "numberComparableValidation";
 
 	
 	private static LindbergSpringFactory springFactory = LindbergSpringFactory.getInstance();
@@ -114,6 +122,13 @@ public class ValidationFactory {
 		return springFactory.getBean(DATE_CAN_NOT_BE_PRESENT_VALIDACAO_BEAN);
 	}
 	
+	public static IComparableValidation<Number> createNumberComparableValidation(Number valorComparacao, FatorComparacao fatorComparacao) {
+		AbstractComparableValidation<Number> comparableValidation = springFactory.getBean(NUMBER_COMPARABLE_VALIDATION_BEAN);
+		comparableValidation.setValorComparacao(valorComparacao);
+		comparableValidation.setFatorComparacao(fatorComparacao);
+		
+		return comparableValidation;
+	}
 	
 	/**
 	 * Cria um IExecutorValidation
@@ -121,7 +136,5 @@ public class ValidationFactory {
 	public static IExecutorValidation createExecutorValidation() {
 		return springFactory.getBean(EXECUTOR_VALIDATION_BEAN);
 	}
-
-	
 
 }
