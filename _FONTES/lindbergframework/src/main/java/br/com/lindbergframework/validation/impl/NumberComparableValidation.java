@@ -36,7 +36,7 @@ import br.com.lindbergframework.validation.IExecutorValidation;
  *    10 ---- Lança exception pois 10 não é menor do que o valorComparação (10, neste caso)
  *    
  * 
- * @author victorsilva
+ * @author Victor Lindberg
  *
  */
 @Component("numberComparableValidation")
