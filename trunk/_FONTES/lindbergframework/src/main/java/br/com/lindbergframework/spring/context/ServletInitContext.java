@@ -4,7 +4,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import br.com.lindbergframework.spring.LindbergSpringFactory;
+import br.com.lindbergframework.validation.IExecutorValidation;
+import br.com.lindbergframework.validation.ValidationItem;
+import br.com.lindbergframework.validation.factory.ValidationFactory;
+import br.com.lindbergframework.validation.settings.MsgType;
 
 
 /**
@@ -28,5 +35,5 @@ public class ServletInitContext extends HttpServlet{
 		ApplicationContext appContext = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		SingletonSpringBeanFactory.initContext(appContext);
 	}
-
+	
 }
