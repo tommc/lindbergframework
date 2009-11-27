@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import br.com.lindbergframework.exception.ValidationException;
-import br.com.lindbergframework.validation.IListValidacao;
+import br.com.lindbergframework.validation.IListValidation;
 
 /**
  * 
@@ -13,7 +13,7 @@ import br.com.lindbergframework.validation.IListValidacao;
  *
  */
 @Component("notEmptyListValidacao")
-public class NotEmptyListValidacao implements IListValidacao<Object>{
+public class NotEmptyListValidation implements IListValidation<Object>{
 	
 	public void validate(List<Object> lista) throws ValidationException {
 	   if (lista != null && lista.isEmpty())

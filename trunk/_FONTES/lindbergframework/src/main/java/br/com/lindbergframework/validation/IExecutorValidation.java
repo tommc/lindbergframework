@@ -36,6 +36,8 @@ public interface IExecutorValidation {
 	public void executarValidacaoes() 
 	                      throws ValidationException, ValidationClassCastException;
 	
+	public void executarValidacaoes(String separatorMessages) throws ValidationException,ValidationClassCastException;
+	
 	public void clearValidations();
 	
 	public void reset();
