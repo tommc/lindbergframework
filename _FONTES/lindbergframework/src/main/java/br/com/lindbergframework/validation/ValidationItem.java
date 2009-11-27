@@ -36,10 +36,12 @@ public class ValidationItem {
 		setIndexValidacoes(indexes);
 	}
 	
-	public ValidationItem(Object valor,String separador,MsgType msgType,String... messages){
-		this(valor, msgType, messages);
+	public ValidationItem(String separador, Object valor,MsgType msgType,String... messages){
+		this(valor,msgType,messages);
 		setSeparador(separador);
 	}
+	
+	
 	
 	public ValidationItem(Object valor,Integer... indexesValidacoes){
 		setValor(valor);
@@ -55,26 +57,25 @@ public class ValidationItem {
 		this(valor,indexesValidacoes);
 		setMessages(messages);
 		setMsgType(msgType);
-	} 
+	}
 	
-	public ValidationItem(MsgType msgType,Object valor,String separador,
-			   String[] messages,Integer... indexesValidacoes){
+	public ValidationItem(String separador, Object valor,MsgType msgType,
+			String[] messages,Integer... indexesValidacoes){
 		this(valor,msgType,messages,indexesValidacoes);
 		setSeparador(separador);
+	} 
+	
+	public ValidationItem(Object valor,String message,MsgType msgType,Integer... indexesValidacoes){
+		this(valor,indexesValidacoes);
+		setMessages(createArrayWithMessage(message, indexesValidacoes.length));
+		setMsgType(msgType);
 	}
 	
-	 
-	public ValidationItem(Object valor,String message,MsgType msgType,Integer... indexesValidacoes){
-		this(valor,msgType,new String[] {message},indexesValidacoes);
-	}
-
-	public ValidationItem(Object valor, String[] messages,
-			Integer[] indexValidacoes,String separador) {
-		setValor(valor);
-		setMessages(messages);
-		setIndexValidacoes(indexValidacoes);
+	public ValidationItem(String separador, Object valor,String message,MsgType msgType,Integer... indexesValidacoes){
+		this(valor,message,msgType,indexesValidacoes);
 		setSeparador(separador);
 	}
+
 	
 	public Object getValor() {
 		return valor;
@@ -114,6 +115,15 @@ public class ValidationItem {
 	
 	public MsgType getMsgType() {
 		return msgType;
+	}
+	
+	private String[] createArrayWithMessage(String message,int length){
+	   String[] array = new String[length];
+	   
+	   for (int  i = 0;i < length;i++)
+		   array[i] = message;
+	   
+	   return array;
 	}
 	
 }

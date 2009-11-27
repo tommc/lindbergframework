@@ -3,7 +3,7 @@ package br.com.lindbergframework.validation.impl;
 import org.springframework.stereotype.Component;
 
 import br.com.lindbergframework.exception.ValidationException;
-import br.com.lindbergframework.validation.IHasBeNullValidacao;
+import br.com.lindbergframework.validation.IHasBeNullValidation;
 
 /**
  * 
@@ -14,7 +14,7 @@ import br.com.lindbergframework.validation.IHasBeNullValidacao;
  *
  */
 @Component("hasBeNullValidacao")
-public class HasBeNullValidacao implements IHasBeNullValidacao {
+public class HasBeNullValidation implements IHasBeNullValidation {
 	
 	public void validate(Object objeto) throws ValidationException {
 	   if (objeto != null)

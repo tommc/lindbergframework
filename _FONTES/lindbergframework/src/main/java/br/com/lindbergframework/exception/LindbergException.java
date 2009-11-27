@@ -13,8 +13,11 @@ import java.util.Vector;
 public class LindbergException extends RuntimeException  {
 
 	private static final long serialVersionUID = 1L;
+	
+	public static final String DEFAULT_SEPARATOR_MESSAGES = ";";
 
-	public List<String> msgs = new Vector<String>();
+	private List<String> msgs = new Vector<String>();
+	private String separatorMessages = DEFAULT_SEPARATOR_MESSAGES; 
 
 	public LindbergException() {
 		//
@@ -65,7 +68,7 @@ public class LindbergException extends RuntimeException  {
 		String str = "";
 
 		for (int i=0; i < msgs.size();i++)
-			str = str + (i == 0 ? "" : " ") + msgs.get(i) + (i == msgs.size()-1 ? "" : ";");
+			str = str + (i == 0 ? "" : " ") + msgs.get(i) + (i == msgs.size()-1 ? "" : separatorMessages);
 
 		return str;
 	}
@@ -88,6 +91,15 @@ public class LindbergException extends RuntimeException  {
 	@Override
 	public String toString() {
 		return getMessageTreated();
+	}
+	
+	public void setSeparatorMessages(String separatorMessages) {
+		this.separatorMessages = separatorMessages;
+	}
+	
+	
+	public String getSeparatorMessages() {
+		return separatorMessages;
 	}
 
 }

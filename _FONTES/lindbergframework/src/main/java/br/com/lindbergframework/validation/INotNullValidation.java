@@ -5,6 +5,6 @@ package br.com.lindbergframework.validation;
  * @author Victor Lindberg
  *
  */
-public interface INotNullValidacao extends IValidation<Object> {
+public interface INotNullValidation extends IValidation<Object> {
 
 }

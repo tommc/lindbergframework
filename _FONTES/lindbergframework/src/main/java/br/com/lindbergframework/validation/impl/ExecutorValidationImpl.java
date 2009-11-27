@@ -164,6 +164,19 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 		executarValidacaoes(ValidationMode.THROW_FINAL);
 	}
 	
+	/**
+	 * 
+	 * @throws ValidationException
+	 */
+	public void executarValidacaoes(String separatorMessages) throws ValidationException,ValidationClassCastException{
+		try{
+		   executarValidacaoes(ValidationMode.THROW_FINAL);
+		}catch(ValidationException ex){
+			ex.setSeparatorMessages(separatorMessages);
+			throw ex;
+		}
+	}
+	
 	private void lancarExcecaoSeModeImediatamente(List<String> mensagensValidacao,ValidationMode mode){
 		if (mode.equals(ValidationMode.THROW_IMMEDIATELY))
 			   lancarExcecaoSeNecessario(mensagensValidacao);   	

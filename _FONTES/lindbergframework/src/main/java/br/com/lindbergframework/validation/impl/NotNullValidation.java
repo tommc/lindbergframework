@@ -3,7 +3,7 @@ package br.com.lindbergframework.validation.impl;
 import org.springframework.stereotype.Component;
 
 import br.com.lindbergframework.exception.ValidationException;
-import br.com.lindbergframework.validation.INotNullValidacao;
+import br.com.lindbergframework.validation.INotNullValidation;
 
 /**
  * 
@@ -11,7 +11,7 @@ import br.com.lindbergframework.validation.INotNullValidacao;
  *
  */
 @Component("notNullValidacao")
-public class NotNullValidacao implements INotNullValidacao{
+public class NotNullValidation implements INotNullValidation{
 	
 	public void validate(Object objeto) throws ValidationException {
 	   if (objeto == null)
