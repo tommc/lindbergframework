@@ -97,7 +97,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	}
 	
 	private void addItem(IValidation[] validacoes,ValidationItem item){
-		Integer[] indexes = item.getIndexValidacoes();
+		Integer[] indexes = item.getIndexValidations();
 		for (int i = 0;i < indexes.length;i++){
 			IValidation validacao = validacoes[indexes[i]];
 			String msgCustom = item.getMessages()[i];
@@ -111,10 +111,10 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	
 	private boolean isIndexValidacoesItemsOK(IValidation[] validacoes, ValidationItem[] items){
 		for (ValidationItem item : items){
-		   if (item.getMessages().length != item.getIndexValidacoes().length)
+		   if (item.getMessages().length != item.getIndexValidations().length)
 			   return false;
 		   
-		   Integer[] indexes = item.getIndexValidacoes();
+		   Integer[] indexes = item.getIndexValidations();
 		
 		   for (Integer index : indexes){
 			  if (index > validacoes.length - 1 ||
@@ -205,8 +205,8 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 		      List<String> msgs = new Vector<String>();
 		      for (String msgEx : ex.getMessages()){
 		    	  msgs.add(msgType.isConcatenarNoFinal() ? 
-		    			         msgEx +" "+item.getSeparador()+" "+ msgCustom :
-		    			        	 msgCustom +" "+item.getSeparador()+" "+ msgEx);
+		    			         msgEx +" "+item.getSeparator()+" "+ msgCustom :
+		    			        	 msgCustom +" "+item.getSeparator()+" "+ msgEx);
 		      }
 		      
 		      return msgs;
@@ -221,7 +221,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	private void validarItem(ValidacaoElement validacaoElement) {
 		IValidation<Object> validacao = validacaoElement.getValidacao();
 		try{
-		   validacao.validate(validacaoElement.getValidacaoItem().getValor());
+		   validacao.validate(validacaoElement.getValidacaoItem().getValue());
 		}catch(ClassCastException ex){
 			throw new ValidationClassCastException("Não foi possível efetuar a validação de um ou mais " +
 					"items pois o valor a ser validado não corresponde com o tipo esperado para a validação",ex);
