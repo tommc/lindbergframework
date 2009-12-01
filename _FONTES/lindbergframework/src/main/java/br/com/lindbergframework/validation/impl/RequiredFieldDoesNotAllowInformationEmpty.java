@@ -6,6 +6,8 @@ import br.com.lindbergframework.exception.ValidationException;
 import br.com.lindbergframework.validation.IRequiredFieldValidation;
 
 /**
+ * Implementação de validação de valor requerido e que não permite <br>
+ * informação vazia como uma sequencia de caracteres espaço
  * 
  * @author Victor Linndberg
  *

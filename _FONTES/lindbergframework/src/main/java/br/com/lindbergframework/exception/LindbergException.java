@@ -5,7 +5,7 @@ import java.util.Vector;
 
 /**
  * 
- * Classe pai de todas as excecoes da aplicação
+ * Classe pai de todas as excecoes do framework
  * 
  * @author Victor Lindberg
  * 
@@ -14,9 +14,21 @@ public class LindbergException extends RuntimeException  {
 
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Separador de mensagens padrão. Se nenhum separador de mensagens <br>
+	 * for configurado este é utilizado como padrão
+	 */
 	public static final String DEFAULT_SEPARATOR_MESSAGES = ";";
 
+	/**
+	 * Mensagens que compõem esta exceção 
+	 */
 	private List<String> msgs = new Vector<String>();
+	
+	/**
+	 * Separador de mensagens. Esta String é utilizada para separar cada mensagem. <br>
+	 * Por exemplo se o separador for ";" então a mensagem completa será msg1; msg2; msg3 
+	 */
 	private String separatorMessages = DEFAULT_SEPARATOR_MESSAGES; 
 
 	public LindbergException() {
@@ -47,23 +59,41 @@ public class LindbergException extends RuntimeException  {
 		addAllMessages(msgs);
 	}
 
+	/**
+	 * adiciona uma nova mensagem a lista de mensagem que compoêm a exceção
+	 */
 	public void addMessage(String msg) {
 		msgs.add(msg);
 	}
 
+	/**
+	 * adiciona uma nova mensagem a lista de mensagem em um determinado índice na lista 
+	 */
 	public void addMessage(int index, String msg) {
 		msgs.add(index, msg);
 	}
 
+	/**
+	 * adiciona todas as mensagem contidas na lista passada como argumento e adiciona <br>
+	 * na lista de mensagens da exceção
+	 */
 	public void addAllMessages(List<String> msgs) {
 		for (String msg : msgs)
 			this.msgs.add(msg);
 	}
 
+	/**
+	 * retorna a lista de mensagem que compôem a exceção
+	 */
 	public List<String> getMessages() {
 		return msgs;
 	}
 
+	/**
+	 * retorna a mensagem tratada composta por todas as mensagens que compôem <br>
+	 * a exceção em uma única String onde o {@link #separatorMessages} é usado <br>
+	 * para separar cada mensagem na String retornada
+	 */
 	public String getMessageTreated() {
 		String str = "";
 
@@ -73,6 +103,9 @@ public class LindbergException extends RuntimeException  {
 		return str;
 	}
 
+	/**
+	 * Retorna true se ha alguma mensagem na lista de mensagens da exceção
+	 */
 	public boolean hasMessages() {
 		return !msgs.isEmpty();
 	}
@@ -83,6 +116,9 @@ public class LindbergException extends RuntimeException  {
 		return getMessageTreated();
 	}
 
+	/**
+	 * Lança esta exceção caso haja alguma mensagem na lista
+	 */
 	public void lancarEssaExcecaoSeHouverMensagens() {
 		if (hasMessages())
 			throw this;

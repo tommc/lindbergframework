@@ -6,6 +6,7 @@ import br.com.lindbergframework.exception.ValidationException;
 import br.com.lindbergframework.validation.INotNullValidation;
 
 /**
+ * Implementação de validação de obrigatoriedade não null
  * 
  * @author Victor Lindberg
  *

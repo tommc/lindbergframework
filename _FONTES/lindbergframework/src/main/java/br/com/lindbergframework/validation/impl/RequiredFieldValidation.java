@@ -6,7 +6,9 @@ import br.com.lindbergframework.exception.ValidationException;
 import br.com.lindbergframework.validation.IRequiredFieldValidation;
 
 /**
- * Validador de campo requerido
+ * Implementação de validação de campo requerido. Esta validação permite informação vazia <br>
+ * ou seja sequencia de caracteres espaço. Validar não permitindo informação <br>
+ * vazia use {@link RequiredFieldDoesNotAllowInformationEmpty}
  * 
  * 
  * @author Victor Lindberg

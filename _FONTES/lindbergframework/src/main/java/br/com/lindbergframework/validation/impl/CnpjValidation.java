@@ -6,6 +6,7 @@ import br.com.lindbergframework.exception.ValidationException;
 import br.com.lindbergframework.validation.IDocumentValidation;
 
 /**
+ * Implementação da validação de CNPJ 
  * 
  * @author Victor Lindberg
  * 
@@ -20,6 +21,9 @@ public class CnpjValidation implements IDocumentValidation<String>{
 	}
 	
 	
+	/**
+	 * Efetua a validação do cnpj
+	 */
 	public static  boolean validateCnpj( String str_cnpj ) {   
 		if (str_cnpj == null || str_cnpj.length() != 14)
 			return false;
@@ -30,7 +34,7 @@ public class CnpjValidation implements IDocumentValidation<String>{
                 str_cnpj=str_cnpj.replace('/',' ');   
                 str_cnpj=str_cnpj.replace('-',' ');   
                 str_cnpj=str_cnpj.replaceAll(" ","");   
-                int soma = 0, aux, dig;   
+                int soma = 0, dig;   
                 String cnpj_calc = str_cnpj.substring(0,12);   
                    
                 if ( str_cnpj.length() != 14 )   

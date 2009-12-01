@@ -11,18 +11,32 @@ import org.springframework.context.ApplicationContext;
  */
 public class SpringBeanFactory {
 
+	/**
+	 * Contexto do spring
+	 */
 	private ApplicationContext applicationContext;
 
+	/**
+	 * Cria uma nova fábrica de bens do spring baseada em um applicationcontext pronto
+	 * @param appContext
+	 */
 	public SpringBeanFactory(ApplicationContext appContext) {
 		applicationContext = appContext;
 	}
 	
+	/**
+	 * retorna o context configurado na fábrica
+	 */
 	public ApplicationContext getApplicationContext() {
 		return applicationContext;
 	}
+	
+	public boolean isContextConfigured(){
+		return applicationContext != null;
+	}
 
 	/**
-	 * Retorna a instancia de um beans do Spring
+	 * Retorna a instancia de um bean do Spring
 	 * 
 	 * @param bean
 	 *            = id do bean do Spring

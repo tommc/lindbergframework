@@ -3,9 +3,8 @@ package br.com.lindbergframework.exception;
 import java.util.List;
 
 /**
- * Excecao originada das classes tipo DAO
- * 
- * 
+ * Excecao nas operações de persistencia
+
  * @author victorsilva
  *
  */

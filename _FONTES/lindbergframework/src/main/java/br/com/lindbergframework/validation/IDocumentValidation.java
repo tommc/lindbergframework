@@ -2,6 +2,8 @@ package br.com.lindbergframework.validation;
 
 /**
  * 
+ * Interface que define as validações de documentos
+ * 
  * @author Victor Lindberg
  *
  */

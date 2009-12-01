@@ -3,6 +3,7 @@ package br.com.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Exceção lançada a partir da conversão de classes nas validações
  * 
  * @author Victor Lindberg
  * 

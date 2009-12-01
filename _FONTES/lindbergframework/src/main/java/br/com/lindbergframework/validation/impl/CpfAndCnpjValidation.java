@@ -8,6 +8,9 @@ import br.com.lindbergframework.validation.IValidation;
 import br.com.lindbergframework.validation.factory.ValidationFactory;
 
 /**
+ * Implementa a validação de cpf e cnpj de acordo com o valor passado para ser validado <br><br>
+ * 
+ * Esta validação verifica se o comprimento corresponde a um cpf ou um cnpj e faz a validação correspondente 
  * 
  * @author Victor Lindberg
  *
@@ -19,7 +22,7 @@ public class CpfAndCnpjValidation implements IDocumentValidation<String>{
 		if (numDoc != null){
 			IValidation<String> validacao;
 			if (numDoc.length() == 11)
-				validacao = ValidationFactory.createCpfValidacao();
+				validacao = ValidationFactory.createCpfValidation();
 			else
 				if (numDoc.length() == 14)
 				   validacao = ValidationFactory.createCnpjValidacao();
@@ -30,7 +33,6 @@ public class CpfAndCnpjValidation implements IDocumentValidation<String>{
 				
 		}
 	}
-	
 	
 
 }
