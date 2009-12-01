@@ -43,19 +43,17 @@ import br.com.lindbergframework.validation.IExecutorValidation;
 @Scope("prototype")
 public class NumberComparableValidation extends AbstractComparableValidation<Number>{
 
-	private Number valorComparacao = 0;
-	
 	public NumberComparableValidation(){
 		//
 	}
 	
 	public NumberComparableValidation(Number valorComparacao, FatorComparacao fatorComparacao) {
 		super(fatorComparacao);
-		this.valorComparacao = valorComparacao;
+		setValorComparacao(valorComparacao);
 	}
 
 	public void validate(Comparable<Number> valor) throws ValidationException {
-		int resultComparacao = valor.compareTo(valorComparacao);
+		int resultComparacao = valor.compareTo(getValorComparacao());
 		int fator = getFatorComparacao().getFator();
 		if ((fator == 0 ||
 			fator == 1 ||
@@ -69,17 +67,8 @@ public class NumberComparableValidation extends AbstractComparableValidation<Num
 			throwException(valor);
 	}
 	
-	public void setValorComparacao(Number valorComparacao) {
-		this.valorComparacao = valorComparacao;
-	}
-	
-	
-	public Number getValorComparacao() {
-		return valorComparacao;
-	}
-	
 	private void throwException(Comparable<Number> valor){
-		String erro = String.format("Validação '%s' entre os valores "+valorComparacao.toString()+" e "+valor.toString()+" falhou" ,
+		String erro = String.format("Validação '%s' entre os valores "+getValorComparacao().toString()+" e "+valor.toString()+" falhou" ,
 				getFatorComparacao().getDescricao());
 		
 		throw new ValidationException(erro);

@@ -1,6 +1,7 @@
 package br.com.lindbergframework.validation;
 
 /**
+ * Interface que define uma validação de obrigatoriedade null
  * 
  * @author Victor Lindberg
  *

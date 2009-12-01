@@ -1,6 +1,7 @@
 package br.com.lindbergframework.validation;
 
 /**
+ * Interface que define as validações referentes a {@link Number}
  * 
  * @author Victor Lindberg
  *

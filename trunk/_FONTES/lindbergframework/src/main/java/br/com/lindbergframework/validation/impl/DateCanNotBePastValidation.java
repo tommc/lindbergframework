@@ -8,6 +8,7 @@ import br.com.lindbergframework.exception.ValidationException;
 import br.com.lindbergframework.validation.IDateValidation;
 
 /**
+ * Implementa a validação de que a data não pode ser passada
  * 
  * @author Victor Lindberg
  *
@@ -16,7 +17,7 @@ import br.com.lindbergframework.validation.IDateValidation;
 public class DateCanNotBePastValidation implements IDateValidation{
 	
 	public void validate(Date date) throws ValidationException {
-		if (date != null && date.compareTo(new Date()) < 0)
+		if (date != null && date.before(new Date()))
 			throw new ValidationException("Data não pode ser menor do que a atual");
 	}
 

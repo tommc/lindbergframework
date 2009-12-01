@@ -8,6 +8,7 @@ import br.com.lindbergframework.exception.ValidationException;
 import br.com.lindbergframework.validation.IDateValidation;
 
 /**
+ * Implementa a validação de que a data não pode ser presente
  * 
  * @author Victor Lindberg
  *
@@ -16,7 +17,9 @@ import br.com.lindbergframework.validation.IDateValidation;
 public class DateCanNotBePresentValidation implements IDateValidation{
 	
 	public void validate(Date date) throws ValidationException {
-	   	if (date != null && date.compareTo(new Date()) == 0)
+		Date dateAtual = new Date();
+		
+	   	if (date != null && ! date.before(dateAtual) && ! date.after(dateAtual))
 	   		throw new ValidationException("Data nao pode ser igual a atual");
 	}
 

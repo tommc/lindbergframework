@@ -1,6 +1,7 @@
 package br.com.lindbergframework.validation;
 
 /**
+ * Interface para validações de conversão
  * 
  * @author Victor Lindberg
  *

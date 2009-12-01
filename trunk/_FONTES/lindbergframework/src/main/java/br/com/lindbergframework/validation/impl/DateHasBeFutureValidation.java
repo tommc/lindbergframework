@@ -8,6 +8,7 @@ import br.com.lindbergframework.exception.ValidationException;
 import br.com.lindbergframework.validation.IDateValidation;
 
 /**
+ * Implementa a validação de que a data é futura
  * 
  * @author Victor Lindberg
  *
@@ -16,7 +17,7 @@ import br.com.lindbergframework.validation.IDateValidation;
 public class DateHasBeFutureValidation implements IDateValidation{
 	
 	public void validate(Date date) throws ValidationException {
-	   if (date != null && date.compareTo(new Date()) <= 0)
+	   if (date != null && ! date.after(new Date()))
 		   throw new ValidationException("Data menor ou igual a atual");
 	}
 

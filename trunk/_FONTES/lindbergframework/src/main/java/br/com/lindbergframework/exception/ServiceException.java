@@ -3,7 +3,7 @@ package br.com.lindbergframework.exception;
 import java.util.List;
 
 /**
- * Excecao originada das classes tipo Service
+ * Exceção originada das classes de service/negócio
  * 
  * 
  * @author Victor Lindberg

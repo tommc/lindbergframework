@@ -8,6 +8,7 @@ import br.com.lindbergframework.exception.ValidationException;
 import br.com.lindbergframework.validation.IListValidation;
 
 /**
+ * Implementação de validação de lista que verifica se a lista não esta vazia
  * 
  * @author Victor Lindberg
  *

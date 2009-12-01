@@ -8,6 +8,7 @@ import br.com.lindbergframework.exception.ValidationException;
 import br.com.lindbergframework.validation.IDateValidation;
 
 /**
+ * Implementa a validação de que a data não pode ser futura
  * 
  * @author victorsilva
  *
@@ -16,7 +17,7 @@ import br.com.lindbergframework.validation.IDateValidation;
 public class DateCanNotBeFutureValidation implements IDateValidation{
 	
 	public void validate(Date date) throws ValidationException {
-		if (date != null && date.compareTo(new Date()) > 0)
+		if (date != null && date.after(new Date()))
 			throw new ValidationException("Data não pode ser maior do que a atual");
 		
 	}

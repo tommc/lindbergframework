@@ -6,6 +6,7 @@ import br.com.lindbergframework.exception.ValidationException;
 import br.com.lindbergframework.validation.IDocumentValidation;
 
 /**
+ * Implementa a validação de CPF
  * 
  * @author Victor Lindberg
  *
@@ -19,6 +20,9 @@ public class CpfValidation implements IDocumentValidation<String>{
 	    	   throw new ValidationException("CPF inválido");
 	}
 	
+	/**
+	 * Efetua a verificação de o número passado como argumento corresponde a um cpf valido
+	 */
 	private static String calcDigVerif(String num) {   
         Integer primDig, segDig;   
         int soma = 0, peso = 10;   
