@@ -1,4 +1,4 @@
-package br.com.lindbergframework.validation;
+package br.com.lindbergframework.validation; 
 
 import br.com.lindbergframework.exception.ValidationClassCastException;
 import br.com.lindbergframework.exception.ValidationException;
