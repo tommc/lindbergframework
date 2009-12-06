@@ -2,6 +2,7 @@ package org.lindbergframework.validation.factory;
 
 import org.lindbergframework.spring.LindbergSpringFactory;
 import org.lindbergframework.validation.AbstractComparableValidation;
+import org.lindbergframework.validation.AbstractMaxLengthRequiredValidation;
 import org.lindbergframework.validation.IComparableValidation;
 import org.lindbergframework.validation.IDateValidation;
 import org.lindbergframework.validation.IDocumentValidation;
@@ -10,6 +11,7 @@ import org.lindbergframework.validation.IHasBeNullValidation;
 import org.lindbergframework.validation.IListValidation;
 import org.lindbergframework.validation.INotNullValidation;
 import org.lindbergframework.validation.IRequiredFieldValidation;
+import org.lindbergframework.validation.ValidationItem;
 import org.lindbergframework.validation.AbstractComparableValidation.FatorComparacao;
 
 
@@ -41,6 +43,7 @@ public class ValidationFactory {
 	public static final String DATE_CAN_NOT_BE_PRESENT_VALIDACAO_BEAN = "dateCanNotBePresentValidation";
 	public static final String HAS_BE_EMPTY_VALIDACAO_BEAN = "hasBeEmptyListValidation";
 	public static final String NUMBER_COMPARABLE_VALIDATION_BEAN = "numberComparableValidation";
+	public static final String STRING_MAX_LENGTH_VALIDATION_BEAN = "stringMaxLengthValidation";
 
 	
 	private static LindbergSpringFactory springFactory = LindbergSpringFactory.getInstance();
@@ -157,6 +160,19 @@ public class ValidationFactory {
 	}
 	
 	/**
+	 * Cria uma instancia de {@link IStringValidation} que valida o comprimento máximo de String´s 
+	 */
+	public static AbstractMaxLengthRequiredValidation<String> createStringMaxLengthValidation(int maxLength) {
+		 AbstractMaxLengthRequiredValidation<String> abstractMaxLengthRequiredValidation = 
+			                springFactory.getBean(STRING_MAX_LENGTH_VALIDATION_BEAN);
+		 
+		 abstractMaxLengthRequiredValidation.setMaxLengthRequired(maxLength);
+		 
+		 return abstractMaxLengthRequiredValidation;
+	}
+	
+	
+	/**
 	 * Cria uma instancia de {@link IComparableValidation} que valida a comparação entre Numbers 
 	 */
 	public static IComparableValidation<Number> createNumberComparableValidation(Number valorComparacao, FatorComparacao fatorComparacao) {
@@ -173,5 +189,5 @@ public class ValidationFactory {
 	public static IExecutorValidation createExecutorValidation() {
 		return springFactory.getBean(EXECUTOR_VALIDATION_BEAN);
 	}
-
+	
 }
