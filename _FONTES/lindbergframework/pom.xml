@@ -6,7 +6,8 @@
 	<name>lindbergframework</name>
 	<version>1.0</version>
 	<description>lindbergframework</description>
-
+    <url>http://www.lindbergframework.org</url>
+    
 	<properties>
 		<versao-spring>2.5.5</versao-spring>
 		<versao-commons-annotations>1.0</versao-commons-annotations>
