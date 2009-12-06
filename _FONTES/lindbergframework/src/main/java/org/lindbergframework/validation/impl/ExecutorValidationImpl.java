@@ -70,19 +70,19 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	public void addValidationForSeveralItemsValidating(ValidationMode mode,
 			IValidation validacao, ValidationItem... items) {
 	   addValidationForSeveralItems(validacao, items);
-	   executarValidacaoes(mode);
+	   execute(mode);
 	}
 	 
 	public void addValidationsForItemValidating(ValidationMode mode,
 			ValidationItem item, IValidation... validacoes) {
 	   addValidationsForItem(item, validacoes);
-	   executarValidacaoes(mode);
+	   execute(mode);
 	}
 	  
 	public void addValidationsValidating(ValidationMode mode,
 			ValidationItem[] items, IValidation... validacoes) {
 	   addValidations(items, validacoes);
-	   executarValidacaoes(mode);
+	   execute(mode);
 	}
 	
 	public void addValidationForSeveralItemsValidating(IValidation validacao,
@@ -133,7 +133,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 		return true;
 	}
 	
-	public void executarValidacaoes(ValidationMode mode) throws ValidationException, ValidationClassCastException{
+	public void execute(ValidationMode mode) throws ValidationException, ValidationClassCastException{
 		List<String> mensagensValidacao = new ArrayList<String>();
 		List<ValidacaoElement> validElements = new Vector<ValidacaoElement>();
 		validElements.addAll(validacoes);
@@ -158,13 +158,13 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 		lancarExcecaoSeModeFinal(mensagensValidacao, mode);
 	}
 	
-	public void executarValidacaoes() throws ValidationException,ValidationClassCastException{
-		executarValidacaoes(ValidationMode.THROW_FINAL);
+	public void execute() throws ValidationException,ValidationClassCastException{
+		execute(ValidationMode.THROW_FINAL);
 	}
 	
-	public void executarValidacaoes(String separatorMessages) throws ValidationException,ValidationClassCastException{
+	public void execute(String separatorMessages) throws ValidationException,ValidationClassCastException{
 		try{
-		   executarValidacaoes(ValidationMode.THROW_FINAL);
+		   execute(ValidationMode.THROW_FINAL);
 		}catch(ValidationException ex){
 			ex.setSeparatorMessages(separatorMessages);
 			throw ex;
