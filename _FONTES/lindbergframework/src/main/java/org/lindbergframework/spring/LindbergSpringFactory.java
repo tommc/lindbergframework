@@ -17,7 +17,7 @@ public class LindbergSpringFactory extends SpringBeanFactory{
 	
 	private static LindbergSpringFactory springFactory;
 	
-	private static String[] conf = new String[] {"br\\com\\lindbergframework\\spring\\conf\\appContext.xml"};
+	private static String[] conf = new String[] {"org\\lindbergframework\\spring\\conf\\appContext.xml"};
 	
 	public LindbergSpringFactory(ApplicationContext applicationContext){
 		super(applicationContext);
