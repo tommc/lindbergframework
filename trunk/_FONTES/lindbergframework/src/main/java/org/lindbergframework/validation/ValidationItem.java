@@ -246,4 +246,8 @@ public class ValidationItem {
 	   return array;
 	}
 	
+	public <E> E a(){
+		return null;
+	}
+	
 }

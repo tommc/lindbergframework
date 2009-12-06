@@ -99,14 +99,14 @@ public interface IExecutorValidation {
 	/**
 	 * Executa as validações no modo padrão {@link ValidationMode.THROW_FINAL} 
 	 */
-	public void executarValidacaoes() 
+	public void execute() 
 	throws ValidationException, ValidationClassCastException;
 	
 	/**
 	 * Executa as validações configuradas no ExecutorValidation usando o modo de validação passado por argumento <br>
 	 *  no parametro mode
 	 */
-	public void executarValidacaoes(ValidationMode mode) 
+	public void execute(ValidationMode mode) 
 	                     throws ValidationException, ValidationClassCastException;
 	
 	
@@ -114,7 +114,7 @@ public interface IExecutorValidation {
 	 * Executa as validações no modo padrão {@link ValidationMode.THROW_FINAL} só que configurando o separador <br>
 	 * das mensagens das validações 
 	 */
-	public void executarValidacaoes(String separatorMessages) throws ValidationException,ValidationClassCastException;
+	public void execute(String separatorMessages) throws ValidationException,ValidationClassCastException;
 	
 	/**
 	 * Limpa as validações do executorValidation 
