@@ -4,10 +4,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Fábri de beans do spring do lindbergframework <br>
+ * Fï¿½bri de beans do spring do lindbergframework <br>
  * baseada no contexto org\lindbergframework\spring\conf\appContext.xml <br><br>
  * 
- * Essa classe mantem uma instancia singleton. Para obter uma instancia use o método {@link #getInstance()}
+ * Essa classe mantem uma instancia singleton. Para obter uma instancia use o mï¿½todo {@link #getInstance()}
  *   
  * 
  * @author Victor Lindberg
@@ -24,7 +24,7 @@ public class LindbergSpringFactory extends SpringBeanFactory{
 	}
 	
 	/**
-	 * retorna a instancia da fábrica 
+	 * retorna a instancia da fï¿½brica 
 	 */
 	public static LindbergSpringFactory getInstance(){
 	   if (springFactory == null){

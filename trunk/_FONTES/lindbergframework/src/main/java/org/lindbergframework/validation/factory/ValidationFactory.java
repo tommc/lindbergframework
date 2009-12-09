@@ -11,12 +11,13 @@ import org.lindbergframework.validation.IHasBeNullValidation;
 import org.lindbergframework.validation.IListValidation;
 import org.lindbergframework.validation.INotNullValidation;
 import org.lindbergframework.validation.IRequiredFieldValidation;
-import org.lindbergframework.validation.ValidationItem;
+import org.lindbergframework.validation.IValidation;
 import org.lindbergframework.validation.AbstractComparableValidation.FatorComparacao;
+import org.lindbergframework.validation.impl.DoesNotAllowInformationEmptyValidation;
 
 
 /**
- * Fábrica de validações
+ * Fï¿½brica de validaï¿½ï¿½es
  * 
  * 
  * @author Victor Lindberg
@@ -44,7 +45,8 @@ public class ValidationFactory {
 	public static final String HAS_BE_EMPTY_VALIDACAO_BEAN = "hasBeEmptyListValidation";
 	public static final String NUMBER_COMPARABLE_VALIDATION_BEAN = "numberComparableValidation";
 	public static final String STRING_MAX_LENGTH_VALIDATION_BEAN = "stringMaxLengthValidation";
-
+	public static final String DOES_NOT_ALLOW_INFORMATION_EMPTY_BEAN = "doesNotAllowInformationEmptyValidation";
+	
 	
 	private static LindbergSpringFactory springFactory = LindbergSpringFactory.getInstance();
 	
@@ -57,8 +59,8 @@ public class ValidationFactory {
 	}
 	 
 	/**
-	 * Cria uma instancia de {@link IRequiredFieldValidation} que não permite ,br>
-	 * informação vazia como por exemplo uma sequencia de espaços em branco
+	 * Cria uma instancia de {@link IRequiredFieldValidation} que nï¿½o permite ,br>
+	 * informaï¿½ï¿½o vazia como por exemplo uma sequencia de espaï¿½os em branco
 	 */
 	public static IRequiredFieldValidation createRequiredFieldDoesNotAllowInformationEmpty() {
 		return springFactory.getBean(
@@ -75,7 +77,7 @@ public class ValidationFactory {
 	}
 
 	/**
-	 * Cria uma instancia de {@link IListValidation} que não permite que valida se uma lista não esta vaia
+	 * Cria uma instancia de {@link IListValidation} que nï¿½o permite que valida se uma lista nï¿½o esta vaia
 	 */
 	public static  IListValidation<Object> createNotEmptyListValidation() {
 		return springFactory.getBean(NOT_EMPTY_VALIDACAO_BEAN);
@@ -96,71 +98,71 @@ public class ValidationFactory {
 	}
 
 	/**
-	 * Cria uma instancia de {@link IDocumentValidation} que implementa a regra de validação de CPF
+	 * Cria uma instancia de {@link IDocumentValidation} que implementa a regra de validaï¿½ï¿½o de CPF
 	 */
 	public static <E> IDocumentValidation<E> createCpfValidation() {
 		return springFactory.getBean(CPF_VALIDACAO_BEAN);
 	}
 	
 	/**
-	 * Cria uma instancia de {@link IDocumentValidation} que implementa a regra de validação de CNPJ 
+	 * Cria uma instancia de {@link IDocumentValidation} que implementa a regra de validaï¿½ï¿½o de CNPJ 
 	 */
 	public static <E> IDocumentValidation<E> createCnpjValidacao() {
 		return springFactory.getBean(CNPJ_VALIDACAO_BEAN);
 	}
 	
 	/**
-	 * Cria uma instancia de {@link IDocumentValidation} que implementa a regra de validação <br>
-	 * de CNPJ e CNPJ dependendo do número passado 
+	 * Cria uma instancia de {@link IDocumentValidation} que implementa a regra de validaï¿½ï¿½o <br>
+	 * de CNPJ e CNPJ dependendo do nï¿½mero passado 
 	 */
 	public static <E> IDocumentValidation<E> createCpfCnpjValidation() {
 		return springFactory.getBean(CPF_CNPJ_VALIDACAO_BEAN);
 	}
 	
 	/**
-	 * Cria uma instancia de {@link IDateValidation} que valida se a data é futura 
+	 * Cria uma instancia de {@link IDateValidation} que valida se a data ï¿½ futura 
 	 */
 	public static IDateValidation createDateHasBeFutureValidation() {
 		return springFactory.getBean(DATE_HAS_BE_FUTURE_VALIDACAO_BEAN);
 	}
 	
 	/**
-	 * Cria uma instancia de {@link IDateValidation} que valida se a data é passado
+	 * Cria uma instancia de {@link IDateValidation} que valida se a data ï¿½ passado
 	 */
 	public static IDateValidation createDateHasBePastValidation() {
 		return springFactory.getBean(DATE_HAS_BE_PAST_VALIDACAO_BEAN);
 	}
 	
 	/**
-	 * Cria uma instancia de {@link IDateValidation} que valida se a data é presente 
+	 * Cria uma instancia de {@link IDateValidation} que valida se a data ï¿½ presente 
 	 */
 	public static IDateValidation createDateHasBePresent() {
 		return springFactory.getBean(DATE_HAS_BE_PRESENT_VALIDACAO_BEAN);
 	}
 	
 	/**
-	 * Cria uma instancia de {@link IDateValidation} que valida se a data não é futura 
+	 * Cria uma instancia de {@link IDateValidation} que valida se a data nï¿½o ï¿½ futura 
 	 */
 	public static IDateValidation createDateCanNotBeFutureValidation() {
 		return springFactory.getBean(DATE_CAN_NOT_BE_FUTURE_VALIDACAO_BEAN);
 	}
 	
 	/**
-	 * Cria uma instancia de {@link IDateValidation} que valida se a data não é passado 
+	 * Cria uma instancia de {@link IDateValidation} que valida se a data nï¿½o ï¿½ passado 
 	 */
 	public static IDateValidation createDateCanNotBePastValidation() {
 		return springFactory.getBean(DATE_CAN_NOT_BE_PAST_VALIDACAO_BEAN);
 	}
 	
 	/**
-	 * Cria uma instancia de {@link IDateValidation} que valida se a data não é presente 
+	 * Cria uma instancia de {@link IDateValidation} que valida se a data nï¿½o ï¿½ presente 
 	 */
 	public static IDateValidation createDateCanNotBePresentValidation() {
 		return springFactory.getBean(DATE_CAN_NOT_BE_PRESENT_VALIDACAO_BEAN);
 	}
 	
 	/**
-	 * Cria uma instancia de {@link IStringValidation} que valida o comprimento máximo de String´s 
+	 * Cria uma instancia de {@link IStringValidation} que valida o comprimento mï¿½ximo de Stringï¿½s 
 	 */
 	public static AbstractMaxLengthRequiredValidation<String> createStringMaxLengthValidation(int maxLength) {
 		 AbstractMaxLengthRequiredValidation<String> abstractMaxLengthRequiredValidation = 
@@ -173,7 +175,7 @@ public class ValidationFactory {
 	
 	
 	/**
-	 * Cria uma instancia de {@link IComparableValidation} que valida a comparação entre Numbers 
+	 * Cria uma instancia de {@link IComparableValidation} que valida a comparaï¿½ï¿½o entre Numbers 
 	 */
 	public static IComparableValidation<Number> createNumberComparableValidation(Number valorComparacao, FatorComparacao fatorComparacao) {
 		AbstractComparableValidation<Number> comparableValidation = springFactory.getBean(NUMBER_COMPARABLE_VALIDATION_BEAN);
@@ -181,6 +183,14 @@ public class ValidationFactory {
 		comparableValidation.setFatorComparacao(fatorComparacao);
 		
 		return comparableValidation;
+	}
+	
+	/**
+	 * Cria uma instancia de {@link IValidation} que valida campos que nÃ£o devem conter informaÃ§Ã£o vazia 
+	 */
+	public static IValidation<Object> createDoesNotAllowInformationEmptyValidation() {
+		return springFactory.getBean(DOES_NOT_ALLOW_INFORMATION_EMPTY_BEAN);
+		
 	}
 	
 	/**
