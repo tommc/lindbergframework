@@ -1,6 +1,9 @@
 package org.lindbergframework.validation.impl;
 
+import java.math.BigDecimal;
+
 import org.lindbergframework.exception.ValidationException;
+import org.lindbergframework.util.NumberUtil;
 import org.lindbergframework.validation.AbstractComparableValidation;
 import org.lindbergframework.validation.IExecutorValidation;
 import org.springframework.context.annotation.Scope;
@@ -9,31 +12,31 @@ import org.springframework.stereotype.Component;
 
 /**
  * 
- * Validação para verificar comparações com números. <br>
- * A validação funciona baseado em um valor de comparação que pode ser passado via construtor ou pelo método <br>
- * <i>setValorComparacao</i>. Essa valor será comparado com o valor passado como argumento ao método <br>
+ * Validaï¿½ï¿½o para verificar comparaï¿½ï¿½es com nï¿½meros. <br>
+ * A validaï¿½ï¿½o funciona baseado em um valor de comparaï¿½ï¿½o que pode ser passado via construtor ou pelo mï¿½todo <br>
+ * <i>setValorComparacao</i>. Essa valor serï¿½ comparado com o valor passado como argumento ao mï¿½todo <br>
  * validate dessa classe. <br><br>
  * 
- * A regra da comparação é definida pelo fator da comparação. Esse fator indica qual o resultado esperado <br>
- * da comparação.<br><br>
+ * A regra da comparaï¿½ï¿½o ï¿½ definida pelo fator da comparaï¿½ï¿½o. Esse fator indica qual o resultado esperado <br>
+ * da comparaï¿½ï¿½o.<br><br>
  * 
- * Abaixo são descritos os fatores de comparações possíveis.<br><br>
+ * Abaixo sï¿½o descritos os fatores de comparaï¿½ï¿½es possï¿½veis.<br><br>
  * 
- * <b>Fator - Descrição</b>  <br>
+ * <b>Fator - Descriï¿½ï¿½o</b>  <br>
  *    FatorComparacao.LESS_OR_EQUAL_THAN  ---- Menor ou igual que<br>
  *    FatorComparacao.LESS_THAN ---- Menor que<br>
  *    FatorComparacao.EQUAL ---- Igual a<br>
  *    FatorComparacao.GREATER_THAN ---- Maior que<br>
  *    FatorComparacao.GREATER_OR_EQUAL_THAN ---- Maior ou igual que<br><br>
  * 
- * Exemplo: Se valorComparacao for 10 e o fator de comparação for FatorComparacao.LESS_THAN <br>
- * a execução dessa validação em um {@link IExecutorValidation} passando os valores <br>
+ * Exemplo: Se valorComparacao for 10 e o fator de comparaï¿½ï¿½o for FatorComparacao.LESS_THAN <br>
+ * a execuï¿½ï¿½o dessa validaï¿½ï¿½o em um {@link IExecutorValidation} passando os valores <br>
  * abaixo como argumento resultariam no resultado abaixo.<br><br>
  * 
  * <b>Valor - Resultado</b><br>
- *    8  ---- OK, pois 8 é menor do que o valorComparação (10, neste caso)<br>
- *    11 ---- Lança exception pois 11 não é menor do que o valorComparação (10, neste caso)<br>
- *    10 ---- Lança exception pois 10 não é menor do que o valorComparação (10, neste caso)
+ *    8  ---- OK, pois 8 ï¿½ menor do que o valorComparaï¿½ï¿½o (10, neste caso)<br>
+ *    11 ---- Lanï¿½a exception pois 11 nï¿½o ï¿½ menor do que o valorComparaï¿½ï¿½o (10, neste caso)<br>
+ *    10 ---- Lanï¿½a exception pois 10 nï¿½o ï¿½ menor do que o valorComparaï¿½ï¿½o (10, neste caso)
  *    
  * 
  * @author Victor Lindberg
@@ -53,26 +56,36 @@ public class NumberComparableValidation extends AbstractComparableValidation<Num
 	}
 
 	public void validate(Comparable<Number> valor) throws ValidationException {
-		int resultComparacao = valor.compareTo(getValorComparacao());
+		if (valor == null)
+			return;
+		
+		
+		BigDecimal bigValor = NumberUtil.convert(BigDecimal.class, valor);
+		BigDecimal bigValorComparacao = NumberUtil.convert(BigDecimal.class, getValorComparacao());
+		
+		int resultComparacao = bigValor.compareTo(bigValorComparacao);
 		int fator = getFatorComparacao().getFator();
-		if ((fator == 0 ||
-			fator == 1 ||
-			fator == -1) && resultComparacao != fator)
+		
+		if ((fator == FatorComparacao.EQUAL.getFator() ||
+			fator == FatorComparacao.GREATER_THAN.getFator() ||
+			fator == FatorComparacao.LESS_THAN.getFator()) && resultComparacao != fator)
 			throwException(valor);
 		
-		if (fator == 2 && resultComparacao < 0)
+		if (fator == FatorComparacao.GREATER_OR_EQUAL_THAN.getFator() && 
+				resultComparacao < FatorComparacao.EQUAL.getFator())
 			throwException(valor);
 		
-		if (fator == -2 && resultComparacao > 0)
+		if (fator == FatorComparacao.LESS_OR_EQUAL_THAN.getFator() && 
+				resultComparacao > FatorComparacao.EQUAL.getFator())
 			throwException(valor);
 	}
 	
 	private void throwException(Comparable<Number> valor){
-		String erro = String.format("Validação '%s' entre os valores "+getValorComparacao().toString()+" e "+valor.toString()+" falhou" ,
+		String erro = String.format("Validaï¿½ï¿½o '%s' entre os valores "+getValorComparacao().toString()+" e "+valor.toString()+" falhou" ,
 				getFatorComparacao().getDescricao());
 		
 		throw new ValidationException(erro);
 	}
-	
+
 	
 }
