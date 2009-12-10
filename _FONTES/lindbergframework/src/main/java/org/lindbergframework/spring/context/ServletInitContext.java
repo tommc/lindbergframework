@@ -8,8 +8,8 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 
 /**
- * Servlet utilitário que é carregado na inicialização da aplicação. <br>
- * Este servlet é utilizado para inicializar as configurações na aplicação <br>
+ * Servlet utilitÃ¡rio que Ã© carregado na inicializaÃ§Ã£o da aplicaÃ§Ã£o. <br>
+ * Este servlet Ã© utilizado para inicializar as configuraÃ§Ãµes na aplicaÃ§Ã£o <br>
  * que necessitam acessar recursos do ambiente web, por exemplo a referencia a <br>
  * instancia do ApplicationContext 
  * 
@@ -18,9 +18,6 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  */
 public class ServletInitContext extends HttpServlet{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override

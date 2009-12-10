@@ -6,6 +6,10 @@ import org.springframework.context.ApplicationContext;
 
 
 /**
+ * Fábrica de beans do spring é um singleton que trabalha mantendo uma única instancia de si mesma.<br>
+ * Para obter uma instancia dessa classe inicialize o <br>
+ * contexto do spring usando o método {@link #initContext(ApplicationContext)} <br>
+ * e a partir daí chame  o método {@link #getInstance()} para obter a instancia 
  * 
  * @author Victor Lindberg
  *
@@ -20,8 +24,8 @@ public class SingletonSpringBeanFactory extends SpringBeanFactory{
 	
 	public static SingletonSpringBeanFactory getInstance(){
 		if (instance == null){
-		   throw new LindbergException("N�o foi poss�vel acessar uma instancia de SingletonSpringBeanFactory. " +
-		   		"� necess�ro que o context seja inicializado atrav�s do m�todo initContext");	
+		   throw new LindbergException("Não foi possível acessar uma instancia de SingletonSpringBeanFactory. " +
+		   		"é necessáro que o context seja inicializado através do método initContext");	
 		}
 		
 		return instance;
