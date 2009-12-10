@@ -3,7 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
- * Excecao originada das validaçõees
+ * Excecao originada das validaÃ§Ãµees
  * 
  * 
  * @author Victor Lindberg 
