@@ -3,7 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
- * Excecao nas operações de persistencia
+ * Excecao nas operaÃ§Ãµes de persistencia
 
  * @author victorsilva
  *

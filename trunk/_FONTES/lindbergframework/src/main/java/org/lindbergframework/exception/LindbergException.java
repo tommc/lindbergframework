@@ -15,19 +15,19 @@ public class LindbergException extends RuntimeException  {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * Separador de mensagens padr„o. Se nenhum separador de mensagens <br>
-	 * for configurado este È utilizado como padr„o
+	 * Separador de mensagens padr√£o. Se nenhum separador de mensagens <br>
+	 * for configurado este √© utilizado como padr√£o
 	 */
 	public static final String DEFAULT_SEPARATOR_MESSAGES = ";";
 
 	/**
-	 * Mensagens que compıem esta exceÁ„o 
+	 * Mensagens que comp√µem esta exce√ß√£o 
 	 */
 	private List<String> msgs = new Vector<String>();
 	
 	/**
-	 * Separador de mensagens. Esta String È utilizada para separar cada mensagem. <br>
-	 * Por exemplo se o separador for ";" ent„o a mensagem completa ser· msg1; msg2; msg3 
+	 * Separador de mensagens. Esta String √© utilizada para separar cada mensagem. <br>
+	 * Por exemplo se o separador for ";" ent√£o a mensagem completa ser√° msg1; msg2; msg3 
 	 */
 	private String separatorMessages = DEFAULT_SEPARATOR_MESSAGES; 
 
@@ -60,14 +60,14 @@ public class LindbergException extends RuntimeException  {
 	}
 
 	/**
-	 * adiciona uma nova mensagem a lista de mensagem que compoÍm a exceÁ„o
+	 * adiciona uma nova mensagem a lista de mensagem que comp√µem a exce√ß√£o
 	 */
 	public void addMessage(String msg) {
 		msgs.add(msg);
 	}
 
 	/**
-	 * adiciona uma nova mensagem a lista de mensagem em um determinado Ìndice na lista 
+	 * adiciona uma nova mensagem a lista de mensagem em um determinado √≠ndice na lista 
 	 */
 	public void addMessage(int index, String msg) {
 		msgs.add(index, msg);
@@ -75,7 +75,7 @@ public class LindbergException extends RuntimeException  {
 
 	/**
 	 * adiciona todas as mensagem contidas na lista passada como argumento e adiciona <br>
-	 * na lista de mensagens da exceÁ„o
+	 * na lista de mensagens da exce√ß√£o
 	 */
 	public void addAllMessages(List<String> msgs) {
 		for (String msg : msgs)
@@ -83,15 +83,15 @@ public class LindbergException extends RuntimeException  {
 	}
 
 	/**
-	 * retorna a lista de mensagem que compÙem a exceÁ„o
+	 * retorna a lista de mensagem que comp√µem a exce√ß√£o
 	 */
 	public List<String> getMessages() {
 		return msgs;
 	}
 
 	/**
-	 * retorna a mensagem tratada composta por todas as mensagens que compÙem <br>
-	 * a exceÁ„o em uma ˙nica String onde o {@link #separatorMessages} È usado <br>
+	 * retorna a mensagem tratada composta por todas as mensagens que comp√µem <br>
+	 * a exce√ß√£o em uma √∫nica String onde o {@link #separatorMessages} √© usado <br>
 	 * para separar cada mensagem na String retornada
 	 */
 	public String getMessageTreated() {
@@ -104,7 +104,7 @@ public class LindbergException extends RuntimeException  {
 	}
 
 	/**
-	 * Retorna true se ha alguma mensagem na lista de mensagens da exceÁ„o
+	 * Retorna true se ha alguma mensagem na lista de mensagens da exce√ß√£o
 	 */
 	public boolean hasMessages() {
 		return !msgs.isEmpty();
@@ -117,7 +117,7 @@ public class LindbergException extends RuntimeException  {
 	}
 
 	/**
-	 * LanÁa esta exceÁ„o caso haja alguma mensagem na lista
+	 * Lan√ßa esta exce√ß√£o caso haja alguma mensagem na lista
 	 */
 	public void lancarEssaExcecaoSeHouverMensagens() {
 		if (hasMessages())
