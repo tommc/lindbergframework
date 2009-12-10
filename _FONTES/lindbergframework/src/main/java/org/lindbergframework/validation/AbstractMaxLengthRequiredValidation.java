@@ -1,8 +1,8 @@
 package org.lindbergframework.validation;
 
 /**
- * Classe abstrata que define validações referentes a comprimento <br>
- * máximo seja de String´s, de arrarys, de collections, etc...
+ * Classe abstrata que define validaÃ§Ãµes referentes a comprimento <br>
+ * mÃ¡ximo seja de String's, de arrarys, de collections, etc...
  * 
  * @author Victor Lindberg
  *

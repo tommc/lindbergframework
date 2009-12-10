@@ -2,11 +2,11 @@ package org.lindbergframework.validation;
 
 
 /**
- * ValidaÁ„o para comparaÁ„o de objetos. Essa classe fornece a base as validaÁıes <br>
- * que implementam comparaÁıes entre objetos sejam eles valores ou n„o.<br><br>
+ * Valida√ß√£o para compara√ß√£o de objetos. Essa classe fornece a base as valida√ß√µes <br>
+ * que implementam compara√ß√µes entre objetos sejam eles valores ou n√£o.<br><br>
  * 
  * Essa classe fornce o enum {@link FatorComparacao} que representa <br>
- * os tipos de comparaÁ„o como igual, maior que, maior ou igual que, etc..
+ * os tipos de compara√ß√µo como igual, maior que, maior ou igual que, etc..
  * 
  * @author Victor Lindberg
  *
@@ -14,13 +14,13 @@ package org.lindbergframework.validation;
 public abstract class AbstractComparableValidation<E> implements IComparableValidation<E>{
 	
 	/**
-	 * Tipo de comparaÁ„o que ser· utilizado para a validaÁ„o. <br>
-	 * O padr„o È FatorComparacao.EQUAL
+	 * Tipo de compara√ß√£o que ser√° utilizado para a valida√ß√£o. <br>
+	 * O padr√£o √© FatorComparacao.EQUAL
 	 */
 	private FatorComparacao fatorComparacao = FatorComparacao.EQUAL;
 	
 	/**
-	 * Valor para comparaÁ„o
+	 * Valor para compara√ß√£o
 	 */
 	private E valorComparacao;
 	
@@ -50,7 +50,7 @@ public abstract class AbstractComparableValidation<E> implements IComparableVali
     
     
     /**
-     * Enum que representa os tipos de compraÁ„o possÌveis para a validaÁ„o 
+     * Enum que representa os tipos de compara√ß√µes poss√≠veis para a valida√ß√£o 
      * 
      * @author Victor Lindberg
      *
