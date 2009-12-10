@@ -2,7 +2,7 @@ package org.lindbergframework.validation;
 
 
 /**
- * Interface que define as validações para comparações entre objetos
+ * Interface que define as validaÃ§Ãµes para comparaÃ§Ãµes entre objetos
  * 
  * @author Victor Lindberg
  *
@@ -10,12 +10,12 @@ package org.lindbergframework.validation;
 public interface IComparableValidation<E> extends IValidation<Comparable<E>>{
 	
 	/**
-	 * Configura o valor para comparação
+	 * Configura o valor para comparaÃ§Ã£o
 	 */
 	public void setValorComparacao(E valorComparacao);
 	
 	/**
-	 * Retorna o valor para comparação
+	 * Retorna o valor para comparaÃ§Ã£o
 	 */
 	public E getValorComparacao();
 	

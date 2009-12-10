@@ -3,19 +3,19 @@ package org.lindbergframework.validation;
 import org.lindbergframework.exception.ValidationException;
 
 /**
- * Interface que define as validações
+ * Interface que define as validaÃ§Ãµes
  * 
  * @author Victor Lindebrg
  *
- * @param <E> tipo de entrada para validação
+ * @param <E> tipo de entrada para validaÃ§Ã£o
  */
 public interface IValidation<E> {
 
     /**
-     * Efetua a validação do objeto passado como argumento baseado na regra de validação implementada
+     * Efetua a validaÃ§Ã£o do objeto passado como argumento baseado na regra de validaÃ§Ã£o implementada
      *  
      * @param objeto
-     * @throws ValidationException lançada caso a validação falhe
+     * @throws ValidationException lanÃ§ada caso a validaÃ§Ã£o falhe
      * 
      */
 	public void validate(E objeto) throws ValidationException;

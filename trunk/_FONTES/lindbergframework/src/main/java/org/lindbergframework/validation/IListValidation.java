@@ -3,7 +3,7 @@ package org.lindbergframework.validation;
 import java.util.List;
 
 /**
- * Interface que define validações referentes a Listas
+ * Interface que define validaÃ§Ãµes referentes a Listas
  *  
  * @author Victor Lindberg
  *

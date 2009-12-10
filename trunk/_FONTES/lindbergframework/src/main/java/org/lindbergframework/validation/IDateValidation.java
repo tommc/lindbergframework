@@ -3,7 +3,7 @@ package org.lindbergframework.validation;
 import java.util.Date;
 
 /**
- * Interface que define as validações de datas
+ * Interface que define as validaÃ§Ãµes de datas
  * 
  * @author Victor Lindberg
  *

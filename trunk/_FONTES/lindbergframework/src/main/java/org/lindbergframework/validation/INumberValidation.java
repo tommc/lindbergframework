@@ -1,7 +1,7 @@
 package org.lindbergframework.validation;
 
 /**
- * Interface que define as validações referentes a {@link Number}
+ * Interface que define as validaÃ§Ãµes referentes a {@link Number}
  * 
  * @author Victor Lindberg
  *
