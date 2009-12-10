@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * Implementa a validação de cpf e cnpj de acordo com o valor passado para ser validado <br><br>
+ * ImplementaÃ§Ã£oo da validaÃ§Ã£o de cpf e cnpj de acordo com o valor passado para ser validado <br><br>
  * 
- * Esta validação verifica se o comprimento corresponde a um cpf ou um cnpj e faz a validação correspondente 
+ * Esta validaÃ§Ã£o verifica se o comprimento corresponde a um cpf ou um cnpj e faz a validaÃ§Ã£o correspondente 
  * 
  * @author Victor Lindberg
  *
@@ -27,7 +27,7 @@ public class CpfAndCnpjValidation implements IDocumentValidation<String>{
 				if (numDoc.length() == 14)
 				   validacao = ValidationFactory.createCnpjValidacao();
 				else
-					throw new ValidationException("CPF ou CNPJ inválido");
+					throw new ValidationException("CPF ou CNPJ invï¿½lido");
 			
 			validacao.validate(numDoc);
 				

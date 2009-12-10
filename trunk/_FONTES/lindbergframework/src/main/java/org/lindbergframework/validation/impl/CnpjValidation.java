@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * Implementação da validação de CNPJ 
+ * ImplementaÃ§Ã£oo da validaÃ§Ã£o de CNPJ 
  * 
  * @author Victor Lindberg
  * 
@@ -17,12 +17,12 @@ public class CnpjValidation implements IDocumentValidation<String>{
 	
 	public void validate(String cnpj) throws ValidationException {
 	   if (cnpj != null && ! validateCnpj(cnpj))
-		   throw new ValidationException("CNPJ inválido");
+		   throw new ValidationException("CNPJ invï¿½lido");
 	}
 	
 	
 	/**
-	 * Efetua a validação do cnpj
+	 * Efetua a validaÃ§Ã£o do cnpj
 	 */
 	public static  boolean validateCnpj( String str_cnpj ) {   
 		if (str_cnpj == null || str_cnpj.length() != 14)

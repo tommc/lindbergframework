@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * Implementa a valida��o de que a data � presente
+ * Implementa a validação de que a data é presente
  * 
  * @author Victor Lindberg
  *

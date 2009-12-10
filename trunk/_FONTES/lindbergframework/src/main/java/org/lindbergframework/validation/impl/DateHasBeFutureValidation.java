@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * Implementa a valida��o de que a data � futura
+ * Implementa a validação de que a data é futura
  * 
  * @author Victor Lindberg
  *
