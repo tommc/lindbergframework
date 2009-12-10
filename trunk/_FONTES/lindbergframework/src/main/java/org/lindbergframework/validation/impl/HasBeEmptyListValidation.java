@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * ImplementaÁ„o de validaÁ„o de lista que verifica se a lista esta vazia
+ * Implementa√ß√£o de valida√ß√£o de lista que verifica se a lista esta vazia
  * 
- * @author Lindberg
+ * @author Victor Lindberg
  *
  */
 @Component("hasBeEmptyListValidation")
@@ -18,7 +18,7 @@ public class HasBeEmptyListValidation implements IListValidation<Object>{
 	
 	public void validate(List<Object> lista) throws ValidationException {
 	   if (lista != null && ! lista.isEmpty())
-		   throw new ValidationException("Lista nao esta vazia");
+		   throw new ValidationException("Lista n√£o esta vazia");
 	}
 
 }

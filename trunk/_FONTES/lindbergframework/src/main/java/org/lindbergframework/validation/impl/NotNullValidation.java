@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * ImplementaÁ„o de validaÁ„o de obrigatoriedade n„o null
+ * Implementa√ß√£o de valida√ß√£o de obrigatoriedade n√£o null
  * 
  * @author Victor Lindberg
  *
@@ -16,7 +16,7 @@ public class NotNullValidation implements INotNullValidation{
 	
 	public void validate(Object objeto) throws ValidationException {
 	   if (objeto == null)
-		   throw new ValidationException("ValidaÁ„o not null falhou");
+		   throw new ValidationException("Valida√ß√£o not null falhou");
 	}
 	
 }

@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * Implementação de validação de valor requerido e que não permite <br>
- * informação vazia como uma sequencia de caracteres espaço
+ * ImplementaÃ§Ã£o de validaÃ§Ã£o de valor requerido e que nÃ£o permite <br>
+ * informaÃ§Ã£o vazia como uma sequencia de caracteres espaÃ§o
  * 
  * @author Victor Linndberg
  *

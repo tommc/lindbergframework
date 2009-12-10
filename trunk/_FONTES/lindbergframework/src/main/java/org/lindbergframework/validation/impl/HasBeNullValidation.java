@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * 
- * Se o argumento passado não for <i>null</i> é lançada uma {@link ValidationException} <br>
- * Essa validação garante que não passará um argumento que seja <i>null</i>
+ * Se o argumento passado nÃ£o for <i>null</i> Ã© lancada uma {@link ValidationException} <br>
+ * Essa validaÃ§Ã£o garante que nï¿½o passarÃ¡ um argumento que seja <i>null</i>
  * 
  * @author Victor Lindberg
  *
