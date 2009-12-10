@@ -3,7 +3,7 @@ package org.lindbergframework.util;
 
 
 /**
- * Classe utilit·ria para manipulaÁ„o de arrays
+ * Classe utilit√°ria para manipula√ß√£o de arrays
  * 
  * @author Victor Lindberg
  *

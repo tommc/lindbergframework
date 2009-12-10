@@ -3,7 +3,7 @@ package org.lindbergframework.spring;
 import org.springframework.context.ApplicationContext;
 
 /**
- * F·brica de beans do Spring
+ * F√°brica de beans do Spring
  * 
  * 
  * @author Victor Lindberg
@@ -17,7 +17,7 @@ public class SpringBeanFactory {
 	private ApplicationContext applicationContext;
 
 	/**
-	 * Cria uma nova f·brica de bens do spring baseada em um applicationcontext pronto
+	 * Cria uma nova f√°brica de bens do spring baseada em um applicationcontext pronto
 	 * @param appContext
 	 */
 	public SpringBeanFactory(ApplicationContext appContext) {
@@ -25,7 +25,7 @@ public class SpringBeanFactory {
 	}
 	
 	/**
-	 * retorna o context configurado na f·brica
+	 * retorna o context configurado na f√°brica
 	 */
 	public ApplicationContext getApplicationContext() {
 		return applicationContext;
