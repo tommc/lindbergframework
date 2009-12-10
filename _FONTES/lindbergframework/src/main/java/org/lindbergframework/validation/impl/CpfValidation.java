@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * Implementa a validação de CPF
+ * ImplementaÃ§Ã£oo da validaÃ§Ã£o de CPF
  * 
  * @author Victor Lindberg
  *
@@ -17,11 +17,11 @@ public class CpfValidation implements IDocumentValidation<String>{
     
 	public void validate(String cpf) throws ValidationException {
 	       if (cpf != null && ! validarCPF(cpf))
-	    	   throw new ValidationException("CPF inválido");
+	    	   throw new ValidationException("CPF invï¿½lido");
 	}
 	
 	/**
-	 * Efetua a verificação de o número passado como argumento corresponde a um cpf valido
+	 * Efetua a verificaÃ§Ã£o de o nÃºmero passado como argumento corresponde a um cpf valido
 	 */
 	private static String calcDigVerif(String num) {   
         Integer primDig, segDig;   

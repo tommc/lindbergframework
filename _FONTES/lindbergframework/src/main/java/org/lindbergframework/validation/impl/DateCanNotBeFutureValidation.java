@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * Implementa a valida��o de que a data n�o pode ser futura
+ * Implementaçãoo da validação de que a data não pode ser futura
  * 
- * @author victorsilva
+ * @author Victor Lindberg
  *
  */
 @Component("dateCanNotBeFutureValidation")

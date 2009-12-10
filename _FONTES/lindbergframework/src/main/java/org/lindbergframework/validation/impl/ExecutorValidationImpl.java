@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * ImplementaÁ„o padr„o de {@link IExecutorValidation} para o processamento de validaÁıes que implementem {@link IValidation}
+ * Implementa√ß√£o padr√£o de {@link IExecutorValidation} para o processamento de valida√ß√µes que implementem {@link IValidation}
  * 
  * @author Victor Lindberg
  * 
@@ -30,12 +30,12 @@ import org.springframework.stereotype.Component;
 public class ExecutorValidationImpl implements IExecutorValidation{
 
 	/**
-	 * lista de validaÁıes aguardando processamento
+	 * lista de valida√ß√µes aguardando execu√ß√£o
 	 */
 	private List<ValidacaoElement> validacoes = new Vector<ValidacaoElement>();
 	
-	public static final String MSG_INDEXES_VALIDACAO_INVALIDO = "N„o foi possÌvel adicionar a(s) validaÁ„o(ıes). " +
-									"Um ou mais items tem seus Ìndices ou mensagens de validaÁıes inv·lidos"; 
+	public static final String MSG_INDEXES_VALIDACAO_INVALIDO = "N√£o foi poss√≠vel adicionar a(s) valida√ß√£o(√µes). " +
+									"Um ou mais items tem seus √≠ndices ou mensagens de valida√ß√µes inv√°lidos"; 
 	
 	
 	
@@ -114,7 +114,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
     }
 
 	/**
-	 * verifica se os Ìndices de validaÁıes dos items de acordo com as validaÁıes s„o validos
+	 * verifica se os √≠ndices de valida√ß√µes dos items de acordo com as valida√ß√µes s√£o validos
 	 */
 	private boolean isIndexValidacoesItemsOK(IValidation[] validacoes, ValidationItem[] items){
 		for (ValidationItem item : items){
@@ -172,7 +172,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	}
 
 	/**
-	 * lanÁa exceÁ„o caso seja necess·rio e o modo de validaÁ„o for ValidationMode.THROW_IMMEDIATELY 
+	 * lan√ßa exce√ß√£o caso seja necess√°rio e o modo de valida√ß√£o for ValidationMode.THROW_IMMEDIATELY 
 	 */
 	private void lancarExcecaoSeModeImediatamente(List<String> mensagensValidacao,ValidationMode mode){
 		if (mode.equals(ValidationMode.THROW_IMMEDIATELY))
@@ -180,7 +180,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	}
 	
 	/**
-	 * lanÁa exceÁ„o caso seja necess·rio e o modo de validaÁ„o for ValidationMode.THROW_FINAL 
+	 * lan√ßa exce√ß√£o caso seja necess√°rio e o modo de valida√ß√£o for ValidationMode.THROW_FINAL 
 	 */
 	private void lancarExcecaoSeModeFinal(List<String> mensagensValidacao,ValidationMode mode){
 		if (mode.equals(ValidationMode.THROW_FINAL))
@@ -188,7 +188,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	}
 
 	/**
-	 * lanÁa exceÁ„o se necess·rio ou seja se a lista de mensagens de validaÁ„o n„o estiver vazia
+	 * lan√ßa exce√ß√£o se necess√°rio ou seja se a lista de mensagens de valida√ß√£o n√£o estiver vazia
 	 */
 	private void lancarExcecaoSeNecessario(List<String> mensagensValidacao) {
 		if(! mensagensValidacao.isEmpty()) {
@@ -198,7 +198,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	}
 	
 	/**
-	 * Formata a mensagem de validaÁ„o de acordo com as configuraÁıes definidas no ValidationElement e retorna a lista de mensagens configuradas. <br><br>
+	 * Formata a mensagem de valida√ß√£o de acordo com as configura√ß√µes definidas no ValidationElement e retorna a lista de mensagens configuradas. <br><br>
 	 * 
 	 * Obs: Pode ser mais de uma mensagem por que um {@link ValidationException} pode ter uma ou mais mensagens
 	 */
@@ -228,15 +228,15 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 
     
     /**
-     * Efetua a validaÁ„o de um elemento de validaÁ„o
+     * Efetua a valida√ß√£o de um elemento de valida√ß√£o
      */
 	private void validarItem(ValidacaoElement validacaoElement) {
 		IValidation<Object> validacao = validacaoElement.getValidacao();
 		try{
 		   validacao.validate(validacaoElement.getValidacaoItem().getValue());
 		}catch(ClassCastException ex){
-			throw new ValidationClassCastException("N„o foi possÌvel efetuar a validaÁ„o de um ou mais " +
-					"items pois o valor a ser validado n„o corresponde com o tipo esperado para a validaÁ„o",ex);
+			throw new ValidationClassCastException("N√£o foi poss√≠vel efetuar a valida√ß√£o de um ou mais " +
+					"items pois o valor a ser validado n√£o corresponde com o tipo esperado para a valida√ß√£o",ex);
 		}
 		
 	}
@@ -250,9 +250,9 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	}
 
 	/**
-	 * Elemento de validaÁ„o que contem um item de validaÁ„o, uma validaÁ„o <br>
-	 * que È associada ao item e uma mensagem que pode ser null ou uma mensagem <br>
-	 * personalziada para a validaÁ„o caso esta falhe
+	 * Elemento de valida√ß√£o que contem um item de valida√ß√£o, uma valida√ß√£o <br>
+	 * que √© associada ao item e uma mensagem que pode ser null ou uma mensagem <br>
+	 * personalziada para a valida√ß√£o caso esta falhe
 	 * 
 	 * @author Victor Lindberg
 	 *
@@ -260,7 +260,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	private class ValidacaoElement {
 
 		/**
-		 * validaÁ„o a ser usada para validar o item
+		 * valida√ß√£o a ser usada para validar o item
 		 */
 		private IValidation<Object> validacao;
 		
@@ -270,7 +270,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 		private ValidationItem validacaoItem;
 		
 		/**
-		 * mensagem personalizada que pode ou n„o ser definida
+		 * mensagem personalizada que pode ou n√£o ser definida
 		 */
 		private String msgCustom;
 		

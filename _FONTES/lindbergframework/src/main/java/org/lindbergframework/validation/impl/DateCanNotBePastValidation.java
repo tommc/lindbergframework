@@ -1,9 +1,7 @@
 package org.lindbergframework.validation.impl;
 
-import java.util.Calendar;
 import java.util.Date;
 
-import org.apache.commons.lang.time.DateUtils;
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.util.DateUtil;
 import org.lindbergframework.validation.IDateValidation;
