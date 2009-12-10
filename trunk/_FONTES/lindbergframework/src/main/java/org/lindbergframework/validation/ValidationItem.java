@@ -3,12 +3,12 @@ package org.lindbergframework.validation;
 import org.lindbergframework.validation.settings.MsgType;
 
 /**
- * Item de validação. Este item contem a configuração da validação de um determinado valor <br>
- * que auxiliará ExecutorsValidations no correto processamento das validações. <br><br>
+ * Item de validaï¿½ï¿½o. Este item contem a configuraï¿½ï¿½o da validaï¿½ï¿½o de um determinado valor <br>
+ * que auxiliarï¿½ ExecutorsValidations no correto processamento das validaï¿½ï¿½es. <br><br>
  * 
- * Esta classe é usada para configurar elementos de uma validação como: mensagem da validação, <br>
- * concatenação ou não da mensagem da validação e da mensagem personalizada, <br>
- * tipo de concatenação baseada no enum {@link MsgType}, etc...<br>
+ * Esta classe ï¿½ usada para configurar elementos de uma validaï¿½ï¿½o como: mensagem da validaï¿½ï¿½o, <br>
+ * concatenaï¿½ï¿½o ou nï¿½o da mensagem da validaï¿½ï¿½o e da mensagem personalizada, <br>
+ * tipo de concatenaï¿½ï¿½o baseada no enum {@link MsgType}, etc...<br>
  * 
  * 
  * @author Victor Lindberg
@@ -17,8 +17,8 @@ import org.lindbergframework.validation.settings.MsgType;
 public class ValidationItem {
  
 	/**
-	 * Separador padrão quando a mensagem da <br>
-	 * validação e a personalizada forem utilizadas ao mesmo tempo na validação
+	 * Separador padrï¿½o quando a mensagem da <br>
+	 * validaï¿½ï¿½o e a personalizada forem utilizadas ao mesmo tempo na validaï¿½ï¿½o
 	 */
 	public static final String DEFAULT_SEPARATOR = ":";
 
@@ -28,34 +28,34 @@ public class ValidationItem {
 	private Object value;
 	
 	/**
-	 * Lista de mensagens onde cada mensagem corresponde a uma validação que é adicionada junto com este item
+	 * Lista de mensagens onde cada mensagem corresponde a uma validaï¿½ï¿½o que ï¿½ adicionada junto com este item
 	 */
 	private String[] messages = new String[0];
 	
 	/**
-	 * Índices de validações que indicam com quais validações este item será validado.<br><br>
+	 * ï¿½ndices de validaï¿½ï¿½es que indicam com quais validaï¿½ï¿½es este item serï¿½ validado.<br><br>
 	 * 
-	 * Obs: Esta propriedade é definida explicitamente quando o método <br>
-	 * addValidations de um ExecutorValidation é usado para adiciona um ou mais validationItems
+	 * Obs: Esta propriedade ï¿½ definida explicitamente quando o mï¿½todo <br>
+	 * addValidations de um ExecutorValidation ï¿½ usado para adiciona um ou mais validationItems
 	 */
 	private Integer[] indexValidations = new Integer[] {0};
 	
 	/**
-	 * Tipo de uso da mensagem que será lançada na exception quando a validação falhar.<br><br>
+	 * Tipo de uso da mensagem que serï¿½ lanï¿½ada na exception quando a validaï¿½ï¿½o falhar.<br><br>
 	 * 
-	 * O enum {@link MsgType} define se será usada uma mensagem externa ou não, <br>
-	 * se será usada apenas esta, se esta será usada em conjunto com a mensagem vinda da exceção, <br>
-	 * como se dará a formação da concatenação das duas mensagens e se a externa será prefixo ou sufixo da mensagem da validação
+	 * O enum {@link MsgType} define se serï¿½ usada uma mensagem externa ou nï¿½o, <br>
+	 * se serï¿½ usada apenas esta, se esta serï¿½ usada em conjunto com a mensagem vinda da exceï¿½ï¿½o, <br>
+	 * como se darï¿½ a formaï¿½ï¿½o da concatenaï¿½ï¿½o das duas mensagens e se a externa serï¿½ prefixo ou sufixo da mensagem da validaï¿½ï¿½o
 	 */
 	private MsgType msgType = MsgType.NO_USING_CUSTOM;
 	
 	/**
-	 * Separador das mensagem quando a mensagem externa e a da validação forem utilizadas ao mesmo tempo na vaidação 
+	 * Separador das mensagem quando a mensagem externa e a da validaï¿½ï¿½o forem utilizadas ao mesmo tempo na vaidaï¿½ï¿½o 
 	 */
 	private String separator = DEFAULT_SEPARATOR;
 
 	/**
-	 * Cria um novo item apenas com a mensagem da validação 
+	 * Cria um novo item apenas com a mensagem da validaï¿½ï¿½o 
 	 * 
 	 * @param value valor a ser validado
 	 */
@@ -77,10 +77,10 @@ public class ValidationItem {
 	 * Cria um novo item usando mensagens personalizadas de acordo <br>
 	 * com o tipo de uso da mensagem personalizada passado como argumento.<br><br>
 	 * 
-	 * Este método recebe um conjunto de Strings onde cada uma corresponde a uma <br>
-	 * validação que será associada ao item onde por exemplo se forem passadas 3 Strings para o parametro <br>
-	 * {@link #messages} internamente os índices de validação serão configurados como 0,1,2 <br>
-	 * onde cada validação correspondente a um dos índices será associada a String de mesmo índice <br>
+	 * Este mï¿½todo recebe um conjunto de Strings onde cada uma corresponde a uma <br>
+	 * validaï¿½ï¿½o que serï¿½ associada ao item onde por exemplo se forem passadas 3 Strings para o parametro <br>
+	 * {@link #messages} internamente os ï¿½ndices de validaï¿½ï¿½o serï¿½o configurados como 0,1,2 <br>
+	 * onde cada validaï¿½ï¿½o correspondente a um dos ï¿½ndices serï¿½ associada a String de mesmo ï¿½ndice <br>
 	 * no parametro {@link #messages}
 	 * 
 	 * @param value valor a ser validado
@@ -99,9 +99,9 @@ public class ValidationItem {
 	
 	/**
 	 * Cria um item da mesma forma que o construtor {@link #ValidationItem(Object, MsgType, String...)} <br>
-	 * só que configurando o separador das mensagens personalizada e da validação
+	 * sï¿½ que configurando o separador das mensagens personalizada e da validaï¿½ï¿½o
 	 * 
-	 * @param separator separador da mensagem personalizada e da validaçao
+	 * @param separator separador da mensagem personalizada e da validaï¿½ao
 	 * @param value valor a ser validado
 	 * @param msgType tipo de uso da mensagem personalizada
 	 * @param messages lista de mensagens
@@ -113,12 +113,12 @@ public class ValidationItem {
 	
 	
 	/**
-	 * Cria um item que utilizará as validações de índices descritos no parametro indexesValidations <br><br>
+	 * Cria um item que utilizarï¿½ as validaï¿½ï¿½es de ï¿½ndices descritos no parametro indexesValidations <br><br>
 	 * 
-	 * Este construtor é usado geralmente no método addValidations de um executorValidation na ação de adição de validações
+	 * Este construtor ï¿½ usado geralmente no mï¿½todo addValidations de um executorValidation na aï¿½ï¿½o de adiï¿½ï¿½o de validaï¿½ï¿½es
 	 * 
 	 * @param value valor a ser validado
-	 * @param indexesValidations índices das validações que serão utilizadas para este item
+	 * @param indexesValidations ï¿½ndices das validaï¿½ï¿½es que serï¿½o utilizadas para este item
 	 */
 	public ValidationItem(Object value,Integer... indexesValidations){
 		setValue(value);
@@ -127,15 +127,15 @@ public class ValidationItem {
 	}
 	
 	/**
-	 * Cria um item definindo os índices de validações<br>
+	 * Cria um item definindo os ï¿½ndices de validaï¿½ï¿½es<br>
 	 * e um array de mensagens onde cada mensagem corresponde <br>
-	 * a uma validação que será adicionada a este item segundo o conjunto <br>
-	 * de índices de validações passados para o parametro indexesValidations
+	 * a uma validaï¿½ï¿½o que serï¿½ adicionada a este item segundo o conjunto <br>
+	 * de ï¿½ndices de validaï¿½ï¿½es passados para o parametro indexesValidations
 	 * 
 	 * @param value valor a ser validado
 	 * @param msgType tipo de uso da mesnagem personalizada
-	 * @param messages mensagens de cada validação
-	 * @param indexesValidations índices das validações que serão associadas a este item
+	 * @param messages mensagens de cada validaï¿½ï¿½o
+	 * @param indexesValidations ï¿½ndices das validaï¿½ï¿½es que serï¿½o associadas a este item
 	 */
 	public ValidationItem(Object value,MsgType msgType,
 			   String[] messages,Integer... indexesValidations){
@@ -146,13 +146,13 @@ public class ValidationItem {
 	
 	/**
 	 * Cria um item da mesma forma que o construtor {@link #ValidationItem(Object, MsgType, String[], Integer...)} <br>
-	 * só que configura o separador da mensagem personalizada e da validação
+	 * sï¿½ que configura o separador da mensagem personalizada e da validaï¿½ï¿½o
 	 * 
-	 * @param separator separador das mensagens personalizada e da validação
+	 * @param separator separador das mensagens personalizada e da validaï¿½ï¿½o
 	 * @param value valor a ser validado
 	 * @param msgType tipo de uso da mensagem personalizada
-	 * @param messages mensagens das validações
-	 * @param indexesValidations índices das validações que serão associadas a este item
+	 * @param messages mensagens das validaï¿½ï¿½es
+	 * @param indexesValidations ï¿½ndices das validaï¿½ï¿½es que serï¿½o associadas a este item
 	 */
 	public ValidationItem(String separator, Object value,MsgType msgType,
 			String[] messages,Integer... indexesValidations){
@@ -161,13 +161,25 @@ public class ValidationItem {
 	} 
 	
 	/**
-	 * Cria um novo item da mesma forma que o construtor {@link #ValidationItem(Object, MsgType, String[], Integer...)} <br>
-	 * só que como só recebe uma mensagem então configura a mesma mensagem para todas as validações
+	 * Cria um item da mesma forma que o construtor {@link #ValidationItem(Object, MsgType, String[], Integer...)} <br>
+	 * sï¿½ que configura o tipo de mensagem como apenas personalidaza (MsgType.CUSTOM_ONLY)
 	 * 
 	 * @param value valor a ser validado
-	 * @param message mensagem a ser configurada para as validações
+	 * @param messages mensagens das validaï¿½ï¿½es
+	 * @param indexesValidations ï¿½ndices das validaï¿½ï¿½es que serï¿½o associadas a este item
+	 */
+	public ValidationItem(Object value,String[] messages,Integer... indexesValidations){
+		this(value,MsgType.CUSTOM_ONLY,messages,indexesValidations);
+	}
+	
+	/**
+	 * Cria um novo item da mesma forma que o construtor {@link #ValidationItem(Object, MsgType, String[], Integer...)} <br>
+	 * sï¿½ que como sï¿½ recebe uma mensagem entï¿½o configura a mesma mensagem para todas as validaï¿½ï¿½es
+	 * 
+	 * @param value valor a ser validado
+	 * @param message mensagem a ser configurada para as validaï¿½ï¿½es
 	 * @param msgType tipo de uso da mensagem personalizada
-	 * @param indexesValidations índices das validações que serão associadas a este item
+	 * @param indexesValidations ï¿½ndices das validaï¿½ï¿½es que serï¿½o associadas a este item
 	 */
 	public ValidationItem(Object value,String message,MsgType msgType,Integer... indexesValidations){
 		this(value,indexesValidations);
@@ -176,14 +188,27 @@ public class ValidationItem {
 	}
 	
 	/**
-	 * Cria um item da mesma forma que o construtor {@link #ValidationItem(Object, String, MsgType, Integer...)} <br>
-	 * só que configura o separador da mensagem personalizada e da validação
+	 * Cria um novo item da mesma forma que o construtor {@link #ValidationItem(Object, String,MsgType, String[], Integer...)} <br>
+	 * sï¿½ que configura o tipo da mensagem como apenas personalizada
 	 * 
-	 * @param separator separador das mensagens personalizada e da validação 
 	 * @param value valor a ser validado
-	 * @param message mensagem a ser configurada para as validações
+	 * @param message mensagem a ser configurada para as validaï¿½ï¿½es
 	 * @param msgType tipo de uso da mensagem personalizada
-	 * @param indexesValidations índices das validações que serão associadas a este item
+	 * @param indexesValidations ï¿½ndices das validaï¿½ï¿½es que serï¿½o associadas a este item
+	 */
+	public ValidationItem(Object value,String message,Integer... indexesValidations){
+		this(value,message,MsgType.CUSTOM_ONLY,indexesValidations);
+	}
+	
+	/**
+	 * Cria um item da mesma forma que o construtor {@link #ValidationItem(Object, String, MsgType, Integer...)} <br>
+	 * sï¿½ que configura o separador da mensagem personalizada e da validaï¿½ï¿½o
+	 * 
+	 * @param separator separador das mensagens personalizada e da validaï¿½ï¿½o 
+	 * @param value valor a ser validado
+	 * @param message mensagem a ser configurada para as validaï¿½ï¿½es
+	 * @param msgType tipo de uso da mensagem personalizada
+	 * @param indexesValidations ï¿½ndices das validaï¿½ï¿½es que serï¿½o associadas a este item
 	 */
 	public ValidationItem(String separator, Object value,String message,MsgType msgType,Integer... indexesValidations){
 		this(value,message,msgType,indexesValidations);
