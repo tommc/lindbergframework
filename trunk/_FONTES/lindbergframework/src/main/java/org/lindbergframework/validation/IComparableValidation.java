@@ -1,6 +1,6 @@
 package org.lindbergframework.validation;
 
-
+   
 /**
  * Interface que define as validações para comparações entre objetos
  * 
