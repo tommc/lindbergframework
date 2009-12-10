@@ -5,7 +5,7 @@ import org.lindbergframework.validation.AbstractMaxLengthRequiredValidation;
 import org.springframework.stereotype.Component;
 
 /**
- * ValidaÁ„o que verifica comprimento m·ximo possÌvel de String¥s
+ * Valida√ß√£o que verifica comprimento m√°ximo poss√≠vel de String's
  * 
  * @author Victor Lindberg
  *

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * ImplementaÁ„o de validaÁ„o de lista que verifica se a lista n„o esta vazia
+ * Implementa√ß√£o de valida√ß√£o de lista que verifica se a lista n√£o esta vazia
  * 
  * @author Victor Lindberg
  *
@@ -18,7 +18,7 @@ public class NotEmptyListValidation implements IListValidation<Object>{
 	
 	public void validate(List<Object> lista) throws ValidationException {
 	   if (lista != null && lista.isEmpty())
-		   throw new ValidationException("ValidaÁ„o not empty list falhou");
+		   throw new ValidationException("Valida√ß√£o not empty list falhou");
 	}
 
 }
