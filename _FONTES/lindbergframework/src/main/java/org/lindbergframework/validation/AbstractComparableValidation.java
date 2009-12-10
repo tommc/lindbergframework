@@ -1,6 +1,6 @@
 package org.lindbergframework.validation;
 
-
+    
 /**
  * Validação para comparação de objetos. Essa classe fornece a base as validações <br>
  * que implementam comparações entre objetos sejam eles valores ou não.<br><br>
