@@ -1,6 +1,12 @@
 package org.lindbergframework.validation.settings;
 
+import org.lindbergframework.validation.IExecutorValidation;
+
 /**
+ * 
+ * Modo de execu√ß√£o de valida√ß√µes. Este enum indica a um {@link IExecutorValidation} <br>
+ * como deve executar as valida√ß√µes e qual ser√° o crit√©rio adotado para lan√ßamento <br>
+ * de exce√ß√µes que sejam decorrentes de falhas das valida√ßoes
  * 
  * @author Victor Lindberg
  *
@@ -8,16 +14,16 @@ package org.lindbergframework.validation.settings;
 public enum ValidationMode {
 	
 	/**
-	 * LanÁar exceÁıes no final aninhando as exceÁıes. Este modo indica que um <br>
-	 * executor validation vai aninhar as mensagens as exceÁıes que ocorrerem na <br>
-	 * validaÁ„o e lanÁar apenas no final da validaÁ„o caso tenha havido alguma exceÁ„o
+	 * Lan√ßar exce√ß√µes no final aninhando as exce√ß√µes. Este modo indica que um <br>
+	 * executor validation vai aninhar as mensagens as exce√ß√µes que ocorrerem na <br>
+	 * valida√ß√£o e lan√ßar apenas no final da valida√ß√£o caso tenha havido alguma exce√ß√£o
 	 */
 	THROW_FINAL("THROW FINAL","Throw exceptions in the final"),
 	
 	/**
-	 * LanÁar exceÁıes imediatamente n„o aninhando as exceÁıes. Este modo indica <br>
-	 * que um executor validation n„o vai aninhar as exceÁıes ou seja que assim que <br>
-	 * alguma validaÁ„o falhar ser· lanÁada uma exceÁ„o
+	 * Lan√ßar exce√ß√µes imediatamente n√£o aninhando as exce√ß√µes. Este modo indica <br>
+	 * que um executor validation n√£o vai aninhar as exce√ß√µes ou seja que assim que <br>
+	 * alguma valida√ß√£o falhar ser√° lan√ßada uma exce√ß√£o
 	 */
 	THROW_IMMEDIATELY("THROW IMMEDIATELY","immediately Throw exceptions");
 	

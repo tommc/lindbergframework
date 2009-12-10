@@ -5,8 +5,8 @@ import org.lindbergframework.validation.ValidationItem;
 /**
  * 
  * Tipo de uso de mensagem personalizada que indica a forma de uso e <br>
- * configuraÁ„o das mensagens de uma validaÁ„o. Esta classe È usada em um {@link ValidationItem} <br>
- * para configuraÁ„o da(s) mesnagem(s) de validaÁ„o 
+ * configura√ß√£o das mensagens de uma valida√ß√£o. Esta classe √© usada em um {@link ValidationItem} <br>
+ * para configura√ß√£o da(s) mesnagem(s) de valida√ß√£o 
  * 
  * @author Victor Lindberg
  *
@@ -19,17 +19,17 @@ public enum MsgType {
 	CUSTOM_ONLY("CUSTOM_ONLY",true,false,false),
 	
 	/**
-	 * Usa a mensagem personalizada como sufixo na mensagem de validaÁ„o
+	 * Usa a mensagem personalizada como sufixo na mensagem de valida√ß√£o
 	 */
 	USING_CUSTOM_SUFFIX("USING_CUSTOM_SUFFIX",true,true,true),
 	
 	/**
-	 * Usa a mensagem personalizada como prefixo na mensagem de validaÁ„o
+	 * Usa a mensagem personalizada como prefixo na mensagem de valida√ß√£o
 	 */
 	USING_CUSTOM_PREFIX("USING_CUSTOM_PREFIX",true,true,false),
 	
 	/**
-	 * Usa apenas a mensagem de validaÁ„o e n„o considera a personalizada
+	 * Usa apenas a mensagem de valida√ß√£o e n√£o considera a personalizada
 	 */
 	NO_USING_CUSTOM("NO_USING_CUSTOM",false,false,false);
 	
