@@ -2,6 +2,7 @@ package org.lindbergframework.validation.impl;
 
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.validation.IDocumentValidation;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
  * 
  */
 @Component("cnpjValidation")
+@Scope("prototype")
 public class CnpjValidation implements IDocumentValidation<String>{
 
 	

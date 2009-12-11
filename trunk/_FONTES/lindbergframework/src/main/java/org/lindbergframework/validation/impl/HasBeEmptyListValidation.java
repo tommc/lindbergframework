@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.validation.IListValidation;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component("hasBeEmptyListValidation")
+@Scope("prototype")
 public class HasBeEmptyListValidation implements IListValidation<Object>{
 	
 	public void validate(List<Object> lista) throws ValidationException {

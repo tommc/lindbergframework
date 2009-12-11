@@ -5,6 +5,7 @@ import java.util.Date;
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.util.DateUtil;
 import org.lindbergframework.validation.IDateValidation;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component("dateHasBePastValidation")
+@Scope("prototype")
 public class DateHasBePastValidation implements IDateValidation{
 	
 	public void validate(Date data) throws ValidationException {
