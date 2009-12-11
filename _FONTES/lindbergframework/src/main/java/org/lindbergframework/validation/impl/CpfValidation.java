@@ -17,7 +17,7 @@ public class CpfValidation implements IDocumentValidation<String>{
     
 	public void validate(String cpf) throws ValidationException {
 	       if (cpf != null && ! validarCPF(cpf))
-	    	   throw new ValidationException("CPF inv�lido");
+	    	   throw new ValidationException("CPF inválido");
 	}
 	
 	/**
