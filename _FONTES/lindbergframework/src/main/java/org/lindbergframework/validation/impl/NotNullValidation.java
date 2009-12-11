@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @author Victor Lindberg
  *
  */
-@Component("notNullValidacao")
+@Component("notNullValidation")
 public class NotNullValidation implements INotNullValidation{
 	
 	public void validate(Object objeto) throws ValidationException {

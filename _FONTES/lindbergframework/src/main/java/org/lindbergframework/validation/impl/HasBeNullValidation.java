@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @author Victor Lindberg
  *
  */
-@Component("hasBeNullValidacao")
+@Component("hasBeNullValidation")
 public class HasBeNullValidation implements IHasBeNullValidation {
 	
 	public void validate(Object objeto) throws ValidationException {
