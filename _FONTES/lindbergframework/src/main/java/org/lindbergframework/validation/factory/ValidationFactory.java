@@ -198,4 +198,17 @@ public class ValidationFactory {
 		return springFactory.getBean(EXECUTOR_VALIDATION_BEAN);
 	}
 	
+	/**
+	 * Retorna uma instancia do bean de validação, se existir um, cujo id é passado como argumento. <br><br>
+	 * 
+	 * O bean buscado deve estar no contexto através da classe {@link LindbergSpringFactory}
+	 * 
+	 * @param <E>
+	 * @param id
+	 * @return
+	 */
+	public static <E> IValidation<E> getValidationBean(String id){
+	   return springFactory.getBean(id);
+	}
+	
 }

@@ -2,6 +2,7 @@ package org.lindbergframework.validation.impl;
 
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.validation.INotNullValidation;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component("notNullValidation")
+@Scope("prototype")
 public class NotNullValidation implements INotNullValidation{
 	
 	public void validate(Object objeto) throws ValidationException {

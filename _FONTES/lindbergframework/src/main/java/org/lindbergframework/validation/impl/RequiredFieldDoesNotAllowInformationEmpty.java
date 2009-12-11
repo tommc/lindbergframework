@@ -2,6 +2,7 @@ package org.lindbergframework.validation.impl;
 
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.validation.IRequiredFieldValidation;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component("requiredFieldDoesNotAllowInformationEmpty")
+@Scope("prototype")
 public class RequiredFieldDoesNotAllowInformationEmpty implements IRequiredFieldValidation {
 	
 	public void validate(Object valor) throws ValidationException {
