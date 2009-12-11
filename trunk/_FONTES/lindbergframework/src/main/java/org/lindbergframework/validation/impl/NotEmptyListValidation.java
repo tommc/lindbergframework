@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @author Victor Lindberg
  *
  */
-@Component("notEmptyListValidacao")
+@Component("notEmptyListValidation")
 public class NotEmptyListValidation implements IListValidation<Object>{
 	
 	public void validate(List<Object> lista) throws ValidationException {

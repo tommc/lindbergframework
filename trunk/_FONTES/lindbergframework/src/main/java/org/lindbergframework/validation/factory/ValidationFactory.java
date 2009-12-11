@@ -26,25 +26,24 @@ public class ValidationFactory {
 	 
 	public static final String REQUIRED_FIELD_VALIDATION_BEAN = "requiredFieldValidation";
 	public static final String REQUIRED_FIELD_DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN = "requiredFieldDoesNotAllowInformationEmpty";
-	public static final String NOT_NULL_VALIDACAO = "notNullValidacao";
+	public static final String NOT_NULL_VALIDATION = "notNullValidation";
 	public static final String EXECUTOR_VALIDATION_BEAN = "executorValidation";
-	public static final String DOUBLE_VALIDACAO_BEAN = "doubleValidacao";
-	public static final String NOT_EMPTY_VALIDACAO_BEAN = "notEmptyListValidacao";
-	public static final String HAS_BE_NULL_VALIDACAO_BEAN = "hasBeNullValidacao";
+	public static final String NOT_EMPTY_VALIDATION_BEAN = "notEmptyListValidation";
+	public static final String HAS_BE_NULL_VALIDATION_BEAN = "hasBeNullValidation";
 	public static final String NUMBER_GREATER_THAN_ZERO_VALIDATION_BEAN = "numberGreaterThanZeroValidation";
-	public static final String CPF_VALIDACAO_BEAN = "cpfValidation";
-	public static final String CNPJ_VALIDACAO_BEAN = "cnpjValidation";
-	public static final String CPF_CNPJ_VALIDACAO_BEAN = "cpfAndCnpjValidation";
-	public static final String DATE_HAS_BE_FUTURE_VALIDACAO_BEAN = "dateHasBeFutureValidation";
-	public static final String DATE_HAS_BE_PAST_VALIDACAO_BEAN = "dateHasBePastValidation";
-	public static final String DATE_HAS_BE_PRESENT_VALIDACAO_BEAN = "dateHasBePresent";
-	public static final String DATE_CAN_NOT_BE_FUTURE_VALIDACAO_BEAN = "dateCanNotBeFutureValidation";
-	public static final String DATE_CAN_NOT_BE_PAST_VALIDACAO_BEAN = "dateCanNotBePastValidation";
-	public static final String DATE_CAN_NOT_BE_PRESENT_VALIDACAO_BEAN = "dateCanNotBePresentValidation";
-	public static final String HAS_BE_EMPTY_VALIDACAO_BEAN = "hasBeEmptyListValidation";
+	public static final String CPF_VALIDATION_BEAN = "cpfValidation";
+	public static final String CNPJ_VALIDATION_BEAN = "cnpjValidation";
+	public static final String CPF_CNPJ_VALIDATION_BEAN = "cpfAndCnpjValidation";
+	public static final String DATE_HAS_BE_FUTURE_VALIDATION_BEAN = "dateHasBeFutureValidation";
+	public static final String DATE_HAS_BE_PAST_VALIDATION_BEAN = "dateHasBePastValidation";
+	public static final String DATE_HAS_BE_PRESENT_VALIDATION_BEAN = "dateHasBePresent";
+	public static final String DATE_CAN_NOT_BE_FUTURE_VALIDATION_BEAN = "dateCanNotBeFutureValidation";
+	public static final String DATE_CAN_NOT_BE_PAST_VALIDATION_BEAN = "dateCanNotBePastValidation";
+	public static final String DATE_CAN_NOT_BE_PRESENT_VALIDATION_BEAN = "dateCanNotBePresentValidation";
+	public static final String HAS_BE_EMPTY_VALIDATION_BEAN = "hasBeEmptyListValidation";
 	public static final String NUMBER_COMPARABLE_VALIDATION_BEAN = "numberComparableValidation";
 	public static final String STRING_MAX_LENGTH_VALIDATION_BEAN = "stringMaxLengthValidation";
-	public static final String DOES_NOT_ALLOW_INFORMATION_EMPTY_BEAN = "doesNotAllowInformationEmptyValidation";
+	public static final String DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN = "doesNotAllowInformationEmptyValidation";
 	
 	
 	private static LindbergSpringFactory springFactory = LindbergSpringFactory.getInstance();
@@ -72,42 +71,42 @@ public class ValidationFactory {
 	 */
 	public static IHasBeNullValidation createHasBeNullValidation() {
 		return springFactory.getBean(
-				HAS_BE_NULL_VALIDACAO_BEAN);
+				HAS_BE_NULL_VALIDATION_BEAN);
 	}
 
 	/**
 	 * Cria uma instancia de {@link IListValidation} que não permite que valida se uma lista não esta vaia
 	 */
 	public static  IListValidation<Object> createNotEmptyListValidation() {
-		return springFactory.getBean(NOT_EMPTY_VALIDACAO_BEAN);
+		return springFactory.getBean(NOT_EMPTY_VALIDATION_BEAN);
 	}
 
 	/**
 	 * Cria uma instancia de {@link IListValidation} que valida se uma lista esta vazia
 	 */
 	public static  IListValidation<Object> createHasBeEmptyListValidation() {
-		return springFactory.getBean(HAS_BE_EMPTY_VALIDACAO_BEAN);
+		return springFactory.getBean(HAS_BE_EMPTY_VALIDATION_BEAN);
 	}
 
 	/**
 	 * Cria uma instancia de {@link INotNullValidation}
 	 */
 	public static INotNullValidation createNotNullValidation() {
-		return springFactory.getBean(NOT_NULL_VALIDACAO);
+		return springFactory.getBean(NOT_NULL_VALIDATION);
 	}
 
 	/**
 	 * Cria uma instancia de {@link IDocumentValidation} que implementa a regra de validação de CPF
 	 */
 	public static <E> IDocumentValidation<E> createCpfValidation() {
-		return springFactory.getBean(CPF_VALIDACAO_BEAN);
+		return springFactory.getBean(CPF_VALIDATION_BEAN);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDocumentValidation} que implementa a regra de validação de CNPJ 
 	 */
-	public static <E> IDocumentValidation<E> createCnpjValidacao() {
-		return springFactory.getBean(CNPJ_VALIDACAO_BEAN);
+	public static <E> IDocumentValidation<E> createCnpjValidation() {
+		return springFactory.getBean(CNPJ_VALIDATION_BEAN);
 	}
 	
 	/**
@@ -115,49 +114,49 @@ public class ValidationFactory {
 	 * de CNPJ e CNPJ dependendo do número passado 
 	 */
 	public static <E> IDocumentValidation<E> createCpfCnpjValidation() {
-		return springFactory.getBean(CPF_CNPJ_VALIDACAO_BEAN);
+		return springFactory.getBean(CPF_CNPJ_VALIDATION_BEAN);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data é futura 
 	 */
 	public static IDateValidation createDateHasBeFutureValidation() {
-		return springFactory.getBean(DATE_HAS_BE_FUTURE_VALIDACAO_BEAN);
+		return springFactory.getBean(DATE_HAS_BE_FUTURE_VALIDATION_BEAN);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data é passado
 	 */
 	public static IDateValidation createDateHasBePastValidation() {
-		return springFactory.getBean(DATE_HAS_BE_PAST_VALIDACAO_BEAN);
+		return springFactory.getBean(DATE_HAS_BE_PAST_VALIDATION_BEAN);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data é presente 
 	 */
 	public static IDateValidation createDateHasBePresent() {
-		return springFactory.getBean(DATE_HAS_BE_PRESENT_VALIDACAO_BEAN);
+		return springFactory.getBean(DATE_HAS_BE_PRESENT_VALIDATION_BEAN);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data não é futura 
 	 */
 	public static IDateValidation createDateCanNotBeFutureValidation() {
-		return springFactory.getBean(DATE_CAN_NOT_BE_FUTURE_VALIDACAO_BEAN);
+		return springFactory.getBean(DATE_CAN_NOT_BE_FUTURE_VALIDATION_BEAN);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data não é passado 
 	 */
 	public static IDateValidation createDateCanNotBePastValidation() {
-		return springFactory.getBean(DATE_CAN_NOT_BE_PAST_VALIDACAO_BEAN);
+		return springFactory.getBean(DATE_CAN_NOT_BE_PAST_VALIDATION_BEAN);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data não é presente 
 	 */
 	public static IDateValidation createDateCanNotBePresentValidation() {
-		return springFactory.getBean(DATE_CAN_NOT_BE_PRESENT_VALIDACAO_BEAN);
+		return springFactory.getBean(DATE_CAN_NOT_BE_PRESENT_VALIDATION_BEAN);
 	}
 	
 	/**
@@ -188,7 +187,7 @@ public class ValidationFactory {
 	 * Cria uma instancia de {@link IValidation} que valida campos que não devem conter informação vazia 
 	 */
 	public static IValidation<Object> createDoesNotAllowInformationEmptyValidation() {
-		return springFactory.getBean(DOES_NOT_ALLOW_INFORMATION_EMPTY_BEAN);
+		return springFactory.getBean(DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN);
 		
 	}
 	
