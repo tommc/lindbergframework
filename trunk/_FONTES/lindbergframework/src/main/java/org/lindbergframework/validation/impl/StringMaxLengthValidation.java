@@ -1,4 +1,4 @@
-package org.lindbergframework.validation.impl;
+﻿package org.lindbergframework.validation.impl;
 
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.validation.AbstractMaxLengthRequiredValidation;

@@ -1,4 +1,4 @@
-package org.lindbergframework.validation.factory;
+﻿package org.lindbergframework.validation.factory;
 
 import org.lindbergframework.spring.LindbergSpringFactory;
 import org.lindbergframework.validation.AbstractComparableValidation;

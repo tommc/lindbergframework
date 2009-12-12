@@ -1,4 +1,4 @@
-package org.lindbergframework.validation;
+﻿package org.lindbergframework.validation;
 
 /**
  * Interface que define as validações referentes a {@link Number}

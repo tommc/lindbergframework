@@ -1,4 +1,4 @@
-package org.lindbergframework.validation.settings;
+﻿package org.lindbergframework.validation.settings;
 
 import org.lindbergframework.validation.IExecutorValidation;
 
