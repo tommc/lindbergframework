@@ -1,4 +1,4 @@
-package org.lindbergframework.util;
+﻿package org.lindbergframework.util;
 
 import java.math.BigDecimal;
 

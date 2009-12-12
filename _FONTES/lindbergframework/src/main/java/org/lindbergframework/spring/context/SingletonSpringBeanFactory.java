@@ -1,4 +1,4 @@
-package org.lindbergframework.spring.context;
+﻿package org.lindbergframework.spring.context;
 
 import org.lindbergframework.exception.LindbergException;
 import org.lindbergframework.spring.SpringBeanFactory;
