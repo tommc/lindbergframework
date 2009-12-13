@@ -93,29 +93,29 @@ public class ExecutorValidationAnnotationEngineImpl
 	private void addNewBean(Object newBean){
        Field[] fields = newBean.getClass().getDeclaredFields();
 		
-		for (Field field : fields){
-			List<Valid> annots = getAnnotations(field);
+	   for (Field field : fields){
+		  List<Valid> annots = getAnnotations(field);
            			
-			try{
-				for (Valid val : annots){
-					 IValidation newValid = getValidation(val);
+		  try{
+		     for (Valid val : annots){
+			    IValidation newValid = getValidation(val);
 				     
-				     Object valorCampo = getFieldValue(field, newBean);
+				Object valorCampo = getFieldValue(field, newBean);
 				     
-				     MsgType msgType = val.msgType();
+				MsgType msgType = val.msgType();
 				     
-				     if (val.msg().equals(""))
-				    	 msgType = MsgType.NO_USING_CUSTOM;
+				if (val.msg().equals(""))
+				   msgType = MsgType.NO_USING_CUSTOM;
 				     
-				     executorValidation.addValidationForSeveralItems(newValid, new ValidationItem(val.separator(),valorCampo,msgType,val.msg()));
-				}
-			}catch(ValidationException ex){
-				throw ex;
-			}
-			catch(Exception ex){
-				throw new ValidationException("Ocorreu um erro adicionando o bean de validação. Certifique-se que o bean referido está acessível e pode ser instanciado");
-			}
-		} 
+			 	executorValidation.addValidationForSeveralItems(newValid, new ValidationItem(val.separator(),valorCampo,msgType,val.msg()));
+			 }
+		  }catch(ValidationException ex){
+		     throw ex;
+		  }
+		  catch(Exception ex){
+		     throw new ValidationException("Ocorreu um erro adicionando o bean de validação. Certifique-se que o bean referido está acessível e pode ser instanciado");
+		  }
+	   } 
 	}
 	
 	/**
