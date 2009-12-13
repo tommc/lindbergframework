@@ -26,20 +26,11 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.annotation</groupId>
-			<artifactId>jsr250-api</artifactId>
-			<version>${versao-commons-annotations}</version>
-		</dependency>
-		
-		<!-- depedências jee -->
-		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- dependências diversas -->
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -50,6 +41,10 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>${versao-commons-beanutils}</version>
 		</dependency>
+		
+		<!-- depedências jee -->
+
+		<!-- dependências diversas -->
 
 	</dependencies>
 
