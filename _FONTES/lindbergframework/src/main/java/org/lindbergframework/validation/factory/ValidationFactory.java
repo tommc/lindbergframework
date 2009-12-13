@@ -1,5 +1,6 @@
 ﻿package org.lindbergframework.validation.factory;
 
+import org.lindbergframework.exception.NoSuchBeanValidationException;
 import org.lindbergframework.spring.LindbergSpringFactory;
 import org.lindbergframework.validation.AbstractComparableValidation;
 import org.lindbergframework.validation.AbstractMaxLengthRequiredValidation;
@@ -12,7 +13,11 @@ import org.lindbergframework.validation.IListValidation;
 import org.lindbergframework.validation.INotNullValidation;
 import org.lindbergframework.validation.IRequiredFieldValidation;
 import org.lindbergframework.validation.IValidation;
+import org.lindbergframework.validation.Types;
 import org.lindbergframework.validation.AbstractComparableValidation.FatorComparacao;
+import org.lindbergframework.validation.annotation.Valid;
+import org.lindbergframework.validation.annotation.engine.IExecutorValidationAnnotationEngine;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 
 
 /**
@@ -22,30 +27,8 @@ import org.lindbergframework.validation.AbstractComparableValidation.FatorCompar
  * @author Victor Lindberg
  * 
  */
-public class ValidationFactory {
+public class ValidationFactory implements Types{
 	 
-	public static final String REQUIRED_FIELD_VALIDATION_BEAN = "requiredFieldValidation";
-	public static final String REQUIRED_FIELD_DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN = "requiredFieldDoesNotAllowInformationEmpty";
-	public static final String NOT_NULL_VALIDATION = "notNullValidation";
-	public static final String EXECUTOR_VALIDATION_BEAN = "executorValidation";
-	public static final String NOT_EMPTY_VALIDATION_BEAN = "notEmptyListValidation";
-	public static final String HAS_BE_NULL_VALIDATION_BEAN = "hasBeNullValidation";
-	public static final String NUMBER_GREATER_THAN_ZERO_VALIDATION_BEAN = "numberGreaterThanZeroValidation";
-	public static final String CPF_VALIDATION_BEAN = "cpfValidation";
-	public static final String CNPJ_VALIDATION_BEAN = "cnpjValidation";
-	public static final String CPF_CNPJ_VALIDATION_BEAN = "cpfAndCnpjValidation";
-	public static final String DATE_HAS_BE_FUTURE_VALIDATION_BEAN = "dateHasBeFutureValidation";
-	public static final String DATE_HAS_BE_PAST_VALIDATION_BEAN = "dateHasBePastValidation";
-	public static final String DATE_HAS_BE_PRESENT_VALIDATION_BEAN = "dateHasBePresent";
-	public static final String DATE_CAN_NOT_BE_FUTURE_VALIDATION_BEAN = "dateCanNotBeFutureValidation";
-	public static final String DATE_CAN_NOT_BE_PAST_VALIDATION_BEAN = "dateCanNotBePastValidation";
-	public static final String DATE_CAN_NOT_BE_PRESENT_VALIDATION_BEAN = "dateCanNotBePresentValidation";
-	public static final String HAS_BE_EMPTY_VALIDATION_BEAN = "hasBeEmptyListValidation";
-	public static final String NUMBER_COMPARABLE_VALIDATION_BEAN = "numberComparableValidation";
-	public static final String STRING_MAX_LENGTH_VALIDATION_BEAN = "stringMaxLengthValidation";
-	public static final String DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN = "doesNotAllowInformationEmptyValidation";
-	
-	
 	private static LindbergSpringFactory springFactory = LindbergSpringFactory.getInstance();
 	
 	/**
@@ -55,7 +38,6 @@ public class ValidationFactory {
 		return springFactory.getBean(
 				REQUIRED_FIELD_VALIDATION_BEAN);
 	}
-	 
 	/**
 	 * Cria uma instancia de {@link IRequiredFieldValidation} que não permite ,br>
 	 * informação vazia como por exemplo uma sequencia de espacos em branco
@@ -192,10 +174,17 @@ public class ValidationFactory {
 	}
 	
 	/**
-	 * Cria um IExecutorValidation
+	 * Cria um IExecutorValidation padrão
 	 */
 	public static IExecutorValidation createExecutorValidation() {
 		return springFactory.getBean(EXECUTOR_VALIDATION_BEAN);
+	}
+	
+	/**
+	 * Cria um {@link IExecutorValidationAnnotationEngine} para o tratamento de validações utilizando annotations
+	 */
+	public static IExecutorValidationAnnotationEngine createExecutorValidationAnnotationEngine() {
+		return springFactory.getBean(EXECUTOR_VALIDATION_ANNOTATION_ENGINE_BEAN);
 	}
 	
 	/**
@@ -207,8 +196,27 @@ public class ValidationFactory {
 	 * @param id
 	 * @return
 	 */
-	public static <E> IValidation<E> getValidationBean(String id){
-	   return springFactory.getBean(id);
+	public static <E> IValidation<E> getValidationBean(String id) throws NoSuchBeanValidationException{
+		Object bean = null;
+		try{
+	      bean = springFactory.getBean(id);
+	      if (bean == null || ! (bean instanceof IValidation))
+	    	  throw new NoSuchBeanValidationException();
+		}catch(NoSuchBeanDefinitionException ex){
+		   throw new NoSuchBeanValidationException();	
+		}
+		
+		return (IValidation<E>) bean;
 	}
+
+	public static <E> IValidation<E> getValidationBeanReturningNullIfNoSuchBean(String id) throws NoSuchBeanValidationException{
+		try{
+	      return getValidationBean(id);
+		}catch(NoSuchBeanValidationException ex){
+		   return null;	
+		}
+	}
+	
+	
 	
 }

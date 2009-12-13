@@ -19,7 +19,7 @@ public class CnpjValidation implements IDocumentValidation<String>{
 	
 	public void validate(String cnpj) throws ValidationException {
 	   if (cnpj != null && ! validateCnpj(cnpj))
-		   throw new ValidationException("CNPJ inv�lido");
+		   throw new ValidationException("CNPJ inválido");
 	}
 	
 	

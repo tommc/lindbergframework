@@ -45,11 +45,6 @@ public class SpringBeanFactory {
 	 */
 	@SuppressWarnings("unchecked")
 	public <E> E getBean(String bean) {
-		try {
-			return (E) applicationContext.getBean(bean);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return null;
+	   return (E) applicationContext.getBean(bean);
 	}
 }
