@@ -25,6 +25,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
+ *
+ * Engine padrão de execução de validações de beans que utilizam <br>
+ * as annotations Valid e Validations
+ * 
  * 
  * @author Victor Lindberg
  *
@@ -80,7 +84,11 @@ public class ExecutorValidationAnnotationEngineImpl
 	public void reset() {
 	   executorValidation.reset();
 	}
-	
+
+	/**
+	 * adiciona as validações definidas via annotations ao conjunto <br>
+	 * de validações para serem processadas
+	 */
 	@SuppressWarnings("unchecked")
 	private void addNewBean(Object newBean){
        Field[] fields = newBean.getClass().getDeclaredFields();
@@ -110,17 +118,27 @@ public class ExecutorValidationAnnotationEngineImpl
 		} 
 	}
 	
-	private Object getFieldValue(Field field, Object newBean) {
+	/**
+	 * retorna o valor do campo. Se o campo for public retorna o valor de forma direta <br.
+	 * caso não o seja tenta invocar o método get do campo.
+	 * 
+	 * @throws FieldValueInaccessibleValidation caso o campo não esteja acessível
+	 */
+	private Object getFieldValue(Field field, Object newBean) throws FieldValueInaccessibleValidation{
 		try{
 		   if (field.getModifiers() == Modifier.PUBLIC)
 			  return field.get(newBean);
 		
-		   return newBean.getClass().getMethod(createGetMethod(field)).invoke(newBean);
+		   return newBean.getClass().getMethod(getGetMethodName(field)).invoke(newBean);
 		}catch(Exception exception){
 			throw new FieldValueInaccessibleValidation("O campo para validação não está acessível e não tem nenhum método get para acessá-lo");
 		}
 	}
-	
+
+	/**
+	 * Retorna uma lista com as annotations Valid definidas para o campo <br>
+	 * estejam elas diretamente anotadas no campo ou através da annotation Validations
+	 */
 	private List<Valid> getAnnotations(Field field){
 		List<Valid> annots = new Vector<Valid>(); 
 		
@@ -135,6 +153,9 @@ public class ExecutorValidationAnnotationEngineImpl
 		return annots;
 	}
 	
+	/**
+	 * Retorna a implementação de {@link IValidation} definida pela annotation Valid
+	 */
 	@SuppressWarnings("unchecked")
 	private IValidation getValidation(Valid valid) {
 		Object beanValid = null;
@@ -155,8 +176,13 @@ public class ExecutorValidationAnnotationEngineImpl
 
 		throw new ValidationException("Validation não corresponde a um bean de validação");
 	}
-	
-	private String createGetMethod(Field field){
+
+	/**
+	 * Retorna o nome do método get do campo passado como argumento<br><br>
+	 * 
+	 * Se o campo for por exemplo name então a String retornada será getName
+	 */
+	private String getGetMethodName(Field field){
 		String nome = field.getName();
 		String primeira = nome.substring(0,1);
 		return "get"+nome.replaceFirst(primeira, primeira.toUpperCase());

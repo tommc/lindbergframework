@@ -7,6 +7,8 @@ import java.lang.annotation.Target;
 
 /**
  * 
+ * Annotation que é usada para a definição de várias annotation Valid para um mesmo campo
+ * 
  * @author Victor Lindberg
  *
  */
@@ -14,6 +16,9 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 public @interface Validations {
 
+	/**
+	 * Conjunto de annotations Valid que definem as validações para o campo anotado com Validations
+	 */
 	Valid[] value();
 	
 }
