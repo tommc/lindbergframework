@@ -1,11 +1,24 @@
 package org.lindbergframework.validation;
 
+import java.util.List;
+
 import org.lindbergframework.exception.ValidationClassCastException;
 import org.lindbergframework.exception.ValidationException;
+import org.lindbergframework.validation.settings.MsgType;
 import org.lindbergframework.validation.settings.ValidationMode;
 
 /**
  * 
+ * Interface que define um Executador ou Engine de validações. <br><br>
+ * 
+ *  UM executor recebe diversos itens de validação cada um associado a uma ou mais validações <br>
+ *  e é responsável por gerenciar e executar o processamento adequado das validações criadas.
+ *  
+ *  @see ValidationItem
+ *  @see ValidationMode
+ *  @see MsgType
+ *  @see IValidation
+ *  
  * @author Victor Lindberg
  *
  */
@@ -40,5 +53,13 @@ public interface Executor {
 	 * Reinicia o estado e configurações feitas no executorValidation
 	 */
 	public void reset();
+	
+	/**
+	 * 
+	 * Retorna a lista de validações adicionadas ao executor
+	 * @param <E>
+	 * @return
+	 */
+	public <E> List<IValidation<E>> getValidations();
 
 }

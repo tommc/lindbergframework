@@ -31,8 +31,6 @@ public interface Types {
 	public static final String REQUIRED_FIELD_VALIDATION_BEAN = "requiredFieldValidation";
 	public static final String REQUIRED_FIELD_DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN = "requiredFieldDoesNotAllowInformationEmpty";
 	public static final String NOT_NULL_VALIDATION = "notNullValidation";
-	public static final String EXECUTOR_VALIDATION_BEAN = "executorValidation";
-	public static final String EXECUTOR_VALIDATION_ANNOTATION_ENGINE_BEAN = "executorValidationAnnotationEngineImpl";
 	public static final String NOT_EMPTY_VALIDATION_BEAN = "notEmptyListValidation";
 	public static final String HAS_BE_NULL_VALIDATION_BEAN = "hasBeNullValidation";
 	public static final String NUMBER_GREATER_THAN_ZERO_VALIDATION_BEAN = "numberGreaterThanZeroValidation";

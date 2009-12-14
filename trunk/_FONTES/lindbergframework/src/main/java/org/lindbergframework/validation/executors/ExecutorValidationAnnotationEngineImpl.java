@@ -84,6 +84,10 @@ public class ExecutorValidationAnnotationEngineImpl
 	public void reset() {
 	   executorValidation.reset();
 	}
+	
+	public <E> List<IValidation<E>> getValidations() {
+		return executorValidation.getValidations();
+	}
 
 	/**
 	 * adiciona as validações definidas via annotations ao conjunto <br>

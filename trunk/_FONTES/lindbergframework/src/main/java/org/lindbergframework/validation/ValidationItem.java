@@ -14,7 +14,7 @@ import org.lindbergframework.validation.settings.MsgType;
  * @author Victor Lindberg
  *
  */
-public class ValidationItem {
+public final class ValidationItem {
  
 	/**
 	 * Separador padrão quando a mensagem da <br>
@@ -47,7 +47,7 @@ public class ValidationItem {
 	 * se será usada apenas esta, se esta será usada em conjunto com a mensagem vinda da exceção, <br>
 	 * como se dará a formação da concatenação das duas mensagens e se a externa será prefixo ou sufixo da mensagem da validação
 	 */
-	private MsgType msgType = MsgType.CUSTOM_ONLY;
+	private MsgType msgType = MsgType.NO_USING_CUSTOM;
 	
 	/**
 	 * Separador das mensagem quando a mensagem externa e a da validação forem utilizadas ao mesmo tempo na vaidação 
