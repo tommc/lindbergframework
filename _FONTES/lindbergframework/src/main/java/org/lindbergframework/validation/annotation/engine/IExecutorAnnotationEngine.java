@@ -17,7 +17,11 @@ public interface IExecutorAnnotationEngine extends IExecutorValidation{
 	
 	/**
 	 * Executa as validações configuradas no engine adicionando os beans anotados <br>
-	 * com as annotations Valid e Validations no processamento de validações 
+	 * com as annotations Valid e Validations no processamento de validações
+	 * 
+	 * @param beansToValidate beans anotados que receberão processamento
+	 * @throws ValidationException
+	 * @throws ValidationClassCastException
 	 */
 	public void execute(Object... beansToValidate) 
 	   throws ValidationException, ValidationClassCastException;
@@ -30,6 +34,39 @@ public interface IExecutorAnnotationEngine extends IExecutorValidation{
 	 */
 	public void execute(ValidationMode mode,Object... beansToValidate) 
 	   throws ValidationException, ValidationClassCastException;
+	
+	/**
+	 * Executa as validações definidas nos beans anotados que foram adicionados ao engine que tenham annotation definidas para serem <br>
+	 * processadas em ao menos 1 das ações definidas como parametro deste método
+	 *  
+	 * @param actions ações indicarão quais validações serão processadas
+	 * @throws ValidationException
+	 * @throws ValidationClassCastException
+	 */
+	public void executeInActions(String... actions) 
+	   throws ValidationException, ValidationClassCastException;
+	
+	/**
+	 * Executa as validações definidas nos beans anotados que tenham annotation definidas para serem <br>
+	 * processadas em ao menos 1 das ações definidas como parametro deste método
+	 *  
+	 * @param actions ações indicarão quais validações serão processadas
+	 * @param beansToValidate beans anotados que receberão processamento
+	 * @throws ValidationException
+	 * @throws ValidationClassCastException
+	 */
+	public void executeInActions(String[] actions, Object... beansToValidate) 
+	   throws ValidationException, ValidationClassCastException;
+	
+	/**
+	 * Efetua o mesmo processamento do método {@link #executeInActions(String[], Object)} só que define 
+	 * o Modo de processamento de validação<br><br>
+	 * 
+	 * @see ValidationMode
+	 */
+	public void executeInActions(ValidationMode mode,String[] actions, Object... beansToValidate) 
+	   throws ValidationException, ValidationClassCastException;
+	
 	
 	/**
 	 * Adiciona novos beans anotados com as annotations Valid e Validations <br>
