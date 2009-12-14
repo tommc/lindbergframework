@@ -14,7 +14,7 @@ import org.lindbergframework.validation.settings.MsgType;
  * @author Victor Lindberg
  *
  */
-public final class ValidationItem {
+public final class Item {
  
 	/**
 	 * Separador padrão quando a mensagem da <br>
@@ -59,7 +59,7 @@ public final class ValidationItem {
 	 * 
 	 * @param value valor a ser validado
 	 */
-	public ValidationItem(Object value){
+	public Item(Object value){
 		setValue(value);
 	}
 	
@@ -69,7 +69,7 @@ public final class ValidationItem {
 	 * @param value valor a ser validado
 	 * @param msg mensagem personalizada
 	 */
-	public ValidationItem(Object value,String msg){
+	public Item(Object value,String msg){
 		this(value,MsgType.CUSTOM_ONLY,msg);
 	}
 	
@@ -87,7 +87,7 @@ public final class ValidationItem {
 	 * @param msgType tipo de uso das mensagens personalizadas
 	 * @param messages lista de mensagens 
 	 */
-	public ValidationItem(Object value,MsgType msgType,String... messages){
+	public Item(Object value,MsgType msgType,String... messages){
 		setValue(value);
 		setMessages(messages);
 		setMsgType(msgType);
@@ -106,7 +106,7 @@ public final class ValidationItem {
 	 * @param msgType tipo de uso da mensagem personalizada
 	 * @param messages lista de mensagens
 	 */
-	public ValidationItem(String separator, Object value,MsgType msgType,String... messages){
+	public Item(String separator, Object value,MsgType msgType,String... messages){
 		this(value,msgType,messages);
 		setSeparator(separator);
 	}
@@ -120,7 +120,7 @@ public final class ValidationItem {
 	 * @param value valor a ser validado
 	 * @param indexesValidations índices das validações que serão utilizadas para este item
 	 */
-	public ValidationItem(Object value,Integer... indexesValidations){
+	public Item(Object value,Integer... indexesValidations){
 		setValue(value);
 		setIndexValidations(indexesValidations);
 		setMessages(createArrayWithMessage(null, indexesValidations.length));
@@ -137,7 +137,7 @@ public final class ValidationItem {
 	 * @param messages mensagens de cada validação
 	 * @param indexesValidations índices das validações que serão associadas a este item
 	 */
-	public ValidationItem(Object value,MsgType msgType,
+	public Item(Object value,MsgType msgType,
 			   String[] messages,Integer... indexesValidations){
 		this(value,indexesValidations);
 		setMessages(messages);
@@ -154,7 +154,7 @@ public final class ValidationItem {
 	 * @param messages mensagens das validações
 	 * @param indexesValidations índices das validações que serão associadas a este item
 	 */
-	public ValidationItem(String separator, Object value,MsgType msgType,
+	public Item(String separator, Object value,MsgType msgType,
 			String[] messages,Integer... indexesValidations){
 		this(value,msgType,messages,indexesValidations);
 		setSeparator(separator);
@@ -168,7 +168,7 @@ public final class ValidationItem {
 	 * @param messages mensagens das validações
 	 * @param indexesValidations índices das validações que serão associadas a este item
 	 */
-	public ValidationItem(Object value,String[] messages,Integer... indexesValidations){
+	public Item(Object value,String[] messages,Integer... indexesValidations){
 		this(value,MsgType.CUSTOM_ONLY,messages,indexesValidations);
 	}
 	
@@ -181,7 +181,7 @@ public final class ValidationItem {
 	 * @param msgType tipo de uso da mensagem personalizada
 	 * @param indexesValidations índices das validações que serão associadas a este item
 	 */
-	public ValidationItem(Object value,String message,MsgType msgType,Integer... indexesValidations){
+	public Item(Object value,String message,MsgType msgType,Integer... indexesValidations){
 		this(value,indexesValidations);
 		setMessages(createArrayWithMessage(message, indexesValidations.length));
 		setMsgType(msgType);
@@ -196,7 +196,7 @@ public final class ValidationItem {
 	 * @param msgType tipo de uso da mensagem personalizada
 	 * @param indexesValidations índices das validações que serão associadas a este item
 	 */
-	public ValidationItem(Object value,String message,Integer... indexesValidations){
+	public Item(Object value,String message,Integer... indexesValidations){
 		this(value,message,MsgType.CUSTOM_ONLY,indexesValidations);
 	}
 	
@@ -210,7 +210,7 @@ public final class ValidationItem {
 	 * @param msgType tipo de uso da mensagem personalizada
 	 * @param indexesValidations índices das validações que serão associadas a este item
 	 */
-	public ValidationItem(String separator, Object value,String message,MsgType msgType,Integer... indexesValidations){
+	public Item(String separator, Object value,String message,MsgType msgType,Integer... indexesValidations){
 		this(value,message,msgType,indexesValidations);
 		setSeparator(separator);
 	}

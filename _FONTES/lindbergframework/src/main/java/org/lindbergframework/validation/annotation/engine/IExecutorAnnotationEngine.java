@@ -2,7 +2,7 @@ package org.lindbergframework.validation.annotation.engine;
 
 import org.lindbergframework.exception.ValidationClassCastException;
 import org.lindbergframework.exception.ValidationException;
-import org.lindbergframework.validation.Executor;
+import org.lindbergframework.validation.IExecutorValidation;
 import org.lindbergframework.validation.settings.ValidationMode;
 
 /**
@@ -13,7 +13,7 @@ import org.lindbergframework.validation.settings.ValidationMode;
  * @author Victor Lindberg
  *
  */
-public interface IExecutorValidationAnnotationEngine extends Executor{
+public interface IExecutorAnnotationEngine extends IExecutorValidation{
 	
 	/**
 	 * Executa as validações configuradas no engine adicionando os beans anotados <br>

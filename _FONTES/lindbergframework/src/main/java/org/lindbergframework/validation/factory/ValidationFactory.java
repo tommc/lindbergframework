@@ -1,21 +1,22 @@
 ﻿package org.lindbergframework.validation.factory;
 
 import org.lindbergframework.exception.NoSuchBeanValidationException;
-import org.lindbergframework.spring.LindbergSpringFactory;
+import org.lindbergframework.spring.LindbergSpringValidationsBeanFactory;
 import org.lindbergframework.validation.AbstractComparableValidation;
 import org.lindbergframework.validation.AbstractMaxLengthRequiredValidation;
 import org.lindbergframework.validation.IComparableValidation;
 import org.lindbergframework.validation.IDateValidation;
 import org.lindbergframework.validation.IDocumentValidation;
-import org.lindbergframework.validation.IExecutorValidation;
+import org.lindbergframework.validation.IExecutorValidationItems;
 import org.lindbergframework.validation.IHasBeNullValidation;
 import org.lindbergframework.validation.IListValidation;
 import org.lindbergframework.validation.INotNullValidation;
 import org.lindbergframework.validation.IRequiredFieldValidation;
 import org.lindbergframework.validation.IValidation;
 import org.lindbergframework.validation.Types;
+import org.lindbergframework.validation.Item;
 import org.lindbergframework.validation.AbstractComparableValidation.FatorComparacao;
-import org.lindbergframework.validation.annotation.engine.IExecutorValidationAnnotationEngine;
+import org.lindbergframework.validation.annotation.engine.IExecutorAnnotationEngine;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 
 
@@ -28,128 +29,124 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
  */
 public class ValidationFactory implements Types{
 	 
-	private static LindbergSpringFactory springFactory = LindbergSpringFactory.getInstance();
-	
-	public static final String EXECUTOR_VALIDATION_MULT_THREAD_BEAN = "executorValidationMultThread";
-	public static final String EXECUTOR_VALIDATION_BEAN = "executorValidation";
-	public static final String EXECUTOR_VALIDATION_ANNOTATION_ENGINE_BEAN = "executorValidationAnnotationEngineImpl";
+	private static LindbergSpringValidationsBeanFactory springFactory = LindbergSpringValidationsBeanFactory.getInstance();
 	
 	/**
 	 * Cria uma instancia de {@link IRequiredFieldValidation}
 	 */
-	public static IRequiredFieldValidation createRequiredFieldValidation() {
+	public static IRequiredFieldValidation newRequiredField() {
 		return springFactory.getBean(
-				REQUIRED_FIELD_VALIDATION_BEAN);
+				REQUIRED_FIELD);
 	}
 	/**
 	 * Cria uma instancia de {@link IRequiredFieldValidation} que não permite ,br>
 	 * informação vazia como por exemplo uma sequencia de espacos em branco
 	 */
-	public static IRequiredFieldValidation createRequiredFieldDoesNotAllowInformationEmpty() {
+	public static IRequiredFieldValidation newRequiredFieldNoInformationEmpty() {
 		return springFactory.getBean(
-				REQUIRED_FIELD_DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN);
+				REQUIRED_FIELD_NO_INFORMATION_EMPTY);
 	}
 
 
 	/**
 	 * Cria uma instancia de {@link IHasBeNullValidation}
 	 */
-	public static IHasBeNullValidation createHasBeNullValidation() {
+	public static IHasBeNullValidation newHasBeNull() {
 		return springFactory.getBean(
-				HAS_BE_NULL_VALIDATION_BEAN);
+				HAS_BE_NULL);
 	}
 
 	/**
 	 * Cria uma instancia de {@link IListValidation} que não permite que valida se uma lista não esta vaia
 	 */
-	public static  IListValidation<Object> createNotEmptyListValidation() {
-		return springFactory.getBean(NOT_EMPTY_VALIDATION_BEAN);
+	public static  IListValidation<Object> newNotEmptyList() {
+		return springFactory.getBean(NOT_EMPTY_LIST);
 	}
 
 	/**
 	 * Cria uma instancia de {@link IListValidation} que valida se uma lista esta vazia
 	 */
-	public static  IListValidation<Object> createHasBeEmptyListValidation() {
-		return springFactory.getBean(HAS_BE_EMPTY_VALIDATION_BEAN);
+	public static  IListValidation<Object> newHasBeEmptyList() {
+		return springFactory.getBean(HAS_BE_EMPTY_LIST);
 	}
 
 	/**
 	 * Cria uma instancia de {@link INotNullValidation}
 	 */
-	public static INotNullValidation createNotNullValidation() {
-		return springFactory.getBean(NOT_NULL_VALIDATION);
+	public static INotNullValidation newNotNull() {
+		return springFactory.getBean(NOT_NULL);
 	}
 
 	/**
 	 * Cria uma instancia de {@link IDocumentValidation} que implementa a regra de validação de CPF
 	 */
-	public static <E> IDocumentValidation<E> createCpfValidation() {
-		return springFactory.getBean(CPF_VALIDATION_BEAN);
+	public static <E> IDocumentValidation<E> newCpf() {
+		return springFactory.getBean(CPF);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDocumentValidation} que implementa a regra de validação de CNPJ 
 	 */
-	public static <E> IDocumentValidation<E> createCnpjValidation() {
-		return springFactory.getBean(CNPJ_VALIDATION_BEAN);
+	public static <E> IDocumentValidation<E> newCnpj() {
+		return springFactory.getBean(CNPJ);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDocumentValidation} que implementa a regra de validação <br>
 	 * de CNPJ e CNPJ dependendo do número passado 
 	 */
-	public static <E> IDocumentValidation<E> createCpfCnpjValidation() {
-		return springFactory.getBean(CPF_CNPJ_VALIDATION_BEAN);
+	public static <E> IDocumentValidation<E> newCpfCnpj() {
+		return springFactory.getBean(CPF_CNPJ);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data é futura 
 	 */
-	public static IDateValidation createDateHasBeFutureValidation() {
-		return springFactory.getBean(DATE_HAS_BE_FUTURE_VALIDATION_BEAN);
+	public static IDateValidation newDateHasBeFuture() {
+		return springFactory.getBean(DATE_HAS_BE_FUTURE);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data é passado
 	 */
-	public static IDateValidation createDateHasBePastValidation() {
-		return springFactory.getBean(DATE_HAS_BE_PAST_VALIDATION_BEAN);
+	public static IDateValidation newDateHasBePast() {
+		return springFactory.getBean(DATE_HAS_BE_PAST);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data é presente 
 	 */
-	public static IDateValidation createDateHasBePresent() {
-		return springFactory.getBean(DATE_HAS_BE_PRESENT_VALIDATION_BEAN);
+	public static IDateValidation newDateHasBePresent() {
+		return springFactory.getBean(DATE_HAS_BE_PRESENT);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data não é futura 
 	 */
-	public static IDateValidation createDateCanNotBeFutureValidation() {
-		return springFactory.getBean(DATE_CAN_NOT_BE_FUTURE_VALIDATION_BEAN);
+	public static IDateValidation newDateCanNotBeFuture() {
+		return springFactory.getBean(DATE_CAN_NOT_BE_FUTURE);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data não é passado 
 	 */
-	public static IDateValidation createDateCanNotBePastValidation() {
-		return springFactory.getBean(DATE_CAN_NOT_BE_PAST_VALIDATION_BEAN);
+	public static IDateValidation newDateCanNotBePast() {
+		return springFactory.getBean(DATE_CAN_NOT_BE_PAST);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data não é presente 
 	 */
-	public static IDateValidation createDateCanNotBePresentValidation() {
-		return springFactory.getBean(DATE_CAN_NOT_BE_PRESENT_VALIDATION_BEAN);
+	public static IDateValidation newDateCanNotBePresent() {
+		return springFactory.getBean(DATE_CAN_NOT_BE_PRESENT);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IStringValidation} que valida o comprimento máximo de String's 
 	 */
-	public static AbstractMaxLengthRequiredValidation<String> createStringMaxLengthValidation(int maxLength) {
+	public static AbstractMaxLengthRequiredValidation<String> newStringMaxLength(int maxLength) {
 		 AbstractMaxLengthRequiredValidation<String> abstractMaxLengthRequiredValidation = 
-			                springFactory.getBean(STRING_MAX_LENGTH_VALIDATION_BEAN);
+			                springFactory.getBean(STRING_MAX_LENGTH);
 		 
 		 abstractMaxLengthRequiredValidation.setMaxLengthRequired(maxLength);
 		 
@@ -160,8 +157,8 @@ public class ValidationFactory implements Types{
 	/**
 	 * Cria uma instancia de {@link IComparableValidation} que valida a comparação entre Numbers 
 	 */
-	public static IComparableValidation<Number> createNumberComparableValidation(Number valorComparacao, FatorComparacao fatorComparacao) {
-		AbstractComparableValidation<Number> comparableValidation = springFactory.getBean(NUMBER_COMPARABLE_VALIDATION_BEAN);
+	public static IComparableValidation<Number> newNumberComparable(Number valorComparacao, FatorComparacao fatorComparacao) {
+		AbstractComparableValidation<Number> comparableValidation = springFactory.getBean(NUMBER_COMPARABLE);
 		comparableValidation.setValorComparacao(valorComparacao);
 		comparableValidation.setFatorComparacao(fatorComparacao);
 		
@@ -171,42 +168,22 @@ public class ValidationFactory implements Types{
 	/**
 	 * Cria uma instancia de {@link IValidation} que valida campos que não devem conter informação vazia 
 	 */
-	public static IValidation<Object> createDoesNotAllowInformationEmptyValidation() {
-		return springFactory.getBean(DOES_NOT_ALLOW_INFORMATION_EMPTY_VALIDATION_BEAN);
+	public static IValidation<Object> newNoInformationEmpty() {
+		return springFactory.getBean(NO_INFORMATION_EMPTY);
 		
-	}
-	
-	/**
-	 * Cria um IExecutorValidation padrão
-	 */
-	public static IExecutorValidation createExecutorValidation() {
-		return springFactory.getBean(EXECUTOR_VALIDATION_BEAN);
-	}
-	
-	/**
-	 * Cria um {@link IExecutorValidation} para o tratamento de validações em mult threads
-	 */
-	public static IExecutorValidation createExecutorValidationMultThread() {
-		return springFactory.getBean(EXECUTOR_VALIDATION_MULT_THREAD_BEAN);
-	}
-	
-	/**
-	 * Cria um {@link IExecutorValidationAnnotationEngine} para o tratamento de validações utilizando annotations
-	 */
-	public static IExecutorValidationAnnotationEngine createExecutorValidationAnnotationEngine() {
-		return springFactory.getBean(EXECUTOR_VALIDATION_ANNOTATION_ENGINE_BEAN);
 	}
 	
 	
 	/**
 	 * Retorna uma instancia do bean de validação, se existir um, cujo id é passado como argumento. <br><br>
 	 * 
-	 * O bean buscado deve estar no contexto através da classe {@link LindbergSpringFactory}
+	 * O bean buscado deve estar no contexto através da classe {@link LindbergSpringValidationsBeanFactory}
 	 * 
 	 * @param <E>
 	 * @param id
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public static <E> IValidation<E> getValidationBean(String id) throws NoSuchBeanValidationException{
 		Object bean = null;
 		try{

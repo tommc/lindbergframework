@@ -1,11 +1,11 @@
 ﻿package org.lindbergframework.validation.settings;
 
-import org.lindbergframework.validation.ValidationItem;
+import org.lindbergframework.validation.Item;
 
 /**
  * 
  * Tipo de uso de mensagem personalizada que indica a forma de uso e <br>
- * configuração das mensagens de uma validação. Esta classe é usada em um {@link ValidationItem} <br>
+ * configuração das mensagens de uma validação. Esta classe é usada em um {@link Item} <br>
  * para configuração da(s) mesnagem(s) de validação 
  * 
  * @author Victor Lindberg

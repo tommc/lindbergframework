@@ -10,15 +10,10 @@
 
      <!-- 
        autor: Victor Lindberg
-       descrição: configurações do spring
+       descrição: configurações do contexto de validações do framework no spring
       -->
 
-     <!-- JdbcTemplate dafault 
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<constructor-arg ref="dataSource"/>
-	</bean>
-     -->
-	
-	<context:component-scan base-package="org.lindbergframework" />
+     
+	<context:component-scan base-package="org.lindbergframework.validation" />
     
 </beans>

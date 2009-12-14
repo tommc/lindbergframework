@@ -1,10 +1,10 @@
 ﻿package org.lindbergframework.validation.settings;
 
-import org.lindbergframework.validation.IExecutorValidation;
+import org.lindbergframework.validation.IExecutorValidationItems;
 
 /**
  * 
- * Modo de execução de validações. Este enum indica a um {@link IExecutorValidation} <br>
+ * Modo de execução de validações. Este enum indica a um {@link IExecutorValidationItems} <br>
  * como deve executar as validações e qual será o critério adotado para lançamento <br>
  * de exceções que sejam decorrentes de falhas das validaçoes
  * 

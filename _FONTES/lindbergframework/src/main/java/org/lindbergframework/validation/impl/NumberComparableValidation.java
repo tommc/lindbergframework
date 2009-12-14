@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.util.NumberUtil;
 import org.lindbergframework.validation.AbstractComparableValidation;
-import org.lindbergframework.validation.IExecutorValidation;
+import org.lindbergframework.validation.IExecutorValidationItems;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +30,7 @@ import org.springframework.stereotype.Component;
  *    FatorComparacao.GREATER_OR_EQUAL_THAN ---- Maior ou igual que<br><br>
  * 
  * Exemplo: Se valorComparacao for 10 e o fator de comparação for FatorComparacao.LESS_THAN <br>
- * a execução dessa validação em um {@link IExecutorValidation} passando os valores <br>
+ * a execução dessa validação em um {@link IExecutorValidationItems} passando os valores <br>
  * abaixo como argumento resultariam no resultado abaixo.<br><br>
  * 
  * <b>Valor - Resultado</b><br>
