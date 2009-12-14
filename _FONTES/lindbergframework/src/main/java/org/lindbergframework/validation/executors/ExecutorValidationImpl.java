@@ -32,7 +32,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	/**
 	 * lista de validações aguardando execução
 	 */
-	private List<ValidacaoElement> validacoes = new Vector<ValidacaoElement>();
+	private List<ValidationElement> validacoes = new Vector<ValidationElement>();
 	
 	public static final String MSG_INDEXES_VALIDACAO_INVALIDO = "Não foi possível adicionar a(s) validação(ões). " +
 									"Um ou mais items tem seus índices ou mensagens de validações inválidos"; 
@@ -110,7 +110,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	}
 	
 	private void addValidation(IValidation validacao,ValidationItem item,String msgCustom){
-		   validacoes.add(new ValidacaoElement(validacao,item,msgCustom));	
+		   validacoes.add(new ValidationElement(validacao,item,msgCustom));	
     }
 
 	/**
@@ -135,27 +135,42 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	
 	public void execute(ValidationMode mode) throws ValidationException, ValidationClassCastException{
 		List<String> mensagensValidacao = new ArrayList<String>();
-		List<ValidacaoElement> validElements = new Vector<ValidacaoElement>();
+		List<ValidationElement> validElements = new Vector<ValidationElement>();
 		validElements.addAll(validacoes);
 		
 		clearValidations();
-		
-		for (int indexValidacao = 0;indexValidacao < validElements.size();indexValidacao++){
-			ValidacaoElement element = validElements.get(indexValidacao);
-			try {
-				validarItem(element);
-			}
-			catch (ValidationException ex) {
-				if (ex.getMessages().isEmpty())
-					ex.addMessage(String.format("Validation %s failed", element.getValidacao().getClass().toString()));
-				
-				List<String> msgs = formatMsgsParaItemValidacao(ex, element,indexValidacao);
-				mensagensValidacao.addAll(msgs);
-				lancarExcecaoSeModeImediatamente(mensagensValidacao, mode);
-			}
-		}
+	    
+		startValidationProcess(validElements, mode, mensagensValidacao);
 		
 		lancarExcecaoSeModeFinal(mensagensValidacao, mode);
+	}
+	
+	protected void startValidationProcess(List<ValidationElement> validElements,ValidationMode mode, List<String> mensagensValidacao){
+		for (int indexValidacao = 0;indexValidacao < validElements.size();indexValidacao++){
+			startValidation(validElements.get(indexValidacao), mode, indexValidacao, mensagensValidacao);
+		}
+		
+	}
+	
+	protected void startValidation(ValidationElement element,
+			ValidationMode mode, int indexValidacao,
+			List<String> mensagensValidacao) {
+		try {
+			validarItem(element);
+		} catch (ValidationException ex) {
+			tratarExcecao(element, mode, indexValidacao, ex, mensagensValidacao);
+		}
+	}
+	
+	protected void tratarExcecao(ValidationElement element,ValidationMode mode,
+			int indexValidacao,ValidationException ex, List<String> mensagensValidacao){
+		
+		if (ex.getMessages().isEmpty())
+			ex.addMessage(String.format("Validation %s failed", element.getValidacao().getClass().toString()));
+		
+		List<String> msgs = formatMsgsParaItemValidacao(ex, element,indexValidacao);
+		mensagensValidacao.addAll(msgs);
+		lancarExcecaoSeModeImediatamente(mensagensValidacao, mode);	
 	}
 	
 	public void execute() throws ValidationException,ValidationClassCastException{
@@ -170,11 +185,12 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 			throw ex;
 		}
 	}
+	
 
 	/**
 	 * lança exceção caso seja necessário e o modo de validação for ValidationMode.THROW_IMMEDIATELY 
 	 */
-	private void lancarExcecaoSeModeImediatamente(List<String> mensagensValidacao,ValidationMode mode){
+	protected synchronized void lancarExcecaoSeModeImediatamente(List<String> mensagensValidacao,ValidationMode mode){
 		if (mode.equals(ValidationMode.THROW_IMMEDIATELY))
 			   lancarExcecaoSeNecessario(mensagensValidacao);   	
 	}
@@ -182,7 +198,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	/**
 	 * lança exceção caso seja necessário e o modo de validação for ValidationMode.THROW_FINAL 
 	 */
-	private void lancarExcecaoSeModeFinal(List<String> mensagensValidacao,ValidationMode mode){
+	protected  synchronized void lancarExcecaoSeModeFinal(List<String> mensagensValidacao,ValidationMode mode){
 		if (mode.equals(ValidationMode.THROW_FINAL))
 			lancarExcecaoSeNecessario(mensagensValidacao);   	
 	}
@@ -190,7 +206,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	/**
 	 * lança exceção se necessário ou seja se a lista de mensagens de validação não estiver vazia
 	 */
-	private void lancarExcecaoSeNecessario(List<String> mensagensValidacao) {
+	protected synchronized void lancarExcecaoSeNecessario(List<String> mensagensValidacao) {
 		if(! mensagensValidacao.isEmpty()) {
 			clearValidations();
 			throw new ValidationException(mensagensValidacao);
@@ -202,7 +218,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	 * 
 	 * Obs: Pode ser mais de uma mensagem por que um {@link ValidationException} pode ter uma ou mais mensagens
 	 */
-    private List<String> formatMsgsParaItemValidacao(ValidationException ex,ValidacaoElement element,int indexValidacao){
+    protected List<String> formatMsgsParaItemValidacao(ValidationException ex,ValidationElement element,int indexValidacao){
     	ValidationItem item = element.getValidacaoItem();
     	MsgType msgType = item.getMsgType();
 		if (msgType.isUsingMessageCustom())
@@ -230,7 +246,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
     /**
      * Efetua a validação de um elemento de validação
      */
-	private void validarItem(ValidacaoElement validacaoElement) {
+	protected void validarItem(ValidationElement validacaoElement) {
 		IValidation<Object> validacao = validacaoElement.getValidacao();
 		try{
 		   validacao.validate(validacaoElement.getValidacaoItem().getValue());
@@ -248,6 +264,19 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	public void clearValidations(){
 		validacoes.clear();
 	}
+	
+	public List<IValidation> getValidations() {
+		List<IValidation> validations = new Vector<IValidation>();
+		
+		for(ValidationElement elem : validacoes)
+			validations.add(elem.getValidacao());
+		
+		return validations;
+	}
+	
+	protected List<ValidationElement> getValidationElements(){
+		return validacoes;
+	}
 
 	/**
 	 * Elemento de validação que contem um item de validação, uma validação <br>
@@ -257,7 +286,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	 * @author Victor Lindberg
 	 *
 	 */
-	private class ValidacaoElement {
+	protected class ValidationElement {
 
 		/**
 		 * validação a ser usada para validar o item
@@ -274,11 +303,11 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 		 */
 		private String msgCustom;
 		
-		public ValidacaoElement(){
+		public ValidationElement(){
 			//
 		}
 		
-		public ValidacaoElement(IValidation<Object> validacao, ValidationItem validacaoItem,String msgCustom) {
+		public ValidationElement(IValidation<Object> validacao, ValidationItem validacaoItem,String msgCustom) {
 			this.validacao = validacao;
 			this.validacaoItem = validacaoItem;
 			this.msgCustom = msgCustom;

@@ -11,7 +11,7 @@ import org.lindbergframework.validation.ValidationItem;
 import org.lindbergframework.validation.settings.MsgType;
 
 /**
- * Annotation que define uma validação a um campo
+ * Annotation que define uma validação a ser associada a um campo
  * 
  * @see 
  *   {@link Types}

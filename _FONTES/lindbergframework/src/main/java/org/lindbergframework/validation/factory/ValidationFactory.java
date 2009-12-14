@@ -15,7 +15,6 @@ import org.lindbergframework.validation.IRequiredFieldValidation;
 import org.lindbergframework.validation.IValidation;
 import org.lindbergframework.validation.Types;
 import org.lindbergframework.validation.AbstractComparableValidation.FatorComparacao;
-import org.lindbergframework.validation.annotation.Valid;
 import org.lindbergframework.validation.annotation.engine.IExecutorValidationAnnotationEngine;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 
@@ -30,6 +29,10 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 public class ValidationFactory implements Types{
 	 
 	private static LindbergSpringFactory springFactory = LindbergSpringFactory.getInstance();
+	
+	public static final String EXECUTOR_VALIDATION_MULT_THREAD_BEAN = "executorValidationMultThread";
+	public static final String EXECUTOR_VALIDATION_BEAN = "executorValidation";
+	public static final String EXECUTOR_VALIDATION_ANNOTATION_ENGINE_BEAN = "executorValidationAnnotationEngineImpl";
 	
 	/**
 	 * Cria uma instancia de {@link IRequiredFieldValidation}
@@ -181,11 +184,19 @@ public class ValidationFactory implements Types{
 	}
 	
 	/**
+	 * Cria um {@link IExecutorValidation} para o tratamento de validações em mult threads
+	 */
+	public static IExecutorValidation createExecutorValidationMultThread() {
+		return springFactory.getBean(EXECUTOR_VALIDATION_MULT_THREAD_BEAN);
+	}
+	
+	/**
 	 * Cria um {@link IExecutorValidationAnnotationEngine} para o tratamento de validações utilizando annotations
 	 */
 	public static IExecutorValidationAnnotationEngine createExecutorValidationAnnotationEngine() {
 		return springFactory.getBean(EXECUTOR_VALIDATION_ANNOTATION_ENGINE_BEAN);
 	}
+	
 	
 	/**
 	 * Retorna uma instancia do bean de validação, se existir um, cujo id é passado como argumento. <br><br>
