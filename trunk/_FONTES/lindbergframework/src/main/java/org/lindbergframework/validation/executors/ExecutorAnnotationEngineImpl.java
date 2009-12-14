@@ -21,8 +21,6 @@ import org.lindbergframework.validation.executors.factory.ExecutorFactory;
 import org.lindbergframework.validation.factory.ValidationFactory;
 import org.lindbergframework.validation.settings.MsgType;
 import org.lindbergframework.validation.settings.ValidationMode;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -40,11 +38,14 @@ import org.springframework.stereotype.Component;
 public class ExecutorAnnotationEngineImpl 
                implements IExecutorAnnotationEngine{
 	
-	@Autowired @Qualifier(ExecutorFactory.EXECUTOR_VALIDATION_ID_BEAN)
 	private IExecutorValidationItems executorValidation;
 	
 	public ExecutorAnnotationEngineImpl(){
-		//
+		executorValidation = ExecutorFactory.newExecutorValidationItems();
+	}
+	
+	public ExecutorAnnotationEngineImpl(IExecutorValidationItems executorValidation){
+		this.executorValidation = executorValidation;
 	}
 
 	public void addBeans(Object... objs) {
