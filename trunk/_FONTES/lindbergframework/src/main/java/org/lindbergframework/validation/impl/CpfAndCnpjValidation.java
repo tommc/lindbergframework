@@ -24,10 +24,10 @@ public class CpfAndCnpjValidation implements IDocumentValidation<String>{
 		if (numDoc != null){
 			IValidation<String> validacao;
 			if (numDoc.length() == 11)
-				validacao = ValidationFactory.createCpfValidation();
+				validacao = ValidationFactory.newCpf();
 			else
 				if (numDoc.length() == 14)
-				   validacao = ValidationFactory.createCnpjValidation();
+				   validacao = ValidationFactory.newCnpj();
 				else
 					throw new ValidationException("CPF ou CNPJ inv�lido");
 			

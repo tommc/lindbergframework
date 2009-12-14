@@ -7,9 +7,9 @@ import java.util.Vector;
 
 import org.lindbergframework.exception.ValidationClassCastException;
 import org.lindbergframework.exception.ValidationException;
-import org.lindbergframework.validation.IExecutorValidation;
+import org.lindbergframework.validation.IExecutorValidationItems;
 import org.lindbergframework.validation.IValidation;
-import org.lindbergframework.validation.ValidationItem;
+import org.lindbergframework.validation.Item;
 import org.lindbergframework.validation.settings.MsgType;
 import org.lindbergframework.validation.settings.ValidationMode;
 import org.springframework.context.annotation.Scope;
@@ -19,16 +19,16 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * Implementação padrão de {@link IExecutorValidation} para o processamento de validações que implementem {@link IValidation}
+ * Implementação padrão de {@link IExecutorValidationItems} para o processamento de validações que implementem {@link IValidation}
  * 
  * @author Victor Lindberg
  * 
  */
-@Component("executorValidation")
+@Component("executorValidationDefault")
 @Scope("prototype")
 @SuppressWarnings("unchecked")
-public class ExecutorValidationImpl implements IExecutorValidation{
-
+public class ExecutorValidationItemsImpl implements IExecutorValidationItems{
+ 
 	/**
 	 * lista de validações aguardando execução
 	 */
@@ -39,28 +39,28 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	
 	
 	
-	public ExecutorValidationImpl() {
+	public ExecutorValidationItemsImpl() {
 		//
 	}
 	
-	public void addValidations(ValidationItem[] items,IValidation... validacoes){
+	public void addValidations(Item[] items,IValidation... validacoes){
 	   if (! isIndexValidacoesItemsOK(validacoes, items))
 		   throw new IllegalStateException(MSG_INDEXES_VALIDACAO_INVALIDO);
 		
-	   for (ValidationItem item : items)
+	   for (Item item : items)
 	   	   addItem(validacoes, item); 
 		   
 	}
 	
-	public void addValidationForSeveralItems(IValidation validacao,ValidationItem... items){
+	public void addValidationForSeveralItems(IValidation validacao,Item... items){
 	   for (int i = 0; i < items.length;i++){
-		   ValidationItem item = items[i];
+		   Item item = items[i];
 		   int length = item.getMessages().length;
 		   addValidation(validacao, item,(length == 0 ? null : item.getMessages()[0]));
 	   }
 	}
 	
-	public void addValidationsForItem(ValidationItem item,IValidation... validacoes){
+	public void addValidationsForItem(Item item,IValidation... validacoes){
 	   for (int i = 0;i < validacoes.length;i++){
 		   int length = item.getMessages().length;
 		   addValidation(validacoes[i], item, (length == 0 || length - 1 < i ? null : item.getMessages()[i]));
@@ -68,39 +68,39 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	}
 	 
 	public void addValidationForSeveralItemsValidating(ValidationMode mode,
-			IValidation validacao, ValidationItem... items) {
+			IValidation validacao, Item... items) {
 	   addValidationForSeveralItems(validacao, items);
 	   execute(mode);
 	}
 	 
 	public void addValidationsForItemValidating(ValidationMode mode,
-			ValidationItem item, IValidation... validacoes) {
+			Item item, IValidation... validacoes) {
 	   addValidationsForItem(item, validacoes);
 	   execute(mode);
 	}
 	  
 	public void addValidationsValidating(ValidationMode mode,
-			ValidationItem[] items, IValidation... validacoes) {
+			Item[] items, IValidation... validacoes) {
 	   addValidations(items, validacoes);
 	   execute(mode);
 	}
 	
 	public void addValidationForSeveralItemsValidating(IValidation validacao,
-			ValidationItem... items) {
+			Item... items) {
 		addValidationForSeveralItemsValidating(ValidationMode.THROW_FINAL, validacao, items);
 	}
 	
-	public void addValidationsForItemValidating(ValidationItem item,
+	public void addValidationsForItemValidating(Item item,
 			IValidation... validacoes) {
 		addValidationsForItemValidating(ValidationMode.THROW_FINAL, item, validacoes);
 	}
 	
-	public void addValidationsValidating(ValidationItem[] items,
+	public void addValidationsValidating(Item[] items,
 			IValidation... validacoes) {
 		addValidationsValidating(ValidationMode.THROW_FINAL, items, validacoes);		
 	}
 	
-	private void addItem(IValidation[] validacoes,ValidationItem item){
+	private void addItem(IValidation[] validacoes,Item item){
 		Integer[] indexes = item.getIndexValidations();
 		for (int i = 0;i < indexes.length;i++){
 			IValidation validacao = validacoes[indexes[i]];
@@ -109,15 +109,15 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 		}
 	}
 	
-	private void addValidation(IValidation validacao,ValidationItem item,String msgCustom){
+	private void addValidation(IValidation validacao,Item item,String msgCustom){
 		   validacoes.add(new ValidationElement(validacao,item,msgCustom));	
     }
 
 	/**
 	 * verifica se os índices de validações dos items de acordo com as validações são validos
 	 */
-	private boolean isIndexValidacoesItemsOK(IValidation[] validacoes, ValidationItem[] items){
-		for (ValidationItem item : items){
+	private boolean isIndexValidacoesItemsOK(IValidation[] validacoes, Item[] items){
+		for (Item item : items){
 		   if (item.getMessages().length != item.getIndexValidations().length)
 			   return false;
 		   
@@ -219,7 +219,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 	 * Obs: Pode ser mais de uma mensagem por que um {@link ValidationException} pode ter uma ou mais mensagens
 	 */
     protected List<String> formatMsgsParaItemValidacao(ValidationException ex,ValidationElement element,int indexValidacao){
-    	ValidationItem item = element.getValidacaoItem();
+    	Item item = element.getValidacaoItem();
     	MsgType msgType = item.getMsgType();
 		if (msgType.isUsingMessageCustom())
 		{
@@ -296,7 +296,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 		/**
 		 * item a ser validado
 		 */
-		private ValidationItem validacaoItem;
+		private Item validacaoItem;
 		
 		/**
 		 * mensagem personalizada que pode ou não ser definida
@@ -307,7 +307,7 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 			//
 		}
 		
-		public ValidationElement(IValidation<Object> validacao, ValidationItem validacaoItem,String msgCustom) {
+		public ValidationElement(IValidation<Object> validacao, Item validacaoItem,String msgCustom) {
 			this.validacao = validacao;
 			this.validacaoItem = validacaoItem;
 			this.msgCustom = msgCustom;
@@ -330,11 +330,11 @@ public class ExecutorValidationImpl implements IExecutorValidation{
 			this.validacao = validacao;
 		}
 		
-		public ValidationItem getValidacaoItem() {
+		public Item getValidacaoItem() {
 			return validacaoItem;
 		}
 		
-		public void setValidacaoItem(ValidationItem validacaoItem) {
+		public void setValidacaoItem(Item validacaoItem) {
 			this.validacaoItem = validacaoItem;
 		}
 		

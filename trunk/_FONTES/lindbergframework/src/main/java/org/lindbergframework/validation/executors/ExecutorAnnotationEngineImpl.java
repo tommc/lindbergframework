@@ -11,12 +11,12 @@ import org.lindbergframework.exception.FieldValueInaccessibleValidation;
 import org.lindbergframework.exception.NoSuchBeanValidationException;
 import org.lindbergframework.exception.ValidationClassCastException;
 import org.lindbergframework.exception.ValidationException;
-import org.lindbergframework.validation.IExecutorValidation;
+import org.lindbergframework.validation.IExecutorValidationItems;
 import org.lindbergframework.validation.IValidation;
-import org.lindbergframework.validation.ValidationItem;
+import org.lindbergframework.validation.Item;
 import org.lindbergframework.validation.annotation.Valid;
 import org.lindbergframework.validation.annotation.Validations;
-import org.lindbergframework.validation.annotation.engine.IExecutorValidationAnnotationEngine;
+import org.lindbergframework.validation.annotation.engine.IExecutorAnnotationEngine;
 import org.lindbergframework.validation.factory.ValidationFactory;
 import org.lindbergframework.validation.settings.MsgType;
 import org.lindbergframework.validation.settings.ValidationMode;
@@ -33,15 +33,15 @@ import org.springframework.stereotype.Component;
  * @author Victor Lindberg
  *
  */
-@Component("executorValidationAnnotationEngineImpl")
+@Component("executorAnnotationEngineDefault")
 @Scope("prototype")
-public class ExecutorValidationAnnotationEngineImpl 
-               implements IExecutorValidationAnnotationEngine{
+public class ExecutorAnnotationEngineImpl 
+               implements IExecutorAnnotationEngine{
 	
 	@Autowired
-	private IExecutorValidation executorValidation;
+	private IExecutorValidationItems executorValidation;
 	
-	public ExecutorValidationAnnotationEngineImpl(){
+	public ExecutorAnnotationEngineImpl(){
 		//
 	}
 
@@ -111,7 +111,7 @@ public class ExecutorValidationAnnotationEngineImpl
 				if (val.msg().equals(""))
 				   msgType = MsgType.NO_USING_CUSTOM;
 				     
-			 	executorValidation.addValidationForSeveralItems(newValid, new ValidationItem(val.separator(),valorCampo,msgType,val.msg()));
+			 	executorValidation.addValidationForSeveralItems(newValid, new Item(val.separator(),valorCampo,msgType,val.msg()));
 			 }
 		  }catch(ValidationException ex){
 		     throw ex;

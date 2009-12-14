@@ -10,8 +10,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Fábrica de beans do spring do lindbergframework <br>
- * baseada no contexto org\lindbergframework\spring\conf\appContext.xml <br><br>
+ * Fábrica de beans devalidação do spring do lindbergframework <br>
+ * baseada no contexto org\lindbergframework\spring\conf\validationContext.xml <br><br>
  * 
  * Essa classe mantem uma instancia singleton. Para obter uma instancia use o método {@link #getInstance()}
  *   
@@ -19,25 +19,25 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author Victor Lindberg
  *
  */
-public class LindbergSpringFactory extends SpringBeanFactory{
+public class LindbergSpringValidationsBeanFactory extends SpringBeanFactory{
 	
-	private static LindbergSpringFactory springFactory;
+	private static LindbergSpringValidationsBeanFactory springFactory;
 	
-	private static final String[] defaultConf = new String[] {"org\\lindbergframework\\spring\\conf\\appContext.xml"};
+	private static final String[] defaultConf = new String[] {"org\\lindbergframework\\spring\\conf\\validationContext.xml"};
 	
 	private static String[] conf = defaultConf;
 	
-	private LindbergSpringFactory(ApplicationContext applicationContext){
+	private LindbergSpringValidationsBeanFactory(ApplicationContext applicationContext){
 		super(applicationContext);
 	}
 	
 	/**
 	 * retorna a instancia da fábrica 
 	 */
-	public static LindbergSpringFactory getInstance(){
+	public static LindbergSpringValidationsBeanFactory getInstance(){
 	   if (springFactory == null){
 		   ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(conf);
-		   springFactory = new LindbergSpringFactory(context);
+		   springFactory = new LindbergSpringValidationsBeanFactory(context);
 	   }
 	   
 	   return springFactory;
@@ -51,7 +51,7 @@ public class LindbergSpringFactory extends SpringBeanFactory{
 	 * @param additionalContext
 	 * @return
 	 */
-	public static LindbergSpringFactory initAdditionalContext(String[] additionalContext){
+	public static LindbergSpringValidationsBeanFactory initAdditionalContext(String[] additionalContext){
 		setConf(ArrayUtil.merge(conf, additionalContext, new String[conf.length + additionalContext.length]));
 		
 		finishInstance();
@@ -65,7 +65,7 @@ public class LindbergSpringFactory extends SpringBeanFactory{
 	 * 
 	 * @return
 	 */
-	public static LindbergSpringFactory initDefaultContext(){
+	public static LindbergSpringValidationsBeanFactory initDefaultContext(){
 		setConf(defaultConf);
 		
 		finishInstance();
@@ -78,7 +78,7 @@ public class LindbergSpringFactory extends SpringBeanFactory{
 	 * 
 	 * @return
 	 */
-	public LindbergSpringFactory reInitContext(){
+	public LindbergSpringValidationsBeanFactory reInitContext(){
 		finishInstance();
 		return getInstance();
 	}
@@ -88,7 +88,7 @@ public class LindbergSpringFactory extends SpringBeanFactory{
 	}
 	
 	private static void setConf(String[] conf) {
-		LindbergSpringFactory.conf = conf;
+		LindbergSpringValidationsBeanFactory.conf = conf;
 	}
 	
 	
