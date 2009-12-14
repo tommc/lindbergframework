@@ -18,30 +18,38 @@ public class ExecutorFactory {
 	
     private static LindbergSpringValidationsBeanFactory springFactory = LindbergSpringValidationsBeanFactory.getInstance();
 	
-	public static final String EXECUTOR_VALIDATION_MULT_THREAD_ID_BEAN = "executorValidationMultThread";
-	public static final String EXECUTOR_VALIDATION_ID_BEAN = "executorValidationDefault";
-	public static final String EXECUTOR_VALIDATION_ANNOTATION_ENGINE_ID_BEAN = "executorAnnotationEngineDefault";
-	
+	public static final String EXECUTOR_VALIDATION_ITEM_MULTTHREAD_ID_BEAN = "executorValidationMultThread";
+	public static final String EXECUTOR_VALIDATION_ITEM_ID_BEAN = "executorValidationDefault";
+	public static final String EXECUTOR_ANNOTATION_ENGINE_ID_BEAN = "executorAnnotationEngineDefault";
+	public static final String EXECUTOR_ANNOTATION_ENGINE_MULTTHREAD_ID_BEAN = "executorAnnotationEngineMultThread";
+		
 	/**
 	 * Cria um {@link IExecutorValidationItems} padrão
 	 */
 	public static IExecutorValidationItems newExecutorValidationItems() {
-		return springFactory.getBean(EXECUTOR_VALIDATION_ID_BEAN);
+		return springFactory.getBean(EXECUTOR_VALIDATION_ITEM_ID_BEAN);
 	}
 	
 	/**
 	 * Cria um {@link IExecutorValidationItems} para o tratamento de validações definidas a partir <br>
 	 * de objetos {@link Item} em multiplas threads
 	 */
-	public static IExecutorValidationItems newExecutorValidationMultThread() {
-		return springFactory.getBean(EXECUTOR_VALIDATION_MULT_THREAD_ID_BEAN);
+	public static IExecutorValidationItems newExecutorValidationItemsMultThread() {
+		return springFactory.getBean(EXECUTOR_VALIDATION_ITEM_MULTTHREAD_ID_BEAN);
 	}
 	
 	/**
 	 * Cria um {@link IExecutorAnnotationEngine} para o tratamento de validações utilizando annotations
 	 */
 	public static IExecutorAnnotationEngine newExecutorAnnotationEngine() {
-		return springFactory.getBean(EXECUTOR_VALIDATION_ANNOTATION_ENGINE_ID_BEAN);
+		return springFactory.getBean(EXECUTOR_ANNOTATION_ENGINE_ID_BEAN);
+	}
+	
+	/**
+	 * Cria um {@link IExecutorAnnotationEngine} para o tratamento de validações em beans anotados em multiplas threads
+	 */
+	public static IExecutorAnnotationEngine newExecutorAnnotationEngineMultThread() {
+		return springFactory.getBean(EXECUTOR_ANNOTATION_ENGINE_MULTTHREAD_ID_BEAN);
 	}
 
 }
