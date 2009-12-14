@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.lindbergframework.exception.FieldValueInaccessibleValidation;
 import org.lindbergframework.exception.NoSuchBeanValidationException;
 import org.lindbergframework.exception.ValidationClassCastException;
@@ -40,6 +41,8 @@ public class ExecutorAnnotationEngineImpl
 	
 	private IExecutorValidationItems executorValidation;
 	
+	private List<ValidationItemActions> items = new Vector<ValidationItemActions>();
+	
 	public ExecutorAnnotationEngineImpl(){
 		executorValidation = ExecutorFactory.newExecutorValidationItems();
 	}
@@ -67,21 +70,46 @@ public class ExecutorAnnotationEngineImpl
 
 	public void clearValidations() {
 		executorValidation.clearValidations();
+		items.clear();
 	}
 
 	public void execute() throws ValidationException,
 			ValidationClassCastException {
+		commitItemsToExecutorItems(null);
 		executorValidation.execute();
 	}
 
 	public void execute(ValidationMode mode) throws ValidationException,
 			ValidationClassCastException {
+	   commitItemsToExecutorItems(null);	
 	   executorValidation.execute(mode);
 	}
 
 	public void execute(String separatorMessages) throws ValidationException,
 			ValidationClassCastException {
+	   commitItemsToExecutorItems(null);
        executorValidation.execute(separatorMessages);		
+	}
+	
+	public void executeInActions(String[] actions, Object... beansToValidate)
+			throws ValidationException, ValidationClassCastException {
+       addBeans(beansToValidate);
+       commitItemsToExecutorItems(actions);
+       executorValidation.execute();
+	}
+	
+	public void executeInActions(ValidationMode mode, String[] actions,
+			Object... beansToValidate) throws ValidationException,
+			ValidationClassCastException {
+		addBeans(beansToValidate);
+		commitItemsToExecutorItems(actions);
+		executorValidation.execute(mode);
+	}
+	
+	public void executeInActions(String... actions) throws ValidationException,
+			ValidationClassCastException {
+       commitItemsToExecutorItems(actions);
+       executorValidation.execute();
 	}
 
 	public void reset() {
@@ -90,6 +118,25 @@ public class ExecutorAnnotationEngineImpl
 	
 	public <E> List<IValidation<E>> getValidations() {
 		return executorValidation.getValidations();
+	}
+	
+	private void commitItemsToExecutorItems(String[] actions){
+		for (ValidationItemActions item : items){
+		   if ((actions != null && actions.length != 0 && 
+				   containAnyAction(item, actions)) || /*se foi informada alguma action e o item tem ao menos uma das actions informadas*/ 
+			   (actions == null || actions.length == 0))//não foi informada nenhuma action
+		      executorValidation.addValidationForSeveralItems(item.getValidation(), item.getItem());
+		}
+		
+		items.clear();
+	}
+	
+	private boolean containAnyAction(ValidationItemActions item, String[] actions){
+		for (String act : actions)
+		   if (ArrayUtils.contains(item.actions, act))
+			   return true;
+		
+		return false;
 	}
 
 	/**
@@ -114,7 +161,7 @@ public class ExecutorAnnotationEngineImpl
 				if (val.msg().equals(""))
 				   msgType = MsgType.NO_USING_CUSTOM;
 				     
-			 	executorValidation.addValidationForSeveralItems(newValid, new Item(val.separator(),valorCampo,msgType,val.msg()));
+			 	addItem(new Item(val.separator(),valorCampo,msgType,val.msg()), newValid, val.actions());
 			 }
 		  }catch(ValidationException ex){
 		     throw ex;
@@ -123,6 +170,10 @@ public class ExecutorAnnotationEngineImpl
 		     throw new ValidationException("Ocorreu um erro adicionando o bean de validação. Certifique-se que o bean referido está acessível e pode ser instanciado");
 		  }
 	   } 
+	}
+
+	protected void addItem(Item item,IValidation validation,String[] actions){
+		items.add(new ValidationItemActions(actions,item,validation));
 	}
 	
 	/**
@@ -191,8 +242,54 @@ public class ExecutorAnnotationEngineImpl
 	 */
 	private String getGetMethodName(Field field){
 		String nome = field.getName();
-		String primeira = nome.substring(0,1);
-		return "get"+nome.replaceFirst(primeira, primeira.toUpperCase());
+		String primeiraLetra = nome.substring(0,1);
+		return "get"+nome.replaceFirst(primeiraLetra, primeiraLetra.toUpperCase());
 	}
+	
+	@SuppressWarnings("unchecked")
+	protected class ValidationItemActions{
+		
+		private String[] actions = new String[]{};
+		private Item item;
+		private IValidation validation;
+		
+		public ValidationItemActions(){
+			//
+		}
+		
+		public ValidationItemActions(String[] actions, Item item,IValidation validation){
+			this.actions = actions;
+			this.item = item;
+			this.validation = validation;
+		}
+
+		public String[] getActions() {
+			return actions;
+		}
+
+		public void setActions(String[] actions) {
+			this.actions = actions;
+		}
+
+		public Item getItem() {
+			return item;
+		}
+
+		public void setItem(Item item) {
+			this.item = item;
+		}
+
+		public IValidation getValidation() {
+			return validation;
+		}
+
+		public void setValidation(IValidation validation) {
+			this.validation = validation;
+		}
+		
+		
+        		
+	}
+	
 	
 }

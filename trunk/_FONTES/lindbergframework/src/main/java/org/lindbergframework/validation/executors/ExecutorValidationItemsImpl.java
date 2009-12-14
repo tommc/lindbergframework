@@ -134,7 +134,7 @@ public class ExecutorValidationItemsImpl implements IExecutorValidationItems{
 	}
 	
 	public void execute(ValidationMode mode) throws ValidationException, ValidationClassCastException{
-		List<String> mensagensValidacao = new ArrayList<String>();
+		List<String> mensagensValidacao = new Vector<String>();
 		List<ValidationElement> validElements = new Vector<ValidationElement>();
 		validElements.addAll(validacoes);
 		
