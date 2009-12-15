@@ -63,15 +63,15 @@ public @interface Valid {
 	 *  
 	 *  Então definimos esse atributo com o nome das ações que a validação definida pela annotation será usada.<br><br>
 	 *  
-	 *  @Validations({@Valid(value = Types.NOT_NULL, actions = {"insert","update"}),<br>
-	 *		     @Valid(value = Types.HAS_BE_NULL, actions = {"research","checarPermissao"})})<br>
+	 *  (arroba)Validations({@Valid(value = Types.NOT_NULL, actions = {"insert","update"}),<br>
+	 *		     (arroba)Valid(value = Types.HAS_BE_NULL, actions = {"research","checarPermissao"})})<br>
 	 *   private String xxx;<br><br>
 	 *   
 	 *   A interface {@link CrudActions} define alguns cnstantes para a padronizacao de ações do tipo crud <br>
 	 *   que neste caso ficaria da seguinte forma<br><br>
 	 *   
-	 *   @Validations({@Valid(value = Types.NOT_NULL, actions = {CrudActions.INSERT,CrudActions.UPDATE}), <br>
-	 *		     @Valid(value = Types.HAS_BE_NULL, actions = {CrudActions.RESEARCH,"checarPermissao"})})<br>
+	 *   (arroba)Validations({@Valid(value = Types.NOT_NULL, actions = {CrudActions.INSERT,CrudActions.UPDATE}), <br>
+	 *		     (arroba)Valid(value = Types.HAS_BE_NULL, actions = {CrudActions.RESEARCH,"checarPermissao"})})<br>
 	 *   private String xxx; <br><br>
 	 *   
 	 *   Para fazer valer a definição das ações no processamento das ações é necessário que seja utilizado o método <br>
@@ -79,6 +79,5 @@ public @interface Valid {
 	 * 
 	 */
 	String[] actions() default {""};
-	
 
 }

@@ -3,6 +3,8 @@ package org.lindbergframework.validation.annotation.engine;
 import org.lindbergframework.exception.ValidationClassCastException;
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.validation.IExecutorValidation;
+import org.lindbergframework.validation.IValidation;
+import org.lindbergframework.validation.Item;
 import org.lindbergframework.validation.settings.ValidationMode;
 
 /**
@@ -73,6 +75,20 @@ public interface IExecutorAnnotationEngine extends IExecutorValidation{
 	 * as validações a serem processadas por este executor 
 	 */
 	public void addBeans(Object... objs);
+
+	/**
+	 * Método que adicina um item de validação direto sem o uso da leitura de anotações. <br><br>
+	 * 
+	 * Esse método é uma alternativa para as validações de beans anotados que precisam fazer uso de alguma <br>
+	 * validação que foge do padrão, por exemplo: a definição de parametros como o máximo de caracteres de uma <br>
+	 * string a ser validada em umavalidação não é possível via annotation então pode-se mesmo usando a validação via annotations <br>
+	 * a adição de items de forma direta junto com os beans anotados.
+	 *  
+	 * @param item item configurado diretamente a ser validado
+	 * @param validation validação a ser usada para validar o item
+	 * @param actions açoes ao qual se aplicam essa validação
+	 */
+	public void addItem(Item item, IValidation validation,String... actions);
 	
 
 }

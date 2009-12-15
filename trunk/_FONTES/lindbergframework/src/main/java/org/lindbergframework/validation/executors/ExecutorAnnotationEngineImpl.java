@@ -172,9 +172,10 @@ public class ExecutorAnnotationEngineImpl
 	   } 
 	}
 
-	protected void addItem(Item item,IValidation validation,String[] actions){
+	public void addItem(Item item,IValidation validation,String... actions){
 		items.add(new ValidationItemActions(actions,item,validation));
 	}
+	
 	
 	/**
 	 * retorna o valor do campo. Se o campo for public retorna o valor de forma direta <br.
@@ -287,8 +288,7 @@ public class ExecutorAnnotationEngineImpl
 			this.validation = validation;
 		}
 		
-		
-        		
+				
 	}
 	
 	

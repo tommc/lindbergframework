@@ -59,7 +59,6 @@ public class NumberComparableValidation extends AbstractComparableValidation<Num
 		if (valor == null)
 			return;
 		
-		
 		BigDecimal bigValor = NumberUtil.convert(BigDecimal.class, valor);
 		BigDecimal bigValorComparacao = NumberUtil.convert(BigDecimal.class, getValorComparacao());
 		
