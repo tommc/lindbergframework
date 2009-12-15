@@ -18,7 +18,7 @@ public class LindbergException extends RuntimeException  {
 	 * Separador de mensagens padrão. Se nenhum separador de mensagens <br>
 	 * for configurado este é utilizado como padrão
 	 */
-	public static final String DEFAULT_SEPARATOR_MESSAGES = ";";
+	public static final String DEFAULT_SEPARATOR_MESSAGES = "; ";
 
 	/**
 	 * Mensagens que compõem esta exceção 
@@ -103,7 +103,7 @@ public class LindbergException extends RuntimeException  {
 		String str = "";
 
 		for (int i=0; i < msgs.size();i++)
-			str = str + (i == 0 ? "" : " ") + msgs.get(i) + (i == msgs.size()-1 ? "" : separatorMessages);
+			str = str + msgs.get(i) + (i == msgs.size()-1 ? "" : separatorMessages);
 
 		return str;
 	}
