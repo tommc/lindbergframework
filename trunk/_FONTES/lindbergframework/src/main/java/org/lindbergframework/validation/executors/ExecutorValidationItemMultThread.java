@@ -54,6 +54,11 @@ public class ExecutorValidationItemMultThread extends ExecutorValidationItemsImp
 		executorService.shutdown();
 	}
 	
+	/**
+	 * Aguarda a conclusão de todas as threads criadas para cada validação
+	 * 
+	 * @param validationsInProcess
+	 */
 	protected void waitExecutionComplete(List<Future> validationsInProcess){
 		boolean allDone;
         do{
