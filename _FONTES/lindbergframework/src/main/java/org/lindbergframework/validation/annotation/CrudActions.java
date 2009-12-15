@@ -28,5 +28,10 @@ public interface CrudActions {
 	 * Constante que define a ação de research 
 	 */
 	public static final String RESEARCH = "research";
+	
+	/**
+	 * Constante que define um array contendo todas as ações CRUD
+	 */
+	public static final String[] ALL = {INSERT, UPDATE, DELETE, RESEARCH};
 
 }
