@@ -1,8 +1,10 @@
 package org.lindbergframework.validation.executors;
 
 import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import org.lindbergframework.validation.IExecutorValidationItems;
 import org.lindbergframework.validation.Item;
@@ -38,13 +40,30 @@ public class ExecutorValidationItemMultThread extends ExecutorValidationItemsImp
 	
 	@Override
 	protected void startValidationProcess(List<ValidationElement> validElements,
-			ValidationMode mode, List<String> mensagensValidacao) {
+			ValidationMode mode, List<String> validationMessages) {
 		ExecutorService executorService = Executors.newCachedThreadPool();
-		for (int indexValidacao = 0;indexValidacao < validElements.size();indexValidacao++)
-			startThread(validElements.get(indexValidacao), mode, indexValidacao, mensagensValidacao, executorService);
 		
+		List<Future> validationsInProcess = new Vector<Future>();
+		
+		for (int indexValidacao = 0;indexValidacao < validElements.size();indexValidacao++){
+			validationsInProcess.add(startThread(validElements.get(indexValidacao), 
+					 mode, indexValidacao, validationMessages, executorService));
+		}
+
+		waitExecutionComplete(validationsInProcess);
 		executorService.shutdown();
-		
+	}
+	
+	protected void waitExecutionComplete(List<Future> validationsInProcess){
+		boolean allDone;
+        do{
+        	allDone = true;
+        	for (Future validationTask : validationsInProcess)
+        		if (! validationTask.isDone()){
+        			allDone = false;
+        			break;
+        		}
+        }while(! allDone);
 	}
 	
 	/**
@@ -56,12 +75,12 @@ public class ExecutorValidationItemMultThread extends ExecutorValidationItemsImp
 	 * @param mensagensValidacao lista de mensagens de validação a ser manipulada caso alguma validação falhe
 	 * @param executorService ExecutorService responsável por gerenciar o processamento da thread
 	 */
-	private void startThread(final ValidationElement element,final ValidationMode mode,final  int indexValidacao,
+	private Future startThread(final ValidationElement element,final ValidationMode mode,final  int indexValidacao,
 			final List<String> mensagensValidacao,  ExecutorService executorService){
 		
-	   executorService.execute(new Runnable(){
+	   return executorService.submit(new Runnable(){
 		  public void run() {
-			startValidation(element, mode, indexValidacao, mensagensValidacao);
+			 startValidation(element, mode, indexValidacao, mensagensValidacao);
 		  } 
 	   });
 	}

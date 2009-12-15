@@ -63,14 +63,18 @@ public class LindbergException extends RuntimeException  {
 	 * adiciona uma nova mensagem a lista de mensagem que compõem a exceção
 	 */
 	public void addMessage(String msg) {
-		msgs.add(msg);
+		synchronized (msg) {
+			msgs.add(msg);
+		}
 	}
 
 	/**
 	 * adiciona uma nova mensagem a lista de mensagem em um determinado índice na lista 
 	 */
 	public void addMessage(int index, String msg) {
-		msgs.add(index, msg);
+		synchronized (msg) {
+			msgs.add(index, msg);
+		}
 	}
 
 	/**
@@ -78,8 +82,9 @@ public class LindbergException extends RuntimeException  {
 	 * na lista de mensagens da exceção
 	 */
 	public void addAllMessages(List<String> msgs) {
-		for (String msg : msgs)
-			this.msgs.add(msg);
+	   synchronized (msgs) {
+		   this.msgs.addAll(msgs);
+	   }
 	}
 
 	/**
@@ -112,7 +117,6 @@ public class LindbergException extends RuntimeException  {
 
 	@Override
 	public String getMessage() {
-
 		return getMessageTreated();
 	}
 
