@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class StringMaxLengthValidation extends AbstractMaxLengthRequiredValidation<String>{
 	
+	
 	public StringMaxLengthValidation(){
 		//
 	}

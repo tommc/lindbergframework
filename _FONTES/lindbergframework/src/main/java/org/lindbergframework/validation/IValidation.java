@@ -9,7 +9,7 @@ import org.lindbergframework.exception.ValidationException;
  *
  * @param <E> tipo de entrada para validação
  */
-public interface IValidation<E extends Object> {
+public interface IValidation<E> {
 
     /**
      * Efetua a validação do objeto passado como argumento baseado na regra de validação implementada
