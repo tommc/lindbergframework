@@ -21,7 +21,7 @@ public class DateCanNotBeFutureValidation implements IDateValidation{
 	
 	public void validate(Date date) throws ValidationException {
 		if (date != null && DateUtil.isAfterDespisingTime(date,new Date()))
-			throw new ValidationException("Data n�o pode ser maior do que a atual");
+			throw new ValidationException("Data não pode ser maior do que a atual");
 		
 	}
 

@@ -21,7 +21,7 @@ public class DateCanNotBePresentValidation implements IDateValidation{
 	
 	public void validate(Date date) throws ValidationException {
 	   	if (date != null && DateUtil.isEqualDespisingTime(date, new Date()))
-	   		throw new ValidationException("Data nao pode ser igual a atual");
+	   		throw new ValidationException("Data não pode ser igual a atual");
 	}
 
 }
