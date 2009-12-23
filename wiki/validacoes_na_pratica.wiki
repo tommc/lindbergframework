@@ -1,0 +1,37 @@
+Vamos considerar o bean abaixo para iniciar as validações.
+
+/**
+ *
+ * @author Victor Lindberg
+ *
+ */
+public class Pessoa {
+ 
+      //requerido
+        private String nome;
+       
+      private String cpf;
+ 
+        //não é requerido mas se for informado não permite informação vazia
+        private String endereco;
+       
+        //requerido e a data não pode ser futura
+        private Date dtNascimento;
+       
+        //não pode ser menor do que a data atual
+        private Date dtValidadeCadastro;
+       
+       //deve conter pelo menos 1 telefone
+        private List<String> telefones;
+       
+        public Pessoa(){
+                //
+        }
+ 
+        //setters e getters
+       
+}
+
+ 
+
+Seguindo as validações definidas nos comentários serão demostrados vários exemplos usando este bean tanto com annotations quanto diretamente via objetos Item.          
