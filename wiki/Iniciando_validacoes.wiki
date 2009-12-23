@@ -1,0 +1,38 @@
+   As validações dentro do framework seguem as seguintes configurações não sendo nenhuma requerida:
+
+a. Mensagem customizada para validação;
+
+b. Tipo de uso da mensagem de validação.
+
+   Esse tipo é baseado no enum MsgType que define os tipos possíveis
+
+   MsgType:
+
+   * CUSTOM_ONLY : Usa somente a mensagem personalizada
+   * USING_CUSTOM_SUFFIX : Usa a mensagem personalizada como sufixo na mensagem de        validação
+   * USING_CUSTOM_PREFIX : Usa a mensagem personalizada como prefixo na mensagem de  validação
+   * NO_USING_CUSTOM : Usa apenas a mensagem de validação e não considera a personalizada
+ 
+c. Separator (SEPARADOR) das mensagens provenientes da validação (ValidationException) e a mensagem customizada. O separator é uma String que comporá a mensagem final da validação. Ele é usado quando a mensagem da exception e a mensagem customizada são usadas em conjunto de modo que essa String;
+ 
+d. Actions: ações que estão associadas a validação.
+ 
+   Um objeto Item corresponde ao objeto que queremos validar. Este objeto possui as configurações citadas acima que são definidas pelo desenvolvedor e juntas compõem a regra. O mecanismo de validação do framework funciona da seguinte forma: sempre um item de validação é criado para cada propriedade ou objeto a ser validado e este item está sempre associado a uma ou mais validações. Uma validação dentro do framework corresponde a uma classe que implemente a interface Ivalidation. Uma validação deve implementar o método validate que é definido na interface IValidation e neste método deve estar a regra ao qual a validação se propõe a validar. Sempre funciona dessa forma: temos um item que corresponde a um objeto a ser validado, que contem também as definições das customizações que devem ser aplicadas as validações e associamos validações a este item. Este processo se repete o número de vezes que for necessário em um mesmo método.
+
+   O processo de validação é gerenciado e executado por um objeto que implemente a interface IExecutorValidation. Um executor que implemente esta interface fornece os métodos e recursos necessários para a composição de toda a regra de validação de uma ou mais entidades, em um ou mais eventos.
+
+   O lindbergframework fornece 4 implementações que estão no pacote org.lindbergframework.validation.executors, descritas abaixo, de executors que devem ser usados de acordo com a necessidade:
+
+   ExecutorValidationItemsImpl : Executor padrão para casos que não utilizem annotations
+
+   ExecutorValidationItemMultThread: Executor multthread para casos que não utilizem annotations e que são validações que exigem um volume maior de processamento. Neste executor cada validação é processada separadamente em uma thread.
+
+   ExecutorAnnotationEngineImpl: Executor padrão para casos que utilizam annotations
+
+   ExecutorAnnotationEngineMultThread: Executor multhread para casos que utilizam annotations e que são validações que exigem um volume maior de processamento. Neste executor cada validação é processada separadamente em uma thread.
+
+   O framework fornece factories para a obtenção de instancias das interfaces definidas. As implementações das validações e dos executors não devem ser acessadas diretamente. Ao invés disso, use as interfaces e as factories para a obtenção das implementações:
+
+   ExecutorFactory: Fábrica de Executors;
+
+   ValidationFactory: Fábrica de Validações.
