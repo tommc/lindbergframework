@@ -1,0 +1,9 @@
+O lindbergframework tem algumas dependências que devem ser adicionadas junto com a lib do framework ao projeto que use o framework. Cada dependência é usada pelo lindbergframework e não obriga ou condiciona um projeto que use o framework a usar qualquer das bibliotecas das quais o lindbergframework depende. Abaixo está a lista de dependências do framework. Para baixar as dependências do framework acesse o item de menu downloads.
+
+* spring-2.5.5.jar
+
+* commons-lang-2.4.jar
+
+* commons-beanutils-1.7.0.jar
+
+* commons-logging-1.1.1.jar
