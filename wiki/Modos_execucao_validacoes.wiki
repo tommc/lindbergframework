@@ -1,0 +1,5 @@
+   O processo de execução das validações pode ser realizado de 2 modos principais.  O modo padrão como é feita a validação é o de lançar as exceções, caso haja alguma, apenas ao final da execução. O modo pode ser configurado no momento da chamada do método execute() de um executor que suporte o parâmetro mode. Caso o método execute chamado não seja o que possui o parâmetro mode então o modo de execução assumido é o padrão. O modos estão definidos pelo enum ValidationMode. Abaixo estão descritos os dois modos de execução:
+
+   THROW_FINAL: Lança exceções no final aninhando as exceções. Este modo indica que um executor validation vai aninhar as mensagens as exceções que ocorrerem na validação e lançar apenas no final da validação caso tenha havido alguma falha de alguma validação;
+
+   THROW_IMMEDIATELY: Lança exceções imediatamente não aninhando as exceções. Este modo indica que um executor validation não vai aninhar as exceções ou seja que assim que alguma validação falhar será lançada uma exceção.
