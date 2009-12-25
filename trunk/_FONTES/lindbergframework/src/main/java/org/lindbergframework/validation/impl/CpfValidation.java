@@ -51,11 +51,17 @@ public class CpfValidation implements IDocumentValidation<String>{
     }   
   
     public boolean validarCPF(String cpf) {   
-        if (cpf.length() != 11)   
+        if (cpf.length() != 11 || isTodosNumerosIguais(cpf))   
             return false;   
   
         String numDig = cpf.substring(0, 9);   
         return calcDigVerif(numDig).equals(cpf.substring(9, 11));   
+    }
+    
+    private boolean isTodosNumerosIguais(String cpf){
+    	int countTokens = cpf.split(cpf.substring(0, 1)).length;
+    	
+    	return countTokens == 0;
     }
     
 }
