@@ -1,10 +1,5 @@
 ﻿package org.lindbergframework.spring;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import org.apache.commons.lang.ArrayUtils;
 import org.lindbergframework.util.ArrayUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -46,7 +41,15 @@ public class LindbergSpringValidationsBeanFactory extends SpringBeanFactory{
 	/**
 	 * Inicializa o contexto baseado no contexto padrão do lindbergframework mais um contexto <br>
 	 * adicional passado como argumento. Se o contexto já tiver sido inicializado anteriormente <br>
-	 * este é finalizado e recriado com base nas novas configurações
+	 * este é finalizado e recriado com base nas novas configurações. <br><br>
+	 * 
+	 * O lindbergframework usa o spring e para extender o contexto de validações é necessário usar um xml <br>
+	 * de contexto do spring. Neste xml devem estar definidos os beans que implementam IValidation de modo a extender<br>
+	 * o contexto das validations de modo que as validations fornecidas pelo framework podem "conviver" diretamente<br>
+	 * com as validations definidas fora do framework<br><br>
+	 * 
+	 * Este método recebe um parametro que é um array com o endereço dentro do classpath do projeto de onde está <br>
+	 * cada arquivo xml de contexto. Exemplo org/pacote1/pacote2/contexto.xml
 	 * 
 	 * @param additionalContext
 	 * @return
