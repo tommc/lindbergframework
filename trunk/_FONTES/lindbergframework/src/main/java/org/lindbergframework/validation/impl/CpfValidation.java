@@ -1,7 +1,13 @@
-﻿package org.lindbergframework.validation.impl;
+package org.lindbergframework.validation.impl;
 
+import org.lindbergframework.beans.di.annotation.Bean;
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.validation.IDocumentValidation;
+import org.lindbergframework.validation.IExecutorValidation;
+import org.lindbergframework.validation.IExecutorValidationItems;
+import org.lindbergframework.validation.Item;
+import org.lindbergframework.validation.executors.factory.ExecutorFactory;
+import org.lindbergframework.validation.factory.ValidationFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +22,9 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class CpfValidation implements IDocumentValidation<String>{
 	
+	public CpfValidation(){
+		//
+	}
     
 	public void validate(String cpf) throws ValidationException {
 	       if (cpf != null && ! validarCPF(cpf))

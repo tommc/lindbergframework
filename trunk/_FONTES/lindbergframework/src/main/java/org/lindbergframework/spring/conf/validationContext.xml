@@ -13,7 +13,7 @@
        descrição: configurações do contexto de validações do framework no spring
       -->
 
-     
+   
 	<context:component-scan base-package="org.lindbergframework.validation" />
     
 </beans>

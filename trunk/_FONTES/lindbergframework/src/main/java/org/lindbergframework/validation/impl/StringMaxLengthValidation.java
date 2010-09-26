@@ -1,4 +1,4 @@
-﻿package org.lindbergframework.validation.impl;
+package org.lindbergframework.validation.impl;
 
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.validation.AbstractMaxLengthRequiredValidation;
@@ -28,4 +28,5 @@ public class StringMaxLengthValidation extends AbstractMaxLengthRequiredValidati
 	   if (str != null && str.length() > getMaxLengthRequired())
 		   throw new ValidationException("Comprimento da string excede o limite");
 	}
+	
 }

@@ -1,22 +1,37 @@
-﻿package org.lindbergframework.validation.factory;
+package org.lindbergframework.validation.factory;
+
+import static org.lindbergframework.validation.Types.CNPJ;
+import static org.lindbergframework.validation.Types.CPF;
+import static org.lindbergframework.validation.Types.CPF_CNPJ;
+import static org.lindbergframework.validation.Types.DATE_CAN_NOT_BE_FUTURE;
+import static org.lindbergframework.validation.Types.DATE_CAN_NOT_BE_PAST;
+import static org.lindbergframework.validation.Types.DATE_CAN_NOT_BE_PRESENT;
+import static org.lindbergframework.validation.Types.DATE_HAS_BE_FUTURE;
+import static org.lindbergframework.validation.Types.DATE_HAS_BE_PAST;
+import static org.lindbergframework.validation.Types.DATE_HAS_BE_PRESENT;
+import static org.lindbergframework.validation.Types.HAS_BE_EMPTY_LIST;
+import static org.lindbergframework.validation.Types.HAS_BE_NULL;
+import static org.lindbergframework.validation.Types.NOT_EMPTY_LIST;
+import static org.lindbergframework.validation.Types.NOT_NULL;
+import static org.lindbergframework.validation.Types.NO_INFORMATION_EMPTY;
+import static org.lindbergframework.validation.Types.NUMBER_COMPARABLE;
+import static org.lindbergframework.validation.Types.REQUIRED_FIELD;
+import static org.lindbergframework.validation.Types.REQUIRED_FIELD_NO_INFORMATION_EMPTY;
+import static org.lindbergframework.validation.Types.STRING_MAX_LENGTH;
 
 import org.lindbergframework.exception.NoSuchBeanValidationException;
-import org.lindbergframework.spring.LindbergSpringValidationsBeanFactory;
 import org.lindbergframework.validation.AbstractComparableValidation;
 import org.lindbergframework.validation.AbstractMaxLengthRequiredValidation;
 import org.lindbergframework.validation.IComparableValidation;
 import org.lindbergframework.validation.IDateValidation;
 import org.lindbergframework.validation.IDocumentValidation;
-import org.lindbergframework.validation.IExecutorValidationItems;
 import org.lindbergframework.validation.IHasBeNullValidation;
 import org.lindbergframework.validation.IListValidation;
 import org.lindbergframework.validation.INotNullValidation;
 import org.lindbergframework.validation.IRequiredFieldValidation;
 import org.lindbergframework.validation.IValidation;
-import org.lindbergframework.validation.Types;
-import org.lindbergframework.validation.Item;
 import org.lindbergframework.validation.AbstractComparableValidation.FatorComparacao;
-import org.lindbergframework.validation.annotation.engine.IExecutorAnnotationEngine;
+import org.lindbergframework.validation.context.LindbergValidationSpringBeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 
 
@@ -27,9 +42,9 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
  * @author Victor Lindberg
  * 
  */
-public class ValidationFactory implements Types{
+public class ValidationFactory {
 	 
-	private static LindbergSpringValidationsBeanFactory springFactory = LindbergSpringValidationsBeanFactory.getInstance();
+	private static LindbergValidationSpringBeanFactory springFactory = LindbergValidationSpringBeanFactory.getInstance();
 	
 	/**
 	 * Cria uma instancia de {@link IRequiredFieldValidation}
@@ -177,7 +192,7 @@ public class ValidationFactory implements Types{
 	/**
 	 * Retorna uma instancia do bean de validação, se existir um, cujo id é passado como argumento. <br><br>
 	 * 
-	 * O bean buscado deve estar no contexto através da classe {@link LindbergSpringValidationsBeanFactory}
+	 * O bean buscado deve estar no contexto através da classe {@link LindbergValidationSpringBeanFactory}
 	 * 
 	 * @param <E>
 	 * @param id

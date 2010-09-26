@@ -1,14 +1,12 @@
-﻿package org.lindbergframework.util;
+package org.lindbergframework.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Vector;
 
-import org.apache.commons.lang.ArrayUtils;
-
-import com.sun.org.apache.xml.internal.utils.StringComparable;
+import org.lindbergframework.persistence.context.XmlLinpConfiguration;
 
 
 
@@ -72,6 +70,5 @@ public class ArrayUtil {
 		
 		return arrayMerged;
 	}
-	
 	
 }

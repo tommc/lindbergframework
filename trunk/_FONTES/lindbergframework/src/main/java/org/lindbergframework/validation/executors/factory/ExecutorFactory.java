@@ -1,22 +1,22 @@
 package org.lindbergframework.validation.executors.factory;
 
-import org.lindbergframework.spring.LindbergSpringValidationsBeanFactory;
 import org.lindbergframework.validation.IExecutorValidation;
 import org.lindbergframework.validation.IExecutorValidationItems;
 import org.lindbergframework.validation.Item;
 import org.lindbergframework.validation.annotation.engine.IExecutorAnnotationEngine;
+import org.lindbergframework.validation.context.LindbergValidationSpringBeanFactory;
 
 /**
  * Fábrica padrão de {@link IExecutorValidation}. <br><br>
  * 
- * Fábrica obtém instancias dos executors atravpes do contexto do spring em {@link LindbergSpringValidationsBeanFactory}
+ * Fábrica obtém instancias dos executors atravpes do contexto do spring em {@link LindbergValidationSpringBeanFactory}
  * 
  * @author Victor Lindberg
  *
  */
 public class ExecutorFactory {
 	
-    private static LindbergSpringValidationsBeanFactory springFactory = LindbergSpringValidationsBeanFactory.getInstance();
+    private static LindbergValidationSpringBeanFactory springFactory = LindbergValidationSpringBeanFactory.getInstance();
 	
 	public static final String EXECUTOR_VALIDATION_ITEM_MULTTHREAD_ID_BEAN = "executorValidationMultThread";
 	public static final String EXECUTOR_VALIDATION_ITEM_ID_BEAN = "executorValidationDefault";

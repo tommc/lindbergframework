@@ -1,6 +1,4 @@
-﻿package org.lindbergframework.util;
-
-import java.math.BigDecimal;
+package org.lindbergframework.util;
 
 import org.springframework.util.NumberUtils;
 

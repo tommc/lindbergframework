@@ -1,4 +1,4 @@
-﻿package org.lindbergframework.validation;
+package org.lindbergframework.validation;
 
 /**
  * Classe abstrata que define validações referentes a comprimento <br>

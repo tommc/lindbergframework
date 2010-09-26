@@ -1,4 +1,4 @@
-﻿package org.lindbergframework.exception;
+package org.lindbergframework.exception;
 
 import java.util.List;
 

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+        targetNamespace="http://www.lindbergframework.org/schema" 
+        xmlns="http://www.lindbergframework.org/schema" 
+        elementFormDefault="qualified">
+        
+    <!-- autor: Victor Lindberg -->
+    
+    <xs:annotation>
+		<xs:documentation>
+		    Lindberg XML sql mapping schema version 1.0. Author: Victor Lindberg.
+	    </xs:documentation>
+	</xs:annotation>
+	
+	<xs:element name="Linp-Mapping">
+	    <xs:annotation>
+			   <xs:documentation>Root element of the schema</xs:documentation>
+		</xs:annotation>
+        <xs:complexType>
+           <xs:all>
+              <xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="Sql-Mapping" minOccurs="0" maxOccurs="1">
+                 <xs:complexType>
+                    <xs:sequence>
+                       <xs:element name="Sql-Command" type="tSql-Command" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                 </xs:complexType>
+              </xs:element>
+           </xs:all>
+        </xs:complexType>
+    </xs:element>
+	
+	<!-- Complex Types -->
+	<xs:complexType name="tOutCursor" >
+        <xs:attribute name="class" type="xs:string" use="required" />
+    </xs:complexType>
+    
+	<xs:complexType name="tFunctionResultCursor" >
+        <xs:attribute name="class" type="xs:string" use="required" />
+    </xs:complexType>
+    
+    <xs:complexType name="tProcedure" >
+        <xs:sequence>
+		   <xs:element name="OutCursor" type="tOutCursor" minOccurs="0" maxOccurs="unbounded"/>   
+        </xs:sequence> 
+        <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="schema" type="xs:string" />
+        <xs:attribute name="package" type="xs:string" />
+        <xs:attribute name="catalog" type="xs:string" />
+    </xs:complexType>
+    
+	<xs:complexType name="tFunction" >
+	    <xs:complexContent>
+           <xs:extension base="tProcedure">
+              <xs:sequence>
+                 <xs:element name="ResultCursor" type="tFunctionResultCursor" minOccurs="0" maxOccurs="1"/>
+              </xs:sequence>
+              <xs:attribute name="resultName" type="xs:string" />
+           </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="tSql-Command" >
+        <xs:choice>
+           <xs:element name="Sql-Statement" type="xs:string" />
+           <xs:element name="Procedure" type="tProcedure" />
+           <xs:element name="Function" type="tFunction" />
+        </xs:choice>
+        <xs:attribute name="id" type="xs:string" use="required" />
+    </xs:complexType>
+	
+</xs:schema>
