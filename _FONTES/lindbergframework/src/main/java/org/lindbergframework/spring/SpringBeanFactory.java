@@ -1,4 +1,4 @@
-﻿package org.lindbergframework.spring;
+package org.lindbergframework.spring;
 
 import org.springframework.context.ApplicationContext;
 
@@ -47,4 +47,9 @@ public class SpringBeanFactory {
 	public <E> E getBean(String bean) {
 	   return (E) applicationContext.getBean(bean);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public <E> E getBean(String bean, Object... args) {
+		   return (E) applicationContext.getBean(bean,args);
+		}
 }

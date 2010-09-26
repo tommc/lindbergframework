@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.lindbergframework.org/schema"
+           xmlns="http://www.lindbergframework.org/schema"
+           elementFormDefault="qualified">
+
+    <!-- autor: Victor Lindberg -->
+
+	<xs:annotation>
+		<xs:documentation>
+		    Lindberg XML configuration schema version 1.0. Author: Victor Lindberg.
+	    </xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="lindberg-configuration">
+	    <xs:annotation>
+			   <xs:documentation>Root element of the schema</xs:documentation>
+		</xs:annotation>
+        
+        <xs:complexType>
+            <xs:all> 
+			   <xs:element  name="core" minOccurs="0" maxOccurs="1">
+			      <xs:complexType>
+                     <xs:sequence>
+			            <xs:element  name="config-property" type="tconfig-property" minOccurs="0" maxOccurs="unbounded">
+			               <xs:annotation>
+	                          <xs:documentation>Defines the lindbergframework core configuration properties.</xs:documentation>
+	                       </xs:annotation>
+			            </xs:element>
+                     </xs:sequence>
+			      </xs:complexType>   
+			   </xs:element>
+			   <xs:element  name="persistence" minOccurs="0" maxOccurs="1">
+			      <xs:complexType>
+                     <xs:all> 
+			            <xs:element  name="dataSource" type="tdataSource" minOccurs="1" maxOccurs="1"/>
+			            <xs:element name="config-properties" minOccurs="0" maxOccurs="1">
+			               <xs:complexType>
+                              <xs:sequence>
+			                     <xs:element  name="config-property" type="tconfig-property" minOccurs="0" maxOccurs="unbounded">
+			                        <xs:annotation>
+	                                    <xs:documentation>Defines a lindbergframework configuration property. 
+	                                            Eg: lindberg.CursorType (int representation), lindberg.TransactionManager, lindberg.SqlCommandResolver...</xs:documentation>
+	                                    </xs:annotation>
+			                        </xs:element>
+                                 </xs:sequence>
+                           </xs:complexType>			               
+			            </xs:element>
+                     </xs:all>
+                     <xs:attribute name="parser" type="xs:string" />
+                  </xs:complexType>
+			   </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Complex Types -->
+	<xs:complexType name="tconfig-property" >
+        <xs:sequence> 
+		   <xs:element name="property" type="tproperty" minOccurs="0" maxOccurs="unbounded"/>   
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="value" type="xs:string" />
+    </xs:complexType>
+
+	<xs:complexType name="tproperty">
+		<xs:choice>
+			<xs:element name="list" minOccurs="0" maxOccurs="1">
+			   <xs:annotation>
+	              <xs:documentation>List of elements. Use ';' to separate each element 
+	                                eg. a/b/c/file.xml;
+	                                    a/b/c/file2.xml; 
+	               </xs:documentation>
+	           </xs:annotation>
+			      <xs:simpleType>
+					 <xs:restriction base="xs:string">
+				     <xs:whiteSpace value="collapse" />
+			      </xs:restriction>
+			   </xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="array" minOccurs="0" maxOccurs="1">
+			   <xs:annotation>
+	              <xs:documentation>Array of elements. Use ';' to separate each element 
+	                                eg. a/b/c/file.xml;
+	                                    a/b/c/file2.xml; 
+	               </xs:documentation>
+	           </xs:annotation>
+			      <xs:simpleType>
+					 <xs:restriction base="xs:string">
+				     <xs:whiteSpace value="collapse" />
+			      </xs:restriction>
+			   </xs:simpleType>
+			</xs:element>
+		</xs:choice>
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+        <xs:attribute name="constructor-arg" type="xs:boolean" default="false" />
+	</xs:complexType>	
+      
+    <xs:complexType name="tdataSource">
+       <xs:sequence>
+          <xs:element name="property" type="tproperty" minOccurs="0" maxOccurs="unbounded"/>
+       </xs:sequence>
+       <xs:attribute name="class" type="xs:string" use="required" >
+          <xs:annotation>
+	         <xs:documentation>Class of data source</xs:documentation>
+	      </xs:annotation>
+       </xs:attribute>
+       <xs:attribute name="driver" type="xs:string" >
+          <xs:annotation>
+			    <xs:documentation>Class of Driver. Must be defined when the datasource to need a driver</xs:documentation>
+		  </xs:annotation>
+       </xs:attribute>
+       <xs:attribute name="driverPropertyName" type="xs:string" default="driver">
+          <xs:annotation>
+			    <xs:documentation>Defines the property name corresponding to driver in the DataSource. Default value : "driver"</xs:documentation>
+		  </xs:annotation>
+       </xs:attribute>
+    </xs:complexType>
+    
+    
+</xs:schema>

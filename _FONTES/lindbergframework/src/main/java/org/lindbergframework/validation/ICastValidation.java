@@ -1,4 +1,4 @@
-﻿package org.lindbergframework.validation;
+package org.lindbergframework.validation;
 
 /**
  * Interface para validações de conversão

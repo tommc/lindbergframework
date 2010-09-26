@@ -2,16 +2,16 @@ package org.lindbergframework.validation.executors;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
 import org.apache.commons.lang.ArrayUtils;
-import org.lindbergframework.exception.FieldValueInaccessibleValidation;
 import org.lindbergframework.exception.NoSuchBeanValidationException;
 import org.lindbergframework.exception.ValidationClassCastException;
 import org.lindbergframework.exception.ValidationException;
+import org.lindbergframework.util.ReflectionUtil;
 import org.lindbergframework.validation.IExecutorValidationItems;
 import org.lindbergframework.validation.IValidation;
 import org.lindbergframework.validation.Item;
@@ -145,16 +145,15 @@ public class ExecutorAnnotationEngineImpl
 	 */
 	@SuppressWarnings("unchecked")
 	private void addNewBean(Object newBean){
-       Field[] fields = newBean.getClass().getDeclaredFields();
-		
-	   for (Field field : fields){
-		  List<Valid> annots = getAnnotations(field);
+		List<ValidField> annots = new ArrayList<ValidField>(); 
+		loadAnnotations(newBean.getClass(),annots);
            			
 		  try{
-		     for (Valid val : annots){
+		     for (ValidField valField : annots){
+		    	Valid val = valField.getValid();
 			    IValidation newValid = getValidation(val);
 				     
-				Object valorCampo = getFieldValue(field, newBean);
+				Object valorCampo = ReflectionUtil.getFieldValue(valField.getField(), newBean);
 				     
 				MsgType msgType = val.msgType();
 				     
@@ -169,47 +168,35 @@ public class ExecutorAnnotationEngineImpl
 		  catch(Exception ex){
 		     throw new ValidationException("Ocorreu um erro adicionando o bean de validação. Certifique-se que o bean referido está acessível e pode ser instanciado");
 		  }
-	   } 
 	}
 
 	public void addItem(Item item,IValidation validation,String... actions){
 		items.add(new ValidationItemActions(actions,item,validation));
 	}
 	
-	
-	/**
-	 * retorna o valor do campo. Se o campo for public retorna o valor de forma direta <br.
-	 * caso não o seja tenta invocar o método get do campo.
-	 * 
-	 * @throws FieldValueInaccessibleValidation caso o campo não esteja acessível
-	 */
-	private Object getFieldValue(Field field, Object newBean) throws FieldValueInaccessibleValidation{
-		try{
-		   if (field.getModifiers() == Modifier.PUBLIC)
-			  return field.get(newBean);
-		
-		   return newBean.getClass().getMethod(getGetMethodName(field)).invoke(newBean);
-		}catch(Exception exception){
-			throw new FieldValueInaccessibleValidation("O campo para validação não está acessível e não tem nenhum método get para acessá-lo");
-		}
-	}
 
 	/**
 	 * Retorna uma lista com as annotations Valid definidas para o campo <br>
 	 * estejam elas diretamente anotadas no campo ou através da annotation Validations
 	 */
-	private List<Valid> getAnnotations(Field field){
-		List<Valid> annots = new Vector<Valid>(); 
+	private void loadAnnotations(Class clazz,List<ValidField> validList){
+		if (clazz == Object.class)
+			return; 
+			
+		Field[] fields = clazz.getDeclaredFields();
+		for (Field field : fields) {
+			for (Annotation annot : field.getDeclaredAnnotations())
+				if (Valid.class.isInstance(annot))
+					validList.add(new ValidField((Valid) annot,field));
+
+			Validations validations = field.getAnnotation(Validations.class);
+			if (validations != null){
+				for (Valid valid : validations.value())
+				   validList.add(new ValidField(valid, field));
+			}
+		}
 		
-		for (Annotation annot : field.getDeclaredAnnotations())
-			if (Valid.class.isInstance(annot))
-				annots.add((Valid) annot);
-        
-		Validations validations = field.getAnnotation(Validations.class);
-		if (validations != null)
-			annots.addAll(Arrays.asList(validations.value()));
-		
-		return annots;
+		loadAnnotations(clazz.getSuperclass(), validList);
 	}
 	
 	/**
@@ -236,16 +223,7 @@ public class ExecutorAnnotationEngineImpl
 		throw new ValidationException("Validation não corresponde a um bean de validação");
 	}
 
-	/**
-	 * Retorna o nome do método get do campo passado como argumento<br><br>
-	 * 
-	 * Se o campo for por exemplo name então a String retornada será getName
-	 */
-	private String getGetMethodName(Field field){
-		String nome = field.getName();
-		String primeiraLetra = nome.substring(0,1);
-		return "get"+nome.replaceFirst(primeiraLetra, primeiraLetra.toUpperCase());
-	}
+	
 	
 	@SuppressWarnings("unchecked")
 	protected class ValidationItemActions{
@@ -287,8 +265,34 @@ public class ExecutorAnnotationEngineImpl
 		public void setValidation(IValidation validation) {
 			this.validation = validation;
 		}
+	}
+	
+	private class ValidField{
+		private Valid valid;
+		private Field field;
 		
-				
+		public ValidField(Valid valid, Field field){
+			setValid(valid);
+			setField(field);
+		}
+
+		public Valid getValid() {
+			return valid;
+		}
+
+		public void setValid(Valid valid) {
+			this.valid = valid;
+		}
+
+		public Field getField() {
+			return field;
+		}
+
+		public void setField(Field field) {
+			this.field = field;
+		}
+		
+		
 	}
 	
 	

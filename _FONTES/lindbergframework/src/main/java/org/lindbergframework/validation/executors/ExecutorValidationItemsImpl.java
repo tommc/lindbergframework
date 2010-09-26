@@ -1,8 +1,6 @@
-﻿package org.lindbergframework.validation.executors;
+package org.lindbergframework.validation.executors;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
