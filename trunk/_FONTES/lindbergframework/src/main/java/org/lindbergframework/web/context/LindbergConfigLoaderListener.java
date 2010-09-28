@@ -1,8 +1,12 @@
 package org.lindbergframework.web.context;
 
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
 
 import org.lindbergframework.core.context.CoreContext;
 import org.lindbergframework.core.context.WebClassPathXmlCoreConfiguration;
@@ -17,9 +21,9 @@ import org.springframework.beans.BeanUtils;
  * @author Victor Lindberg
  *
  */
-public class LindbergConfigLoaderListener implements ServletContextListener{
+public class LindbergConfigLoaderListener implements ServletContextListener, HttpSessionListener{
     
-    
+    public static final String ATTRIBUTE_BEANS_REPOSITORY = "lindbergSessionBeansRepository";    
 	
 	public LindbergConfigLoaderListener(){
 		//
@@ -63,5 +67,15 @@ public class LindbergConfigLoaderListener implements ServletContextListener{
 	}
 	
 	public void contextDestroyed(ServletContextEvent sce) {}
+	
+	public void sessionCreated(HttpSessionEvent se) {}
+	
+	public void sessionDestroyed(HttpSessionEvent se) {
+	    Map map = (Map) se.getSession().getAttribute(ATTRIBUTE_BEANS_REPOSITORY);
+	    if (map != null){
+	       map.remove(se.getSession());
+	       LogUtil.logInfo("Lindberg Beans Cache Repository for Session with id ["+se.getSession().getId()+"] was removed");
+	    }
+	}
 
 }

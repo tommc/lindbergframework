@@ -36,6 +36,12 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>1.2_08</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>el-api</artifactId>
 			<version>1.0</version>
@@ -63,7 +69,16 @@
     	   <groupId>mysql</groupId>
     	   <artifactId>mysql-connector-java</artifactId>
            <version>5.1.10</version>
+			<scope>test</scope>
         </dependency>
+        
+        <dependency>
+			<groupId>ojdbc</groupId>
+			<artifactId>ojdbc</artifactId>
+			<version>14</version>
+			<scope>test</scope>
+		</dependency>
+        
         
         <dependency>
            <groupId>cglib</groupId>
