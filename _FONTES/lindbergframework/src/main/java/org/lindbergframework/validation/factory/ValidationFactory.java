@@ -6,11 +6,11 @@ import static org.lindbergframework.validation.Types.CPF_CNPJ;
 import static org.lindbergframework.validation.Types.DATE_CAN_NOT_BE_FUTURE;
 import static org.lindbergframework.validation.Types.DATE_CAN_NOT_BE_PAST;
 import static org.lindbergframework.validation.Types.DATE_CAN_NOT_BE_PRESENT;
-import static org.lindbergframework.validation.Types.DATE_HAS_BE_FUTURE;
-import static org.lindbergframework.validation.Types.DATE_HAS_BE_PAST;
-import static org.lindbergframework.validation.Types.DATE_HAS_BE_PRESENT;
-import static org.lindbergframework.validation.Types.HAS_BE_EMPTY_LIST;
-import static org.lindbergframework.validation.Types.HAS_BE_NULL;
+import static org.lindbergframework.validation.Types.DATE_MUST_BE_FUTURE;
+import static org.lindbergframework.validation.Types.DATE_MUST_BE_PAST;
+import static org.lindbergframework.validation.Types.DATE_MUST_BE_PRESENT;
+import static org.lindbergframework.validation.Types.MUST_BE_EMPTY_LIST;
+import static org.lindbergframework.validation.Types.MUST_BE_NULL;
 import static org.lindbergframework.validation.Types.NOT_EMPTY_LIST;
 import static org.lindbergframework.validation.Types.NOT_NULL;
 import static org.lindbergframework.validation.Types.NO_INFORMATION_EMPTY;
@@ -25,7 +25,7 @@ import org.lindbergframework.validation.AbstractMaxLengthRequiredValidation;
 import org.lindbergframework.validation.IComparableValidation;
 import org.lindbergframework.validation.IDateValidation;
 import org.lindbergframework.validation.IDocumentValidation;
-import org.lindbergframework.validation.IHasBeNullValidation;
+import org.lindbergframework.validation.IMustBeNullValidation;
 import org.lindbergframework.validation.IListValidation;
 import org.lindbergframework.validation.INotNullValidation;
 import org.lindbergframework.validation.IRequiredFieldValidation;
@@ -64,11 +64,11 @@ public class ValidationFactory {
 
 
 	/**
-	 * Cria uma instancia de {@link IHasBeNullValidation}
+	 * Cria uma instancia de {@link IMustBeNullValidation}
 	 */
-	public static IHasBeNullValidation newHasBeNull() {
+	public static IMustBeNullValidation newHasBeNull() {
 		return springFactory.getBean(
-				HAS_BE_NULL);
+				MUST_BE_NULL);
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class ValidationFactory {
 	 * Cria uma instancia de {@link IListValidation} que valida se uma lista esta vazia
 	 */
 	public static  IListValidation<Object> newHasBeEmptyList() {
-		return springFactory.getBean(HAS_BE_EMPTY_LIST);
+		return springFactory.getBean(MUST_BE_EMPTY_LIST);
 	}
 
 	/**
@@ -118,21 +118,21 @@ public class ValidationFactory {
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data é futura 
 	 */
 	public static IDateValidation newDateHasBeFuture() {
-		return springFactory.getBean(DATE_HAS_BE_FUTURE);
+		return springFactory.getBean(DATE_MUST_BE_FUTURE);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data é passado
 	 */
 	public static IDateValidation newDateHasBePast() {
-		return springFactory.getBean(DATE_HAS_BE_PAST);
+		return springFactory.getBean(DATE_MUST_BE_PAST);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data é presente 
 	 */
 	public static IDateValidation newDateHasBePresent() {
-		return springFactory.getBean(DATE_HAS_BE_PRESENT);
+		return springFactory.getBean(DATE_MUST_BE_PRESENT);
 	}
 	
 	/**

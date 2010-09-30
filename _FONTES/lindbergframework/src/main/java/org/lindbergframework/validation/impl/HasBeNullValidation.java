@@ -1,7 +1,7 @@
 package org.lindbergframework.validation.impl;
 
 import org.lindbergframework.exception.ValidationException;
-import org.lindbergframework.validation.IHasBeNullValidation;
+import org.lindbergframework.validation.IMustBeNullValidation;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  */
 @Component("hasBeNullValidation")
 @Scope("prototype")
-public class HasBeNullValidation implements IHasBeNullValidation {
+public class HasBeNullValidation implements IMustBeNullValidation {
 	
 	public void validate(Object objeto) throws ValidationException {
 	   if (objeto != null)

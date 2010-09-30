@@ -3,6 +3,7 @@ package org.lindbergframework.validation.impl;
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.validation.IDocumentValidation;
 import org.lindbergframework.validation.IValidation;
+import org.lindbergframework.validation.Types;
 import org.lindbergframework.validation.factory.ValidationFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
  * @author Victor Lindberg
  *
  */
-@Component("cpfAndCnpjValidation")
+@Component(Types.CPF_CNPJ)
 @Scope("prototype")
 public class CpfAndCnpjValidation implements IDocumentValidation<String>{
 	

@@ -2,6 +2,7 @@ package org.lindbergframework.validation.impl;
 
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.validation.INotNullValidation;
+import org.lindbergframework.validation.Types;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @author Victor Lindberg
  *
  */
-@Component("notNullValidation")
+@Component(Types.NOT_NULL)
 @Scope("prototype")
 public class NotNullValidation implements INotNullValidation{
 	

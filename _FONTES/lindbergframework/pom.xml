@@ -60,11 +60,13 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>${versao-commons-lang}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
@@ -84,7 +86,6 @@
 			<version>14</version>
 			<scope>test</scope>
 		</dependency>
-        
         
         <dependency>
            <groupId>cglib</groupId>
@@ -122,7 +123,6 @@
             <version>2.5</version>
             <scope>test</scope>
          </dependency>
-
 
 	</dependencies>
 

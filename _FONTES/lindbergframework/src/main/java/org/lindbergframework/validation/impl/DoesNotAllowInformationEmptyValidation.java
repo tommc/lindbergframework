@@ -2,6 +2,7 @@ package org.lindbergframework.validation.impl;
 
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.validation.IValidation;
+import org.lindbergframework.validation.Types;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @author Victor Lindberg
  *
  */
-@Component("doesNotAllowInformationEmptyValidation")
+@Component(Types.NO_INFORMATION_EMPTY)
 @Scope("prototype")
 public class DoesNotAllowInformationEmptyValidation implements IValidation<Object>{
 	

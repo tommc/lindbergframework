@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.validation.IListValidation;
+import org.lindbergframework.validation.Types;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
  * @author Victor Lindberg
  *
  */
-@Component("notEmptyListValidation")
+@Component(Types.NOT_EMPTY_LIST)
 @Scope("prototype")
 public class NotEmptyListValidation implements IListValidation<Object>{
 	

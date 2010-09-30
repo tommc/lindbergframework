@@ -6,6 +6,6 @@ package org.lindbergframework.validation;
  * @author Victor Lindberg
  *
  */
-public interface IHasBeNullValidation extends IValidation<Object>{
+public interface IMustBeNullValidation extends IValidation<Object>{
 
 }

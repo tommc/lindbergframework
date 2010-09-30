@@ -5,6 +5,7 @@ import java.util.Date;
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.util.DateUtil;
 import org.lindbergframework.validation.IDateValidation;
+import org.lindbergframework.validation.Types;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @author Victor Lindberg
  *
  */
-@Component("dateCanNotBePresentValidation")
+@Component(Types.DATE_CAN_NOT_BE_PRESENT)
 @Scope("prototype")
 public class DateCanNotBePresentValidation implements IDateValidation{
 	
