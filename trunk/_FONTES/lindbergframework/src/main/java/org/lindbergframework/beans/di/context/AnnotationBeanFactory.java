@@ -75,7 +75,7 @@ public class AnnotationBeanFactory extends AbstractBeanFactory{
 			}
 
 		} catch (Exception ex) {
-			throw new BeanException("Erro instantiating bean", ex);
+			throw new BeanException("Error getting bean : "+id, ex);
 		}
 	}
 	

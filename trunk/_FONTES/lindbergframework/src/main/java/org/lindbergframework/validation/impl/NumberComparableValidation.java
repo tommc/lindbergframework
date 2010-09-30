@@ -6,6 +6,7 @@ import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.util.NumberUtil;
 import org.lindbergframework.validation.AbstractComparableValidation;
 import org.lindbergframework.validation.IExecutorValidationItems;
+import org.lindbergframework.validation.Types;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -42,7 +43,7 @@ import org.springframework.stereotype.Component;
  * @author Victor Lindberg
  *
  */
-@Component("numberComparableValidation")
+@Component(Types.NUMBER_COMPARABLE)
 @Scope("prototype")
 public class NumberComparableValidation extends AbstractComparableValidation<Number>{
 
