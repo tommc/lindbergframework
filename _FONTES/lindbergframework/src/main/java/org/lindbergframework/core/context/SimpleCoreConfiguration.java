@@ -4,6 +4,7 @@ import org.lindbergframework.beans.di.context.BeanFactory;
 import org.lindbergframework.persistence.context.LinpConfiguration;
 
 /**
+ * Core configuration implementation to define programmatically the core configuration.
  * 
  * @author Victor Lindberg
  *
@@ -14,10 +15,16 @@ public class SimpleCoreConfiguration extends AbstractCoreConfiguration{
         //
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public LinpConfiguration getLinpConfiguration() {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setBeanFactory(BeanFactory beanFactory) {
         super.setBeanFactory(beanFactory);
@@ -25,6 +32,9 @@ public class SimpleCoreConfiguration extends AbstractCoreConfiguration{
             beanFactory.loadBasepackage(getDIBasePackage());
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setDiBasePackage(String diBasePackage) {
         super.setDiBasePackage(diBasePackage);
@@ -32,6 +42,9 @@ public class SimpleCoreConfiguration extends AbstractCoreConfiguration{
             getBeanFactory().loadBasepackage(diBasePackage);
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setLinpConfiguration(LinpConfiguration linpConfiguration) {
         super.setLinpConfiguration(linpConfiguration);

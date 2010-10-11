@@ -6,7 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 
+ * annotation that defines an bean auto injection in the lindberg IOC context.
+ *  
  * @author Victor Lindberg
  *
  */
@@ -14,6 +15,9 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 public @interface Inject {
 	
+    /**
+     * Bean id for injection. The bean for injection must be annotated with @Bean annotation.
+     */
 	String value();
 
 }

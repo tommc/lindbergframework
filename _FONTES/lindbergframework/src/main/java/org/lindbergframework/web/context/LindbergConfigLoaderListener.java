@@ -38,7 +38,7 @@ public class LindbergConfigLoaderListener implements ServletContextListener, Htt
 	   		String configClassParam = (String) servletContext.getInitParameter(WebCoreConfiguration.CONFIG_CLASS_PARAM);
 	   		
 	   		if (configLocation == null)
-	   		  configLocation = WebCoreConfiguration.DEFAULT_CONFIG_LOCATION;
+	   		  configLocation = WebCoreConfiguration.DEFAULT_CONFIG_FILE_NAME;
 
 	   		Class configClass;
 	   		if (configClassParam == null)

@@ -6,6 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * annotation that defines beans in the lindberg IOC context.
  * 
  * @author Victor Lindberg
  *
@@ -14,8 +15,15 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 public @interface Bean {
 	
+    /**
+     * Bean id.
+     */
 	String value();
-	
+
+	/**
+	 * True id the bean is a singleton instance. Default value is false.
+	 * @return
+	 */
 	boolean singleton() default false;
 	
 }

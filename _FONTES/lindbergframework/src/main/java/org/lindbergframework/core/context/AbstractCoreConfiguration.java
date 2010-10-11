@@ -2,41 +2,49 @@ package org.lindbergframework.core.context;
 
 import org.lindbergframework.beans.di.context.BeanFactory;
 import org.lindbergframework.exception.InvalidConfigurationException;
-import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.persistence.context.LinpConfiguration;
-import org.lindbergframework.validation.IExecutorValidationItems;
-import org.lindbergframework.validation.Item;
-import org.lindbergframework.validation.executors.factory.ExecutorFactory;
-import org.lindbergframework.validation.factory.ValidationFactory;
 
 /**
+ * Abstract core configuration class that provides the base operations for core configuration implementations.
  * 
  * @author Victor Lindberg
  *
  */
 public abstract class AbstractCoreConfiguration extends ConfigurationRepository implements CoreConfiguration{
     
+    /**
+     * lindberg persistence key in the values configurations repository. 
+     */
     protected static final String LINP_CONFIGURATION_KEY = "linpConfiguration";
     
     public AbstractCoreConfiguration(){
         //
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @AllowIfContextActive
     public String getDIBasePackage() {
         return getConfigValue(CONFIG_PROPERTY_DI_BASEPACKAGE);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @AllowIfContextActive
     public BeanFactory getBeanFactory() {
         return getConfigValue(CONFIG_PROPERTY_BEAN_FACTORY);
     }
     
+    /**
+     * {@inheritDoc}
+     */
     @AllowIfContextActive
     public LinpConfiguration getLinpConfiguration() {
         return getConfigValue(LINP_CONFIGURATION_KEY);
     }
-    
+
     protected void setDiBasePackage(String diBasePackage) {
         registerProperty(CONFIG_PROPERTY_DI_BASEPACKAGE, diBasePackage);
     }
@@ -49,10 +57,16 @@ public abstract class AbstractCoreConfiguration extends ConfigurationRepository 
         registerProperty(LINP_CONFIGURATION_KEY, linpConfiguration);
     }
     
+    /**
+     * {@inheritDoc}
+     */
     public <E> E getPropertyValue(String key) {
         return getConfigValue(key);
     }
     
+    /**
+     * {@inheritDoc}
+     */
     public void validate() throws InvalidConfigurationException {
         //
     }

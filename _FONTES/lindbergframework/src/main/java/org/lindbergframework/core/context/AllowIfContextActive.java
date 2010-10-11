@@ -6,7 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 
+ * annotation that defines checking of active context.
+ *  
  * @author Victor Lindberg
  *
  */
