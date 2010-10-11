@@ -6,24 +6,24 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.TreeSet;
 
 import org.apache.commons.lang.StringUtils;
 import org.lindbergframework.util.CollectionsUtil;
-import org.springframework.util.CollectionUtils;
 
 /**
- * 
+ * Utilitary Class for Mapping operations.
+ *  
  * @author Victor Lindberg
  *
  */
 class ClassMappingUtil {
 	
 	/**
-	 * ScannerProjectClasses
-	 * @throws URISyntaxException 
+	 * List classes in the project.
+	 * 
+	 * @throws URISyntaxException
 	 * 
 	 */
 	public static Collection<String> listClassesInProject(String basePackage) throws URISyntaxException {
@@ -31,11 +31,12 @@ class ClassMappingUtil {
 	}
 
 	/**
-	 * scan
+	 * Executes scan in the project for ma classes.
 	 * 
-	 * @param classLoader
-	 *            ClassLoader
-	 * @throws URISyntaxException 
+	 * @param basePackage base package where to do mapping
+	 * @param classLoader classLoader.
+	 * @return Collection of strings with the classes full names
+	 * @throws URISyntaxException
 	 */
 	private static Collection<String> scan(String basePackage, ClassLoader classLoader) throws URISyntaxException {
 		List<String> classes = new ArrayList<String>();
@@ -57,7 +58,7 @@ class ClassMappingUtil {
 		   List<String> classList = null;
 		   if (url.getPath().startsWith("jar:") ||
 		       url.getPath().endsWith(".jar")){
-		       classList = lindbergClassLoader.getClassNamesInPackage(url.toURI().getPath(), exclusions);
+		       classList = lindbergClassLoader.getClassNamesInJar(url.toURI().getPath(), exclusions);
 		       classList = cleanClasses(basePackage, classList, findInSubPackages);
 		       classes.addAll(classList);
 		   }else{
@@ -75,10 +76,24 @@ class ClassMappingUtil {
 		return uniqueCollection;
 	}
 	
+	/**
+	 * Checks if the basepackage param contains character of sub package '*'
+	 * 
+	 * @param basePackage base package param.
+	 * 
+	 * @return true if is subpackages ou false if is not subpackage.
+	 */
 	private static boolean isFindSubPackages(String basePackage){
 	    return basePackage.endsWith("*");
 	}
 	
+	/**
+	 * Removes the subpackage token from basepackage param.
+	 * 
+	 * @param basePackage base package param.
+	 * 
+	 * @return basepackeage param without subpackage token.
+	 */
 	private static String removeTokenSubPackages(String basePackage){
 	    int indexSubPackages = basePackage.lastIndexOf("*");
         if (indexSubPackages == -1)
@@ -91,6 +106,13 @@ class ClassMappingUtil {
 	    return basePackage.replace( ".", "/");
 	}
 	
+	/**
+	 * Extracts all exclusions packages from basepackage param.
+	 * 
+	 * @param base base package param.
+	 * 
+	 * @return list of stirngs with exclusions packages.
+	 */
 	private static List<String> extractExclusions(String base){
 	    List<String> list = CollectionsUtil.asList(base.split(":"));
 	    base = removeTokenExclusions(base);
@@ -104,6 +126,12 @@ class ClassMappingUtil {
 	    return list;
 	}
 	
+	/**
+	 * Removes exclusions packages from basepackage param.
+	 * 
+	 * @param base base package param.
+	 * @return string from basepackage param without exclusion token.
+	 */
 	private static String removeTokenExclusions(String base){
 	    int indexExclusionsToken = base.indexOf(":");
 	    if (indexExclusionsToken == -1)
@@ -112,6 +140,15 @@ class ClassMappingUtil {
 	    return base.substring(0, indexExclusionsToken);
 	}
 	
+	/**
+	 * Clean list of classes removing classes that are not inside basepackage.
+	 * 
+	 * @param basePack basepackage param.
+	 * @param classes list of classes (string)
+	 * @param findInSubPackage true if subpackage token is present in base package param.
+	 * 
+	 * @return list of classes.
+	 */
 	private static List<String> cleanClasses(String basePack, List<String> classes, boolean findInSubPackage){
 	    basePack = removeTokenSubPackages(basePack);
 	    List<String> cleanList = new ArrayList<String>();
@@ -131,6 +168,14 @@ class ClassMappingUtil {
 	    return cleanList;
 	}
 	
+	/**
+	 * Checks if the class name is inside of exclusions.
+	 * 
+	 * @param name class name.
+	 * @param exclusions list of exclusions.
+	 * 
+	 * @return true if the class name is inside of exclusions.
+	 */
 	public static boolean isExclusion(String name, List<String> exclusions){
 	    for (String exc : exclusions)
 	        if (name.contains(exc) || 
@@ -141,12 +186,14 @@ class ClassMappingUtil {
 	}
 
 	/**
-	 * getClassesInDirectory
-	 * 
-	 * @param parent
-	 *            String
-	 * @param location
-	 *            File
+	 * Load classes from location in classList argument.
+	 *  
+	 * @param base base package param.
+	 * @param parent location parent.
+	 * @param location actual location.
+	 * @param classList list of classes.
+	 * @param findInSubPackages
+	 * @param exclusions list of exclusions.
 	 */
 	private static void getClassesInDirectory(String base, String parent, File location, List<String> classList, boolean findInSubPackages, List<String> exclusions) {
 		File[] files = location.listFiles();

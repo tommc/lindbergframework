@@ -10,6 +10,8 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 
 /**
+ * Lindberg dependency injection class loader for IOC container.
+ * 
  * @author Laudelino Martins Cardoso Neto
  * @author Victor Lindberg
  */
@@ -17,6 +19,9 @@ class LindbergDIClassLoader extends URLClassLoader {
 
     private String urlPath;
 
+    /**
+     * Default constructor from {@link LindbergDIClassLoader}.
+     */
     public LindbergDIClassLoader() {
         super(new URL[] {});
     }
@@ -30,6 +35,12 @@ class LindbergDIClassLoader extends URLClassLoader {
         }
     }
 
+    /**
+     * Extracts method list for the class with the class name defined.
+     * 
+     * @param className class name.
+     * @return list of method in the class.
+     */
     public List<Method> getClassMethods(String className) {
     	List<Method> methods = new ArrayList<Method>();
         try {
@@ -47,7 +58,14 @@ class LindbergDIClassLoader extends URLClassLoader {
         return methods;
     }
 
-    public List<String> getClassNamesInPackage(String jarName,
+    /**
+     * Extracts the class names from jar.
+     * 
+     * @param jarName jar name.
+     * @param exclusions list of exclusions.
+     * @return ist of class names int the jar.
+     */
+    public List<String> getClassNamesInJar(String jarName,
         List<String> exclusions) {
         ArrayList classList = new ArrayList();
 
