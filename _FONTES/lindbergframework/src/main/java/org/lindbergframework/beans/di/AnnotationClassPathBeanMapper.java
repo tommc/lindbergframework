@@ -1,7 +1,6 @@
 package org.lindbergframework.beans.di;
 
 import java.lang.reflect.Modifier;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,19 +13,35 @@ import org.lindbergframework.exception.MappingFailedException;
 
 
 /**
+ * Bean mapper implementation for annotated classes with {@link Bean} annotation inside application class path.
  * 
  * @author Victor Lindberg
  *
  */
 public class AnnotationClassPathBeanMapper implements BeanMapper{
 	
+    /**
+     * Bean mapping. Key MAP : bean id, Value MAP: {@link BeanMapping} for bean. 
+     */
 	private Map<String, BeanMapping> beans;
+	
+	/**
+	 * Basepackages array. The annotated beans will be sought in these packages and sub packages.
+	 */
 	private String[] basepackages;
 	
+	/**
+	 * Create a new instance of AnnotationClassPathBeanMapper for the defined base packages.
+	 * 
+	 * @param basepackages base packages where the annotated beans will be sought
+	 */
 	public AnnotationClassPathBeanMapper(String... basepackages){
 		this.basepackages = basepackages;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void map() throws MappingFailedException {
 		try{
 		   doMap();
@@ -35,6 +50,9 @@ public class AnnotationClassPathBeanMapper implements BeanMapper{
 		}
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public BeanMapping getBeanMapping(String id) throws BeanMappingNotFoundException{
 		verifyMappingState();
 		BeanMapping beanMapped = beans.get(id);
@@ -45,18 +63,29 @@ public class AnnotationClassPathBeanMapper implements BeanMapper{
 		return beanMapped;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public int getLengthBeanMapping(){
 		verifyMappingState();
 		return beans.size();
 	}
 	
+    /**
+     * Checks if the mapping state is OK.
+     */
 	protected void verifyMappingState(){
 		if (beans == null)
 			throw new IllegalStateException("Mapping uninitialized. Call map method to initialize it.");
 	}
 	
+	/**
+	 * Executes the bean mapping effectively.
+	 * 
+	 * @throws Exception if it was not possible map the bean 
+	 */
 	protected void doMap()
-			throws ClassNotFoundException,URISyntaxException, InstantiationException, IllegalAccessException {
+			throws Exception {
 		Map<String, BeanMapping> beans = new HashMap<String, BeanMapping>();
 
 		List<String> classes = new ArrayList<String>();

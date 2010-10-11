@@ -4,17 +4,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-import net.sf.cglib.core.ReflectUtils;
-
-import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.lang.StringUtils;
 import org.lindbergframework.exception.BeanException;
 import org.lindbergframework.exception.FieldValueInaccessibleValidation;
-import org.lindbergframework.test.testBeans.Employee;
 import org.springframework.util.ReflectionUtils;
-
-import sun.reflect.misc.FieldUtil;
-import sun.reflect.misc.ReflectUtil;
 
 /**
  * Classe utilitária para operações de reflexão 
