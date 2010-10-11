@@ -102,7 +102,7 @@ public class ConfigUtil {
 		
 		return Arrays.asList(strings);
 	}
-	
+
 	public static void initializeConfig(ConfigurationInitializer initializer,Object fileConfig) throws IOException, XmlException {
         if (fileConfig instanceof File)
             initializer.initialize((File)fileConfig);

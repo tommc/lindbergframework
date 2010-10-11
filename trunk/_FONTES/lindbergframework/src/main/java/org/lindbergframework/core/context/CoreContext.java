@@ -1,10 +1,10 @@
 package org.lindbergframework.core.context;
 
 import java.lang.reflect.Method;
-import java.util.logging.Logger;
 
 import org.lindbergframework.beans.di.context.BeanFactory;
 import org.lindbergframework.exception.CoreConfigurationException;
+import org.lindbergframework.exception.IllegalStateContextException;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.exception.PersistenceConfigurationException;
 import org.lindbergframework.persistence.context.LinpConfiguration;
@@ -13,19 +13,32 @@ import org.lindbergframework.util.LogUtil;
 import org.lindbergframework.util.ProxyUtil;
 
 /**
+ * Core configuration context implementation.
  * 
  * @author Victor Lindberg
  *
  */
 public class CoreContext implements Context<CoreContext,CoreConfiguration>, CoreConfiguration{
-    
+   
+    /**
+     * core context instance.
+     */
     private static CoreContext instance;
+    
+    /**
+     * configuration instance.
+     */
     private CoreConfiguration configuration;
     
     protected CoreContext(){
         //
     }
     
+    /**
+     * get the instance of context.
+     * 
+     * @return context instance.
+     */
     public static CoreContext getInstance(){
         if (instance == null){
            try{
@@ -46,6 +59,9 @@ public class CoreContext implements Context<CoreContext,CoreConfiguration>, Core
         return instance;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     public CoreContext loadConfiguration(CoreConfiguration configuration){
         if (configuration == null)
             throw new IllegalStateException("Could not to set core configuration. Configuration is null");
@@ -68,26 +84,41 @@ public class CoreContext implements Context<CoreContext,CoreConfiguration>, Core
         LogUtil.logInfo("Lindberg Core Context initialized");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @AllowIfContextActive
     public BeanFactory getBeanFactory() {
         return configuration.getBeanFactory();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @AllowIfContextActive
     public String getDIBasePackage() {
         return configuration.getDIBasePackage();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @AllowIfContextActive
     public LinpConfiguration getLinpConfiguration() {
         return configuration.getLinpConfiguration();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @AllowIfContextActive
     public <E> E getPropertyValue(String key) {
         return configuration.getPropertyValue(key);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void validate() throws InvalidConfigurationException {
         if (configuration == null)
             throw new InvalidConfigurationException("Core Configuration must be not null");
@@ -95,6 +126,9 @@ public class CoreContext implements Context<CoreContext,CoreConfiguration>, Core
         configuration.validate();
     }
     
+    /**
+     * {@inheritDoc}
+     */
     public void close() {
        if (LinpContext.getInstance().isActive()){
            LinpContext.getInstance().close();
@@ -105,16 +139,26 @@ public class CoreContext implements Context<CoreContext,CoreConfiguration>, Core
        
     }
     
-    
+    /**
+     * {@inheritDoc}
+     */
     public boolean isActive() {
         return getInstance().configuration != null;
     }
     
-    public void verifyContext() {
+    /**
+     * {@inheritDoc}
+     */
+    public void verifyContext() throws IllegalStateContextException{
         if (! isActive())
-            throw new CoreConfigurationException("Core Context is not active. Call loadConfiguration static method in CoreContext to active it");
+            throw new IllegalStateContextException("Core Context is not active. Call loadConfiguration static method in CoreContext to active it");
     }
     
+    /**
+     * loads the other modules defined in configuration.
+     * 
+     * @param configuration configuration instance to load modules.
+     */
     private void loadModules(CoreConfiguration configuration){
         LinpConfiguration linpConfiguration = configuration.getLinpConfiguration();
         if (linpConfiguration != null)

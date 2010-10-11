@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 import org.lindbergframework.core.context.AllowIfContextActive;
 import org.lindbergframework.core.context.Context;
 import org.lindbergframework.core.context.ContextProxy;
+import org.lindbergframework.exception.IllegalStateContextException;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.exception.PersistenceConfigurationException;
 import org.lindbergframework.persistence.DataSourceConfig;
@@ -78,9 +79,9 @@ public class LinpContext implements Context<LinpContext,LinpConfiguration>, Linp
 		LogUtil.logInfo("Lindberg Persistence Context finalized");
 	}
 	
-	public void verifyContext(){
+	public void verifyContext() throws IllegalStateContextException{
 		if (! isActive())
-			throw new PersistenceConfigurationException("Linp Context is not active. Call loadConfiguration static method in LinpContext to active it");
+			throw new IllegalStateContextException("Linp Context is not active. Call loadConfiguration static method in LinpContext to active it");
 	}
 	
 	protected void activate(LinpConfiguration configuration){
