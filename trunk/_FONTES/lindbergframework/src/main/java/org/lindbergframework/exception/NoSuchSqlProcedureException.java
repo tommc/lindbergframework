@@ -1,6 +1,7 @@
 package org.lindbergframework.exception;
 
 /**
+ * Sql procedure not found in lindberg persistence context.
  * 
  * @author Victor Lindberg
  *

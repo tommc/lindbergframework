@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Persistence transactions exception.
  * 
  * @author Victor Lindberg
  *

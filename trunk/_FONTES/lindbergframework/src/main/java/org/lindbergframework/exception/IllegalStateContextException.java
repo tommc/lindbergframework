@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Context state is not valid.
  * 
  * @author Victor Lindberg
  *

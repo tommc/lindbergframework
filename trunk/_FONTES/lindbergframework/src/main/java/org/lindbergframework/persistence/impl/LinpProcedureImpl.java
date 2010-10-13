@@ -15,7 +15,7 @@ import java.util.Set;
 import javax.sql.DataSource;
 
 import org.lindbergframework.exception.PersistenceException;
-import org.lindbergframework.exception.RegisterParameterFailedException;
+import org.lindbergframework.exception.RegisterParameterProceduresAndFunctionsFailedException;
 import org.lindbergframework.persistence.beans.MultLevelBeanRowMapperForProcedureCursor;
 import org.lindbergframework.persistence.context.LinpContext;
 import org.lindbergframework.persistence.sql.SqlArg;
@@ -85,7 +85,7 @@ class LinpProcedureImpl extends StoredProcedure{
 			   }
 			}
 		} catch (Exception ex) {
-		   throw new RegisterParameterFailedException(ex);
+		   throw new RegisterParameterProceduresAndFunctionsFailedException(ex);
 		} 
 	}
 	

@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Reflection operations exception.
  * 
  * @author Victor Lindberg
  *

@@ -3,13 +3,19 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Bean mapping not found in the base package specified in the configuration.
  * 
  * @author Victor Lindberg
  *
  */
 public class BeanMappingNotFoundException extends BeanNotFoundException{
 	
-	public BeanMappingNotFoundException() {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    public BeanMappingNotFoundException() {
 		//
 	}
 	

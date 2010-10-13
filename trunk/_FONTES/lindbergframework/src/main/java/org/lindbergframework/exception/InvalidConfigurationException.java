@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Configuration is not valid exception.
  * 
  * @author Victor Lindberg
  *

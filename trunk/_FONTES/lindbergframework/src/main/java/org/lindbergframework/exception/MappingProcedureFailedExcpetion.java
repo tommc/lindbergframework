@@ -3,13 +3,19 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Mapping procedure error.
  * 
  * @author Victor Lindberg
  *
  */
 public class MappingProcedureFailedExcpetion extends PersistenceException{
 	
-	public MappingProcedureFailedExcpetion() {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    public MappingProcedureFailedExcpetion() {
 		//
 	}
 

@@ -3,13 +3,19 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Lindberg persistence configuration exception.
  * 
  * @author Victor Lindberg
  *
  */
 public class PersistenceConfigurationException extends PersistenceException{
 	
-	public PersistenceConfigurationException() {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    public PersistenceConfigurationException() {
 		//
 	}
 

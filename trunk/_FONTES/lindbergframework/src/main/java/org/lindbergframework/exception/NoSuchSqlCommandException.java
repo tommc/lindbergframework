@@ -2,6 +2,7 @@ package org.lindbergframework.exception;
 
 
 /**
+ * Sql command not found in lindberg persistence context.
  * 
  * @author Victor Lindberg
  *

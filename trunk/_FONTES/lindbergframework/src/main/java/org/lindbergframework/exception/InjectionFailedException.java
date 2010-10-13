@@ -3,13 +3,19 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Auto bean injection failed.
  * 
  * @author Victor Lindberg
  *
  */
 public class InjectionFailedException extends InjectionDependencyException{
 	
-	public InjectionFailedException() {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    public InjectionFailedException() {
 		//
 	}
 	

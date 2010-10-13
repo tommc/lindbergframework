@@ -3,8 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
- * Exceção que indica que o valor para validação está inacessível para
- * processamento da validação
+ * Field validation value is inaccessible.
  * 
  * @author Victor Lindberg
  * 

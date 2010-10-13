@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Lindberg persistence exception.
  * 
  * @author Victor Lindberg
  * 

@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Xml document is not valid.
  * 
  * @author Victor Lindberg
  *

@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.apache.xmlbeans.XmlException;
 import org.lindbergframework.exception.DuplicatedSqlMappingIdException;
-import org.lindbergframework.exception.FailedLoadSqlCommandException;
+import org.lindbergframework.exception.SqlCommandLoadingFailedException;
 import org.lindbergframework.exception.InvalidSqlMappingException;
 import org.lindbergframework.exception.NoSuchSqlCommandException;
 import org.lindbergframework.exception.NoSuchSqlStatementException;
@@ -160,7 +160,7 @@ public class XmlSqlCommandResolver implements SqlCommandResolver{
 		try{
 		   return Class.forName(className);	
 		}catch (ClassNotFoundException ex) {
-			  throw new FailedLoadSqlCommandException("Error loading class "+className+" for Command with id: "+id,ex);
+			  throw new SqlCommandLoadingFailedException("Error loading class "+className+" for Command with id: "+id,ex);
 		}
 	}
 	
@@ -254,7 +254,7 @@ public class XmlSqlCommandResolver implements SqlCommandResolver{
     		}
     	}
     	
-    	ex.lancarEssaExcecaoSeHouverMensagens();
+    	ex.throwIfContainsErrorMessages();
     }
     
     private String cleanStringCommand(String strCommand){

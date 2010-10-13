@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Configuration failed.
  * 
  * @author Victor Lindberg
  *

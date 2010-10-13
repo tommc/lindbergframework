@@ -2,6 +2,7 @@ package org.lindbergframework.exception;
 
 
 /**
+ * Sql mapping is not valid exception.
  * 
  * @author Victor Lindberg
  *

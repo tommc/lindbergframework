@@ -1,7 +1,7 @@
 package org.lindbergframework.exception;
 
 /**
- * 
+ * Sql function not found in lindberg persistence context.
  * @author Victor Lindberg
  *
  */

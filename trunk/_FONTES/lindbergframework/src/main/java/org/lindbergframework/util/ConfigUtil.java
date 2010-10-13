@@ -16,7 +16,7 @@ import org.lindbergframework.beans.util.BeanUtil;
 import org.lindbergframework.core.context.ConfigurationInitializer;
 import org.lindbergframework.exception.BeanException;
 import org.lindbergframework.exception.LindbergException;
-import org.lindbergframework.exception.LoadPropertyException;
+import org.lindbergframework.exception.LoadXmlPropertyException;
 import org.lindbergframework.exception.NoSuchMethodOrPropertyException;
 import org.lindbergframework.schema.LindbergConfigurationDocument;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration;
@@ -45,7 +45,7 @@ public class ConfigUtil {
 		   }catch(ClassNotFoundException exception){
 			  //value does not correspond to a class
 		   }catch(Exception ex){
-			   throw new LoadPropertyException("Error loading xml property : "+valueStr,ex);
+			   throw new LoadXmlPropertyException("Error loading xml property : "+valueStr,ex);
 		   }
 		   
 		   //value can be a constant 

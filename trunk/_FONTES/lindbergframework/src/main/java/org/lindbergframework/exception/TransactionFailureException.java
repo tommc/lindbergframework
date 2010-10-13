@@ -3,7 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
- * 
+ * Persistence Transaction failed. 
  * @author Victor Lindberg
  *
  */

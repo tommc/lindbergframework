@@ -9,7 +9,7 @@ import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConstructorUtils;
 import org.apache.commons.beanutils.ConvertUtilsBean;
 import org.lindbergframework.exception.BeanPopulateException;
-import org.lindbergframework.exception.LoadPropertyException;
+import org.lindbergframework.exception.LoadXmlPropertyException;
 import org.lindbergframework.util.ReflectionUtil;
 
 
@@ -44,16 +44,16 @@ public class BeanUtil {
 	 * @param bean bean instance.
 	 * @param property property to populate.
 	 * @param value value to populate in the property.
-	 * @throws LoadPropertyException property loading failed.
+	 * @throws LoadXmlPropertyException property loading failed.
 	 */
-	public static void loadProperty(Object bean, String property, Object value) throws LoadPropertyException{
+	public static void loadProperty(Object bean, String property, Object value) throws LoadXmlPropertyException{
 		try {
 			MultLevelPropertyUtilsBean propertyUtilsBean = new MultLevelPropertyUtilsBean(bean.getClass());
 			
 			BeanUtilsBean beanUtils = new BeanUtilsBean(new ConvertUtilsBean(),propertyUtilsBean);
 			beanUtils.copyProperty(bean, property, value);
 		} catch (Exception ex) {
-			throw new LoadPropertyException(ex);
+			throw new LoadXmlPropertyException(ex);
 		} 
 	}
 	
