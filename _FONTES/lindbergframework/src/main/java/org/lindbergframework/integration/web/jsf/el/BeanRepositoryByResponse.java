@@ -11,10 +11,16 @@ import org.lindbergframework.beans.di.context.BeanFactory;
 import org.lindbergframework.web.context.LindbergConfigLoaderListener;
 
 /**
+ * Bean repository. This repository stores bean instances by Response
+ * keeping the same bean instance inside of same request.
+ * 
  * @author Victor Lindberg
  */
 class BeanRepositoryByResponse {
 
+    /**
+     * Bean cache with bean instances for response of request.
+     */
     private Map<HttpSession, ResponseBeans> cache = Collections
         .synchronizedMap(new HashMap<HttpSession, ResponseBeans>());
 
@@ -24,6 +30,14 @@ class BeanRepositoryByResponse {
         this.beanFactory = beanFactory;
     }
 
+    /**
+     * Records a new response.
+     * 
+     * @param session current session.
+     * @param response currente response.
+     * 
+     * @return ResponseBeans instance.
+     */
     public ResponseBeans registerResponse(HttpSession session,
         HttpServletResponse response) {
         ResponseBeans respBean = new ResponseBeans(response, beanFactory);
