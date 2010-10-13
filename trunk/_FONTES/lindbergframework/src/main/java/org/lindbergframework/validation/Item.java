@@ -32,21 +32,8 @@ public final class Item {
 	 */
 	private String[] messages = new String[0];
 	
-	/**
-	 * Índices de validações que indicam com quais validações este item será validado.<br><br>
-	 * 
-	 * Obs: Esta propriedade é definida explicitamente quando o método <br>
-	 * addValidations de um ExecutorValidation é usado para adiciona um ou mais validationItems
-	 */
 	private Integer[] indexValidations = new Integer[] {0};
 	
-	/**
-	 * Tipo de uso da mensagem que será lançada na exception quando a validação falhar.<br><br>
-	 * 
-	 * O enum {@link MsgType} define se será usada uma mensagem externa ou não, <br>
-	 * se será usada apenas esta, se esta será usada em conjunto com a mensagem vinda da exceção, <br>
-	 * como se dará a formação da concatenação das duas mensagens e se a externa será prefixo ou sufixo da mensagem da validação
-	 */
 	private MsgType msgType = MsgType.NO_USING_CUSTOM;
 	
 	/**
