@@ -3,10 +3,10 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
- * Excecao nas operações de persistencia
+ * Data access layer exception.
  * 
- * @author victorsilva
- * 
+ * @author Victor Lindberg
+ *
  */
 public class DAOException extends PersistenceException {
  

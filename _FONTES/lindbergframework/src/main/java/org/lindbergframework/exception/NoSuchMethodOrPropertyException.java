@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Bean Method or Bean property not found.
  * 
  * @author Victor Lindberg
  * 

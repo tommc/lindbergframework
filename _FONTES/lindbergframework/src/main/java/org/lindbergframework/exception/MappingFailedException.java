@@ -3,13 +3,19 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Bean Mapping exception.
  * 
  * @author Victor Lindberg
  *
  */
 public class MappingFailedException extends BeanException{
 	
-	public MappingFailedException () {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    public MappingFailedException () {
 		//
 	}
 

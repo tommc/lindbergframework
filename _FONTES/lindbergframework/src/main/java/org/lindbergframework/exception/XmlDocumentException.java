@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Xml configuration is not valid.
  * 
  * @author Victor Lindberg
  *

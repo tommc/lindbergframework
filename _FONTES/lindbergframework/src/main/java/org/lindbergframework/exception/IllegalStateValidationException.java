@@ -3,7 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
- * Exceção indicando o estado inválido de uma validação
+ * Validation state is not valid.
  * 
  * @author Victor Lindberg
  *

@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Sql mapping exception.
  * 
  * @author Victor Lindberg
  *

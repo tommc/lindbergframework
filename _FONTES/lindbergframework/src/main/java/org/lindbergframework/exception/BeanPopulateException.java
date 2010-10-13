@@ -2,6 +2,7 @@ package org.lindbergframework.exception;
 
 
 /**
+ * Bean population failed.
  * 
  * @author Victor Lindberg
  *

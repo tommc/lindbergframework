@@ -3,7 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
- * Exceção originada das classes de service/negócio
+ * Exception launched from service layer.
  * 
  * 
  * @author Victor Lindberg

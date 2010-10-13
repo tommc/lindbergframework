@@ -7,12 +7,16 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 /**
+ * Lindberg Bean post processor implementation for Spring and lindbergframework beans integration.
  * 
  * @author Victor Lindberg
  *
  */
 public class LindbergBeanPostProcessor implements BeanPostProcessor{
 	
+    /**
+     * Creates lindberg transaction proxy for bean if necessary. 
+     */
 	public Object postProcessAfterInitialization(Object bean, String beanName)
 			throws BeansException {
 		if (TransactionUtil.isSomeMethodOrClassTransactional(bean.getClass())) {
@@ -29,6 +33,9 @@ public class LindbergBeanPostProcessor implements BeanPostProcessor{
 		return bean;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public Object postProcessBeforeInitialization(Object bean, String beanName)
 			throws BeansException {
 		return bean;

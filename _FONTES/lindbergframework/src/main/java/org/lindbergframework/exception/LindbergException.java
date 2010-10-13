@@ -1,11 +1,13 @@
 package org.lindbergframework.exception;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * 
- * Classe pai de todas as excecoes do framework
+ * Base exception of lindbergframewrok. This exception adds several
+ * error messages. Contains utilitary methods to manipulate this messages. 
  * 
  * @author Victor Lindberg
  * 
@@ -15,19 +17,17 @@ public class LindbergException extends RuntimeException  {
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * Separador de mensagens padrão. Se nenhum separador de mensagens <br>
-	 * for configurado este é utilizado como padrão
+	 * Default separator messages.
 	 */
 	public static final String DEFAULT_SEPARATOR_MESSAGES = "; ";
 
 	/**
-	 * Mensagens que compõem esta exceção 
+	 * Error messages of this exception.
 	 */
-	private List<String> msgs = new Vector<String>();
+	private List<String> msgs = new ArrayList<String>();
 	
 	/**
-	 * Separador de mensagens. Esta String é utilizada para separar cada mensagem. <br>
-	 * Por exemplo se o separador for ";" então a mensagem completa será msg1; msg2; msg3 
+	 * separator message specified. Default is DEFAULT_SEPARATOR_MESSAGES constant.
 	 */
 	private String separatorMessages = DEFAULT_SEPARATOR_MESSAGES; 
 
@@ -60,7 +60,9 @@ public class LindbergException extends RuntimeException  {
 	}
 
 	/**
-	 * adiciona uma nova mensagem a lista de mensagem que compõem a exceção
+	 * adds a new error message.
+	 * 
+	 * @param msg new error message.
 	 */
 	public void addMessage(String msg) {
 		synchronized (msg) {
@@ -69,7 +71,10 @@ public class LindbergException extends RuntimeException  {
 	}
 
 	/**
-	 * adiciona uma nova mensagem a lista de mensagem em um determinado índice na lista 
+	 * adds a new error message for specified index.
+	 * 
+	 * @param index index of message position int the error list.
+	 * @param msg error message.
 	 */
 	public void addMessage(int index, String msg) {
 		synchronized (msg) {
@@ -78,26 +83,23 @@ public class LindbergException extends RuntimeException  {
 	}
 
 	/**
-	 * adiciona todas as mensagem contidas na lista passada como argumento e adiciona <br>
-	 * na lista de mensagens da exceção
+	 * adds all message from specified message collection. 
+	 * @param msgs error message collection.
 	 */
-	public void addAllMessages(List<String> msgs) {
+	public void addAllMessages(Collection<String> msgs) {
 	   synchronized (msgs) {
 		   this.msgs.addAll(msgs);
 	   }
 	}
 
-	/**
-	 * retorna a lista de mensagem que compõem a exceção
-	 */
 	public List<String> getMessages() {
 		return msgs;
 	}
 
 	/**
-	 * retorna a mensagem tratada composta por todas as mensagens que compõem <br>
-	 * a exceção em uma única String onde o {@link #separatorMessages} é usado <br>
-	 * para separar cada mensagem na String retornada
+	 * get message treated using {@link #separatorMessages} attribute.
+	 * 
+	 * @return message treated using {@link #separatorMessages} attribute.
 	 */
 	public String getMessageTreated() {
 		String str = "";
@@ -109,25 +111,34 @@ public class LindbergException extends RuntimeException  {
 	}
 
 	/**
-	 * Retorna true se ha alguma mensagem na lista de mensagens da exceção
+	 * checks if contains error messages.
+	 * 
+	 * @return true if contains error message.
 	 */
 	public boolean hasMessages() {
 		return !msgs.isEmpty();
 	}
 
+	/**
+	 * Get message treated for this exception.
+	 * @return message treated for this exception.
+	 */
 	@Override
 	public String getMessage() {
 		return getMessageTreated();
 	}
 
 	/**
-	 * Lança esta exceção caso haja alguma mensagem na lista
+	 * Throws this exception if contais error messages.
 	 */
-	public void lancarEssaExcecaoSeHouverMensagens() {
+	public void throwIfContainsErrorMessages() {
 		if (hasMessages())
 			throw this;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String toString() {
 		return getMessageTreated();

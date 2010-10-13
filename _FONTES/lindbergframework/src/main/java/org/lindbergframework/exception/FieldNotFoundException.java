@@ -3,7 +3,8 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
- * 
+ * Field not found. This exception is throwed in reflection operations.
+ *  
  * @author Victor Lindberg
  *
  */

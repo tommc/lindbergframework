@@ -3,8 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
- * Exception que indica a não possibilidade de encontrar uma validação
- * específica
+ * Validation bean not found.
  * 
  * @author Victor Lindberg
  * 
@@ -14,7 +13,7 @@ public class NoSuchBeanValidationException extends BeanException {
 	private static final long serialVersionUID = 1L;
 
 	public NoSuchBeanValidationException() {
-		super("Bean de validação especificado não encontrado");
+		super("Bean validation not found");
 	}
 
 	public NoSuchBeanValidationException(String msg) {

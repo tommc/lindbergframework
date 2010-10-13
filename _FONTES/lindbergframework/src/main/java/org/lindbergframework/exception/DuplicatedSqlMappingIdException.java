@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Duplicated sql mapping id in lindberg persistence context.
  * 
  * @author Victor Lindberg
  *

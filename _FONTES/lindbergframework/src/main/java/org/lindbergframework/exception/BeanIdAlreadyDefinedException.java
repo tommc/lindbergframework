@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Duplicated bean id in IOC context.
  * 
  * @author Victor Lindberg
  *

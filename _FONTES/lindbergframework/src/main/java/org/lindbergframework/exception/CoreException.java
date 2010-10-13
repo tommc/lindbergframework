@@ -3,12 +3,18 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Core module exception.
  * 
  * @author Victor Lindberg
  *
  */
 public class CoreException extends LindbergException{
     
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     public CoreException() {
         //
     }

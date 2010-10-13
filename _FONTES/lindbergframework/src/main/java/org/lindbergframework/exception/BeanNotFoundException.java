@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Bean not found in the IOC context.
  * 
  * @author Victor Lindberg
  *

@@ -3,13 +3,19 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Injection dependency container exception.
  * 
  * @author Victor Lindberg
  *
  */
 public class InjectionDependencyException extends BeanException{
 	
-	public InjectionDependencyException() {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    public InjectionDependencyException() {
 		//
 	}
 	

@@ -6,7 +6,7 @@ import java.util.Collection;
 
 import org.lindbergframework.beans.util.BeanUtil;
 import org.lindbergframework.exception.BeanPopulateException;
-import org.lindbergframework.exception.LoadPropertyException;
+import org.lindbergframework.exception.LoadXmlPropertyException;
 import org.lindbergframework.persistence.sql.DataSet;
 import org.lindbergframework.persistence.sql.RowDataTree;
 import org.lindbergframework.persistence.sql.SqlNode;
@@ -46,7 +46,7 @@ public class MultLevelsBeanPopulator extends BeanPopulatorBase implements BeanPo
 	}
 	
 	protected <E> void populateMultLevel(E bean,Collection<SqlNode> protetiesNodes) 
-	                 throws LoadPropertyException, InstantiationException, IllegalAccessException{
+	                 throws LoadXmlPropertyException, InstantiationException, IllegalAccessException{
 		for (SqlNode node : protetiesNodes){ 
            String propertyName = sqlColumnToJavaProperyPattern(node.getProperty());		   
 		   

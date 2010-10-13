@@ -3,6 +3,7 @@ package org.lindbergframework.exception;
 import java.util.List;
 
 /**
+ * Factories exception.
  * 
  * @author Victor Lindberg
  *
