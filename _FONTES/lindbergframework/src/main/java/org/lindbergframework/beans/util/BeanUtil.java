@@ -46,14 +46,14 @@ public class BeanUtil {
 	 * @param value value to populate in the property.
 	 * @throws LoadXmlPropertyException property loading failed.
 	 */
-	public static void loadProperty(Object bean, String property, Object value) throws LoadXmlPropertyException{
+	public static void loadProperty(Object bean, String property, Object value) throws BeanPopulateException{
 		try {
 			MultLevelPropertyUtilsBean propertyUtilsBean = new MultLevelPropertyUtilsBean(bean.getClass());
 			
 			BeanUtilsBean beanUtils = new BeanUtilsBean(new ConvertUtilsBean(),propertyUtilsBean);
 			beanUtils.copyProperty(bean, property, value);
 		} catch (Exception ex) {
-			throw new LoadXmlPropertyException(ex);
+			throw new BeanPopulateException(ex);
 		} 
 	}
 	
