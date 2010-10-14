@@ -11,6 +11,7 @@ import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.xmlbeans.XmlException;
 import org.lindbergframework.beans.util.BeanUtil;
+import org.lindbergframework.exception.BeanPopulateException;
 import org.lindbergframework.exception.LindbergException;
 import org.lindbergframework.exception.LoadXmlPropertyException;
 import org.lindbergframework.schema.LindbergConfigurationDocument;
@@ -90,7 +91,7 @@ public final class XmlUtil {
                 try {
                     loadTProperties(bean, property.getName(),property.getPropertyArray());
                     return bean;
-                } catch (LoadXmlPropertyException ex) {
+                } catch (BeanPopulateException ex) {
                     throw new LindbergException("Erro loading properties in "+bean,ex);
                 }
             }
@@ -120,7 +121,7 @@ public final class XmlUtil {
      * @param tproperties properties values.
      * @throws LoadXmlPropertyException bean loading failed.
      */
-    public static void loadTProperties(Object bean,String configPropertyName,Tproperty[] tproperties) throws LoadXmlPropertyException{
+    public static void loadTProperties(Object bean,String configPropertyName,Tproperty[] tproperties) throws BeanPopulateException{
         for (Tproperty tproperty : tproperties){
            if (! tproperty.getConstructorArg()){
               if (StringUtils.isNotEmpty(tproperty.getName()))
