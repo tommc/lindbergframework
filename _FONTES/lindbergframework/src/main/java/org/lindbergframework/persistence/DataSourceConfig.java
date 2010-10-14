@@ -9,13 +9,21 @@ import org.lindbergframework.persistence.datasource.SingleConnectionThreadLocalD
 
 
 /**
+ * Class that encapsulates datasource configurations.
  * 
  * @author Victor Lindberg
  *
  */
 public class DataSourceConfig {
 	
+    /**
+     * Data source implementation.
+     */
 	private DataSource dataSource;
+	
+	/**
+	 * driver class.
+	 */
 	private Class driver;
 	
 	public DataSourceConfig(){
@@ -40,6 +48,9 @@ public class DataSourceConfig {
 	}
 
 	public void setDriver(Class driver) {
+	    if (driver == null)
+	        throw new PersistenceException("driver class must be not null");
+	    
 		if (! Driver.class.isAssignableFrom(driver))
 				throw new PersistenceException("driver property ["+driver+"] does not correspond to " +
 						"a class that implements the Driver interface");
@@ -47,6 +58,11 @@ public class DataSourceConfig {
 		this.driver = driver;
 	}
 	
+	/**
+	 * checks if the driver class was loaded.
+	 * 
+	 * @return true if the driver class was loaded.
+	 */
 	public boolean isDriverLoaded(){
 		return driver != null;
 	}
