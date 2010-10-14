@@ -15,19 +15,48 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
+ * Bean populator that implements the mult level population.
+ * 
+ * The mult level population occurs setting properties values
+ * in several levels. 
+ * 
+ * E.g. 
+ * A Person bean and a Address bean.
+ * 
+ *  Person
+ *    - String name
+ *    - Address address
+ *    
+ *  Address
+ *     - String street
+ *     - int number
+ *     
+ *  This bean populator works with ({@link RowDataTree}). 
+ *  This enables to populate the Address street property inside of Person bean
+ *  like a data tree creating Adress instance and setting street property value and 
+ *  setting after the created Address instance in Person. 
  * 
  * @author Victor Lindberg
  *
  */
 @Component("multLevelsBeanPopulator")
 @Scope("prototype")
-public class MultLevelsBeanPopulator extends BeanPopulatorBase implements BeanPopulator{
+public class MultLevelsBeanPopulator extends BeanPopulatorBase{
 	
 	public MultLevelsBeanPopulator(){
 		//
 	}
 	
-	public <E> E populate(Class<E> beanClass, RowDataTree rowDataTree) throws SQLException, BeanPopulateException{
+	/**
+	 * Creates and Populates a bean based on {@link RowDataTree}.
+	 * 
+	 * @param <E> bean type.
+     * @param beanClass bean class to populate.
+     * @param rowDataTree {@link RowDataTree} that will be used to populate the bean.
+     * @return populated bean.
+     * @throws BeanPopulateException bean population failed.
+	 */
+	public <E> E populate(Class<E> beanClass, RowDataTree rowDataTree) throws BeanPopulateException{
 		try {
 			E beanInstance = beanClass.newInstance();
 			SqlNode root = rowDataTree.getTree();
@@ -41,12 +70,27 @@ public class MultLevelsBeanPopulator extends BeanPopulatorBase implements BeanPo
 		}
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public <E> E populate(Class<E> beanClass, DataSet dataSet) throws SQLException, BeanPopulateException {
 		return populate(beanClass,new RowDataTree(dataSet));
 	}
 	
+	/**
+	 * Executes recursive mult level population in bean instance based on {@link SqlNode} {@link Collection} argument.
+	 * 
+	 * @param <E> bean type.
+	 * @param bean bean instance to populate.
+	 * @param protetiesNodes {@link SqlNode} {@link Collection} containing sql result values.
+	 * @throws BeanPopulateException error populating bean.
+	 * @throws InstantiationException error creating some bean property.
+	 * @throws IllegalAccessException error accessing some bean property.
+	 * 
+	 * @return populated bean.
+	 */
 	protected <E> void populateMultLevel(E bean,Collection<SqlNode> protetiesNodes) 
-	                 throws LoadXmlPropertyException, InstantiationException, IllegalAccessException{
+	                 throws BeanPopulateException, InstantiationException, IllegalAccessException{
 		for (SqlNode node : protetiesNodes){ 
            String propertyName = sqlColumnToJavaProperyPattern(node.getProperty());		   
 		   
