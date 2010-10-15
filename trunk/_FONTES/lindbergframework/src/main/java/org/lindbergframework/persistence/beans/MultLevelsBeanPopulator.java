@@ -6,7 +6,6 @@ import java.util.Collection;
 
 import org.lindbergframework.beans.util.BeanUtil;
 import org.lindbergframework.exception.BeanPopulateException;
-import org.lindbergframework.exception.LoadXmlPropertyException;
 import org.lindbergframework.persistence.sql.DataSet;
 import org.lindbergframework.persistence.sql.RowDataTree;
 import org.lindbergframework.persistence.sql.SqlNode;
