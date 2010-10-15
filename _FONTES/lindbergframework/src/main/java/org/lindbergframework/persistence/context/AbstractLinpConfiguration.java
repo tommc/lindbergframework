@@ -2,7 +2,6 @@ package org.lindbergframework.persistence.context;
 
 import org.lindbergframework.core.context.AllowIfContextActive;
 import org.lindbergframework.core.context.ConfigurationRepository;
-import org.lindbergframework.core.context.LindbergBeanContext;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.persistence.DataSourceConfig;
