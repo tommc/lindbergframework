@@ -13,38 +13,59 @@ import org.lindbergframework.validation.executors.factory.ExecutorFactory;
 import org.lindbergframework.validation.factory.ValidationFactory;
 
 /**
+ * abstract lindberg persistence configuration base for linp configuration
+ * implementations. This configuration base uses extends {@link ConfigurationRepository}
+ * to do cache of property configurations.
  * 
  * @author Victor Lindberg
  *
  */
 public abstract class AbstractLinpConfiguration extends ConfigurationRepository implements LinpConfiguration{
 
+    /**
+     * data source configuration property key on repository.
+     */
     protected static final String DATA_SOURCE_KEY = "datasource";
 	
 	public AbstractLinpConfiguration(){
 	   //	
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@AllowIfContextActive
 	public Integer getCursorType() {
 		return getConfigValue(CONFIG_PROPERTY_CURSOR_TYPE);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@AllowIfContextActive
 	public DataSourceConfig getDataSourceConfig() {
 		return getConfigValue(DATA_SOURCE_KEY);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@AllowIfContextActive
 	public SqlCommandResolver getSqlCommandResolver() {
 		return getConfigValue(CONFIG_PROPERTY_SQL_COMMAND_RESOLVER);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@AllowIfContextActive
 	public TransactionManager getTransactionManager() {
 		return getConfigValue(CONFIG_PROPERTY_TRANSACTION_MANAGER);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@AllowIfContextActive
 	public String getDefaultSchema() {
 	    return getConfigValue(CONFIG_PROPERTY_DEFAULT_SCHEMA);
@@ -70,7 +91,12 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 	protected void setDefaultSchema(String schema){
 	    registerProperty(CONFIG_PROPERTY_DEFAULT_SCHEMA, schema);
 	}
-	
+
+	/**
+	 * load configuration.
+	 * 
+	 * @param configuration configuration.
+	 */
 	protected void load(LinpConfiguration configuration){
 		setCursorType(configuration.getCursorType());
 		setDataSourceConfig(configuration.getDataSourceConfig());
@@ -78,13 +104,17 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 		setTransactionManager(configuration.getTransactionManager());
 	}
 	
-	
+	/**
+	 * {@inheritDoc}
+	 */
 	@AllowIfContextActive
 	public <E> E getPropertyValue(String key) {
 	    return getConfigValue(key);
 	}
 	
-	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void validate() throws InvalidConfigurationException {
 		IExecutorValidationItems engine = ExecutorFactory.newExecutorValidationItems();
 		try{
