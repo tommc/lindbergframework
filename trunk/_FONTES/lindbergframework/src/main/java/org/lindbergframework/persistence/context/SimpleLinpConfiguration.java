@@ -5,7 +5,9 @@ import org.lindbergframework.persistence.sql.SqlCommandResolver;
 import org.lindbergframework.persistence.transaction.TransactionManager;
 
 /**
- * 
+ * Lindberg persistence configuration implementation to define 
+ * the configuration programmatically.
+ *   
  * @author Victor Lindberg
  *
  */
