@@ -24,55 +24,99 @@ import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfig
 import org.lindbergframework.util.ConfigUtil;
 
 /**
+ * Lindberg persistence configuration to work with XML configuration.
+ * 
+ * The XML schema  is defined in http://www.lindbergframework.org/schema/lindberg-config.xsd
  * 
  * @author Victor Lindberg
  *
  */
 public class XmlLinpConfiguration extends AbstractLinpConfiguration implements XmlLinpConfigurationInitializer{
 	
+    /**
+     * Persistence xml node.
+     */
 	private Persistence configuration;
 	
+	/**
+	 * configuration keys automatically formatted.
+	 */
 	private static final String[] keysAutomaticallyFormatted = new String[] {CONFIG_PROPERTY_SQL_COMMAND_RESOLVER,
 		                                                                    CONFIG_PROPERTY_TRANSACTION_MANAGER};
-	
 	
 	
 	public XmlLinpConfiguration(){
 		//
 	}
 	
+	/**
+	 * Creates a XmlLinpConfiguration using a Persistence xml node.
+	 * 
+	 * @param persistenceConfig xml node.
+	 */
 	public XmlLinpConfiguration(Persistence persistenceConfig){
 	    initialize(persistenceConfig);
 	}
 	
+	/**
+     * Creates a XmlLinpConfiguration using a File of configuration.
+     * 
+     * @param xmlConfig File of configuration.
+     */
 	public XmlLinpConfiguration(File xmlConfig){
        initialize(xmlConfig);
 	}
 	
+	/**
+	 * Creates a XmlLinpConfiguration using a URL to File of configuration.
+	 * 
+	 * @param xmlConfig URL to File of configuration.
+	 */
 	public XmlLinpConfiguration(URL xmlConfig){
 	    initialize(xmlConfig);
 	}
 	
+	/**
+	 * Creates a XmlLinpConfiguration using a inputstream with the File of configuration.
+	 * 
+	 * @param xmlConfig inputstream with the File of configuration.
+	 */
 	public XmlLinpConfiguration(InputStream xmlConfig){
 	    initialize(xmlConfig);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void initialize(File xmlConfig){
 	   loadDocument(xmlConfig);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void initialize(URL xmlConfig){
 		loadDocument(xmlConfig);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void initialize(InputStream xmlConfig){
 		loadDocument(xmlConfig);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void initialize(Persistence persistenceConfig) {
 	   buildConfiguration(persistenceConfig);    
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public Integer getCursorType() {
 		Integer cursorTypeCache = super.getCursorType();
 		if (cursorTypeCache != null)
@@ -94,6 +138,10 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 		return super.getCursorType();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public DataSourceConfig getDataSourceConfig() {
 		DataSourceConfig dsConfig = super.getDataSourceConfig();
 		if (dsConfig != null)
@@ -135,6 +183,10 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 		return null;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public SqlCommandResolver getSqlCommandResolver() {
 		SqlCommandResolver commandResolver = super.getSqlCommandResolver();
 		if (commandResolver != null)
@@ -149,6 +201,10 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 		return super.getSqlCommandResolver();
 	} 
 	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	public TransactionManager getTransactionManager() {
 		TransactionManager transactionManagerCached = super.getTransactionManager();
 		if (transactionManagerCached != null)
@@ -163,6 +219,9 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 		return super.getTransactionManager();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getDefaultSchema() {
 	    String defaultSchemaCache = super.getDefaultSchema();
@@ -180,7 +239,14 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
         return super.getDefaultSchema();
 	}
 	
-	
+
+	/**
+	 * Get a {@link TconfigProperty} with the defined key.
+	 * 
+	 * @param key {@link TconfigProperty} key to search.
+	 * 
+	 * @return {@link TconfigProperty} instance with the defined key or null if {@link TconfigProperty} not found..
+	 */
 	protected TconfigProperty getPropertyFromKey(String key){
 		if (configuration != null){
 			ConfigProperties configProperties = configuration.getConfigProperties();
@@ -195,6 +261,11 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 		return null;
 	}
 	
+	/**
+	 * loads the configuration document.
+	 * 
+	 * @param xmlConfig xml configuration object. This argument must to be a File, URL or InputStream.
+	 */
 	private void loadDocument(Object xmlConfig) {
 		verifyConfiguration();
 		
@@ -211,11 +282,19 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
         }
 	}
 	
+	/**
+	 * checks this configuration.
+	 */
 	private void verifyConfiguration(){
 	    if (configuration != null)
             throw new IllegalStateException("Configuration is already initialized");
 	}
 	
+	/**
+	 * Build configuration based on persistence node.
+	 * 
+	 * @param persistence xml node.
+	 */
 	public void buildConfiguration(Persistence persistence){
 	    verifyConfiguration();
 	    
@@ -226,7 +305,9 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
         }
 	}
 	
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public <E> E getPropertyValue(String key) {
 	    E value = super.getPropertyValue(key);
 	    if (value != null)
@@ -238,7 +319,9 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 	    return value;
 	}
 	
-	
+	/**
+	 * {@inheritDoc}
+	 */
     @Override
     public void validate() throws InvalidConfigurationException {
     	if (! configuration.validate())
