@@ -17,19 +17,36 @@ import org.lindbergframework.util.LogUtil;
 import org.lindbergframework.util.ProxyUtil;
 
 /**
+ * Context implementation for lindberg persistence. This context provides the resources
+ * referring to persistence configurations and is used throughout the persistence module.
+ * 
+ * This context implementation is a singleton.
  * 
  * @author Victor Lindberg
  *
  */
-public class LinpContext implements Context<LinpContext,LinpConfiguration>, LinpConfiguration{
+public class LinpContext implements Context<LinpContext,LinpConfiguration>, 
+                                    LinpConfiguration{
 	
+    /**
+     * singleton instance of context.
+     */
 	private static LinpContext instance;
+	
+	/**
+	 * lindberg persistence configuration on this context.
+	 */
 	private LinpConfiguration configuration;
 		
 	protected LinpContext(){
 		//
 	}
 	
+	/**
+	 * get singleton instance from this context.
+	 * 
+	 * @return singleton instance from this context.
+	 */
 	public static LinpContext getInstance(){
 		if (instance == null){
 		    try{
@@ -51,6 +68,9 @@ public class LinpContext implements Context<LinpContext,LinpConfiguration>, Linp
 		return instance;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public LinpContext loadConfiguration(LinpConfiguration configuration){
 		if (configuration == null)
 			throw new IllegalStateException("Could not to set linp configuration. Configuration is null");
@@ -65,25 +85,42 @@ public class LinpContext implements Context<LinpContext,LinpConfiguration>, Linp
 		return context;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@AllowIfContextActive
 	public Object getPropertyValue(String key) {
 		return configuration.getPropertyValue(key);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean isActive(){
 		return getInstance().configuration != null;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void close(){
 		configuration = null;
 		LogUtil.logInfo("Lindberg Persistence Context finalized");
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void verifyContext() throws IllegalStateContextException{
 		if (! isActive())
 			throw new IllegalStateContextException("Linp Context is not active. Call loadConfiguration static method in LinpContext to active it");
 	}
 	
+	/**
+	 * activates this context.
+	 * 
+	 * @param configuration configuration to active this context.
+	 */
 	protected void activate(LinpConfiguration configuration){
 	    LogUtil.logInfo("Initializing Lindberg Persistence Context");
 		configuration.validate();
@@ -92,16 +129,25 @@ public class LinpContext implements Context<LinpContext,LinpConfiguration>, Linp
 		LogUtil.logInfo("Lindberg Persistence Context initialized");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@AllowIfContextActive
 	public Integer getCursorType() {
 		return configuration.getCursorType();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@AllowIfContextActive
 	public DataSourceConfig getDataSourceConfig() {
 		return configuration.getDataSourceConfig();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@AllowIfContextActive
 	public SqlCommandResolver getSqlCommandResolver() {
 		return configuration.getSqlCommandResolver();
@@ -115,17 +161,26 @@ public class LinpContext implements Context<LinpContext,LinpConfiguration>, Linp
 		
 		return dataSourceConfig.getDataSource();
 	}
-	
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@AllowIfContextActive
 	public TransactionManager getTransactionManager(){
 		return configuration.getTransactionManager();
 	};
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@AllowIfContextActive
 	public String getDefaultSchema() {
 	    return configuration.getDefaultSchema();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void validate() throws InvalidConfigurationException {
 		if (configuration == null)
 			throw new InvalidConfigurationException("Linp Configuration must be not null");

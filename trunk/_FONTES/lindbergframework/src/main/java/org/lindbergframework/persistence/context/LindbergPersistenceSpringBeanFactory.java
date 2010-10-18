@@ -5,14 +5,21 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
+ * Spring bean factory extension for lindberg persistence module.
  * 
  * @author Victor Lindberg
  *
  */
 public class LindbergPersistenceSpringBeanFactory extends SpringBeanFactory{
 	
+    /**
+     * singleton instance of factory.
+     */
     private static LindbergPersistenceSpringBeanFactory instance;
 	
+    /**
+     * default spring persistence configuration file.
+     */
 	private static final String[] defaultConf = new String[] {"org\\lindbergframework\\spring\\conf\\persistenceContext.xml"};
 	
 	private LindbergPersistenceSpringBeanFactory(ApplicationContext applicationContext){
@@ -20,7 +27,9 @@ public class LindbergPersistenceSpringBeanFactory extends SpringBeanFactory{
 	}
 	
 	/**
-	 * retorna a instancia da fábrica 
+	 * Get singleton instance of facotry.
+	 * 
+	 * @return singleton instance of factory.
 	 */
 	public static LindbergPersistenceSpringBeanFactory getInstance(){
 	   if (instance == null){
@@ -35,12 +44,6 @@ public class LindbergPersistenceSpringBeanFactory extends SpringBeanFactory{
 		return getInstance();
 	}
 	
-	/**
-	 * 
-	 * Reinicializa o contexto configurado
-	 * 
-	 * @return
-	 */
 	public LindbergPersistenceSpringBeanFactory reInitContext(){
 		instance = null;
 		
