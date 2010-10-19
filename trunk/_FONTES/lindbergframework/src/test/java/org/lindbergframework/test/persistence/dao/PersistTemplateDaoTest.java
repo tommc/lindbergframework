@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.lindbergframework.beans.di.annotation.Bean;
-import org.lindbergframework.persistence.dao.LinpDao;
+import org.lindbergframework.persistence.dao.LinpDAO;
 import org.lindbergframework.persistence.sql.SqlArg;
 import org.lindbergframework.persistence.sql.SqlFunction;
 import org.lindbergframework.test.testBeans.Employee;
@@ -17,7 +17,7 @@ import org.lindbergframework.test.testBeans.Person;
  *
  */
 @Bean("daoTest")
-public class PersistTemplateDaoTest extends LinpDao{
+public class PersistTemplateDaoTest extends LinpDAO{
 	
 	public PersistTemplateDaoTest(){
 		//
