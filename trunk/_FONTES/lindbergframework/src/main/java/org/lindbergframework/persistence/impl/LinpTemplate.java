@@ -119,12 +119,12 @@ public class LinpTemplate extends TemplateBase
 		}
 	}
 	
-	public LinpProcedureImpl createLinpProcedure(SqlProcedure procedure){
+	public LinpProcedure createLinpProcedure(SqlProcedure procedure){
 		try {
 			if (procedure instanceof SqlFunction)
-			   return new LinpProcedureImpl(getDataSource(),(SqlFunction)procedure);
+			   return new LinpProcedure(getDataSource(),(SqlFunction)procedure);
 			else
-				return new LinpProcedureImpl(getDataSource(),procedure);
+				return new LinpProcedure(getDataSource(),procedure);
 		} catch (SQLException ex) {
 			MappingProcedureFailedExcpetion procedureFailedExcpetion = 
 				new MappingProcedureFailedExcpetion("Mapping from Procedure or Function failed");
