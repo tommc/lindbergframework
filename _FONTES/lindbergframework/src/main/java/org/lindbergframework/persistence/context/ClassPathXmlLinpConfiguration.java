@@ -6,6 +6,8 @@ import org.lindbergframework.util.ResourceUtil;
 /**
  * Linp configuration implementation for configuration file on class path.
  * 
+ * The XML schema  is defined in http://www.lindbergframework.org/schema/lindberg-config.xsd
+ * 
  * @author Victor Lindberg
  *
  */

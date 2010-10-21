@@ -6,6 +6,9 @@ import org.lindbergframework.util.ResourceUtil;
 
 /**
  * Core configuration extension to work in the web context.
+ * 
+ * The XML schema  is defined in http://www.lindbergframework.org/schema/lindberg-config.xsd
+ * 
  * @author Victor Lindberg
  *
  */

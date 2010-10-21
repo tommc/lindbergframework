@@ -98,8 +98,8 @@ public class SqlRowDataSet implements DataSet{
 			return md.getColumnCount();
 		}
 
-		public String getColumnName(int column) throws SQLException {
-			return md.getColumnName(column);
+		public String getColumnName(int columnIndex) throws SQLException {
+			return md.getColumnName(columnIndex);
 		}
 		
 		public String getColumnLabel(int column) throws SQLException {

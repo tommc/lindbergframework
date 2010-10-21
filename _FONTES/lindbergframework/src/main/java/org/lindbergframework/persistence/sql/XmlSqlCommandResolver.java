@@ -25,6 +25,8 @@ import org.springframework.util.StringUtils;
 
 /**
  * 
+ * The XML schema  is defined in http://www.lindbergframework.org/schema/linp-sqlMapping.xsd
+ * 
  * @author Victor Lindberg
  *
  */

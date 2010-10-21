@@ -10,7 +10,9 @@ import org.springframework.jdbc.core.SqlRowSetResultSetExtractor;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 /**
- * 
+ * lindberg spring jdbcTemplate extension that uses
+ * LinpPreparedStatementSetter as PreparedStatementSetter implementation.
+ *  
  * @author Victor Lindberg
  *
  */
@@ -20,14 +22,27 @@ public class LinpSpringJdbcTemplate extends JdbcTemplate{
 		super(dataSource);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public int update(String sql, Object... params) throws DataAccessException {
 		return update(sql, createPreparedStatementSetter(sql, params));
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public SqlRowSet queryForRowSet(String sql, Object... params) throws DataAccessException {
 		return (SqlRowSet) query(sql, createPreparedStatementSetter(sql, params), new SqlRowSetResultSetExtractor());
 	}
-	
+
+	/**
+	 * Create lindberg PreparedStatementSetter implementation for specified sql and parameters.
+	 * 
+	 * @param sql sql for PreparedStatementSetter.
+	 * @param params parameters for PreparedStatementSetter.
+	 * @return lindberg PreparedStatementSetter implementation for specified sql and parameters.
+	 */
 	protected PreparedStatementSetter createPreparedStatementSetter(String sql, Object... params){
 	   return new LinpPreparedStatementSetter(sql,params);	
 	}

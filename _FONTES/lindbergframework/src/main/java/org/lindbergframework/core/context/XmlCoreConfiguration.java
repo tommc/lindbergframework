@@ -21,7 +21,10 @@ import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfig
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Persistence;
 
 /**
- * Core configuration implementation to work with xml configuration based. 
+ * Core configuration implementation to work with xml configuration based.
+ * 
+ * The XML schema  is defined in http://www.lindbergframework.org/schema/lindberg-config.xsd
+ * 
  * @author Victor Lindberg
  *
  */
