@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import org.lindbergframework.exception.BeanPopulateException;
 import org.lindbergframework.exception.MappingProcedureFailedExcpetion;
 import org.lindbergframework.exception.NoSuchSqlCommandException;
+import org.lindbergframework.exception.NonUniqueRowException;
 import org.lindbergframework.exception.PersistenceException;
 import org.lindbergframework.persistence.DataSourceConfig;
 import org.lindbergframework.persistence.PersistenceTemplate;
@@ -25,7 +26,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 /**
- * LinpTemplate (Lindberg Template)
+ * Default Lindberg persistence template implementation. 
  * 
  * @author Victor Lindberg
  *
@@ -37,25 +38,44 @@ public class LinpTemplate extends TemplateBase
 	
 	private LinpSpringJdbcTemplate jdbcTemplate;
 	
+	/**
+	 * Creates a LinpTemplate with configured default values.
+	 */
 	public LinpTemplate(){
 	   configureJdbcTemplate();
 	}
 	
+	/**
+	 * Creates a LinpTemplate with the specified {@link BeanPopulator}
+	 * @param populator BeanPopulator implementation.
+	 */
 	public LinpTemplate(BeanPopulator populator){
 		super(populator);
 		configureJdbcTemplate();
 	}
 	
+	/**
+	 * Creates a LinpTemplate with the specified data source configuration.
+	 * @param dsConfig data source configuration.
+	 */
 	public LinpTemplate(DataSourceConfig dsConfig){
 		super(dsConfig);
 		configureJdbcTemplate();
 	}
 	
+	/**
+	 * Creates a LinpTemplate with the specified bean populator and data source configuration.
+	 * @param populator bean populator implementation.
+	 * @param dsConfig data source configuration.
+	 */
 	public LinpTemplate(BeanPopulator populator, DataSourceConfig dsConfig){
 		super(populator,dsConfig);
 		configureJdbcTemplate();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setDataSourceConfig(DataSourceConfig dataSourceConfig) {
 		super.setDataSourceConfig(dataSourceConfig);
@@ -63,10 +83,16 @@ public class LinpTemplate extends TemplateBase
 		configureJdbcTemplate();
 	}
 	
+	/**
+	 * configures the default JdbcTemplate.
+	 */
 	private void configureJdbcTemplate(){
 		jdbcTemplate = new LinpSpringJdbcTemplate(getDataSource());
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	public <E> List<E> execSqlQuery(Class<E> clazz,String sql, Object... params) {
 		sql = TranslateUtil.translateString(sql, new SqlSelectFieldsTranslator());
@@ -80,18 +106,30 @@ public class LinpTemplate extends TemplateBase
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public <E> E execSqlQueryForObject(Class<E> clazz,String sql, Object... params) {
 		List<E> listResult = execSqlQuery(clazz, sql, params);
 		if (listResult.isEmpty())
 			return null;
 		
+		if (listResult.size() != 1)
+		    throw new NonUniqueRowException("Query returned more that one row, but it was expected only one");
+		
 		return listResult.get(0);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int execSqlUpdate(String sql, Object... params) {
 		return jdbcTemplate.update(sql, params);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public <E> List<E> execQuery(Class<E> clazz, String sqlId, Object... params) {
 		try {
 			String sql = getSqlCommandResolver().getSqlStatement(sqlId).getStatement();
@@ -101,6 +139,9 @@ public class LinpTemplate extends TemplateBase
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public <E> E execQueryForObject(Class<E> clazz,String sqlId, Object... params) {
 		try {
 			String sql = getSqlCommandResolver().getSqlStatement(sqlId).getStatement();
@@ -110,6 +151,9 @@ public class LinpTemplate extends TemplateBase
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int execUpdate(String sqlId, Object... params) {
 		try {
 			String sql = getSqlCommandResolver().getSqlStatement(sqlId).getStatement();
@@ -119,6 +163,13 @@ public class LinpTemplate extends TemplateBase
 		}
 	}
 	
+	/**
+	 * Creates a {@link LinpProcedure} based on {@link SqlProcedure} parameter.
+	 * 
+	 * @param procedure {@link SqlProcedure} to create the {@link LinpProcedure}
+	 * 
+	 * @return {@link LinpProcedure} based on {@link SqlProcedure} parameter.
+	 */
 	public LinpProcedure createLinpProcedure(SqlProcedure procedure){
 		try {
 			if (procedure instanceof SqlFunction)
@@ -136,15 +187,24 @@ public class LinpTemplate extends TemplateBase
 	
 	////////Procedures e Functions calls
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	//FUNCTION sqlFunction
 	public Map callFunction(SqlFunction function, Map<String, Object> args) {
 		return createLinpProcedure(function).execute(args, function.getSqlOutCursorParams());
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public Map callFunction(SqlFunction function, SqlArg... args) {
 		return createLinpProcedure(function).execute(args,function.getSqlOutCursorParams());
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	// FUNCTION - sqlId
 	public Map callFunction(String sqlId, Map<String, Object> args) {
 		try {
@@ -155,6 +215,9 @@ public class LinpTemplate extends TemplateBase
 		}
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public Map callFunction(String sqlId, SqlArg... args) {
 		try {
 			SqlFunction function = getSqlCommandResolver().getSqlFunction(sqlId);
@@ -164,16 +227,25 @@ public class LinpTemplate extends TemplateBase
 		}
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	// PROCEDURE - SqlProcedure
 	public Map callProcedure(SqlProcedure procedure, Map<String, Object> args) {
 		return createLinpProcedure(procedure).execute(args,procedure.getSqlOutCursorParams());
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public Map callProcedure(SqlProcedure procedure, SqlArg... args) {
 		return createLinpProcedure(procedure).execute(args,procedure.getSqlOutCursorParams());
 	}
 	
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	//PROCEDURE - SqlId
 	public Map callProcedure(String sqlId, Map<String, Object> args) {
 		try {
@@ -184,6 +256,9 @@ public class LinpTemplate extends TemplateBase
 		}
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public Map callProcedure(String sqlId, SqlArg... args) {
 		try {
 			SqlProcedure procedure = getSqlCommandResolver().getSqlProcedure(sqlId);
@@ -193,6 +268,9 @@ public class LinpTemplate extends TemplateBase
 		}
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public DataSource getDataSource() {
 		return super.getDataSource();

@@ -5,6 +5,8 @@ import org.lindbergframework.util.ResourceUtil;
 /**
  * Extension of Xml Core Configuration that to work with class path recoursces.
  * 
+ * The XML schema  is defined in http://www.lindbergframework.org/schema/lindberg-config.xsd
+ * 
  * @author Victor Lindberg
  *
  */
