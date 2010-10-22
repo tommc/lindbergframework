@@ -48,7 +48,7 @@ public class BeanUtil {
 	 */
 	public static void loadProperty(Object bean, String property, Object value) throws BeanPopulateException{
 		try {
-			MultLevelPropertyUtilsBean propertyUtilsBean = new MultLevelPropertyUtilsBean(bean.getClass());
+			MultiLevelPropertyUtilsBean propertyUtilsBean = new MultiLevelPropertyUtilsBean(bean.getClass());
 			
 			BeanUtilsBean beanUtils = new BeanUtilsBean(new ConvertUtilsBean(),propertyUtilsBean);
 			beanUtils.copyProperty(bean, property, value);

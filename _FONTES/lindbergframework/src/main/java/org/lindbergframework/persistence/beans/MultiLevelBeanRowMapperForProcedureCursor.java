@@ -9,20 +9,20 @@ import org.lindbergframework.persistence.sql.RowDataTree;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
- * MultLevelsBeanPopulator extension that implements {@link RowMapper} interface
+ * MultiLevelsBeanPopulator extension that implements {@link RowMapper} interface
  * to work with Procedure and Function cursors.
  * 
  * @author Victor Lindberg
  *
  */
-public class MultLevelBeanRowMapperForProcedureCursor extends MultLevelsBeanPopulator implements RowMapper{
+public class MultiLevelBeanRowMapperForProcedureCursor extends MultiLevelsBeanPopulator implements RowMapper{
 	
     /**
      * Bean class to populate.
      */
 	private Class clazz;
 	
-	public MultLevelBeanRowMapperForProcedureCursor(Class clazz) {
+	public MultiLevelBeanRowMapperForProcedureCursor(Class clazz) {
 		this.clazz = clazz;
 	}
 

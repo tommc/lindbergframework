@@ -12,11 +12,11 @@ import org.lindbergframework.util.ReflectionUtil;
  * @author Victor Lindberg
  *
  */
-class MultLevelPropertyUtilsBean extends PropertyUtilsBean{
+class MultiLevelPropertyUtilsBean extends PropertyUtilsBean{
 	
 	private Class clazz;
 	
-	public MultLevelPropertyUtilsBean(Class clazz) {
+	public MultiLevelPropertyUtilsBean(Class clazz) {
 		this.clazz = clazz;
 	}
 	
