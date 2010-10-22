@@ -59,7 +59,7 @@ public class MultiLevelsBeanPopulator extends BeanPopulatorBase{
 		try {
 			E beanInstance = beanClass.newInstance();
 			SqlNode root = rowDataTree.getTree();
-			populateMultLevel(beanInstance, root.getChilds());
+			populateMultLevel(beanInstance, root.getChildren());
 			
 			return beanInstance;
 		} catch (InstantiationException ex) {
@@ -102,7 +102,7 @@ public class MultiLevelsBeanPopulator extends BeanPopulatorBase{
 			   BeanUtil.loadProperty(bean, propertyName, node.getValue());
 		   else{//node has children
 			     Object beanPropertyInstance = property.getType().newInstance();
-			     populateMultLevel(beanPropertyInstance, node.getChilds());
+			     populateMultLevel(beanPropertyInstance, node.getChildren());
 			     BeanUtil.loadProperty(bean, propertyName, beanPropertyInstance);
 		   }
 		}

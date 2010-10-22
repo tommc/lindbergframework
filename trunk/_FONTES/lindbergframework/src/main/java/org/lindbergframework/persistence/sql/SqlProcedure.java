@@ -93,13 +93,4 @@ public class SqlProcedure extends SqlCommand{
 			sqlOutCursorParams.add(param);	
 	}
 
-	@Override
-	public String toString() {
-		return String.format("Id: %s Catalog: %s Schema: %s Package: %s Name: %s", getId(),
-				                                                                   getCatalog(),
-				                                                                   getSchema(),
-				                                                                   getPack(),
-				                                                                   getName());
-	}
-	
 }
