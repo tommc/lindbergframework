@@ -1,20 +1,27 @@
 package org.lindbergframework.persistence.sql;
 
 /**
+ * SQL argument for procedures and functions.
  * 
  * @author Victor Lindberg
  *
  */
 public class SqlArg {
 	
+    /**
+     * argument name (parameter name in procedure or functions Signature).
+     */
 	private String name;
+	
+	/**
+	 * argument value.
+	 */
 	private Object value;
 	
 	public SqlArg(){
 		//
 	}
 	
-
 	public SqlArg(String name, Object value) {
 		super();
 		this.name = name;

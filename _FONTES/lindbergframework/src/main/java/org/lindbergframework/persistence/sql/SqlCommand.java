@@ -1,12 +1,16 @@
 package org.lindbergframework.persistence.sql;
 
 /**
+ * abstraction of sql command. Any database call command in lindberg persistence is a {@link SqlCommand}
  * 
  * @author Victor Lindberg
  *
  */
 public abstract class SqlCommand {
 	
+    /**
+     * command id.
+     */
 	private String id;
 	
 	public SqlCommand(){
@@ -27,7 +31,7 @@ public abstract class SqlCommand {
 	
 	@Override
 	public String toString() {
-		return "Id: "+id;
+		return "Sql Command: "+id;
 	}
 	
 
