@@ -40,9 +40,9 @@ import org.springframework.stereotype.Component;
  */
 @Component("multLevelsBeanPopulator")
 @Scope("prototype")
-public class MultLevelsBeanPopulator extends BeanPopulatorBase{
+public class MultiLevelsBeanPopulator extends BeanPopulatorBase{
 	
-	public MultLevelsBeanPopulator(){
+	public MultiLevelsBeanPopulator(){
 		//
 	}
 	

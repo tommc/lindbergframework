@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 
 /**
+ * Lindberg PreparedStatementSetter implementation.
  * 
  * @author Victor Lindberg
  *
@@ -24,10 +25,16 @@ public class LinpPreparedStatementSetter implements PreparedStatementSetter, Par
 		preparedStatementSetter = creator.newPreparedStatementSetter(params);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setValues(PreparedStatement ps) throws SQLException {
 		preparedStatementSetter.setValues(ps);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void cleanupParameters() {
 	   ((ParameterDisposer) preparedStatementSetter).cleanupParameters();	
 	}

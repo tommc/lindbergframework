@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 
 import org.lindbergframework.exception.PersistenceException;
 import org.lindbergframework.exception.RegisterParameterProceduresAndFunctionsFailedException;
-import org.lindbergframework.persistence.beans.MultLevelBeanRowMapperForProcedureCursor;
+import org.lindbergframework.persistence.beans.MultiLevelBeanRowMapperForProcedureCursor;
 import org.lindbergframework.persistence.context.LinpContext;
 import org.lindbergframework.persistence.sql.SqlArg;
 import org.lindbergframework.persistence.sql.SqlFunction;
@@ -77,7 +77,7 @@ class LinpProcedure extends StoredProcedure{
 		if (rsMapping.next()){
 			if (function instanceof SqlFunctionForCursor)
 				declareParameter(new SqlOutParameter(function.getResultName(),LinpContext.getInstance().getCursorType(),
-						new MultLevelBeanRowMapperForProcedureCursor(((SqlFunctionForCursor) function).getBeanResult())));
+						new MultiLevelBeanRowMapperForProcedureCursor(((SqlFunctionForCursor) function).getBeanResult())));
 			else
 			    declareParameter(getSqlParam(function.getResultName(), rsMapping.getInt(6), rsMapping.getShort(5)));
 		}
@@ -149,7 +149,7 @@ class LinpProcedure extends StoredProcedure{
 			RowMapperAdapter rmad = rowMappers.get(i);
 			SqlOutCursorParam outCur = outCursors[i];
 			
-			rmad.setRm(new MultLevelBeanRowMapperForProcedureCursor(outCur.getBeanClass()));
+			rmad.setRm(new MultiLevelBeanRowMapperForProcedureCursor(outCur.getBeanClass()));
 		}
 	}
 	
