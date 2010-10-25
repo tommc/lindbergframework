@@ -29,6 +29,9 @@ public abstract class SqlCommand {
 		this.id = id;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String toString() {
 		return "Sql Command: "+id;

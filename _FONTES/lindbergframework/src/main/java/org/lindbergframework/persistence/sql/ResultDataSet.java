@@ -12,6 +12,9 @@ import java.sql.SQLException;
  */
 public class ResultDataSet implements DataSet{
 	
+    /**
+     * encapsulated resultset.
+     */
 	private ResultSet rs;
 	
 	/**
