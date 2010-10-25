@@ -5,31 +5,90 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Sql command for stored procedures.
  * 
  * @author Victor Lindberg
  * 
  */
 public class SqlProcedure extends SqlCommand{
 
-	private String catalog, schema, pack, name;
+    /**
+     * procedure catalog.
+     */
+	private String catalog;
+	
+	/**
+	 * procedure schema.
+	 */
+	private String schema;
+	
+	/**
+	 * procedure package.
+	 */
+	private String pack;
+	
+	/**
+	 * procedure name.
+	 */
+	private String name;
+	
+	/**
+	 * registered output cursor parameters.
+	 */
 	private List<SqlOutCursorParam> sqlOutCursorParams;
 
+	/**
+	 * creates a {@link SqlProcedure} with the output parameters.
+	 * 
+	 * @param outCursorParams procedure output cursor parameters.
+	 */
 	public SqlProcedure(SqlOutCursorParam... outCursorParams) {
 		setSqlOutCursorParams(outCursorParams);
 	}
 
+	/**
+	 * creates a {@link SqlProcedure} with the procedure schema, package, name and output parameters.
+	 * 
+	 * @param schema procedure schema.
+	 * @param pack procedure package.
+	 * @param name procedure name.
+     * @param outCursorParams procedure output cursor parameters.
+	 */
 	public SqlProcedure(String schema, String pack, String name,SqlOutCursorParam... outCursorParams) {
 		this(null,schema,pack,name);
 	}
 
+	/**
+	 * creates a {@link SqlProcedure} with the package, name and output parameters.
+	 * 
+	 * @param pack procedure package.
+	 * @param name procedure name.
+     * @param outCursorParams procedure output cursor parameters.
+	 */
 	public SqlProcedure(String pack, String name,SqlOutCursorParam... outCursorParams) {
 		this(null,pack,name);
 	}
 
+	/**
+	 * creates a {@link SqlProcedure} with the name and output parameters.
+	 * 
+	 * @param name procedure name.
+     * @param outCursorParams procedure output cursor parameters.
+	 */
 	public SqlProcedure(String name,SqlOutCursorParam... outCursorParams) {
 		this(null,name);
 	}
 
+	/**
+     * creates a {@link SqlProcedure} with the command id, procedure catalog, schema, package, name and output parameters.
+     * 
+     * @param id command id.
+     * @param catalog procedure catalog.
+     * @param schema procedure schema.
+     * @param pack procedure package.
+     * @param name procedure name.
+     * @param outCursorParams procedure output cursor parameters.
+     */
 	public SqlProcedure(String id, String catalog, String schema, String pack, String name,SqlOutCursorParam... outCursorParams) {
 		super(id);
 		this.catalog = catalog;
@@ -39,6 +98,15 @@ public class SqlProcedure extends SqlCommand{
 		setSqlOutCursorParams(outCursorParams);
 	}
 	
+	/**
+     * creates a {@link SqlProcedure} with the command id, procedure catalog, schema, package, name and output parameters.
+     * 
+     * @param catalog procedure catalog.
+     * @param schema procedure schema.
+     * @param pack procedure package.
+     * @param name procedure name.
+     * @param outCursorParams procedure output cursor parameters.
+     */
 	public SqlProcedure(String catalog, String schema, String pack, String name,SqlOutCursorParam... outCursorParams) {
 		this(null, catalog, schema, pack, name);
 	}
@@ -83,11 +151,21 @@ public class SqlProcedure extends SqlCommand{
         sqlOutCursorParams = new ArrayList<SqlOutCursorParam>();	
 		Collections.addAll(sqlOutCursorParams, sqlOutCursorParamsArray);
 	}
-	
+
+	/**
+	 * Records the output cursor parameters of procedure.
+	 * 
+	 * @param outCursorParamList list of procedure output cursor parameters.
+	 */
 	public void registerSqlOutCursorsParam(List<SqlOutCursorParam> outCursorParamList){
 	   registerSqlOutCursorsParam(outCursorParamList.toArray(new SqlOutCursorParam[0]));   	
 	}
 	
+	/**
+	 * Records the output cursor parameters of procedure.
+	 * 
+	 * @param outCursorParamArray procedure output cursor parameters.
+	 */
 	public void registerSqlOutCursorsParam(SqlOutCursorParam... outCursorParamArray){
 		for (SqlOutCursorParam param : outCursorParamArray)
 			sqlOutCursorParams.add(param);	

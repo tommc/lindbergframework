@@ -1,12 +1,16 @@
 package org.lindbergframework.persistence.sql;
 
 /**
+ * Output parameter from stored procedures and functions.
  * 
  * @author Victor Lindberg
  *
  */
 public class SqlOutCursorParam {
 	
+    /**
+     * bean class to map.
+     */
 	private Class beanClass;
 	
 	public SqlOutCursorParam(){
