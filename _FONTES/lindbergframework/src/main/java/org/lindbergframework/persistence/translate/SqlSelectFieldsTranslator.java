@@ -4,6 +4,7 @@ import org.springframework.util.StringUtils;
 
 
 /**
+ * Translator implementation to translate select fields of a query.
  * 
  * @author Victor Lindberg
  *
@@ -15,6 +16,9 @@ public class SqlSelectFieldsTranslator implements SqlStringSyntaxTranslator<Stri
 		//
 	}
 	
+	/**
+	 * translates select fields of the query.
+	 */
 	public String translate(String sql) {
 		sql = sql.trim();
 		
@@ -31,6 +35,12 @@ public class SqlSelectFieldsTranslator implements SqlStringSyntaxTranslator<Stri
 		return String.format("select %s %s", sqlFieldsTranslated, sqlFrom);
 	}
 	
+	/**
+	 * get the string of select fields of the query.
+	 * 
+	 * @param sql query string.
+	 * @return string of select fields.
+	 */
 	public String getSqlFields(String sql){
 	    int  indexFrom = 0;
 	    String sqlAux = sql.toUpperCase();
@@ -54,20 +64,43 @@ public class SqlSelectFieldsTranslator implements SqlStringSyntaxTranslator<Stri
 		return sql.substring(6,indexFrom - 5).trim();
 	}
 	
+	/**
+	 * translates the field string.
+	 * @param str field string.
+	 * @return field translated.
+	 */
 	protected String executeTranslationField(String str){
 		return replacePropertySeparator(replaceReservedCharacters(str));
 	}
 	
+	/**
+	 * replaces the reserved characters in field string.
+	 * 
+	 * @param str field string.
+	 * @return field translated.
+	 */
 	protected String replaceReservedCharacters(String str){
-		return str.replace(PROPERTY_SEPARATOR_STRING_RESERVED, PROPERTY_SEPARATOR_STRING_RESERVED_REPLACEMENT_ESCAPE);
+		return str.replace(PROPERTY_SEPARATOR_RESERVED_STRING, PROPERTY_SEPARATOR_RESERVED_STRING_REPLACEMENT_ESCAPE);
 	}
 	
+	/**
+     * replaces the property separators in field string.
+     * 
+     * @param str field string.
+     * @return field translated.
+     */
 	protected String replacePropertySeparator(String str){
 		String replaceResult = str.replace(PROPERTY_SEPARATOR, PROPERTY_SEPARATOR_REPLACEMENT);
 		
 		return replaceResult.replace(PROPERTY_SEPARATOR_REPLACEMENT + "*", PROPERTY_SEPARATOR + "*");
 	}
 	
+	/**
+	 * executes the sql field translation.
+	 * 
+	 * @param sqlFields sql field string .
+	 * @return field translated.
+	 */
 	public String executeTranslationSqlFields(String sqlFields){
 		String[] sqlFieldsArray = sqlFields.split(",");
 		

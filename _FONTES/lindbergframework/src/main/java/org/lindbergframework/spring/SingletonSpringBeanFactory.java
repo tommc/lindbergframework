@@ -5,10 +5,6 @@ import org.springframework.context.ApplicationContext;
 
 
 /**
- * Fábrica de beans do spring é um singleton que trabalha mantendo uma única instancia de si mesma.<br>
- * Para obter uma instancia dessa classe inicialize o <br>
- * contexto do spring usando o método {@link #initContext(ApplicationContext)} <br>
- * e a partir daí chame  o método {@link #getInstance()} para obter a instancia 
  * 
  * @author Victor Lindberg
  *
