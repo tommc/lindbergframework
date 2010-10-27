@@ -11,18 +11,18 @@ import net.sf.cglib.proxy.Proxy;
  */
 public class ProxyUtil {
 	
-	public static <E> E createProxy(Class clazz,Callback callback,Object... args){
+	public static <E> E createProxy(Class clazz,Callback callback,Object... constructorArgs){
 		Enhancer e = new Enhancer();
 
 		e.setSuperclass(clazz);
 		e.setCallback(callback);
 		
-		Class[] arrayClazz = new Class[args.length];
+		Class[] arrayClazz = new Class[constructorArgs.length];
 		
 		for (int i = 0;i < arrayClazz.length;i++)
-			arrayClazz[i] = args[i].getClass();
+			arrayClazz[i] = constructorArgs[i].getClass();
 		
-		return (E) e.create(arrayClazz,args);   	
+		return (E) e.create(arrayClazz,constructorArgs);   	
 	}
 
 }

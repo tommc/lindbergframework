@@ -20,7 +20,7 @@ import org.lindbergframework.persistence.sql.SqlFunction;
 import org.lindbergframework.persistence.sql.SqlProcedure;
 import org.lindbergframework.persistence.sql.SqlRowDataSet;
 import org.lindbergframework.persistence.translate.SqlSelectFieldsTranslator;
-import org.lindbergframework.persistence.util.TranslateUtil;
+import org.lindbergframework.persistence.util.SqlTranslateUtil;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -95,7 +95,7 @@ public class LinpTemplate extends TemplateBase
 	 */
 	@SuppressWarnings("unchecked")
 	public <E> List<E> execSqlQuery(Class<E> clazz,String sql, Object... params) {
-		sql = TranslateUtil.translateString(sql, new SqlSelectFieldsTranslator());
+		sql = SqlTranslateUtil.translateSqlString(sql, new SqlSelectFieldsTranslator());
 		try {
 			SqlRowSet sqlRs = jdbcTemplate.queryForRowSet(sql, params);
 			return populateBeans(clazz, new SqlRowDataSet(sqlRs));

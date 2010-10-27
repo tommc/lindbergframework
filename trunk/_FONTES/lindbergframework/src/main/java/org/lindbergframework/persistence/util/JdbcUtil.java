@@ -8,12 +8,19 @@ import java.util.Date;
 import org.springframework.jdbc.core.StatementCreatorUtils;
 
 /**
+ * Utilitary class to JDBC operations.
  * 
  * @author Victor Lindberg
  *
  */
 public class JdbcUtil {
 	
+    /**
+     * Extracts the int sql parameter types of the java objects.
+     *  
+     * @param objectTypes java objects to extract sql types.
+     * @return sql types from java objects.
+     */
 	public static int[] javaTypesToSqlParameterTypes(Object... objectTypes){
 	  int[] sqlTypes = new int[objectTypes.length];
 	  for (int i = 0; i < objectTypes.length;i++){
@@ -37,9 +44,23 @@ public class JdbcUtil {
 	}
 	
 	/**
+     * Extracts the int sql parameter types of the java classes.
+     *  
+     * @param classTypes java classes to extract sql types.
+     * @return sql types from java classes.
+     */
+    public static int[] javaTypesToSqlParameterTypes(Class... classTypes){
+        int[] sqlTypes = new int[classTypes.length];
+        for (int i = 0; i < classTypes.length;i++)
+            sqlTypes[i] = StatementCreatorUtils.javaTypeToSqlParameterType(classTypes[i]);
+        
+        return sqlTypes;
+    }
+	
+	/**
 	 * Return the sql type from Java type param. 
 	 * 
-	 * @param type
+	 * @param type type class.
 	 * @return sql date type or null if the type does not references a {@link Date}, {@link Time} or {@link Timestamp} type.
 	 */
 	public static Integer toSqlDateType(Class type){
@@ -55,13 +76,4 @@ public class JdbcUtil {
 		return null;
 	}
 	
-	
-	public static int[] javaTypesToSqlParameterTypes(Class... classTypes){
-		int[] sqlTypes = new int[classTypes.length];
-		for (int i = 0; i < classTypes.length;i++)
-			sqlTypes[i] = StatementCreatorUtils.javaTypeToSqlParameterType(classTypes[i]);
-		
-		return sqlTypes;
-	}
-
 }

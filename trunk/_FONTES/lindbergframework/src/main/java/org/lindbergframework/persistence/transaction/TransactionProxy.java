@@ -8,10 +8,12 @@ import net.sf.cglib.proxy.MethodProxy;
 
 import org.lindbergframework.exception.TransactionFailureException;
 import org.lindbergframework.persistence.context.LinpContext;
+import org.lindbergframework.persistence.transaction.annotation.Transax;
 import org.lindbergframework.persistence.util.TransactionUtil;
 
 /**
- * 
+ * Proxy to intercept annotated beans with {@link Transax} annotation inside of bean context. 
+ *  
  * @author Victor Lindberg
  *
  */
@@ -22,6 +24,10 @@ public class TransactionProxy implements MethodInterceptor{
 	  //
 	}
 	
+	/**
+	 * intercepts the call and if the bean class or method call is annotated
+	 * with {@link Transax} annotation then a transaction is used.
+	 */
 	public Object intercept(final Object obj, Method method,
 			final Object[] args, final MethodProxy proxy) throws Throwable {
 		if (! TransactionUtil.isTransactional(method)

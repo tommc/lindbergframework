@@ -1,7 +1,7 @@
 package org.lindbergframework.persistence.beans;
 
 import org.lindbergframework.persistence.translate.SqlColumnForJavaPropertyTranslator;
-import org.lindbergframework.persistence.util.TranslateUtil;
+import org.lindbergframework.persistence.util.SqlTranslateUtil;
 
 /**
  * abstract bean populator with main resources for all {@link BeanPopulator} implementations.
@@ -22,7 +22,7 @@ public abstract class BeanPopulatorBase implements BeanPopulator{
 	 * @return column name in the java pattern
 	 */
 	public String sqlColumnToJavaProperyPattern(String sqlColumn){
-		return TranslateUtil.translateString(sqlColumn,
+		return SqlTranslateUtil.translateSqlString(sqlColumn,
                 new SqlColumnForJavaPropertyTranslator());
 	}
 
