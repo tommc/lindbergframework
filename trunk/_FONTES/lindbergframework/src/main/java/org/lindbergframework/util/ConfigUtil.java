@@ -18,20 +18,22 @@ import org.lindbergframework.exception.BeanException;
 import org.lindbergframework.exception.LindbergException;
 import org.lindbergframework.exception.LoadXmlPropertyException;
 import org.lindbergframework.exception.NoSuchMethodOrPropertyException;
-import org.lindbergframework.schema.LindbergConfigurationDocument;
-import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration;
-
-
-
 
 
 /**
+ * Utilitary class to configuration operations.
  * 
  * @author Victor Lindberg
  *
  */
 public class ConfigUtil {
 	
+	/**
+	 * get the value of the string based on configuration formats.
+	 * @param valueStr configuration value string.
+	 * @param constructorArgs constructor arguments.
+	 * @return resolved string value or null if valueString is null.
+	 */
 	public static <E> E getValueObject(String valueStr,Object... constructorArgs){
 		if (valueStr == null)
 			return null;
@@ -60,6 +62,12 @@ public class ConfigUtil {
 		return (E) valueStr;
 	}
 	
+	/**
+	 * get the configuration value of a static property or static method.
+	 * @param clazzName class name.
+	 * @param propertyOrMethodName static property or static method.
+	 * @return resolved value.
+	 */
 	public static Object getValueObjectFromStaticPropertyOrStaticMethod(String clazzName, String propertyOrMethodName){
 		try {
 			Class clazz = Class.forName(clazzName);
@@ -78,6 +86,9 @@ public class ConfigUtil {
 		}
 	}
 	
+	/**
+	 * Resolves a value string to a object if possible.
+	 */
 	public static Object getObjectIfPossible(String valueStr,
 			Object... constructorArgs) {
 		try {
@@ -90,6 +101,9 @@ public class ConfigUtil {
 		}
 	}
 	
+	/**
+	 * converts the string to array based on separator ";".
+	 */
 	public static String[] stringToArray(String str){
 		str = StringUtils.deleteWhitespace(str);
 		String[] array = str.split(";");
@@ -97,12 +111,21 @@ public class ConfigUtil {
 		return array;
 	}
 	
+	/**
+	 * converts the string to list based on separator ";".
+	 */
 	public static List<String> stringToList(String str){
 		String[] strings = stringToArray(str);
 		
 		return Arrays.asList(strings);
 	}
 
+	/**
+	 * Initialize a configuration based on ConfigurationInitializer and a fileConfig.<br><br>
+	 * 
+	 *  fileConfig must be a {@link File}, {@link URL} or {@link InputStream}.
+	 * 
+	 */
 	public static void initializeConfig(ConfigurationInitializer initializer,Object fileConfig) throws IOException, XmlException {
         if (fileConfig instanceof File)
             initializer.initialize((File)fileConfig);

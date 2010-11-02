@@ -17,18 +17,25 @@ import org.lindbergframework.util.LogUtil;
 import org.springframework.beans.BeanUtils;
 
 /**
+ * Web listener to initialize the configuration of lindbergframework. 
  * 
  * @author Victor Lindberg
  *
  */
 public class LindbergConfigLoaderListener implements ServletContextListener, HttpSessionListener{
-    
+   
+	/**
+	 * attribute name of bean repository map in session. This attribute is uses by BeanRepositoryByResponse.
+	 */
     public static final String ATTRIBUTE_BEANS_REPOSITORY = "lindbergSessionBeansRepository";    
 	
 	public LindbergConfigLoaderListener(){
 		//
 	}
 	
+	/**
+	 * initializes the lindberg configuration. 
+	 */
 	public void contextInitialized(ServletContextEvent sce) {
 	   	if (! LinpContext.getInstance().isActive()){
 	   	    LogUtil.logInfo("Initializing Lindberg Web Context");
@@ -70,6 +77,10 @@ public class LindbergConfigLoaderListener implements ServletContextListener, Htt
 	
 	public void sessionCreated(HttpSessionEvent se) {}
 	
+	/**
+	 * Removes the bean repository map when the user session is destroyed.
+	 * This attribute is added in the session by BeanRepositoryByResponse.
+	 */
 	public void sessionDestroyed(HttpSessionEvent se) {
 	    Map map = (Map) se.getSession().getAttribute(ATTRIBUTE_BEANS_REPOSITORY);
 	    if (map != null){

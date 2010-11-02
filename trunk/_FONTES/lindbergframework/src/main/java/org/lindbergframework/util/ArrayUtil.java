@@ -1,17 +1,14 @@
 package org.lindbergframework.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Vector;
 
-import org.lindbergframework.persistence.context.XmlLinpConfiguration;
-
 
 
 /**
- * Classe utilitária para manipulação de arrays
+ * Utilitary class to Array operations.
  * 
  * @author Victor Lindberg
  *
@@ -19,16 +16,16 @@ import org.lindbergframework.persistence.context.XmlLinpConfiguration;
 public class ArrayUtil {
 	
 	/**
-	 * Retorna um array de objetos baseado no conjunto passado como argumento
+	 * Returns a array based on object varargs.
 	 */
 	public static  <E> E[] toArray(E... objs){
 		return objs; 
 	}
 	
 	/**
-	 * Efetua o merge entre dois arrays em um terceiro array fornecido.<br><br>
+	 * Merges tow array on a other specified array.<br><br>
 	 * 
-	 * Por exemplo: O trecho de código abaixo <br><br>
+	 * E.g.: <br><br>
 	 * 
 	 *  String[] a = new String[] {"aa", "bb"};
 		String[] b = new String[] {"11", "22"};
@@ -36,13 +33,13 @@ public class ArrayUtil {
 		String[] c = merge(a, b, new String[a.length + b.length]);
 		<br><br>
 		
-		o array <i>c</i> terá o conteúdo {"aa", "bb", "11", "22"}
+		The array <i>c</i> : {"aa", "bb", "11", "22"}
 	 * 
-	 * @param <E>
-	 * @param array1
-	 * @param array2
-	 * @param arrayToMerge
-	 * @return
+	 * @param <E> type of elements in array.
+	 * @param array1 array 1
+	 * @param array2 array 2
+	 * @param arrayToMerge array to merge.
+	 * @return array merged.
 	 */
 	public static <E> E[] merge(E[] array1, E[] array2,E[] arrayToMerge){
 		List<E> list = new Vector<E>();
@@ -54,15 +51,13 @@ public class ArrayUtil {
 	}
 	
 	/**
-	 * Efetua o merge da mesma forma que o método {@link #merge(Object[], Object[], Object[])} <br>
-	 * só que ordena o array resultando do merge baseado em um objeto {@link Comparator} passado
+	 * Executes the merge of tow array on a other array based on specified comparator implementation.
 	 * 
-	 * @param <E>
-	 * @param array1
-	 * @param array2
-	 * @param arrayToMerge
-	 * @param comparator
-	 * @return
+	 * @param array1 array 1
+	 * @param array2 array 2
+	 * @param arrayToMerge array to merge
+	 * @param comparator comparator to sort
+	 * @return array merged.
 	 */
 	public static <E> E[] mergeSorting(E[] array1, E[] array2,E[] arrayToMerge, Comparator<E> comparator){
 		E[] arrayMerged = merge(array1, array2, arrayToMerge);
