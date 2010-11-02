@@ -6,7 +6,6 @@ import javax.el.ELResolver;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.Response;
 
 import org.lindbergframework.beans.di.context.BeanFactory;
 import org.lindbergframework.beans.di.context.UserBeanContext;

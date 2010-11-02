@@ -45,6 +45,5 @@ public class LindbergFlexBeanFactory implements FlexFactory{
         LindbergFlexFactoryInstance factoryInstance = (LindbergFlexFactoryInstance) inst;
         return factoryInstance.lookup(); 
     }
-
-
+    
 }

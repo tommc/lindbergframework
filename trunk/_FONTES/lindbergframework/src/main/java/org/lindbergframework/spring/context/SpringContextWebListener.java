@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
+ * Web listener to initialize the SingletonSpringBeanFactory based on ServletContext.
  * 
  * @author Victor Lindberg
  *
