@@ -7,15 +7,12 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.smartcardio.CommandAPDU;
-
 import org.apache.xmlbeans.XmlException;
-import org.lindbergframework.core.context.ConfigurationInitializer;
 import org.lindbergframework.exception.DuplicatedSqlMappingIdException;
-import org.lindbergframework.exception.SqlCommandLoadingFailedException;
 import org.lindbergframework.exception.InvalidSqlMappingException;
 import org.lindbergframework.exception.NoSuchSqlCommandException;
 import org.lindbergframework.exception.NoSuchSqlStatementException;
+import org.lindbergframework.exception.SqlCommandLoadingFailedException;
 import org.lindbergframework.exception.SqlMappingException;
 import org.lindbergframework.persistence.context.LinpConfigurationInitializer;
 import org.lindbergframework.schema.LinpMappingDocument;
