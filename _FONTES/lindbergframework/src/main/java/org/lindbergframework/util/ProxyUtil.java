@@ -2,15 +2,19 @@ package org.lindbergframework.util;
 
 import net.sf.cglib.proxy.Callback;
 import net.sf.cglib.proxy.Enhancer;
-import net.sf.cglib.proxy.Proxy;
 
 /**
+ * Utilitary class to proxy operations.
  * 
  * @author Victor Lindberg
  *
  */
 public class ProxyUtil {
 	
+	/**
+	 * create a proxy based on specified class, {@link Callback} and constructor arguments.
+	 * @return proxy instance of class argument.
+	 */
 	public static <E> E createProxy(Class clazz,Callback callback,Object... constructorArgs){
 		Enhancer e = new Enhancer();
 

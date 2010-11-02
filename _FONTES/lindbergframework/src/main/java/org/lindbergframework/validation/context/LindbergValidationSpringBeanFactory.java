@@ -1,6 +1,6 @@
 package org.lindbergframework.validation.context;
 
-import org.lindbergframework.spring.SpringBeanFactory;
+import org.lindbergframework.spring.context.SpringBeanFactory;
 import org.lindbergframework.util.ArrayUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
