@@ -25,13 +25,13 @@
        </Sql-Command>
        
        <Sql-Command id="queryPersonsFromProcedure">
-          <Procedure name="LISTPERSONSLIKENICKNAME" >
+          <Procedure name="listPersonsLikeNickName" >
              <OutCursor class="org.lindbergframework.test.testBeans.Person"/>
           </Procedure>
        </Sql-Command>
               
        <Sql-Command id="queryOut3PersonsFromProcedure">
-          <Procedure name="OUT3PERSONS" >
+          <Procedure name="out3Persons" >
              <OutCursor class="org.lindbergframework.test.testBeans.Person"/>
              <OutCursor class="org.lindbergframework.test.testBeans.Person"/>
              <OutCursor class="org.lindbergframework.test.testBeans.Person"/>
@@ -39,7 +39,7 @@
        </Sql-Command>  
        
        <Sql-Command id="queryPersonsFromFunction">
-          <Function name="LISTPERSONSLIKENICKNAMEFUNC" resultName="personsList">
+          <Function name="listPersonsLikeNickNameFunc" resultName="personsList">
              <ResultCursor class="org.lindbergframework.test.testBeans.Person" />
           </Function>
        </Sql-Command>       

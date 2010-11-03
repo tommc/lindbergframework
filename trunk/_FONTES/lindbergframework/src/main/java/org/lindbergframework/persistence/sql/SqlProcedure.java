@@ -91,10 +91,10 @@ public class SqlProcedure extends SqlCommand{
      */
 	public SqlProcedure(String id, String catalog, String schema, String pack, String name,SqlOutCursorParam... outCursorParams) {
 		super(id);
-		this.catalog = catalog;
-		this.schema = schema;
-		this.pack = pack;
-		this.name = name;
+		setCatalog(catalog);
+		setSchema(schema);
+		setPack(pack);
+		setName(name);
 		setSqlOutCursorParams(outCursorParams);
 	}
 	
@@ -116,7 +116,7 @@ public class SqlProcedure extends SqlCommand{
 	}
 
 	public void setCatalog(String catalog) {
-		this.catalog = catalog;
+		this.catalog = toUpperCase(catalog);
 	}
 
 	public String getSchema() {
@@ -124,7 +124,7 @@ public class SqlProcedure extends SqlCommand{
 	}
 
 	public void setSchema(String schema) {
-		this.schema = schema;
+		this.schema = toUpperCase(schema);
 	}
 
 	public String getPack() {
@@ -132,7 +132,7 @@ public class SqlProcedure extends SqlCommand{
 	}
 
 	public void setPack(String pack) {
-		this.pack = pack;
+		this.pack = toUpperCase(pack);
 	}
 
 	public String getName() {
@@ -140,7 +140,7 @@ public class SqlProcedure extends SqlCommand{
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name = toUpperCase(name);
 	}
 	
 	public SqlOutCursorParam[] getSqlOutCursorParams() {
@@ -169,6 +169,13 @@ public class SqlProcedure extends SqlCommand{
 	public void registerSqlOutCursorsParam(SqlOutCursorParam... outCursorParamArray){
 		for (SqlOutCursorParam param : outCursorParamArray)
 			sqlOutCursorParams.add(param);	
+	}
+	
+	private String toUpperCase(String str){
+	    if (str != null)
+	        return str.toUpperCase();
+	    
+	    return str;
 	}
 
 }
