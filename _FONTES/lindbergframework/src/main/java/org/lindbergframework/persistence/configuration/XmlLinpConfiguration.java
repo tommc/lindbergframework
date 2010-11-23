@@ -1,4 +1,4 @@
-package org.lindbergframework.persistence.context;
+package org.lindbergframework.persistence.configuration;
 
 import java.io.File;
 import java.io.InputStream;

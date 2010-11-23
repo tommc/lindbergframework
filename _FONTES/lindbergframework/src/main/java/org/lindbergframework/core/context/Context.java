@@ -1,5 +1,6 @@
 package org.lindbergframework.core.context;
 
+import org.lindbergframework.core.configuration.Configuration;
 import org.lindbergframework.exception.IllegalStateContextException;
 
 

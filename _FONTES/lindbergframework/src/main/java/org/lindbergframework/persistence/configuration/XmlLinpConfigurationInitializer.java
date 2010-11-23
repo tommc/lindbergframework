@@ -1,6 +1,6 @@
-package org.lindbergframework.persistence.context;
+package org.lindbergframework.persistence.configuration;
 
-import org.lindbergframework.core.context.ConfigurationInitializer;
+import org.lindbergframework.core.configuration.ConfigurationInitializer;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Persistence;
 
 /**

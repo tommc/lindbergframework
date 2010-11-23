@@ -3,11 +3,12 @@ package org.lindbergframework.core.context;
 import java.lang.reflect.Method;
 
 import org.lindbergframework.beans.di.context.BeanFactory;
+import org.lindbergframework.core.configuration.CoreConfiguration;
 import org.lindbergframework.exception.CoreConfigurationException;
 import org.lindbergframework.exception.IllegalStateContextException;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.exception.PersistenceConfigurationException;
-import org.lindbergframework.persistence.context.LinpConfiguration;
+import org.lindbergframework.persistence.configuration.LinpConfiguration;
 import org.lindbergframework.persistence.context.LinpContext;
 import org.lindbergframework.util.LogUtil;
 import org.lindbergframework.util.ProxyUtil;

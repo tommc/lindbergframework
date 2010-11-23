@@ -9,11 +9,11 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 import org.lindbergframework.core.context.CoreContext;
-import org.lindbergframework.core.context.WebClassPathXmlCoreConfiguration;
-import org.lindbergframework.core.context.WebCoreConfiguration;
 import org.lindbergframework.exception.WebConfigurationException;
 import org.lindbergframework.persistence.context.LinpContext;
 import org.lindbergframework.util.LogUtil;
+import org.lindbergframework.web.core.configuration.WebClassPathXmlCoreConfiguration;
+import org.lindbergframework.web.core.configuration.WebCoreConfiguration;
 import org.springframework.beans.BeanUtils;
 
 /**

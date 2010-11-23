@@ -2,8 +2,8 @@ package org.lindbergframework.test.persistence.test;
 
 import java.util.Date;
 
-import org.lindbergframework.core.context.ClassPathXmlCoreConfiguration;
-import org.lindbergframework.core.context.CoreConfiguration;
+import org.lindbergframework.core.configuration.ClassPathXmlCoreConfiguration;
+import org.lindbergframework.core.configuration.CoreConfiguration;
 import org.lindbergframework.core.context.CoreContext;
 import org.lindbergframework.persistence.context.LinpContext;
 import org.lindbergframework.test.testBeans.Address;
