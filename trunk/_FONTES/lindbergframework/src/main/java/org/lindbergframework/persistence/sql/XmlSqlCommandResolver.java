@@ -14,7 +14,7 @@ import org.lindbergframework.exception.NoSuchSqlCommandException;
 import org.lindbergframework.exception.NoSuchSqlStatementException;
 import org.lindbergframework.exception.SqlCommandLoadingFailedException;
 import org.lindbergframework.exception.SqlMappingException;
-import org.lindbergframework.persistence.context.LinpConfigurationInitializer;
+import org.lindbergframework.persistence.configuration.LinpConfigurationInitializer;
 import org.lindbergframework.schema.LinpMappingDocument;
 import org.lindbergframework.schema.TFunction;
 import org.lindbergframework.schema.TFunctionResultCursor;

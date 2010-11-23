@@ -4,11 +4,11 @@ import junit.framework.TestCase;
 
 import org.lindbergframework.beans.di.context.AnnotationBeanFactory;
 import org.lindbergframework.beans.di.context.UserBeanContext;
+import org.lindbergframework.core.configuration.ClassPathXmlCoreConfiguration;
+import org.lindbergframework.core.configuration.CoreConfiguration;
+import org.lindbergframework.core.configuration.SimpleCoreConfiguration;
 import org.lindbergframework.core.context.BeanContext;
-import org.lindbergframework.core.context.ClassPathXmlCoreConfiguration;
-import org.lindbergframework.core.context.CoreConfiguration;
 import org.lindbergframework.core.context.CoreContext;
-import org.lindbergframework.core.context.SimpleCoreConfiguration;
 import org.lindbergframework.exception.BeanMappingNotFoundException;
 import org.lindbergframework.test.beans.AClass;
 import org.lindbergframework.test.beans.BClass;

@@ -1,11 +1,12 @@
-package org.lindbergframework.core.context;
+package org.lindbergframework.web.core.configuration;
 
 import javax.servlet.ServletContext;
 
-import org.lindbergframework.exception.WebConfigurationException;
+import org.lindbergframework.core.configuration.CoreConfiguration;
 
 /**
  * interface that defines the contract for core configuration implementation to work in the web context.
+ * 
  * @author Victor Lindberg
  *
  */

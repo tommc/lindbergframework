@@ -1,4 +1,4 @@
-package org.lindbergframework.core.context;
+package org.lindbergframework.core.configuration;
 
 import java.io.File;
 import java.io.InputStream;
@@ -12,9 +12,9 @@ import org.lindbergframework.exception.BeanException;
 import org.lindbergframework.exception.CoreConfigurationException;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.exception.InvalidXmlDocumentException;
-import org.lindbergframework.persistence.context.LinpConfiguration;
-import org.lindbergframework.persistence.context.XmlLinpConfiguration;
-import org.lindbergframework.persistence.context.XmlLinpConfigurationInitializer;
+import org.lindbergframework.persistence.configuration.LinpConfiguration;
+import org.lindbergframework.persistence.configuration.XmlLinpConfiguration;
+import org.lindbergframework.persistence.configuration.XmlLinpConfigurationInitializer;
 import org.lindbergframework.schema.TconfigProperty;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Core;

@@ -1,4 +1,4 @@
-package org.lindbergframework.core.context;
+package org.lindbergframework.core.configuration;
 
 import java.io.File;
 import java.io.InputStream;

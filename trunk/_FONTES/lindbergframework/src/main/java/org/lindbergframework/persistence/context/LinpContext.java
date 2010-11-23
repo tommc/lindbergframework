@@ -11,6 +11,7 @@ import org.lindbergframework.exception.IllegalStateContextException;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.exception.PersistenceConfigurationException;
 import org.lindbergframework.persistence.DataSourceConfig;
+import org.lindbergframework.persistence.configuration.LinpConfiguration;
 import org.lindbergframework.persistence.sql.SqlCommandResolver;
 import org.lindbergframework.persistence.transaction.TransactionManager;
 import org.lindbergframework.util.LogUtil;

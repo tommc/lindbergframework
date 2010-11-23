@@ -1,7 +1,8 @@
-package org.lindbergframework.core.context;
+package org.lindbergframework.web.core.configuration;
 
 import javax.servlet.ServletContext;
 
+import org.lindbergframework.core.configuration.ClassPathXmlCoreConfiguration;
 import org.lindbergframework.util.ResourceUtil;
 
 /**

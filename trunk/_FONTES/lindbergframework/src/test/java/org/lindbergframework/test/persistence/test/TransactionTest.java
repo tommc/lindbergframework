@@ -9,8 +9,8 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import org.lindbergframework.beans.di.context.UserBeanContext;
-import org.lindbergframework.core.context.ClassPathXmlCoreConfiguration;
-import org.lindbergframework.core.context.CoreConfiguration;
+import org.lindbergframework.core.configuration.ClassPathXmlCoreConfiguration;
+import org.lindbergframework.core.configuration.CoreConfiguration;
 import org.lindbergframework.core.context.CoreContext;
 import org.lindbergframework.exception.TransactionException;
 import org.lindbergframework.test.beans.NoTransactionalBC;

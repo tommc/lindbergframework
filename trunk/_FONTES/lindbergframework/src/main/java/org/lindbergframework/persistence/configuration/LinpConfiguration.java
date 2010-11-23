@@ -1,8 +1,8 @@
-package org.lindbergframework.persistence.context;
+package org.lindbergframework.persistence.configuration;
 
 import java.sql.Types;
 
-import org.lindbergframework.core.context.Configuration;
+import org.lindbergframework.core.configuration.Configuration;
 import org.lindbergframework.persistence.DataSourceConfig;
 import org.lindbergframework.persistence.sql.SqlCommandResolver;
 import org.lindbergframework.persistence.sql.XmlSqlCommandResolver;

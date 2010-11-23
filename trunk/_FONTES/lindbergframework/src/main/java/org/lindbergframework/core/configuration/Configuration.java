@@ -1,4 +1,4 @@
-package org.lindbergframework.core.context;
+package org.lindbergframework.core.configuration;
 
 import org.lindbergframework.exception.InvalidConfigurationException;
 

@@ -1,8 +1,9 @@
-package org.lindbergframework.core.context;
+package org.lindbergframework.core.configuration;
 
 import org.lindbergframework.beans.di.context.BeanFactory;
+import org.lindbergframework.core.context.AllowIfContextActive;
 import org.lindbergframework.exception.InvalidConfigurationException;
-import org.lindbergframework.persistence.context.LinpConfiguration;
+import org.lindbergframework.persistence.configuration.LinpConfiguration;
 
 /**
  * Abstract core configuration class that provides the base operations for core configuration implementations.

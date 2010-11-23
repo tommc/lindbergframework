@@ -1,4 +1,4 @@
-package org.lindbergframework.persistence.context;
+package org.lindbergframework.persistence.configuration;
 
 import org.lindbergframework.persistence.DataSourceConfig;
 import org.lindbergframework.persistence.sql.SqlCommandResolver;

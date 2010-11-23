@@ -1,7 +1,7 @@
-package org.lindbergframework.core.context;
+package org.lindbergframework.core.configuration;
 
 import org.lindbergframework.beans.di.context.BeanFactory;
-import org.lindbergframework.persistence.context.LinpConfiguration;
+import org.lindbergframework.persistence.configuration.LinpConfiguration;
 
 /**
  * Core configuration implementation to define programmatically the core configuration.

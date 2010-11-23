@@ -13,7 +13,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.xmlbeans.XmlException;
 import org.lindbergframework.beans.util.BeanUtil;
-import org.lindbergframework.core.context.ConfigurationInitializer;
+import org.lindbergframework.core.configuration.ConfigurationInitializer;
 import org.lindbergframework.exception.BeanException;
 import org.lindbergframework.exception.LindbergException;
 import org.lindbergframework.exception.LoadXmlPropertyException;
