@@ -21,7 +21,7 @@ import static org.lindbergframework.validation.Types.STRING_MAX_LENGTH;
 
 import org.lindbergframework.exception.NoSuchBeanValidationException;
 import org.lindbergframework.validation.AbstractComparableValidation;
-import org.lindbergframework.validation.AbstractMaxLengthRequiredValidation;
+import org.lindbergframework.validation.AbstractMaxMinLengthRequiredValidation;
 import org.lindbergframework.validation.IComparableValidation;
 import org.lindbergframework.validation.IDateValidation;
 import org.lindbergframework.validation.IDocumentValidation;
@@ -157,17 +157,24 @@ public class ValidationFactory {
 	}
 	
 	/**
-	 * Cria uma instancia de {@link IStringValidation} que valida o comprimento máximo de String's 
+	 * Cria uma instancia de {@link IStringValidation} que valida o comprimento máximo e mínimo de String's 
 	 */
-	public static AbstractMaxLengthRequiredValidation<String> newStringMaxLength(int maxLength) {
-		 AbstractMaxLengthRequiredValidation<String> abstractMaxLengthRequiredValidation = 
+	public static AbstractMaxMinLengthRequiredValidation<String> newStringMaxLength(int minLength,int maxLength) {
+		 AbstractMaxMinLengthRequiredValidation<String> abstractMaxLengthRequiredValidation = 
 			                springFactory.getBean(STRING_MAX_LENGTH);
 		 
 		 abstractMaxLengthRequiredValidation.setMaxLengthRequired(maxLength);
+		 abstractMaxLengthRequiredValidation.setMinLengthRequired(minLength);
 		 
 		 return abstractMaxLengthRequiredValidation;
 	}
 	
+	/**
+	 * Cria uma instancia de {@link IStringValidation} que valida o comprimento máximo de String's 
+	 */
+	public static AbstractMaxMinLengthRequiredValidation<String> newStringMaxLength(int maxLength) {
+	    return newStringMaxLength(0, maxLength);
+	}
 	
 	/**
 	 * Cria uma instancia de {@link IComparableValidation} que valida a comparação entre Numbers 

@@ -44,7 +44,7 @@ public interface Types {
 	public static final String DATE_CAN_NOT_BE_PRESENT = "dateCanNotBePresentValidation";
 	public static final String MUST_BE_EMPTY_LIST = "mustBeEmptyListValidation";
 	public static final String NUMBER_COMPARABLE = "numberComparableValidation";
-	public static final String STRING_MAX_LENGTH = "stringMaxLengthValidation";
+	public static final String STRING_MAX_LENGTH = "stringMaxMinLengthValidation";
 	public static final String NO_INFORMATION_EMPTY = "doesNotAllowInformationEmptyValidation";
 
 }
