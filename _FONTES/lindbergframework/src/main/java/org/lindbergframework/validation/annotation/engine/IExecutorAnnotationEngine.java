@@ -5,7 +5,7 @@ import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.validation.IExecutorValidation;
 import org.lindbergframework.validation.IValidation;
 import org.lindbergframework.validation.Item;
-import org.lindbergframework.validation.impl.StringMaxLengthValidation;
+import org.lindbergframework.validation.impl.StringMaxMinLengthValidation;
 import org.lindbergframework.validation.settings.ValidationMode;
 
 /**
@@ -82,7 +82,7 @@ public interface IExecutorAnnotationEngine extends IExecutorValidation{
 	 * 
 	 * Esse método é uma alternativa para as validações de beans anotados que precisam fazer uso de alguma <br>
 	 * validação que foge do padrão, por exemplo: a definição de parametros como o máximo de caracteres de uma <br>
-	 * string (validação {@link StringMaxLengthValidation}) a ser validada em umavalidação não é possível via annotation então pode-se mesmo usando a validação via annotations <br>
+	 * string (validação {@link StringMaxMinLengthValidation}) a ser validada em umavalidação não é possível via annotation então pode-se mesmo usando a validação via annotations <br>
 	 * a adição de items de forma direta junto com os beans anotados.
 	 *  
 	 * @param item item configurado diretamente a ser validado
