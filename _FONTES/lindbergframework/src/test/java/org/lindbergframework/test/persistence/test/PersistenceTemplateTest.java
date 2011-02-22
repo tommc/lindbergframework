@@ -1,15 +1,14 @@
 package org.lindbergframework.test.persistence.test;
 
+import static org.lindbergframework.test.persistence.util.BeansUtil.createPerson;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.lindbergframework.test.persistence.dao.PersistTemplateDaoTest;
-import org.lindbergframework.test.testBeans.Address;
 import org.lindbergframework.test.testBeans.Employee;
 import org.lindbergframework.test.testBeans.Person;
-
-import static org.lindbergframework.test.persistence.util.BeansUtil.*;
 
 /**
  * 
