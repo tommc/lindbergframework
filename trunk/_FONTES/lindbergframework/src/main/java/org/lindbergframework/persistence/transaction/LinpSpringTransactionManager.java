@@ -1,9 +1,10 @@
 package org.lindbergframework.persistence.transaction;
 
+import javax.sql.DataSource;
+
 import org.lindbergframework.beans.di.annotation.Bean;
 import org.lindbergframework.exception.TransactionException;
 import org.lindbergframework.exception.TransactionFailureException;
-import org.lindbergframework.persistence.context.LinpContext;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
@@ -25,8 +26,8 @@ public class LinpSpringTransactionManager extends TransactionTemplate
     /**
      * default constructor that uses DataSourceTransactionManager as PlatformTransactionManager implementation.
      */
-    public LinpSpringTransactionManager(){
-        this(new DataSourceTransactionManager(LinpContext.getInstance().getDataSource()));
+    public LinpSpringTransactionManager(DataSource dataSource){
+        this(new DataSourceTransactionManager(dataSource));
     }
 
     /**

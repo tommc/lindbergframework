@@ -54,7 +54,7 @@ public abstract class AbstractCoreConfiguration extends ConfigurationRepository 
         registerProperty(CONFIG_PROPERTY_BEAN_FACTORY, beanFactory);
     }
     
-    protected void setLinpConfiguration(LinpConfiguration linpConfiguration){
+    public void setLinpConfiguration(LinpConfiguration linpConfiguration){
         registerProperty(LINP_CONFIGURATION_KEY, linpConfiguration);
     }
     

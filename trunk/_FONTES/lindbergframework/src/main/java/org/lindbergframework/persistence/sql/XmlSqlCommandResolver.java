@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.xmlbeans.XmlException;
+import org.lindbergframework.beans.di.annotation.Bean;
 import org.lindbergframework.exception.DuplicatedSqlMappingIdException;
 import org.lindbergframework.exception.InvalidSqlMappingException;
 import org.lindbergframework.exception.NoSuchSqlCommandException;
@@ -32,7 +33,7 @@ import org.springframework.util.StringUtils;
  * @author Victor Lindberg
  *
  */
-
+@Bean("defaultSqlCommandResolver")
 public class XmlSqlCommandResolver implements SqlCommandResolver, LinpConfigurationInitializer{
 
     /**
