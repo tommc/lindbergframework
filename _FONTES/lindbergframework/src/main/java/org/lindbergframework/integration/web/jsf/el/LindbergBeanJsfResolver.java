@@ -12,7 +12,7 @@ import org.lindbergframework.beans.di.context.UserBeanContext;
 
 /**
  * 
- * Lindbrg {@link ELResolver} implementation to integrate JSF layer with
+ * Lindberg {@link ELResolver} implementation to integrate JSF layer with
  * lindberg IOC context beans.
  * 
  * @author Victor Lindberg

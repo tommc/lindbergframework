@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.lindbergframework.beans.di.annotation.Bean;
 import org.lindbergframework.exception.TransactionException;
 import org.lindbergframework.exception.TransactionFailureException;
+import org.lindbergframework.persistence.context.LinpContext;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
@@ -23,8 +24,12 @@ public class LinpSpringTransactionManager extends TransactionTemplate
     
     private static final long serialVersionUID = 1L;
 
+    public LinpSpringTransactionManager(){
+        this(LinpContext.getInstance().getDataSource());
+    }
+    
     /**
-     * default constructor that uses DataSourceTransactionManager as PlatformTransactionManager implementation.
+     * constructor that uses DataSourceTransactionManager as PlatformTransactionManager implementation.
      */
     public LinpSpringTransactionManager(DataSource dataSource){
         this(new DataSourceTransactionManager(dataSource));
