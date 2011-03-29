@@ -5,7 +5,6 @@ import java.sql.Types;
 import org.lindbergframework.core.configuration.Configuration;
 import org.lindbergframework.persistence.DataSourceConfig;
 import org.lindbergframework.persistence.sql.SqlCommandResolver;
-import org.lindbergframework.persistence.sql.XmlSqlCommandResolver;
 import org.lindbergframework.persistence.transaction.TransactionManager;
 
 /**
