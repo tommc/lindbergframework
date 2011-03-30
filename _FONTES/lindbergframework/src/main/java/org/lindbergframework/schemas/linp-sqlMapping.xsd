@@ -66,7 +66,11 @@
            <xs:documentation>Stored procedure</xs:documentation>
         </xs:annotation>
         <xs:sequence>
-		   <xs:element name="OutCursor" type="tOutCursor" minOccurs="0" maxOccurs="unbounded"/>   
+		   <xs:element name="OutCursor" type="tOutCursor" minOccurs="0" maxOccurs="unbounded">
+		      <xs:annotation>
+		         <xs:documentation>Defines a cursor as output parameter to stored procedure or function</xs:documentation>
+		      </xs:annotation>
+		   </xs:element>   
         </xs:sequence> 
         <xs:attribute name="name" type="xs:string" use="required">
            <xs:annotation>
