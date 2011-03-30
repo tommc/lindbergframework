@@ -19,8 +19,8 @@ import org.lindbergframework.persistence.sql.SqlCommandResolver;
 import org.lindbergframework.persistence.transaction.TransactionManager;
 import org.lindbergframework.schema.TconfigProperty;
 import org.lindbergframework.schema.TdataSource;
-import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Persistence;
-import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Persistence.ConfigProperties;
+import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Linp;
+import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Linp.ConfigProperties;
 import org.lindbergframework.util.ConfigUtil;
 
 /**
@@ -34,9 +34,9 @@ import org.lindbergframework.util.ConfigUtil;
 public class XmlLinpConfiguration extends AbstractLinpConfiguration implements XmlLinpConfigurationInitializer{
 	
     /**
-     * Persistence xml node.
+     * Linp xml node.
      */
-	private Persistence configuration;
+	private Linp configuration;
 	
 	/**
 	 * configuration keys automatically formatted.
@@ -50,12 +50,12 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 	}
 	
 	/**
-	 * Creates a XmlLinpConfiguration using a Persistence xml node.
+	 * Creates a XmlLinpConfiguration using a Linp xml node.
 	 * 
-	 * @param persistenceConfig xml node.
+	 * @param linpConfig xml node.
 	 */
-	public XmlLinpConfiguration(Persistence persistenceConfig){
-	    initialize(persistenceConfig);
+	public XmlLinpConfiguration(Linp linpConfig){
+	    initialize(linpConfig);
 	}
 	
 	/**
@@ -109,8 +109,8 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 	/**
 	 * {@inheritDoc}
 	 */
-	public void initialize(Persistence persistenceConfig) {
-	   buildConfiguration(persistenceConfig);    
+	public void initialize(Linp linpConfig) {
+	   buildConfiguration(linpConfig);    
 	}
 	
 	/**
@@ -274,7 +274,7 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 					"Invalid linp xmlConfig");
         
 		try {
-            buildConfiguration(XmlUtil.buildDocument(xmlConfig).getPersistence());
+            buildConfiguration(XmlUtil.buildDocument(xmlConfig).getLinp());
         } catch (PersistenceConfigurationException ex) {
             throw ex;
         } catch (Exception ex) {
@@ -293,13 +293,13 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 	/**
 	 * Build configuration based on persistence node.
 	 * 
-	 * @param persistence xml node.
+	 * @param linp xml node.
 	 */
-	public void buildConfiguration(Persistence persistence){
+	public void buildConfiguration(Linp linp){
 	    verifyConfiguration();
 	    
 	    try {
-            this.configuration = persistence;
+            this.configuration = linp;
         } catch (Exception ex) {
             throw new PersistenceConfigurationException("Loading linp xml settings failed",ex);
         }

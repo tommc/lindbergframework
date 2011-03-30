@@ -18,7 +18,7 @@ import org.lindbergframework.persistence.configuration.XmlLinpConfigurationIniti
 import org.lindbergframework.schema.TconfigProperty;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Core;
-import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Persistence;
+import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Linp;
 
 /**
  * Core configuration implementation to work with xml configuration based.
@@ -161,19 +161,19 @@ public class XmlCoreConfiguration extends AbstractCoreConfiguration implements C
         if (linpConfigCache != null)
             return linpConfigCache;
         
-        if (lindbergConfiguration.getPersistence() == null)
+        if (lindbergConfiguration.getLinp() == null)
             return null;
         
         String strClassParser = getParserLinpConfig();
         if (strClassParser == null){
-            linpConfigCache = new XmlLinpConfiguration(lindbergConfiguration.getPersistence());
+            linpConfigCache = new XmlLinpConfiguration(lindbergConfiguration.getLinp());
         }else
            try{
               Class linpConfigClazz = Class.forName(strClassParser);
               linpConfigCache = BeanUtil.createInstance(linpConfigClazz);
               if (linpConfigCache instanceof XmlLinpConfigurationInitializer){
                   XmlLinpConfigurationInitializer linpInitializer = (XmlLinpConfigurationInitializer) linpConfigCache;
-                  linpInitializer.initialize(lindbergConfiguration.getPersistence());
+                  linpInitializer.initialize(lindbergConfiguration.getLinp());
               }else
                   throw new InvalidConfigurationException("Xml linp configuration parser does not implements XmlLinpConfigurationInitializer");
            }catch(Exception ex){
@@ -190,9 +190,9 @@ public class XmlCoreConfiguration extends AbstractCoreConfiguration implements C
      * @return lindberg persistence configuration implementation parser.
      */
     public String getParserLinpConfig(){
-        Persistence persistence = lindbergConfiguration.getPersistence();
-        if (coreConfiguration != null && persistence != null)
-           return persistence.getParser(); 
+        Linp linp = lindbergConfiguration.getLinp();
+        if (coreConfiguration != null && linp != null)
+           return linp.getParser(); 
            
         return null;
     }

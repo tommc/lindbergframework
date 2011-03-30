@@ -1,7 +1,7 @@
 package org.lindbergframework.persistence.configuration;
 
 import org.lindbergframework.core.configuration.ConfigurationInitializer;
-import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Persistence;
+import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Linp;
 
 /**
  * Interface that defines the lindberg persistence configuration initializer contract.
@@ -15,10 +15,10 @@ import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfig
 public interface XmlLinpConfigurationInitializer extends ConfigurationInitializer{
     
     /**
-     * initializes the lindberg persistence configuration based on defined {@link Persistence} xml node.
+     * initializes the lindberg persistence configuration based on defined {@link Linp} xml node.
      *  
-     * @param persistenceConfig xml node.
+     * @param linpConfig xml node.
      */
-    public void initialize(Persistence persistenceConfig);
+    public void initialize(Linp linpConfig);
 
 }

@@ -5,7 +5,7 @@
    <config-property name="lindberg.core.di-basepackage" value="org.lindbergframework.test.*"/>
 </core>
 
-<persistence parser="org.lindbergframework.persistence.configuration.XmlLinpConfiguration">
+<linp parser="org.lindbergframework.persistence.configuration.XmlLinpConfiguration">
 		<dataSource class="org.springframework.jdbc.datasource.SimpleDriverDataSource" 
 		    driver="#com.mysql.jdbc.Driver" >
 			<property name="url" value="jdbc:mysql://localhost:3306/test" />
@@ -26,6 +26,6 @@
 			</config-property>
 		</config-properties>
 
-	</persistence>
+	</linp>
 
 </lindberg-configuration>
