@@ -23,6 +23,7 @@ import org.lindbergframework.schema.TOutCursor;
 import org.lindbergframework.schema.TProcedure;
 import org.lindbergframework.schema.TSqlCommand;
 import org.lindbergframework.schema.LinpMappingDocument.LinpMapping;
+import org.lindbergframework.schema.LinpMappingDocument.LinpMapping.SqlMapping;
 import org.springframework.util.StringUtils;
 
 /**
@@ -194,7 +195,7 @@ public class XmlSqlCommandResolver implements SqlCommandResolver, LinpConfigurat
 		loadSqlOutCursorParams(sqlFunction, tFunction.getOutCursorArray());
 		
 		if (sqlFunction instanceof SqlFunctionForCursor){
-			String className = tFunction.getResultCursor().getClass1();
+			String className = tFunction.getResultCursor().getPopulationClass();
 			((SqlFunctionForCursor) sqlFunction).setBeanResult(toClass(className, sqlFunction.getId()));
 		}
 	}
@@ -207,7 +208,7 @@ public class XmlSqlCommandResolver implements SqlCommandResolver, LinpConfigurat
 	 */
 	protected void loadSqlOutCursorParams(SqlProcedure procedure, TOutCursor[] outCursors){
   	       for (TOutCursor outCursor : outCursors){
-		      String className = outCursor.getClass1();
+		      String className = outCursor.getPopulationClass();
 			  Class clazz = toClass(className, procedure.getId());
 			  procedure.registerSqlOutCursorsParam(new SqlOutCursorParam(clazz));
 		   }
@@ -331,10 +332,26 @@ public class XmlSqlCommandResolver implements SqlCommandResolver, LinpConfigurat
 	 * @param linpMappings sql mappings to validate.
 	 */
     private void validateConfigurationDocument(LinpMapping[] linpMappings){
+       Set<String> idsFail = new HashSet<String>();
+       boolean valid = true;
        for (LinpMapping linpMapping : linpMappings){
-          if (! linpMapping.validate())
-    	     throw new InvalidSqlMappingException("One or more XML sql mapping is invalid");
+          if (! linpMapping.validate()){
+              valid = false;
+              SqlMapping sqlMapping = linpMapping.getSqlMapping();
+              for (TSqlCommand sqlCommand : sqlMapping.getSqlCommandArray())
+                  if (! sqlCommand.validate())
+                      idsFail.add(sqlCommand.getId() == null ? "#Unnamed#" : sqlCommand.getId());
+          }
        }
+       
+       if (! valid){
+           if (! idsFail.isEmpty()){
+               InvalidSqlMappingException mainCause = new InvalidSqlMappingException("Invalid Sql Commands in XML sql mapping "+ idsFail.toString());
+               throw new InvalidSqlMappingException("XML sql mapping is invalid",mainCause); 
+           }
+           throw new InvalidSqlMappingException("XML sql mapping is invalid"); 
+       }
+           
     }
     
     /**
