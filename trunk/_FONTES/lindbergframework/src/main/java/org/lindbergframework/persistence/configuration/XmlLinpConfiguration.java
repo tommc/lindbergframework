@@ -195,7 +195,7 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 		Object sqlCommandResolver = getPropertyValue(CONFIG_PROPERTY_SQL_COMMAND_RESOLVER);
 		
 		if (sqlCommandResolver == null)
-		      sqlCommandResolver = LindbergBeanContext.getInstance().getBean(DEFAULT_SQL_COMMAND_RESOLVER_ID);
+		      throw new InvalidConfigurationException("The "+CONFIG_PROPERTY_SQL_COMMAND_RESOLVER+" configuration property must be defined");
 		
 		setSqlCommandResolver((SqlCommandResolver) sqlCommandResolver);
 		return super.getSqlCommandResolver();

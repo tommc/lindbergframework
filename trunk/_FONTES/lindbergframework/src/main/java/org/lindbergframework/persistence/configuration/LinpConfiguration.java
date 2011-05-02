@@ -44,11 +44,6 @@ public interface LinpConfiguration extends Configuration{
 	public static final Integer DEFAULT_INTEGER_CURSOR_TYPE = Types.OTHER;
 	
 	/**
-	 * default sql command resolver bean id.
-	 */
-	public static final String DEFAULT_SQL_COMMAND_RESOLVER_ID = "defaultSqlCommandResolver";
-	
-	/**
 	 * default transaction manager bean id on spring linp context.
 	 */
 	public static final String DEFAULT_ID_TRANSACTION_MANAGER = "defaultLinpTransactionManager";
