@@ -29,6 +29,10 @@ public class SpringBeanFactory {
 		return applicationContext;
 	}
 	
+	public void setApplicationContext(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
+	
 	public boolean isContextConfigured(){
 		return applicationContext != null;
 	}
@@ -54,5 +58,9 @@ public class SpringBeanFactory {
 	@SuppressWarnings("unchecked")
 	public <E> E getBean(String beanId, Object... args) {
 		   return (E) applicationContext.getBean(beanId,args);
-		}
+	}
+	
+	protected void setContext(ApplicationContext applicationContext){
+	    this.applicationContext = applicationContext;
+	}
 }

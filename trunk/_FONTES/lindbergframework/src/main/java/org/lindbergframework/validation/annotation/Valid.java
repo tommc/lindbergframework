@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 import org.lindbergframework.validation.Types;
 import org.lindbergframework.validation.Item;
 import org.lindbergframework.validation.annotation.engine.IExecutorAnnotationEngine;
-import org.lindbergframework.validation.context.LindbergValidationSpringBeanFactory;
+import org.lindbergframework.validation.context.LindbergSpringValidationsBeanFactory;
 import org.lindbergframework.validation.settings.MsgType;
 
 /**
@@ -25,10 +25,10 @@ import org.lindbergframework.validation.settings.MsgType;
 public @interface Valid {
 	
 	/**
-	 * id do bean de validação dentro do contexto spring em {@link LindbergValidationSpringBeanFactory} ou <br>
+	 * id do bean de validação dentro do contexto spring em {@link LindbergSpringValidationsBeanFactory} ou <br>
 	 * caminho completamente qualificado da classe do bean de validação.<br>
 	 * Use a interface {@link Types} para obter um conjunto de constantes de ID´s <br>
-	 * dos beans de validação padrão definidos dentro do contexto do spring em {@link LindbergValidationSpringBeanFactory}<br><br>
+	 * dos beans de validação padrão definidos dentro do contexto do spring em {@link LindbergSpringValidationsBeanFactory}<br><br>
 	 * 
 	 * Pode ser definido também o caminho totalmente qualificado da clase de bean de validação. <br><br>
 	 * 
