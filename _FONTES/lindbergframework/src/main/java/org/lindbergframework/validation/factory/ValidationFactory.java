@@ -31,7 +31,7 @@ import org.lindbergframework.validation.INotNullValidation;
 import org.lindbergframework.validation.IRequiredFieldValidation;
 import org.lindbergframework.validation.IValidation;
 import org.lindbergframework.validation.AbstractComparableValidation.FatorComparacao;
-import org.lindbergframework.validation.context.LindbergValidationSpringBeanFactory;
+import org.lindbergframework.validation.context.LindbergSpringValidationsBeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 
 
@@ -44,7 +44,7 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
  */
 public class ValidationFactory {
 	 
-	private static LindbergValidationSpringBeanFactory springFactory = LindbergValidationSpringBeanFactory.getInstance();
+	private static LindbergSpringValidationsBeanFactory springFactory = LindbergSpringValidationsBeanFactory.getInstance();
 	
 	/**
 	 * Cria uma instancia de {@link IRequiredFieldValidation}
@@ -199,7 +199,7 @@ public class ValidationFactory {
 	/**
 	 * Retorna uma instancia do bean de validação, se existir um, cujo id é passado como argumento. <br><br>
 	 * 
-	 * O bean buscado deve estar no contexto através da classe {@link LindbergValidationSpringBeanFactory}
+	 * O bean buscado deve estar no contexto através da classe {@link LindbergSpringValidationsBeanFactory}
 	 * 
 	 * @param <E>
 	 * @param id
