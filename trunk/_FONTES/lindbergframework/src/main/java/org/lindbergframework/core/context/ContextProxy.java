@@ -31,7 +31,7 @@ public class ContextProxy implements MethodInterceptor{
 			MethodProxy proxy) throws Throwable {
 		
 		if (method.getAnnotation(AllowIfContextActive.class) != null){
-			Context configuration = (Context) obj;
+			ComponentContext configuration = (ComponentContext) obj;
 			configuration.verifyContext();
 		}
 		

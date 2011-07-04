@@ -19,7 +19,7 @@ import org.lindbergframework.util.ProxyUtil;
  * @author Victor Lindberg
  *
  */
-public class CoreContext implements Context<CoreContext,CoreConfiguration>, CoreConfiguration{
+public class CoreContext implements ComponentContext<CoreContext,CoreConfiguration>, CoreConfiguration{
    
     /**
      * core context instance.
