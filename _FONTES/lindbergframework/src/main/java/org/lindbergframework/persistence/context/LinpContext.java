@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import javax.sql.DataSource;
 
 import org.lindbergframework.core.context.AllowIfContextActive;
-import org.lindbergframework.core.context.Context;
+import org.lindbergframework.core.context.ComponentContext;
 import org.lindbergframework.core.context.ContextProxy;
 import org.lindbergframework.exception.IllegalStateContextException;
 import org.lindbergframework.exception.InvalidConfigurationException;
@@ -26,7 +26,7 @@ import org.lindbergframework.util.ProxyUtil;
  * @author Victor Lindberg
  *
  */
-public class LinpContext implements Context<LinpContext,LinpConfiguration>, 
+public class LinpContext implements ComponentContext<LinpContext,LinpConfiguration>, 
                                     LinpConfiguration{
 	
     /**
