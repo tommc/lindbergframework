@@ -20,13 +20,14 @@ import static org.lindbergframework.validation.Types.REQUIRED_FIELD_NO_INFORMATI
 import static org.lindbergframework.validation.Types.STRING_MAX_LENGTH;
 
 import org.lindbergframework.exception.NoSuchBeanValidationException;
+import org.lindbergframework.spring.context.SpringBeanFactory;
 import org.lindbergframework.validation.AbstractComparableValidation;
 import org.lindbergframework.validation.AbstractMaxMinLengthRequiredValidation;
 import org.lindbergframework.validation.IComparableValidation;
 import org.lindbergframework.validation.IDateValidation;
 import org.lindbergframework.validation.IDocumentValidation;
-import org.lindbergframework.validation.IMustBeNullValidation;
 import org.lindbergframework.validation.IListValidation;
+import org.lindbergframework.validation.IMustBeNullValidation;
 import org.lindbergframework.validation.INotNullValidation;
 import org.lindbergframework.validation.IRequiredFieldValidation;
 import org.lindbergframework.validation.IValidation;
@@ -36,7 +37,7 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 
 
 /**
- * Fábrica de validações
+ * Fábrica de validações.
  * 
  * 
  * @author Victor Lindberg
@@ -44,13 +45,15 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
  */
 public class ValidationFactory {
 	 
-	private static LindbergSpringValidationsBeanFactory springFactory = LindbergSpringValidationsBeanFactory.getInstance();
+	private static SpringBeanFactory getSpringFactory(){
+	    return LindbergSpringValidationsBeanFactory.getInstance();
+	}
 	
 	/**
 	 * Cria uma instancia de {@link IRequiredFieldValidation}
 	 */
 	public static IRequiredFieldValidation newRequiredField() {
-		return springFactory.getBean(
+		return getSpringFactory().getBean(
 				REQUIRED_FIELD);
 	}
 	/**
@@ -58,7 +61,7 @@ public class ValidationFactory {
 	 * informação vazia como por exemplo uma sequencia de espacos em branco
 	 */
 	public static IRequiredFieldValidation newRequiredFieldNoInformationEmpty() {
-		return springFactory.getBean(
+		return getSpringFactory().getBean(
 				REQUIRED_FIELD_NO_INFORMATION_EMPTY);
 	}
 
@@ -67,7 +70,7 @@ public class ValidationFactory {
 	 * Cria uma instancia de {@link IMustBeNullValidation}
 	 */
 	public static IMustBeNullValidation newHasBeNull() {
-		return springFactory.getBean(
+		return getSpringFactory().getBean(
 				MUST_BE_NULL);
 	}
 
@@ -75,35 +78,35 @@ public class ValidationFactory {
 	 * Cria uma instancia de {@link IListValidation} que não permite que valida se uma lista não esta vaia
 	 */
 	public static  IListValidation<Object> newNotEmptyList() {
-		return springFactory.getBean(NOT_EMPTY_LIST);
+		return getSpringFactory().getBean(NOT_EMPTY_LIST);
 	}
 
 	/**
 	 * Cria uma instancia de {@link IListValidation} que valida se uma lista esta vazia
 	 */
 	public static  IListValidation<Object> newHasBeEmptyList() {
-		return springFactory.getBean(MUST_BE_EMPTY_LIST);
+		return getSpringFactory().getBean(MUST_BE_EMPTY_LIST);
 	}
 
 	/**
 	 * Cria uma instancia de {@link INotNullValidation}
 	 */
 	public static INotNullValidation newNotNull() {
-		return springFactory.getBean(NOT_NULL);
+		return getSpringFactory().getBean(NOT_NULL);
 	}
 
 	/**
 	 * Cria uma instancia de {@link IDocumentValidation} que implementa a regra de validação de CPF
 	 */
 	public static <E> IDocumentValidation<E> newCpf() {
-		return springFactory.getBean(CPF);
+		return getSpringFactory().getBean(CPF);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDocumentValidation} que implementa a regra de validação de CNPJ 
 	 */
 	public static <E> IDocumentValidation<E> newCnpj() {
-		return springFactory.getBean(CNPJ);
+		return getSpringFactory().getBean(CNPJ);
 	}
 	
 	/**
@@ -111,49 +114,49 @@ public class ValidationFactory {
 	 * de CNPJ e CNPJ dependendo do número passado 
 	 */
 	public static <E> IDocumentValidation<E> newCpfCnpj() {
-		return springFactory.getBean(CPF_CNPJ);
+		return getSpringFactory().getBean(CPF_CNPJ);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data é futura 
 	 */
 	public static IDateValidation newDateHasBeFuture() {
-		return springFactory.getBean(DATE_MUST_BE_FUTURE);
+		return getSpringFactory().getBean(DATE_MUST_BE_FUTURE);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data é passado
 	 */
 	public static IDateValidation newDateHasBePast() {
-		return springFactory.getBean(DATE_MUST_BE_PAST);
+		return getSpringFactory().getBean(DATE_MUST_BE_PAST);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data é presente 
 	 */
 	public static IDateValidation newDateHasBePresent() {
-		return springFactory.getBean(DATE_MUST_BE_PRESENT);
+		return getSpringFactory().getBean(DATE_MUST_BE_PRESENT);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data não é futura 
 	 */
 	public static IDateValidation newDateCanNotBeFuture() {
-		return springFactory.getBean(DATE_CAN_NOT_BE_FUTURE);
+		return getSpringFactory().getBean(DATE_CAN_NOT_BE_FUTURE);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data não é passado 
 	 */
 	public static IDateValidation newDateCanNotBePast() {
-		return springFactory.getBean(DATE_CAN_NOT_BE_PAST);
+		return getSpringFactory().getBean(DATE_CAN_NOT_BE_PAST);
 	}
 	
 	/**
 	 * Cria uma instancia de {@link IDateValidation} que valida se a data não é presente 
 	 */
 	public static IDateValidation newDateCanNotBePresent() {
-		return springFactory.getBean(DATE_CAN_NOT_BE_PRESENT);
+		return getSpringFactory().getBean(DATE_CAN_NOT_BE_PRESENT);
 	}
 	
 	/**
@@ -161,7 +164,7 @@ public class ValidationFactory {
 	 */
 	public static AbstractMaxMinLengthRequiredValidation<String> newStringMaxLength(int minLength,int maxLength) {
 		 AbstractMaxMinLengthRequiredValidation<String> abstractMaxLengthRequiredValidation = 
-			                springFactory.getBean(STRING_MAX_LENGTH);
+		     getSpringFactory().getBean(STRING_MAX_LENGTH);
 		 
 		 abstractMaxLengthRequiredValidation.setMaxLengthRequired(maxLength);
 		 abstractMaxLengthRequiredValidation.setMinLengthRequired(minLength);
@@ -180,7 +183,7 @@ public class ValidationFactory {
 	 * Cria uma instancia de {@link IComparableValidation} que valida a comparação entre Numbers 
 	 */
 	public static IComparableValidation<Number> newNumberComparable(Number valorComparacao, FatorComparacao fatorComparacao) {
-		AbstractComparableValidation<Number> comparableValidation = springFactory.getBean(NUMBER_COMPARABLE);
+		AbstractComparableValidation<Number> comparableValidation = getSpringFactory().getBean(NUMBER_COMPARABLE);
 		comparableValidation.setValorComparacao(valorComparacao);
 		comparableValidation.setFatorComparacao(fatorComparacao);
 		
@@ -191,7 +194,7 @@ public class ValidationFactory {
 	 * Cria uma instancia de {@link IValidation} que valida campos que não devem conter informação vazia 
 	 */
 	public static IValidation<Object> newNoInformationEmpty() {
-		return springFactory.getBean(NO_INFORMATION_EMPTY);
+		return getSpringFactory().getBean(NO_INFORMATION_EMPTY);
 		
 	}
 	
@@ -209,7 +212,7 @@ public class ValidationFactory {
 	public static <E> IValidation<E> getValidationBean(String id) throws NoSuchBeanValidationException{
 		Object bean = null;
 		try{
-	      bean = springFactory.getBean(id);
+	      bean = getSpringFactory().getBean(id);
 	      if (bean == null || ! (bean instanceof IValidation))
 	    	  throw new NoSuchBeanValidationException();
 		}catch(NoSuchBeanDefinitionException ex){

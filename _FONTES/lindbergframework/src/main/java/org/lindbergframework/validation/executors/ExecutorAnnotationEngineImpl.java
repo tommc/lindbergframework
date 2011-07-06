@@ -123,7 +123,7 @@ public class ExecutorAnnotationEngineImpl
 		for (ValidationItemActions item : items){
 		   if ((actions != null && actions.length != 0 && 
 				   containAnyAction(item, actions)) || /*se foi informada alguma action e o item tem ao menos uma das actions informadas*/ 
-			   (actions == null || actions.length == 0))//não foi informada nenhuma action
+			   ((actions == null || actions.length == 0) && item.actions.length == 0))//não foi informada nenhuma action
 		      executorValidation.addValidationForSeveralItems(item.getValidation(), item.getItem());
 		}
 		

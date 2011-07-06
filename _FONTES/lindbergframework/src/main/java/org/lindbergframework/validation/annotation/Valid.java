@@ -78,6 +78,6 @@ public @interface Valid {
 	 *   que executeInActions da interface {@link IExecutorAnnotationEngine}
 	 * 
 	 */
-	String[] actions() default {""};
+	String[] actions() default {};
 
 }
