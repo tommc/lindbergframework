@@ -8,7 +8,6 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import org.lindbergframework.core.context.CoreContext;
 import org.lindbergframework.exception.WebConfigurationException;
 import org.lindbergframework.persistence.context.LinpContext;
 import org.lindbergframework.util.LogUtil;
@@ -59,8 +58,7 @@ public class LindbergConfigLoaderListener implements ServletContextListener, Htt
 	   		
 	   		WebCoreConfiguration webConfiguration = (WebCoreConfiguration) BeanUtils.instantiateClass(configClass);
 	   		webConfiguration = webConfiguration.initialize(configLocation, servletContext);
-	   		
-	   		CoreContext.getInstance().loadConfiguration(webConfiguration);
+	   		webConfiguration.initializeContext();
 	   		LogUtil.logInfo("Lindberg Web Context initialized");
 	   	}
 	}

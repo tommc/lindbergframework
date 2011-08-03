@@ -18,6 +18,6 @@ public interface IValidation<E> {
      * @throws ValidationException lançada caso a validação falhe
      * 
      */
-	public void validate(E objeto) throws ValidationException;
+	public void validate(E obj) throws ValidationException;
 	
 }
