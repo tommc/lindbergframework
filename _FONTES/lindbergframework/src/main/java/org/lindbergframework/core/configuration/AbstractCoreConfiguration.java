@@ -1,9 +1,16 @@
 package org.lindbergframework.core.configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.lindbergframework.beans.di.context.BeanFactory;
 import org.lindbergframework.core.context.AllowIfContextActive;
+import org.lindbergframework.core.context.CoreContext;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.persistence.configuration.LinpConfiguration;
+import org.lindbergframework.util.ArrayUtil;
+import org.lindbergframework.util.CollectionsUtil;
+import org.lindbergframework.validation.configuration.ValidationConfiguration;
 
 /**
  * Abstract core configuration class that provides the base operations for core configuration implementations.
@@ -18,6 +25,11 @@ public abstract class AbstractCoreConfiguration extends ConfigurationRepository 
      */
     protected static final String LINP_CONFIGURATION_KEY = "linpConfiguration";
     
+    /**
+     * lindberg validation key in the values configurations repository. 
+     */
+    protected static final String VALIDATION_CONFIGURATION_KEY = "validationConfiguration";
+    
     public AbstractCoreConfiguration(){
         //
     }
@@ -27,7 +39,7 @@ public abstract class AbstractCoreConfiguration extends ConfigurationRepository 
      */
     @AllowIfContextActive
     public String getDIBasePackage() {
-        return getConfigValue(CONFIG_PROPERTY_DI_BASEPACKAGE);
+        return super.getPropertyValue(CONFIG_PROPERTY_DI_BASEPACKAGE);
     }
 
     /**
@@ -35,7 +47,7 @@ public abstract class AbstractCoreConfiguration extends ConfigurationRepository 
      */
     @AllowIfContextActive
     public BeanFactory getBeanFactory() {
-        return getConfigValue(CONFIG_PROPERTY_BEAN_FACTORY);
+        return super.getPropertyValue(CONFIG_PROPERTY_BEAN_FACTORY);
     }
     
     /**
@@ -43,7 +55,15 @@ public abstract class AbstractCoreConfiguration extends ConfigurationRepository 
      */
     @AllowIfContextActive
     public LinpConfiguration getLinpConfiguration() {
-        return getConfigValue(LINP_CONFIGURATION_KEY);
+        return super.getPropertyValue(LINP_CONFIGURATION_KEY);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @AllowIfContextActive
+    public ValidationConfiguration getValidationConfiguration() {
+        return super.getPropertyValue(VALIDATION_CONFIGURATION_KEY);
     }
 
     protected void setDiBasePackage(String diBasePackage) {
@@ -58,11 +78,8 @@ public abstract class AbstractCoreConfiguration extends ConfigurationRepository 
         registerProperty(LINP_CONFIGURATION_KEY, linpConfiguration);
     }
     
-    /**
-     * {@inheritDoc}
-     */
-    public <E> E getPropertyValue(String key) {
-        return getConfigValue(key);
+    public void setValidationConfiguration(ValidationConfiguration validationConfiguration){
+        registerProperty(VALIDATION_CONFIGURATION_KEY, validationConfiguration);
     }
     
     /**
@@ -70,6 +87,23 @@ public abstract class AbstractCoreConfiguration extends ConfigurationRepository 
      */
     public void validate() throws InvalidConfigurationException {
         //
+    }
+    
+    public void initializeContext() {
+        CoreContext.getInstance().loadConfiguration(this);
+    }
+    
+    public Configuration[] getModules() {
+        List<Configuration> configurations = new ArrayList<Configuration>();
+        Configuration linpConfiguration = getLinpConfiguration();
+        if (linpConfiguration != null)
+            configurations.add(linpConfiguration);
+        
+        Configuration valConfiguration = getValidationConfiguration();
+        if (valConfiguration != null)
+            configurations.add(valConfiguration);
+        
+        return configurations.toArray(new Configuration[configurations.size()]);
     }
 
 }
