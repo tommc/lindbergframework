@@ -29,11 +29,11 @@ public interface CoreConfiguration extends Configuration{
     public static final BeanFactory DEFAULT_BEAN_FACTORY = new AnnotationBeanFactory();
     
     /**
-     * get the lindberg persistence configuration implementation.
+     * get the modules to initialize.
      * 
-     * @return lindberg persistence implementation configured in this core configuration.
+     * @return lindberg modules to initialize.
      */
-    public LinpConfiguration getLinpConfiguration();
+    public Configuration[] getModules();
     
     /**
      * get the IOC base package.

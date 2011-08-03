@@ -9,7 +9,7 @@ import java.util.Map;
  * @author Victor Lindberg
  *
  */
-public abstract class ConfigurationRepository{
+public abstract class ConfigurationRepository implements Configuration{
     
     /**
      * property values repository map.
@@ -27,7 +27,7 @@ public abstract class ConfigurationRepository{
      * @param key key of configuration property.
      * @return property value.
      */
-    public <E> E getConfigValue(String key) {
+    public <E> E getPropertyValue(String key) {
         return (E) mapKeys.get(key);
     }
     

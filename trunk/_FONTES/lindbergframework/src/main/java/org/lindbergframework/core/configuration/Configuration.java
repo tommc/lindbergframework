@@ -25,4 +25,6 @@ public interface Configuration {
 	 */
 	public <E> E getPropertyValue(String key);
 	
+	public void initializeContext();
+	
 }
