@@ -163,8 +163,9 @@ public class ExecutorAnnotationEngineImpl
 			 }
 		  }catch(ValidationException ex){
 		     throw ex;
-		  }
-		  catch(Exception ex){
+		  }catch(NoSuchBeanValidationException ex){
+		      throw ex;
+		  }catch(Exception ex){
 		     throw new ValidationException("Ocorreu um erro adicionando o bean de validação. Certifique-se que o bean referido está acessível e pode ser instanciado");
 		  }
 	}
@@ -213,7 +214,7 @@ public class ExecutorAnnotationEngineImpl
 				beanValid = beanClass.newInstance();
 			} 
 		} catch (Exception ex) {
-			throw new NoSuchBeanValidationException();
+			throw new NoSuchBeanValidationException("Bean validation not found : ["+valid.value()+"]");
 		}
 
 		if (beanValid != null && beanValid instanceof IValidation)
