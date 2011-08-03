@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lindberg-configuration xmlns="http://www.lindbergframework.org/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.lindbergframework.org/schema lindberg-config.xsd ">
 
+
 <core>
    <config-property name="lindberg.core.di-basepackage" value="org.lindbergframework.test.*"/>
 </core>
+
+<validation parser="org.lindbergframework.validation.configuration.XmlValidationConfiguration">
+   <config-property name="lindberg.validation.extensionFilePathBeansValidation" 
+   			value="org/lindbergframework/test/validation/resource/myValidations.xml"/>
+</validation>
 
 <linp parser="org.lindbergframework.persistence.configuration.XmlLinpConfiguration">
 		<dataSource class="org.springframework.jdbc.datasource.SimpleDriverDataSource" 
