@@ -295,7 +295,7 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 	 * 
 	 * @param linp xml node.
 	 */
-	public void buildConfiguration(Linp linp){
+	private void buildConfiguration(Linp linp){
 	    verifyConfiguration();
 	    
 	    try {

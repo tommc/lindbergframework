@@ -3,12 +3,12 @@ package org.lindbergframework.core.context;
 import java.lang.reflect.Method;
 
 import org.lindbergframework.beans.di.context.BeanFactory;
+import org.lindbergframework.core.configuration.Configuration;
 import org.lindbergframework.core.configuration.CoreConfiguration;
 import org.lindbergframework.exception.CoreConfigurationException;
 import org.lindbergframework.exception.IllegalStateContextException;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.exception.PersistenceConfigurationException;
-import org.lindbergframework.persistence.configuration.LinpConfiguration;
 import org.lindbergframework.persistence.context.LinpContext;
 import org.lindbergframework.util.LogUtil;
 import org.lindbergframework.util.ProxyUtil;
@@ -50,6 +50,7 @@ public class CoreContext implements ComponentContext<CoreContext,CoreConfigurati
                                  clazz.getDeclaredMethod("verifyContext"),
                                  clazz.getDeclaredMethod("isActive"),
                                  clazz.getDeclaredMethod("validate"),
+                                 clazz.getDeclaredMethod("initializeContext"),
                                  clazz.getDeclaredMethod("close")};
               instance = ProxyUtil.createProxy(CoreContext.class, new ContextProxy(noProxyMethods));
            }catch(Exception ex){
@@ -92,6 +93,11 @@ public class CoreContext implements ComponentContext<CoreContext,CoreConfigurati
     public BeanFactory getBeanFactory() {
         return configuration.getBeanFactory();
     }
+    
+    @AllowIfContextActive
+    public Configuration[] getModules() {
+        return configuration.getModules();
+    }
 
     /**
      * {@inheritDoc}
@@ -99,14 +105,6 @@ public class CoreContext implements ComponentContext<CoreContext,CoreConfigurati
     @AllowIfContextActive
     public String getDIBasePackage() {
         return configuration.getDIBasePackage();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @AllowIfContextActive
-    public LinpConfiguration getLinpConfiguration() {
-        return configuration.getLinpConfiguration();
     }
 
     /**
@@ -161,9 +159,13 @@ public class CoreContext implements ComponentContext<CoreContext,CoreConfigurati
      * @param configuration configuration instance to load modules.
      */
     private void loadModules(CoreConfiguration configuration){
-        LinpConfiguration linpConfiguration = configuration.getLinpConfiguration();
-        if (linpConfiguration != null)
-           LinpContext.getInstance().loadConfiguration(linpConfiguration);
+        Configuration[] configurations = configuration.getModules();
+        for (Configuration moduleConfiguration : configurations)
+            moduleConfiguration.initializeContext();
+    }
+    
+    public void initializeContext() {
+        throw new UnsupportedOperationException();
     }
 
 }

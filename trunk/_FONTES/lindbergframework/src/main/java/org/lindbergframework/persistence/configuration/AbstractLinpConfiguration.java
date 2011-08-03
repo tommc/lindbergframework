@@ -5,6 +5,7 @@ import org.lindbergframework.core.context.AllowIfContextActive;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.persistence.DataSourceConfig;
+import org.lindbergframework.persistence.context.LinpContext;
 import org.lindbergframework.persistence.sql.SqlCommandResolver;
 import org.lindbergframework.persistence.transaction.TransactionManager;
 import org.lindbergframework.validation.IExecutorValidationItems;
@@ -36,7 +37,7 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 	 */
 	@AllowIfContextActive
 	public Integer getCursorType() {
-		return getConfigValue(CONFIG_PROPERTY_CURSOR_TYPE);
+		return super.getPropertyValue(CONFIG_PROPERTY_CURSOR_TYPE);
 	}
 	
 	/**
@@ -44,7 +45,7 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 	 */
 	@AllowIfContextActive
 	public DataSourceConfig getDataSourceConfig() {
-		return getConfigValue(DATA_SOURCE_KEY);
+		return super.getPropertyValue(DATA_SOURCE_KEY);
 	}
 	
 	/**
@@ -52,7 +53,7 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 	 */
 	@AllowIfContextActive
 	public SqlCommandResolver getSqlCommandResolver() {
-		return getConfigValue(CONFIG_PROPERTY_SQL_COMMAND_RESOLVER);
+		return super.getPropertyValue(CONFIG_PROPERTY_SQL_COMMAND_RESOLVER);
 	}
 
 	/**
@@ -60,7 +61,7 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 	 */
 	@AllowIfContextActive
 	public TransactionManager getTransactionManager() {
-		return getConfigValue(CONFIG_PROPERTY_TRANSACTION_MANAGER);
+		return super.getPropertyValue(CONFIG_PROPERTY_TRANSACTION_MANAGER);
 	}
 	
 	/**
@@ -68,7 +69,7 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 	 */
 	@AllowIfContextActive
 	public String getDefaultSchema() {
-	    return getConfigValue(CONFIG_PROPERTY_DEFAULT_SCHEMA);
+	    return super.getPropertyValue(CONFIG_PROPERTY_DEFAULT_SCHEMA);
 	}
 	
 	protected void setDataSourceConfig(DataSourceConfig dataSourceConfig) {
@@ -109,7 +110,7 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 	 */
 	@AllowIfContextActive
 	public <E> E getPropertyValue(String key) {
-	    return getConfigValue(key);
+	    return super.getPropertyValue(key);
 	}
 	
 	/**
@@ -128,5 +129,7 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 		}
 	}
 	
-	
+	public void initializeContext() {
+	    LinpContext.getInstance().loadConfiguration(this);
+	}
 }
