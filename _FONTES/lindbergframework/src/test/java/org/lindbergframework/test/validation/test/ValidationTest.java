@@ -4,15 +4,14 @@ import java.util.Date;
 
 import junit.framework.TestCase;
 
+import org.lindbergframework.core.configuration.ClassPathXmlCoreConfiguration;
+import org.lindbergframework.core.configuration.Configuration;
+import org.lindbergframework.core.context.CoreContext;
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.test.beans.ValidationBean1;
-import org.lindbergframework.util.ArrayUtil;
 import org.lindbergframework.util.CollectionsUtil;
 import org.lindbergframework.validation.annotation.engine.IExecutorAnnotationEngine;
-import org.lindbergframework.validation.context.LindbergSpringValidationsBeanFactory;
 import org.lindbergframework.validation.executors.factory.ExecutorFactory;
-
-import edu.emory.mathcs.backport.java.util.Arrays;
 
 /**
  * 
@@ -23,9 +22,17 @@ public class ValidationTest extends TestCase{
 
     @Override
     protected void setUp() throws Exception {
-        LindbergSpringValidationsBeanFactory.initAdditionalContext(new String[] {"org/lindbergframework/test/validation/resource/myValidations.xml"});
+        if (! CoreContext.getInstance().isActive()) {
+            Configuration configuration = new ClassPathXmlCoreConfiguration("org/lindbergframework/test/persistence/resource/mysql/configMySql.xml");
+            configuration.initializeContext();
+        }
     }
     
+    @Override
+    protected void tearDown() throws Exception {
+        CoreContext.getInstance().close();
+    }
+
     public boolean verifyMsgs(ValidationException ex, String... msgs){
         if (ex.getMessages().size() != msgs.length)
             return false;

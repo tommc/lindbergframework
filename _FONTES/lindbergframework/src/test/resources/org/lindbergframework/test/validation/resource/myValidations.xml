@@ -10,5 +10,8 @@
  
 
         <bean id="myValidation1" class="org.lindbergframework.test.beans.MyValidation1"></bean>
-
+        
+        <bean id="validationString1" class="org.lindbergframework.test.beans.ValidationString1"></bean>
+        
+        <bean id="validationInteger1" class="org.lindbergframework.test.beans.ValidationInteger1"></bean>
 </beans>

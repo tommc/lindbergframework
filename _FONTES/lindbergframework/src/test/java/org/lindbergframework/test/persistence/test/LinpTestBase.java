@@ -26,7 +26,7 @@ public class LinpTestBase extends
         if (!CoreContext.getInstance().isActive()) {
             configuration = new ClassPathXmlCoreConfiguration(
                 configResourceLocation);
-            CoreContext.getInstance().loadConfiguration(configuration);
+            configuration.initializeContext();
         }
         setDataSource(LinpContext.getInstance().getDataSource());
         setTransactionManager(new DataSourceTransactionManager(LinpContext.getInstance().getDataSource()));
