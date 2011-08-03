@@ -58,6 +58,7 @@ public class LinpContext implements ComponentContext<LinpContext,LinpConfigurati
                                     clazz.getDeclaredMethod("verifyContext"),
                                     clazz.getDeclaredMethod("isActive"),
                                     clazz.getDeclaredMethod("validate"),
+                                    clazz.getDeclaredMethod("initializeContext"),
                                     clazz.getDeclaredMethod("close")};
 		    
 			   instance = ProxyUtil.createProxy(LinpContext.class, new ContextProxy(noProxyMethods));
@@ -187,5 +188,9 @@ public class LinpContext implements ComponentContext<LinpContext,LinpConfigurati
 			throw new InvalidConfigurationException("Linp Configuration must be not null");
 		
 		configuration.validate();
+	}
+	
+	public void initializeContext() {
+	    throw new UnsupportedOperationException();
 	}
 }
