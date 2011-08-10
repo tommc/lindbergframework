@@ -33,7 +33,7 @@
                      </xs:sequence>
 			      </xs:complexType>   
 			   </xs:element>
-			   <xs:element  name="validation" minOccurs="0" maxOccurs="1">
+			   <xs:element  name="linv" minOccurs="0" maxOccurs="1">
 			      <xs:annotation>
 			         <xs:documentation>Configurations of VALIDATION</xs:documentation>
 			      </xs:annotation>

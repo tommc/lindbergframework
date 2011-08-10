@@ -8,7 +8,9 @@ import org.lindbergframework.core.context.xml.util.XmlUtil;
 import org.lindbergframework.exception.PersistenceConfigurationException;
 import org.lindbergframework.exception.ValidationConfigurationException;
 import org.lindbergframework.schema.TconfigProperty;
-import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Validation;
+import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Linv;
+
+
 
 
 /**
@@ -18,13 +20,13 @@ import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfig
  */
 public class XmlValidationConfiguration extends AbstractValidationConfigurarion implements XmlValidationConfigurationInitializer{
 
-    private Validation configuration;
+    private Linv configuration;
     
     public XmlValidationConfiguration(){
         //
     }
    
-    public XmlValidationConfiguration(Validation validation) {
+    public XmlValidationConfiguration(Linv validation) {
         initialize(validation);
     }
     
@@ -40,7 +42,7 @@ public class XmlValidationConfiguration extends AbstractValidationConfigurarion 
         initialize(xmlConfig);
     }
 
-    public void initialize(Validation validationConfig) {
+    public void initialize(Linv validationConfig) {
         buildConfiguration(validationConfig);
     }
 
@@ -80,7 +82,7 @@ public class XmlValidationConfiguration extends AbstractValidationConfigurarion 
                     "Invalid validation xmlConfig");
         
         try {
-            buildConfiguration(XmlUtil.buildDocument(xmlConfig).getValidation());
+            buildConfiguration(XmlUtil.buildDocument(xmlConfig).getLinv());
         } catch (PersistenceConfigurationException ex) {
             throw ex;
         } catch (Exception ex) {
@@ -118,7 +120,7 @@ public class XmlValidationConfiguration extends AbstractValidationConfigurarion 
             throw new IllegalStateException("Configuration is already initialized");
     }
     
-    private void buildConfiguration(Validation validation){
+    private void buildConfiguration(Linv validation){
         verifyConfiguration();
         
         try {

@@ -6,10 +6,10 @@
    <config-property name="lindberg.core.di-basepackage" value="org.lindbergframework.test.*"/>
 </core>
 
-<validation parser="org.lindbergframework.validation.configuration.XmlValidationConfiguration">
+<linv parser="org.lindbergframework.validation.configuration.XmlValidationConfiguration">
    <config-property name="lindberg.validation.extensionFilePathBeansValidation" 
    			value="org/lindbergframework/test/validation/resource/myValidations.xml"/>
-</validation>
+</linv>
 
 <linp parser="org.lindbergframework.persistence.configuration.XmlLinpConfiguration">
 		<dataSource class="org.springframework.jdbc.datasource.SimpleDriverDataSource" 

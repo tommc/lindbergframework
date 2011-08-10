@@ -1,7 +1,7 @@
 package org.lindbergframework.validation.configuration;
 
 import org.lindbergframework.core.configuration.ConfigurationInitializer;
-import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Validation;
+import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Linv;
 
 /**
  * 
@@ -15,6 +15,6 @@ public interface XmlValidationConfigurationInitializer extends ConfigurationInit
      *  
      * @param validationConfig xml node.
      */
-    public void initialize(Validation validationConfig);
+    public void initialize(Linv validationConfig);
 
 }
