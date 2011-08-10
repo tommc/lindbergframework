@@ -19,7 +19,7 @@ import org.lindbergframework.schema.TconfigProperty;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Core;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Linp;
-import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Validation;
+import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Linv;
 import org.lindbergframework.validation.configuration.ValidationConfiguration;
 import org.lindbergframework.validation.configuration.XmlValidationConfiguration;
 import org.lindbergframework.validation.configuration.XmlValidationConfigurationInitializer;
@@ -196,19 +196,19 @@ public class XmlCoreConfiguration extends AbstractCoreConfiguration implements C
         ValidationConfiguration validConfigCache = super.getValidationConfiguration();
         if (validConfigCache != null)
             return validConfigCache;
-        if (lindbergConfiguration.getValidation() == null)
+        if (lindbergConfiguration.getLinv() == null)
             return null;
         
         String strClassParser = getParserValidationConfig();
         if (strClassParser == null){
-            validConfigCache = new XmlValidationConfiguration(lindbergConfiguration.getValidation());
+            validConfigCache = new XmlValidationConfiguration(lindbergConfiguration.getLinv());
         }else
             try{
                 Class validationConfigClazz = Class.forName(strClassParser);
                 validConfigCache = BeanUtil.createInstance(validationConfigClazz);
                 if (validConfigCache instanceof XmlValidationConfigurationInitializer){
                     XmlValidationConfigurationInitializer validInitializer = (XmlValidationConfigurationInitializer) validConfigCache;
-                    validInitializer.initialize(lindbergConfiguration.getValidation());
+                    validInitializer.initialize(lindbergConfiguration.getLinv());
                 }else
                     throw new InvalidConfigurationException("Xml validation configuration parser does not implements XmlValidationConfigurationInitializer");
             }catch(Exception ex){
@@ -233,7 +233,7 @@ public class XmlCoreConfiguration extends AbstractCoreConfiguration implements C
     }
     
     public String getParserValidationConfig(){
-        Validation valid = lindbergConfiguration.getValidation();
+        Linv valid = lindbergConfiguration.getLinv();
         if (coreConfiguration != null && valid != null)
             return valid.getParser(); 
         
