@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.lindbergframework.exception.NonUniqueRowException;
 import org.lindbergframework.persistence.beans.BeanPopulator;
 import org.lindbergframework.persistence.beans.MultLevelsBeanPopulator;
 import org.lindbergframework.persistence.sql.SqlArg;
@@ -59,11 +60,12 @@ public interface PersistenceTemplate {
 	 * @param params arguments for query.
 	 * 
 	 * @return bean instance populated of clazz argument type or null if the result is empty.
+	 * @throws NonUniqueRowException if the query did return more than one row.
 	 * 
 	 * @see BeanPopulator
 	 * @see MultLevelsBeanPopulator
 	 */
-    public <E> E execQueryForObject(Class<E> clazz,String sqlId, Object... params);
+    public <E> E execQueryForObject(Class<E> clazz,String sqlId, Object... params) throws NonUniqueRowException;
 	
     /**
      * Executes a sql query for unique object as result.
@@ -73,11 +75,12 @@ public interface PersistenceTemplate {
      * @param params arguments for query.
      * 
      * @return bean instance populated of clazz argument type or null if the result is empty.
+     * @throws NonUniqueRowException if the query did return more than one row.
      * 
      * @see BeanPopulator
      * @see MultLevelsBeanPopulator
      */
-	public <E> E execSqlQueryForObject(Class<E> clazz,String sql, Object... params);
+	public <E> E execSqlQueryForObject(Class<E> clazz,String sql, Object... params) throws NonUniqueRowException;
 	
 	//update
 	/**
