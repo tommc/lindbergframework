@@ -23,6 +23,7 @@ import org.lindbergframework.persistence.translate.SqlSelectFieldsTranslator;
 import org.lindbergframework.persistence.util.SqlTranslateUtil;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
 /**
@@ -109,14 +110,14 @@ public class LinpTemplate extends TemplateBase
 	/**
 	 * {@inheritDoc}
 	 */
-	public <E> E execSqlQueryForObject(Class<E> clazz,String sql, Object... params) {
+	public <E> E execSqlQueryForObject(Class<E> clazz,String sql, Object... params) throws NonUniqueRowException{
 		List<E> listResult = execSqlQuery(clazz, sql, params);
 		if (listResult.isEmpty())
 			return null;
 		
 		if (listResult.size() != 1)
 		    throw new NonUniqueRowException("Query returned more that one row, but it was expected only one");
-		
+
 		return listResult.get(0);
 	}
 
@@ -142,7 +143,7 @@ public class LinpTemplate extends TemplateBase
 	/**
 	 * {@inheritDoc}
 	 */
-	public <E> E execQueryForObject(Class<E> clazz,String sqlId, Object... params) {
+	public <E> E execQueryForObject(Class<E> clazz,String sqlId, Object... params) throws NonUniqueRowException{
 		try {
 			String sql = getSqlCommandResolver().getSqlStatement(sqlId).getStatement();
 			return execSqlQueryForObject(clazz, sql, params); 
