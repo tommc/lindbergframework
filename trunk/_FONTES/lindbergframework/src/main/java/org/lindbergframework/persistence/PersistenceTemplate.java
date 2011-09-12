@@ -26,6 +26,7 @@ public interface PersistenceTemplate {
 	//query
     /**
      * Executes a sql command for query.
+     * Use '?' in command on repository to define an query parameter. (Select * From person where id = ?) 
      * 
      * @param clazz bean type expected for result mapping.
      * @param sqlId sql command id for query.
@@ -40,6 +41,7 @@ public interface PersistenceTemplate {
 	
 	/**
 	 * Executes a sql query.
+	 * Use '?' in sql statement to define an query parameter. (Select * From person where id = ?) 
 	 * 
 	 * @param clazz bean type expected for result mapping.
 	 * @param sql sql query statement.
@@ -54,6 +56,7 @@ public interface PersistenceTemplate {
 	
 	/**
 	 * Executes a sql query for unique object as result.
+	 * Use '?' in sql statement to define an query parameter. (Select * From person where id = ?) 
 	 * 
 	 * @param clazz bean type expected for result mapping.
 	 * @param sqlId sql command id for query.
@@ -69,6 +72,7 @@ public interface PersistenceTemplate {
 	
     /**
      * Executes a sql query for unique object as result.
+     * Use '?' in sql statement to define an query parameter. (Select * From person where id = ?) 
      * 
      * @param clazz bean type expected for result mapping.
      * @param sql sql query statement.
@@ -85,6 +89,8 @@ public interface PersistenceTemplate {
 	//update
 	/**
      * Executes a sql command for update.
+     * Use for <i>delele, update and insert</i>
+     * Use '?' in command on repository to define an argument in sql statement (insert into person values(?,?,?))
      * 
      * @param sqlId sql command id for query.
      * @param params arguments for update.
@@ -95,6 +101,8 @@ public interface PersistenceTemplate {
 	
 	/**
 	 * Executes a sql update.
+	 * Use for <i>delele, update and insert</i>
+	 * Use '?' to define an argument in sql statement (insert into person values(?,?,?))
 	 * 
 	 * @param sql sql update statement.
 	 * @param params arguments for update.
@@ -152,7 +160,7 @@ public interface PersistenceTemplate {
      * @param args 'in' function arguments.
      * 
      * @return a map with out function parameters with the parameter name as key and the parameter value as map value. 
-     * The default function result object key in result map is SqlFunction.DEFAULT_RESULT_NAME constant.
+     * The default function result object key in result map it´s SqlFunction.DEFAULT_RESULT_NAME constant.
      */
 	public Map callFunction(String sqlId, SqlArg... args);
 	
