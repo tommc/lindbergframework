@@ -71,7 +71,7 @@ public abstract class TemplateBase implements PersistenceTemplate {
 	 */
 	public void configureDefaultPopulator(){
 		setBeanPopulator((BeanPopulator) LindbergPersistenceSpringBeanFactory.getInstance()
-		               .getBean(PersistBeans.MULT_LEVEL_BEAN_POPULATOR));
+		               .getBean(PersistBeans.DEFAULT_BEAN_POPULATOR));
 	}
 	
 	/**
