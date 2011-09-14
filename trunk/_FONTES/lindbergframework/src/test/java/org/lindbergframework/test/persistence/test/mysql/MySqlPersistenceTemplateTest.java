@@ -1,12 +1,12 @@
 package org.lindbergframework.test.persistence.test.mysql;
 
+import static org.lindbergframework.test.persistence.util.BeansUtil.createPerson;
+
 import java.util.List;
 
 import org.lindbergframework.test.persistence.dao.mysql.MySqlPersistTemplateDaoTest;
 import org.lindbergframework.test.persistence.test.PersistenceTemplateTest;
 import org.lindbergframework.test.testBeans.Person;
-
-import static org.lindbergframework.test.persistence.util.BeansUtil.*;
 
 
 /**

@@ -85,7 +85,7 @@ public class LinpDAO {
      * @return default template instance
      */
     private PersistenceTemplate getDefaultTemplate(Object... constructorArgs){
-        return LindbergPersistenceSpringBeanFactory.getInstance().getBean(PersistBeans.DEFAULT_LINP_TEMPLATE,constructorArgs);
+        return LindbergPersistenceSpringBeanFactory.getInstance().getBean(PersistBeans.DEFAULT_PERSISTENCE_TEMPLATE,constructorArgs);
     }
     
     /**
