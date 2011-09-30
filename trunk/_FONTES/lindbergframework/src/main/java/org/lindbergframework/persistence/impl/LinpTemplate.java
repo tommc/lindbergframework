@@ -23,7 +23,6 @@ import org.lindbergframework.persistence.translate.SqlSelectFieldsTranslator;
 import org.lindbergframework.persistence.util.SqlTranslateUtil;
 import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
 /**
