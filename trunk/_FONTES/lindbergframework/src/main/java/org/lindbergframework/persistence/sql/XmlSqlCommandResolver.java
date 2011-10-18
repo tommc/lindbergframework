@@ -24,6 +24,7 @@ import org.lindbergframework.schema.TProcedure;
 import org.lindbergframework.schema.TSqlCommand;
 import org.lindbergframework.schema.LinpMappingDocument.LinpMapping;
 import org.lindbergframework.schema.LinpMappingDocument.LinpMapping.SqlMapping;
+import org.lindbergframework.util.LogUtil;
 import org.springframework.util.StringUtils;
 
 /**
@@ -100,6 +101,7 @@ public class XmlSqlCommandResolver implements SqlCommandResolver, LinpConfigurat
 	 * @param xmlSqlCommandLocations configuration objects.
 	 */
 	private void load(Object[] xmlSqlCommandLocations){
+	    LogUtil.logInfo("[SQL repository] Loading XML mapping for repository of sql commands");
 		if (linpMappings != null)
 			   throw new IllegalStateException("Sql Mapping context is already initialized");
 		
@@ -277,8 +279,7 @@ public class XmlSqlCommandResolver implements SqlCommandResolver, LinpConfigurat
 	 */
 	private LinpMapping loadDocument(Object sqlMapping) {
 		if (sqlMapping == null)
-			throw new SqlMappingException(
-					"Invalid Xml sql mapping");
+			throw new SqlMappingException("XML file of SQL Mapping not found or does not exist");
 
 		try {
 			return buildDocument(sqlMapping);

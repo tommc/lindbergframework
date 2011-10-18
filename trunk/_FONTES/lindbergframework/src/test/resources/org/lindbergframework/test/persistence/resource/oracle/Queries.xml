@@ -42,9 +42,8 @@
           <Function name="listPersonsLikeNickNameFunc" resultName="personsList">
              <ResultCursor population-class="org.lindbergframework.test.testBeans.Person" />
           </Function>
-       </Sql-Command>       
-         
-          
+       </Sql-Command>
+              
     </Sql-Mapping>          
 
 </Linp-Mapping>

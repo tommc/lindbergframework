@@ -4,6 +4,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lindbergframework.util.ArrayUtil;
+import org.lindbergframework.util.CollectionsUtil;
 import org.lindbergframework.util.ResourceUtil;
 
 /**
@@ -18,6 +20,10 @@ public class ClassPathXmlSqlCommandResolver extends XmlSqlCommandResolver{
 	
 	public ClassPathXmlSqlCommandResolver(){
 		//
+	}
+	
+	public ClassPathXmlSqlCommandResolver(List<String> xmlResources){
+	    this(xmlResources.toArray(new String[]{}));
 	}
 	
 	/**

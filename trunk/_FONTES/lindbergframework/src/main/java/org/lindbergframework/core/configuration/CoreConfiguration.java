@@ -2,7 +2,6 @@ package org.lindbergframework.core.configuration;
 
 import org.lindbergframework.beans.di.context.AnnotationBeanFactory;
 import org.lindbergframework.beans.di.context.BeanFactory;
-import org.lindbergframework.persistence.configuration.LinpConfiguration;
 
 
 /**

@@ -18,11 +18,11 @@
 		<config-properties>
 			<config-property name="lindberg.persistence.IntegerCursorType" value="#oracle.jdbc.OracleTypes.CURSOR" />
 			<config-property name="lindberg.persistence.SqlCommandResolver" value="org.lindbergframework.persistence.sql.ClassPathXmlSqlCommandResolver">
-				<property name="aaa" constructor-arg="true">
-					<array> 
+				<property constructor-arg="true">
+					<list> 
                        org/lindbergframework/test/persistence/resource/oracle/Updates.xml;
                        org/lindbergframework/test/persistence/resource/oracle/Queries.xml
-					</array>
+					</list>
 				</property>
 			</config-property>
 		</config-properties>

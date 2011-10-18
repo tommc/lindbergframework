@@ -326,6 +326,7 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
     public void validate() throws InvalidConfigurationException {
     	if (! configuration.validate())
      	   throw new InvalidXmlDocumentException("Persistence XML configuration is invalid. Verify the xml configuration");
+    	getSqlCommandResolver();//load sqlCommandResolver
     }
     
 }
