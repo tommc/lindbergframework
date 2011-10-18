@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Linp-Mapping xmlns="http://www.lindbergframework.org/schema" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://www.lindbergframework.org/schema linp-sqlMapping.xsd">
+		
+<Description>Exemplo de Updates</Description>
+    
+    <Sql-Mapping>
+       <Sql-Command id="inserirPessoa">
+          <Sql-Statement>insert into pessoa values(?,?,?,?,?,?)</Sql-Statement>
+       </Sql-Command>
+       
+       <Sql-Command id="excluirPessoa">
+          <Sql-Statement>delete from pessoa where cpf = ?</Sql-Statement>
+       </Sql-Command>
+       
+       <Sql-Command id="atualizarEnderecoPessoa">
+          <Sql-Statement>update pessoa set bairro = ?, rua = ?, numero = ?, numeroCep = ? where cpf = ?</Sql-Statement>
+       </Sql-Command>
+    </Sql-Mapping>
+    		
+</Linp-Mapping>
