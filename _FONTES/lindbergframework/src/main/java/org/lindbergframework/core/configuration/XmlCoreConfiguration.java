@@ -135,7 +135,12 @@ public class XmlCoreConfiguration extends AbstractCoreConfiguration implements C
         beanFactoryCache = getPropertyValue(CONFIG_PROPERTY_BEAN_FACTORY);
         if (beanFactoryCache == null)
             beanFactoryCache = CoreConfiguration.DEFAULT_BEAN_FACTORY;
-        beanFactoryCache.loadBasepackage(getDIBasePackage());
+        
+        String basePackage = getDIBasePackage();
+        if (basePackage == null)
+            throw new IllegalArgumentException("The basePackages property must be defined. Configure the [lindberg.core.di-basepackage] configuration property");
+        
+        beanFactoryCache.loadBasepackage(basePackage);
         super.setBeanFactory(beanFactoryCache);
         
         return beanFactoryCache;
@@ -285,6 +290,9 @@ public class XmlCoreConfiguration extends AbstractCoreConfiguration implements C
      */
     @Override
     public void validate() throws InvalidConfigurationException {
+        if (coreConfiguration == null)
+            return;
+        
         if (! coreConfiguration.validate())
            throw new InvalidXmlDocumentException("Lindberg Core XML configuration is invalid. Verify the xml configuration");
         verifyRequiredConfigProperties();

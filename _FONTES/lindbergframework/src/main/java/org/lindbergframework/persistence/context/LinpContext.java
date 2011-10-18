@@ -83,7 +83,6 @@ public class LinpContext implements ComponentContext<LinpContext,LinpConfigurati
 					"Close the linp context calling the close method before of to load a new configuration");
 			
 		context.activate(configuration);
-		
 		return context;
 	}
 
