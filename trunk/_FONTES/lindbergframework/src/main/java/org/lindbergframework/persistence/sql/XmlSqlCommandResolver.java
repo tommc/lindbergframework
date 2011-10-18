@@ -263,7 +263,11 @@ public class XmlSqlCommandResolver implements SqlCommandResolver, LinpConfigurat
 	 * if a {@link TSqlCommand} with the specified id not found.
 	 */
 	protected TSqlCommand getTSqlCommand(LinpMapping mapping,String id){
-		TSqlCommand[] commandArray = mapping.getSqlMapping().getSqlCommandArray();
+	    SqlMapping sqlMapping = mapping.getSqlMapping();
+	    if (sqlMapping == null)
+	        return null;
+	    
+		TSqlCommand[] commandArray = sqlMapping.getSqlCommandArray();
 		for (TSqlCommand command : commandArray)
 			if (command.getId().equals(id))
 				return command;
@@ -339,6 +343,8 @@ public class XmlSqlCommandResolver implements SqlCommandResolver, LinpConfigurat
           if (! linpMapping.validate()){
               valid = false;
               SqlMapping sqlMapping = linpMapping.getSqlMapping();
+              if (sqlMapping == null)
+                  continue;
               for (TSqlCommand sqlCommand : sqlMapping.getSqlCommandArray())
                   if (! sqlCommand.validate())
                       idsFail.add(sqlCommand.getId() == null ? "#Unnamed#" : sqlCommand.getId());
@@ -347,7 +353,7 @@ public class XmlSqlCommandResolver implements SqlCommandResolver, LinpConfigurat
        
        if (! valid){
            if (! idsFail.isEmpty()){
-               InvalidSqlMappingException mainCause = new InvalidSqlMappingException("Invalid Sql Commands in XML sql mapping "+ idsFail.toString());
+               InvalidSqlMappingException mainCause = new InvalidSqlMappingException("Invalid Sql Commands in XML sql mapping ["+ idsFail.toString()+"]");
                throw new InvalidSqlMappingException("XML sql mapping is invalid",mainCause); 
            }
            throw new InvalidSqlMappingException("XML sql mapping is invalid"); 
@@ -369,7 +375,10 @@ public class XmlSqlCommandResolver implements SqlCommandResolver, LinpConfigurat
     	Set<String> duplicatedIDs = new HashSet<String>();
     	DuplicatedSqlMappingIdException ex = new DuplicatedSqlMappingIdException();
     	for (LinpMapping mapping : linpMappings){
-    		TSqlCommand[] commands = mapping.getSqlMapping().getSqlCommandArray();
+    	    SqlMapping sqlMapping = mapping.getSqlMapping();
+    	    if (sqlMapping == null)
+    	        continue;
+    		TSqlCommand[] commands = sqlMapping.getSqlCommandArray();
     		for (TSqlCommand command : commands){
     			String id = command.getId();
     			if (ids.contains(id) && ! duplicatedIDs.contains(id)){

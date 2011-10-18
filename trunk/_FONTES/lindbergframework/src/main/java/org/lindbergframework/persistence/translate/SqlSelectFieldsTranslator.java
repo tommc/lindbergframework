@@ -1,5 +1,6 @@
 package org.lindbergframework.persistence.translate;
 
+import org.lindbergframework.exception.InvalidSqlSyntaxException;
 import org.springframework.util.StringUtils;
 
 
@@ -46,6 +47,7 @@ public class SqlSelectFieldsTranslator implements SqlStringSyntaxTranslator<Stri
 	    String sqlAux = sql.toUpperCase();
 	    do{
 	      int indexFromLocal = sqlAux.indexOf("FROM");
+	          
 	      try{
 	         if (indexFromLocal != -1){
 	             indexFrom += indexFromLocal + 4;
@@ -54,7 +56,8 @@ public class SqlSelectFieldsTranslator implements SqlStringSyntaxTranslator<Stri
 	                break;
 	             else
 	                sqlAux = sqlAux.substring(indexFromLocal + 4);
-	         }
+	         }else
+	             throw new InvalidSqlSyntaxException("Keyword [FROM] not found in SELECT statement ["+sql+"]");
 	      }catch(IndexOutOfBoundsException ex){
 	          continue;
 	      }

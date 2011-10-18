@@ -141,7 +141,9 @@ public class LindbergException extends RuntimeException  {
 	 */
 	@Override
 	public String toString() {
-		return getMessageTreated();
+	    String className = getClass().getName();
+        String message = getMessageTreated();
+        return (message != null) ? (className + ": " + message) : className;
 	}
 	
 	public void setSeparatorMessages(String separatorMessages) {
