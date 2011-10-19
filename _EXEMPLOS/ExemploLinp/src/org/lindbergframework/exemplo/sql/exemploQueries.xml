@@ -21,6 +21,14 @@
           				 from pessoa where cpf = ?
           </Sql-Statement>
        </Sql-Command>
+       
+       <Sql-Command id="listarPessoasPorIniciaisNome">
+          <Procedure name="listarPessoasPorIniciaisNome" >
+             <OutCursor population-class="org.lindbergframework.exemplo.beans.Pessoa"/>
+          </Procedure>
+       </Sql-Command>
+       
+       
     </Sql-Mapping>
        
 </Linp-Mapping>

@@ -80,6 +80,21 @@ public class LinpTest {
         if (listaPessoas.isEmpty())
             System.out.println("!!! NENHUMA PESSOA CADASTRADA !!!");
         imprimirPessoas(listaPessoas);
+        
+        System.out.println("\n*** INICIANDO TESTES COM PROCEDURES E FUNCTIONS ***\n");
+        System.out.println("*** RECADASTRANDO PESSOAS ***\n");
+        pessoaDAO.inserirPessoa(p1);
+        System.out.println("Cadastrou Pessoa 1");
+        
+        pessoaDAO.inserirPessoa(p2);
+        System.out.println("Cadastrou Pessoa 2");
+        
+        pessoaDAO.inserirPessoa(p3);
+        System.out.println("Cadastrou Pessoa 3");
+        
+        System.out.println("\n*** LISTANDO PESSOAS QUE TEM O NOME QUE INICIAM COM A LETRA 'J' USANDO CURSOR DE SAÍDA DE PROCEDURE ***\n");
+        listaPessoas = pessoaDAO.listarPessoasPorIniciaisNomeUsandoProcedure("J");
+        imprimirPessoas(listaPessoas);
     }
     
     public static void imprimirPessoa(Pessoa pessoa){
