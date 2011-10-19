@@ -32,7 +32,7 @@ public class RowDataTree {
 	 * @throws SQLException database access error.
 	 */
 	public RowDataTree(DataSet dataSet) throws SQLException{
-	   this(dataSet,SqlStringSyntaxTranslator.PROPERTY_PATTERN_SPLIT_SEPARATOR_REPLACEMENT);
+	   this(dataSet,SqlStringSyntaxTranslator.PROPERTY_PATTERN_SPLIT_SEPARATOR);
 	}
 	
 	/**
@@ -84,6 +84,7 @@ public class RowDataTree {
 	 * @param value node value.
 	 */
 	protected void loadChild(SqlNode parent, String property, Object value){
+	    property = property.replaceAll(SqlStringSyntaxTranslator.PROPERTY_PATTERN_SPLIT_SEPARATOR_REPLACEMENT, SqlStringSyntaxTranslator.PROPERTY_PATTERN_SPLIT_SEPARATOR);
 		loadChild(parent, 0 ,getSplitProperty(property), value);
 	}
 	
@@ -119,13 +120,12 @@ public class RowDataTree {
 	 * @return split from property.
 	 */
 	public String[] getSplitProperty(String property){
-		String[] split = property.split(stringForSplitProperties);
+	    String[] split = property.split(SqlStringSyntaxTranslator.PROPERTY_PATTERN_SPLIT_SEPARATOR);
 		
 		if (split.length == 0)
 			return new String[] {property};
 		
 		return split;
 	}
-		
 	
 }
