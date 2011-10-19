@@ -1,10 +1,12 @@
 package org.lindbergframework.exemplo;
 
 import java.util.List;
+import java.util.Map;
 
 import org.lindbergframework.exemplo.beans.Endereco;
 import org.lindbergframework.exemplo.beans.Pessoa;
 import org.lindbergframework.persistence.dao.LinpDAO;
+import org.lindbergframework.persistence.sql.SqlArg;
 
 /**
  * 
@@ -46,5 +48,10 @@ public class PessoaDAO extends LinpDAO{
                                                                    endereco.getNumero(),
                                                                    endereco.getCep().getNumero(),
                                                                    pessoa.getCpf());
+    }
+    
+    public List<Pessoa> listarPessoasPorIniciaisNomeUsandoProcedure(String exemploNome){
+        Map parametrosOut = getPersistTemplate().callProcedure("listarPessoasPorIniciaisNome", new SqlArg("NOMEEXEMPLO", exemploNome));
+        return (List<Pessoa>) parametrosOut.get("PESSOAS");
     }
 }
