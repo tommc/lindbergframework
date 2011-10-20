@@ -1,5 +1,6 @@
 package org.lindbergframework.exemplo;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.lindbergframework.exemplo.beans.Endereco;
 import org.lindbergframework.exemplo.beans.Pessoa;
 import org.lindbergframework.persistence.dao.LinpDAO;
 import org.lindbergframework.persistence.sql.SqlArg;
+import org.lindbergframework.persistence.sql.SqlFunction;
 
 /**
  * 
@@ -51,7 +53,26 @@ public class PessoaDAO extends LinpDAO{
     }
     
     public List<Pessoa> listarPessoasPorIniciaisNomeUsandoProcedure(String exemploNome){
-        Map parametrosOut = getPersistTemplate().callProcedure("listarPessoasPorIniciaisNome", new SqlArg("NOMEEXEMPLO", exemploNome));
+        Map parametrosOut = getPersistTemplate().callProcedure("listarPessoasPorIniciaisNomeUsandoProcedure", new SqlArg("NOMEEXEMPLO", exemploNome));
         return (List<Pessoa>) parametrosOut.get("PESSOAS");
+    }
+    
+    public void excluirPessoaUsandoProcedure(String cpf){
+        Map mapParam = new HashMap();
+        mapParam.put("P_CPF", cpf);
+        getPersistTemplate().callProcedure("excluirPessoaUsandoProcedure", mapParam);
+    }
+    
+    public List<Pessoa> listarPessoasPorIniciaisNomeUsandoFunction(String exemploNome){
+        Map parametrosOut = getPersistTemplate().callFunction("listarPessoasPorIniciaisNomeUsandoFunction", new SqlArg("NOMEEXEMPLO", exemploNome));
+        return (List<Pessoa>) parametrosOut.get(SqlFunction.DEFAULT_RESULT_NAME);
+    }
+    
+    public Map excluirPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoFunction(String exemploNome){
+        return getPersistTemplate().callFunction("excPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoFunction", new SqlArg("NOMEEXEMPLO", exemploNome));
+    }
+    
+    public Map excluirPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoProcedure(String exemploNome){
+        return getPersistTemplate().callProcedure("excPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoProcedure", new SqlArg("NOMEEXEMPLO", exemploNome));
     }
 }
