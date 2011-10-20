@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Exception is thrown when a query should return one row returned more than one row.
  * 
- * @author Victor Lindberg (victor.silva@serpro.gov.br)
+ * @author Victor Lindberg
  *
  */
 public class NonUniqueRowException extends LindbergException{
@@ -16,25 +16,28 @@ public class NonUniqueRowException extends LindbergException{
         //
     }
 
-    public NonUniqueRowException(String msg) {
-        super(msg);
-    }
-
-    public NonUniqueRowException(String msg, Throwable cause) {
-        super(msg, cause);
-    }
-
-    public NonUniqueRowException(Throwable cause) {
-        super(cause);
+    public NonUniqueRowException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
     }
 
     public NonUniqueRowException(List<String> msgs) {
         super(msgs);
     }
 
-    public NonUniqueRowException(List<String> msgs, Throwable cause) {
-        super(msgs, cause);
+    public NonUniqueRowException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
     }
+
+    public NonUniqueRowException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
+
+    public NonUniqueRowException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+    
 
 
 }

@@ -10,34 +10,35 @@ import java.util.List;
  */
 public class MappingProcedureFailedExcpetion extends PersistenceException{
 	
-	/**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
     public MappingProcedureFailedExcpetion() {
 		//
 	}
 
-	public MappingProcedureFailedExcpetion(String msg) {
-		super(msg);
-	}
+    public MappingProcedureFailedExcpetion(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public MappingProcedureFailedExcpetion(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public MappingProcedureFailedExcpetion(List<String> msgs) {
+        super(msgs);
+    }
 
-	public MappingProcedureFailedExcpetion(Throwable cause) {
-		super(cause);
-	}
+    public MappingProcedureFailedExcpetion(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public MappingProcedureFailedExcpetion(List<String> msgs) {
-		super(msgs);
-	}
+    public MappingProcedureFailedExcpetion(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public MappingProcedureFailedExcpetion(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public MappingProcedureFailedExcpetion(Throwable cause,
+        String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 
 
 }

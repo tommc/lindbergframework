@@ -1,5 +1,7 @@
 package org.lindbergframework.exception;
 
+import java.util.List;
+
 
 /**
  * Loading xml configuration property exception.
@@ -10,25 +12,33 @@ package org.lindbergframework.exception;
 public class LoadXmlPropertyException extends XmlDocumentException{
 
 	
-	/**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
     public LoadXmlPropertyException() {
 		//
 	}
 
-	public LoadXmlPropertyException(String msg) {
-		super(msg);
-	}
+    public LoadXmlPropertyException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public LoadXmlPropertyException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public LoadXmlPropertyException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public LoadXmlPropertyException(Throwable cause) {
-		super(cause);
-	}
+    public LoadXmlPropertyException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
+
+    public LoadXmlPropertyException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
+
+    public LoadXmlPropertyException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 
 }

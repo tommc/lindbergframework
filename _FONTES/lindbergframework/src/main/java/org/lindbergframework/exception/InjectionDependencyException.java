@@ -16,28 +16,30 @@ public class InjectionDependencyException extends BeanException{
     private static final long serialVersionUID = 1L;
 
     public InjectionDependencyException() {
-		//
-	}
-	
-	public InjectionDependencyException(String msg) {
-		super(msg);
-	}
+    }
 
-	public InjectionDependencyException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public InjectionDependencyException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public InjectionDependencyException(Throwable cause) {
-		super(cause);
-	}
+    public InjectionDependencyException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public InjectionDependencyException(List<String> msgs) {
-		super(msgs);
-	}
+    public InjectionDependencyException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public InjectionDependencyException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public InjectionDependencyException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
+    public InjectionDependencyException(Throwable cause,
+        String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+    
 
 }

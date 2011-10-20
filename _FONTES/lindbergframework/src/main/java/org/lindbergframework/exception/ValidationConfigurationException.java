@@ -8,36 +8,37 @@ import java.util.List;
  * @author Victor Lindberg
  *
  */
-public class ValidationConfigurationException extends PersistenceException{
+public class ValidationConfigurationException extends ConfigurationException{
 	
-	/**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
     public ValidationConfigurationException() {
 		//
 	}
 
-	public ValidationConfigurationException(String msg) {
-		super(msg);
-	}
+    public ValidationConfigurationException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public ValidationConfigurationException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public ValidationConfigurationException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public ValidationConfigurationException(Throwable cause) {
-		super(cause);
-	}
+    public ValidationConfigurationException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public ValidationConfigurationException(List<String> msgs) {
-		super(msgs);
-	}
+    public ValidationConfigurationException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public ValidationConfigurationException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public ValidationConfigurationException(Throwable cause,
+        String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 
 
 }

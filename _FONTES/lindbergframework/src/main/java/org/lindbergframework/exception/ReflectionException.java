@@ -17,25 +17,28 @@ public class ReflectionException extends LindbergException{
 		//
 	}
 
-	public ReflectionException(String msg) {
-		super(msg);
-	}
+    public ReflectionException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public ReflectionException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public ReflectionException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public ReflectionException(Throwable cause) {
-		super(cause);
-	}
+    public ReflectionException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public ReflectionException(List<String> msgs) {
-		super(msgs);
-	}
+    public ReflectionException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public ReflectionException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public ReflectionException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 
 	
 }

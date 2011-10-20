@@ -10,34 +10,38 @@ import java.util.List;
  */
 public class RegisterParameterProceduresAndFunctionsFailedException extends PersistenceException{
 	
-	/**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
     public RegisterParameterProceduresAndFunctionsFailedException() {
 		//
 	}
 
-	public RegisterParameterProceduresAndFunctionsFailedException(String msg) {
-		super(msg);
-	}
+    public RegisterParameterProceduresAndFunctionsFailedException(
+        List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public RegisterParameterProceduresAndFunctionsFailedException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public RegisterParameterProceduresAndFunctionsFailedException(
+        List<String> msgs) {
+        super(msgs);
+    }
 
-	public RegisterParameterProceduresAndFunctionsFailedException(Throwable cause) {
-		super(cause);
-	}
+    public RegisterParameterProceduresAndFunctionsFailedException(String msg,
+        String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public RegisterParameterProceduresAndFunctionsFailedException(List<String> msgs) {
-		super(msgs);
-	}
+    public RegisterParameterProceduresAndFunctionsFailedException(String msg,
+        Throwable cause, String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public RegisterParameterProceduresAndFunctionsFailedException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public RegisterParameterProceduresAndFunctionsFailedException(
+        Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 
 
 }

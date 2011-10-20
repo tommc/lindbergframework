@@ -16,24 +16,28 @@ public class NoSuchBeanValidationException extends BeanException {
 		super("Bean validation not found");
 	}
 
-	public NoSuchBeanValidationException(String msg) {
-		super(msg);
-	}
+    public NoSuchBeanValidationException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public NoSuchBeanValidationException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public NoSuchBeanValidationException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public NoSuchBeanValidationException(Throwable cause) {
-		super(cause);
-	}
+    public NoSuchBeanValidationException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public NoSuchBeanValidationException(List<String> msgs) {
-		super(msgs);
-	}
+    public NoSuchBeanValidationException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public NoSuchBeanValidationException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public NoSuchBeanValidationException(Throwable cause,
+        String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 
 }

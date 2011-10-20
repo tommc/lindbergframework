@@ -15,25 +15,28 @@ public class InvalidXmlDocumentException extends XmlDocumentException{
 	public InvalidXmlDocumentException() {
 		//
 	}
+
+    public InvalidXmlDocumentException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
+
+    public InvalidXmlDocumentException(List<String> msgs) {
+        super(msgs);
+    }
+
+    public InvalidXmlDocumentException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
+
+    public InvalidXmlDocumentException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
+
+    public InvalidXmlDocumentException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
 	
-	public InvalidXmlDocumentException(String msg) {
-		super(msg);
-	}
-
-	public InvalidXmlDocumentException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
-
-	public InvalidXmlDocumentException(Throwable cause) {
-		super(cause);
-	}
-
-	public InvalidXmlDocumentException(List<String> msgs) {
-		super(msgs);
-	}
-
-	public InvalidXmlDocumentException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+	
 
 }

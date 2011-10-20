@@ -16,28 +16,30 @@ public class InjectionFailedException extends InjectionDependencyException{
     private static final long serialVersionUID = 1L;
 
     public InjectionFailedException() {
-		//
-	}
-	
-	public InjectionFailedException(String msg) {
-		super(msg);
-	}
+        //
+    }
 
-	public InjectionFailedException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public InjectionFailedException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public InjectionFailedException(Throwable cause) {
-		super(cause);
-	}
+    public InjectionFailedException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public InjectionFailedException(List<String> msgs) {
-		super(msgs);
-	}
+    public InjectionFailedException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public InjectionFailedException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public InjectionFailedException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
+    public InjectionFailedException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+    
 
 }

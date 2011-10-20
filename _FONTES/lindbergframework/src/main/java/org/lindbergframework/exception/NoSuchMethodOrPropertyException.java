@@ -22,24 +22,28 @@ public class NoSuchMethodOrPropertyException extends LindbergException {
 		super(DEFAULT_MSG+" : "+propertyOrMethodName+" in "+clazz);
 	}
 
-	public NoSuchMethodOrPropertyException(String msg) {
-		super(msg);
-	}
+    public NoSuchMethodOrPropertyException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public NoSuchMethodOrPropertyException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public NoSuchMethodOrPropertyException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public NoSuchMethodOrPropertyException(Throwable cause) {
-		super(cause);
-	}
+    public NoSuchMethodOrPropertyException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public NoSuchMethodOrPropertyException(List<String> msgs) {
-		super(msgs);
-	}
+    public NoSuchMethodOrPropertyException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public NoSuchMethodOrPropertyException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public NoSuchMethodOrPropertyException(Throwable cause,
+        String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 
 }

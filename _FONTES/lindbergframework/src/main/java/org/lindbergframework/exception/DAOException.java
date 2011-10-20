@@ -16,23 +16,25 @@ public class DAOException extends PersistenceException {
 		//
 	}
 
-	public DAOException(String msg) {
-		super(msg);
-	}
+    public DAOException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public DAOException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public DAOException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public DAOException(Throwable cause) {
-		super(cause);
-	}
+    public DAOException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public DAOException(List<String> msgs) {
-		super(msgs);
-	}
+    public DAOException(String msg, Throwable cause, String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public DAOException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public DAOException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 }

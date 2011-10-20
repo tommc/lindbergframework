@@ -15,26 +15,29 @@ public class ConfigurationException extends LindbergException{
 	public ConfigurationException() {
 		//
 	}
+
+    public ConfigurationException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
+
+    public ConfigurationException(List<String> msgs) {
+        super(msgs);
+    }
+
+    public ConfigurationException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
+
+    public ConfigurationException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
+
+    public ConfigurationException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
 	
-	public ConfigurationException(String msg) {
-		super(msg);
-	}
-
-	public ConfigurationException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
-
-	public ConfigurationException(Throwable cause) {
-		super(cause);
-	}
-
-	public ConfigurationException(List<String> msgs) {
-		super(msgs);
-	}
-
-	public ConfigurationException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+	
 
 
 }

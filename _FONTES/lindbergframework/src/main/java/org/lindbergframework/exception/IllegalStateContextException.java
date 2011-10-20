@@ -16,25 +16,29 @@ public class IllegalStateContextException extends LindbergException{
         //
     }
 
-    public IllegalStateContextException(String msg) {
-        super(msg);
-    }
-
-    public IllegalStateContextException(String msg, Throwable cause) {
-        super(msg, cause);
-    }
-
-    public IllegalStateContextException(Throwable cause) {
-        super(cause);
+    public IllegalStateContextException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
     }
 
     public IllegalStateContextException(List<String> msgs) {
         super(msgs);
     }
 
-    public IllegalStateContextException(List<String> msgs, Throwable cause) {
-        super(msgs, cause);
+    public IllegalStateContextException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
     }
+
+    public IllegalStateContextException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
+
+    public IllegalStateContextException(Throwable cause,
+        String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+    
 
 
 }

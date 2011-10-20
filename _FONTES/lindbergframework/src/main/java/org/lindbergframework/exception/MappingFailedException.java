@@ -15,28 +15,30 @@ public class MappingFailedException extends BeanException{
      */
     private static final long serialVersionUID = 1L;
 
-    public MappingFailedException () {
-		//
-	}
+    public MappingFailedException() {
+    }
 
-	public MappingFailedException (String msg) {
-		super(msg);
-	}
+    public MappingFailedException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public MappingFailedException (String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public MappingFailedException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public MappingFailedException (Throwable cause) {
-		super(cause);
-	}
+    public MappingFailedException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public MappingFailedException (List<String> msgs) {
-		super(msgs);
-	}
+    public MappingFailedException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public MappingFailedException (List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public MappingFailedException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+    
 
 }

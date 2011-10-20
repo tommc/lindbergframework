@@ -53,11 +53,13 @@ class LinpProcedure extends StoredProcedure{
 	 */
 	protected static final short RESULT_FUNCTION_STEREOTYPE = 5;
 	
+	private SqlProcedure procedure;
+	
 	/**
 	 * default error message.
 	 */
 	public static final String DEFAULT_MESSAGE_ERROR = "Make sure the name of the procedure or function exists and is correct. " +
-			"lindbergframework is case insensitive, there is another procedure or function with the " +
+			"There is another procedure or function with the " +
 			"same name in another schema or catalog?";
 	
 	/**
@@ -69,7 +71,7 @@ class LinpProcedure extends StoredProcedure{
 	 */
 	public LinpProcedure(DataSource ds,SqlFunction function) throws SQLException{
 		super(ds,function.getName());
-		
+		this.procedure = function;
         setFunction(true);
         ResultSet rsMapping = getProcedureMapping(ds, function);
 		
@@ -94,7 +96,7 @@ class LinpProcedure extends StoredProcedure{
 	 */
 	public LinpProcedure(DataSource ds,SqlProcedure procedure) throws SQLException{
 		super(ds,procedure.getName());
-		
+		this.procedure = procedure;
 		ResultSet rsMapping = getProcedureMapping(ds, procedure);
 		registerParameters(rsMapping);
 	}
@@ -143,7 +145,7 @@ class LinpProcedure extends StoredProcedure{
 	 */
 	public void declareOutCursors(SqlOutCursorParam... outCursors){
 		if (rowMappers.size() != outCursors.length)
-			throw new PersistenceException("Number of OUT CURSORS defined does not match expected");
+			throw new PersistenceException("Number of OUT CURSORS defined does not match expected in "+procedure.getName());
 			
 		for (int i = 0;i < outCursors.length;i++){
 			RowMapperAdapter rmad = rowMappers.get(i);

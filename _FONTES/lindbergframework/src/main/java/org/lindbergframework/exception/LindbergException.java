@@ -1,6 +1,7 @@
 package org.lindbergframework.exception;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,19 +36,19 @@ public class LindbergException extends RuntimeException  {
 		//
 	}
 
-	public LindbergException(String msg) {
+	public LindbergException(String msg, String... causeMessages) {
 		super(msg);
-		addMessage(msg);
+		addAllMessages(causeMessages);
 	}
 
-	public LindbergException(String msg, Throwable cause) {
+	public LindbergException(String msg, Throwable cause, String... causeMessages) {
 		super(msg, cause);
-		addMessage(msg);
+		addAllMessages(causeMessages);
 	}
 
-	public LindbergException(Throwable cause) {
+	public LindbergException(Throwable cause, String... causeMessages) {
 		super(cause);
-		addMessage(cause.getMessage());
+		addAllMessages(causeMessages);
 	}
 
 	public LindbergException(List<String> msgs) {
@@ -91,23 +92,13 @@ public class LindbergException extends RuntimeException  {
 		   this.msgs.addAll(msgs);
 	   }
 	}
+	
+	public void addAllMessages(String... msgs) {
+	    addAllMessages(Arrays.asList(msgs));
+	}
 
 	public List<String> getMessages() {
 		return msgs;
-	}
-
-	/**
-	 * get message treated using {@link #separatorMessages} attribute.
-	 * 
-	 * @return message treated using {@link #separatorMessages} attribute.
-	 */
-	public String getMessageTreated() {
-		String str = "";
-
-		for (int i=0; i < msgs.size();i++)
-			str = str + msgs.get(i) + (i == msgs.size()-1 ? "" : separatorMessages);
-
-		return str;
 	}
 
 	/**
@@ -115,41 +106,60 @@ public class LindbergException extends RuntimeException  {
 	 * 
 	 * @return true if contains error message.
 	 */
-	public boolean hasMessages() {
+	public boolean containsMessages() {
 		return !msgs.isEmpty();
-	}
-
-	/**
-	 * Get message treated for this exception.
-	 * @return message treated for this exception.
-	 */
-	@Override
-	public String getMessage() {
-		return getMessageTreated();
 	}
 
 	/**
 	 * Throws this exception if contais error messages.
 	 */
 	public void throwIfContainsErrorMessages() {
-		if (hasMessages())
+		if (containsMessages())
 			throw this;
 	}
+	
+	/**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getMessage() {
+        String msg = super.getMessage();
+        StringBuilder stringBuilder = new StringBuilder();
+        if (msg != null)
+            stringBuilder.append(msg);
 
+        if (containsMessages()) {
+            if (msg != null)
+                stringBuilder.append(":");
+            stringBuilder.append(" [");
+        }
+
+        List<String> messages = getMessages();
+        for (int i = 0; i < messages.size(); i++) {
+            stringBuilder.append(messages.get(i));
+            if (i != messages.size() - 1)
+                stringBuilder.append(separatorMessages+" ");
+        }
+
+        if (containsMessages())
+            stringBuilder.append("]");
+
+        return stringBuilder.toString();
+    }
+    
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public String toString() {
 	    String className = getClass().getName();
-        String message = getMessageTreated();
+        String message = getMessage();
         return (message != null) ? (className + ": " + message) : className;
 	}
 	
 	public void setSeparatorMessages(String separatorMessages) {
 		this.separatorMessages = separatorMessages;
 	}
-	
 	
 	public String getSeparatorMessages() {
 		return separatorMessages;

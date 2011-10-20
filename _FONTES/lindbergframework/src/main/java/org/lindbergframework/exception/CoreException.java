@@ -10,33 +10,32 @@ import java.util.List;
  */
 public class CoreException extends LindbergException{
     
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
 
     public CoreException() {
         //
     }
 
-    public CoreException(String msg) {
-        super(msg);
-    }
-
-    public CoreException(String msg, Throwable cause) {
-        super(msg, cause);
-    }
-
-    public CoreException(Throwable cause) {
-        super(cause);
+    public CoreException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
     }
 
     public CoreException(List<String> msgs) {
         super(msgs);
     }
 
-    public CoreException(List<String> msgs, Throwable cause) {
-        super(msgs, cause);
+    public CoreException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
     }
+
+    public CoreException(String msg, Throwable cause, String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
+
+    public CoreException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+    
 
 }

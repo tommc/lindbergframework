@@ -56,7 +56,7 @@ public class LinpSpringTransactionManager extends TransactionTemplate
                 return finalContext.call();
                }catch(Throwable ex){
                    throw new TransactionFailureException(
-                       "Transaction failed : "+ex.getMessage(), ex);    
+                       "Transaction failure", ex);    
                }
             } 
         });
