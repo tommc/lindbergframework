@@ -22,10 +22,16 @@
           </Sql-Statement>
        </Sql-Command>
        
-       <Sql-Command id="listarPessoasPorIniciaisNome">
-          <Procedure name="listarPessoasPorIniciaisNome" >
+       <Sql-Command id="listarPessoasPorIniciaisNomeUsandoProcedure">
+          <Procedure name="listarPessoasPorNomeProc" >
              <OutCursor population-class="org.lindbergframework.exemplo.beans.Pessoa"/>
           </Procedure>
+       </Sql-Command>
+       
+       <Sql-Command id="listarPessoasPorIniciaisNomeUsandoFunction">
+          <Function name="listarPessoasPorNomeFunc">
+             <ResultCursor population-class="org.lindbergframework.exemplo.beans.Pessoa" />
+          </Function>
        </Sql-Command>
        
        

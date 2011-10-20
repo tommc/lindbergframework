@@ -17,6 +17,24 @@
        <Sql-Command id="atualizarEnderecoPessoa">
           <Sql-Statement>update pessoa set bairro = ?, rua = ?, numero = ?, numeroCep = ? where cpf = ?</Sql-Statement>
        </Sql-Command>
+       
+       <Sql-Command id="excluirPessoaUsandoProcedure">
+          <Procedure name="excluirPessoa"/>
+       </Sql-Command>
+       
+       <Sql-Command id="excPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoFunction">
+          <Function name="excPessoasRetornaExcluidosFunc" resultName="PESSOASEXCLUIDAS">
+             <OutCursor population-class="org.lindbergframework.exemplo.beans.Pessoa"/><!-- Não Excluidos -->
+             <ResultCursor population-class="org.lindbergframework.exemplo.beans.Pessoa" /><!-- Excluidos -->
+          </Function>
+       </Sql-Command>
+       
+       <Sql-Command id="excPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoProcedure">
+          <Procedure name="excPessoasRetornaExcluidosProc">
+             <OutCursor population-class="org.lindbergframework.exemplo.beans.Pessoa"/><!-- Não Excluidos -->
+             <OutCursor population-class="org.lindbergframework.exemplo.beans.Pessoa"/><!-- Excluidos -->
+          </Procedure>
+       </Sql-Command>
     </Sql-Mapping>
     		
 </Linp-Mapping>
