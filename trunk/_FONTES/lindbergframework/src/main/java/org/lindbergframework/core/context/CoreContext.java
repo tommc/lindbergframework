@@ -150,7 +150,7 @@ public class CoreContext implements ComponentContext<CoreContext,CoreConfigurati
      */
     public void verifyContext() throws IllegalStateContextException{
         if (! isActive())
-            throw new IllegalStateContextException("Core Context is not active. Call loadConfiguration static method in CoreContext to active it");
+            throw new IllegalStateContextException("Core Context is not active. Call loadConfiguration static method in CoreContext or initializeContext static method in CoreConfiguration to active it");
     }
     
     /**

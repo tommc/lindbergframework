@@ -24,25 +24,28 @@ public class FieldNotFoundException extends ReflectionException{
 		this(beanClass.getName(),field);
 	}
 
-	public FieldNotFoundException(String msg) {
-		super(msg);
-	}
+    public FieldNotFoundException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public FieldNotFoundException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public FieldNotFoundException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public FieldNotFoundException(Throwable cause) {
-		super(cause);
-	}
+    public FieldNotFoundException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public FieldNotFoundException(List<String> msgs) {
-		super(msgs);
-	}
+    public FieldNotFoundException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public FieldNotFoundException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public FieldNotFoundException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 
 
 }

@@ -10,34 +10,36 @@ import java.util.List;
  */
 public class PersistenceConfigurationException extends PersistenceException{
 	
-	/**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
     public PersistenceConfigurationException() {
 		//
 	}
 
-	public PersistenceConfigurationException(String msg) {
-		super(msg);
-	}
+    public PersistenceConfigurationException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public PersistenceConfigurationException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public PersistenceConfigurationException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public PersistenceConfigurationException(Throwable cause) {
-		super(cause);
-	}
+    public PersistenceConfigurationException(String msg,
+        String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public PersistenceConfigurationException(List<String> msgs) {
-		super(msgs);
-	}
+    public PersistenceConfigurationException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public PersistenceConfigurationException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public PersistenceConfigurationException(Throwable cause,
+        String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 
 
 }

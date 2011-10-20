@@ -157,15 +157,15 @@ public class ExecutorValidationItemsImpl implements IExecutorValidationItems{
 		try {
 			validarItem(element);
 		} catch (ValidationException ex) {
-			tratarExcecao(element, mode, indexValidacao, ex, validationMessages);
+			processException(element, mode, indexValidacao, ex, validationMessages);
 		}
 	}
 	
-	protected synchronized void tratarExcecao(ValidationElement element,ValidationMode mode,
+	protected synchronized void processException(ValidationElement element,ValidationMode mode,
 			int indexValidacao,ValidationException ex, List<String> validationMessages){
 		
 		if (ex.getMessages().isEmpty())
-			ex.addMessage(String.format("Validation %s failed", element.getValidacao().getClass().toString()));
+			ex.addMessage(ex.getMessage());
 		
 		List<String> msgs = formatMsgsParaItemValidacao(ex, element,indexValidacao);
 		validationMessages.addAll(msgs);

@@ -16,28 +16,28 @@ public class BeanMappingNotFoundException extends BeanNotFoundException{
     private static final long serialVersionUID = 1L;
 
     public BeanMappingNotFoundException() {
-		//
-	}
-	
-	public BeanMappingNotFoundException(String msg) {
-		super(msg);
-	}
+    }
 
-	public BeanMappingNotFoundException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public BeanMappingNotFoundException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public BeanMappingNotFoundException(Throwable cause) {
-		super(cause);
-	}
+    public BeanMappingNotFoundException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public BeanMappingNotFoundException(List<String> msgs) {
-		super(msgs);
-	}
+    public BeanMappingNotFoundException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public BeanMappingNotFoundException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public BeanMappingNotFoundException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
+    public BeanMappingNotFoundException(Throwable cause,
+        String... causeMessages) {
+        super(cause, causeMessages);
+    }
 
 }

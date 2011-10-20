@@ -13,28 +13,32 @@ public class BeanIdAlreadyDefinedException extends BeanException{
 	
 	private static final long serialVersionUID = 1L;
 
-	public BeanIdAlreadyDefinedException() {
-		//
-	}
+    public BeanIdAlreadyDefinedException() {
+        //
+    }
+
+    public BeanIdAlreadyDefinedException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
+
+    public BeanIdAlreadyDefinedException(List<String> msgs) {
+        super(msgs);
+    }
+
+    public BeanIdAlreadyDefinedException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
+
+    public BeanIdAlreadyDefinedException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
+
+    public BeanIdAlreadyDefinedException(Throwable cause,
+        String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
 	
-	public BeanIdAlreadyDefinedException(String msg) {
-		super(msg);
-	}
-
-	public BeanIdAlreadyDefinedException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
-
-	public BeanIdAlreadyDefinedException(Throwable cause) {
-		super(cause);
-	}
-
-	public BeanIdAlreadyDefinedException(List<String> msgs) {
-		super(msgs);
-	}
-
-	public BeanIdAlreadyDefinedException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
 	
 }

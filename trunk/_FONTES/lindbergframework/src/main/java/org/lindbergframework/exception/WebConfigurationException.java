@@ -15,26 +15,29 @@ public class WebConfigurationException extends ConfigurationException{
 	public WebConfigurationException() {
 		//
 	}
+
+    public WebConfigurationException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
+
+    public WebConfigurationException(List<String> msgs) {
+        super(msgs);
+    }
+
+    public WebConfigurationException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
+
+    public WebConfigurationException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
+
+    public WebConfigurationException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
 	
-	public WebConfigurationException(String msg) {
-		super(msg);
-	}
-
-	public WebConfigurationException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
-
-	public WebConfigurationException(Throwable cause) {
-		super(cause);
-	}
-
-	public WebConfigurationException(List<String> msgs) {
-		super(msgs);
-	}
-
-	public WebConfigurationException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+	
 
 
 }

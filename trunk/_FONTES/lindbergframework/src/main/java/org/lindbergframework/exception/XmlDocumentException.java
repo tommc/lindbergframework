@@ -15,25 +15,28 @@ public class XmlDocumentException extends ConfigurationException{
 	public XmlDocumentException() {
 		//
 	}
+
+    public XmlDocumentException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
+
+    public XmlDocumentException(List<String> msgs) {
+        super(msgs);
+    }
+
+    public XmlDocumentException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
+
+    public XmlDocumentException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
+
+    public XmlDocumentException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
 	
-	public XmlDocumentException(String msg) {
-		super(msg);
-	}
-
-	public XmlDocumentException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
-
-	public XmlDocumentException(Throwable cause) {
-		super(cause);
-	}
-
-	public XmlDocumentException(List<String> msgs) {
-		super(msgs);
-	}
-
-	public XmlDocumentException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+	
 
 }

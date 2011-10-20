@@ -16,24 +16,28 @@ public class DuplicatedSqlMappingIdException extends SqlMappingException{
 		//
 	}
 
-	public DuplicatedSqlMappingIdException(String msg) {
-		super(msg);
-	}
+    public DuplicatedSqlMappingIdException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public DuplicatedSqlMappingIdException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public DuplicatedSqlMappingIdException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public DuplicatedSqlMappingIdException(Throwable cause) {
-		super(cause);
-	}
+    public DuplicatedSqlMappingIdException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public DuplicatedSqlMappingIdException(List<String> msgs) {
-		super(msgs);
-	}
+    public DuplicatedSqlMappingIdException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public DuplicatedSqlMappingIdException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public DuplicatedSqlMappingIdException(Throwable cause,
+        String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 
 }

@@ -16,24 +16,27 @@ public class PersistenceException extends LindbergException {
 		//
 	}
 
-	public PersistenceException(String msg) {
-		super(msg);
-	}
+    public PersistenceException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public PersistenceException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public PersistenceException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public PersistenceException(Throwable cause) {
-		super(cause);
-	}
+    public PersistenceException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public PersistenceException(List<String> msgs) {
-		super(msgs);
-	}
+    public PersistenceException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public PersistenceException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public PersistenceException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 
 }

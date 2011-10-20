@@ -8,35 +8,36 @@ import java.util.List;
  * @author Victor Lindberg
  * 
  */
-public class ValidationClassCastException extends ServiceException {
+public class ValidationClassCastException extends BusinessException {
  
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public ValidationClassCastException() {
 		//
 	}
 
-	public ValidationClassCastException(String msg) {
-		super(msg);
-	}
+    public ValidationClassCastException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public ValidationClassCastException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public ValidationClassCastException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public ValidationClassCastException(Throwable cause) {
-		super(cause);
-	}
+    public ValidationClassCastException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public ValidationClassCastException(List<String> msgs) {
-		super(msgs);
-	}
+    public ValidationClassCastException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public ValidationClassCastException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public ValidationClassCastException(Throwable cause,
+        String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 
 }

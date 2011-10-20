@@ -14,24 +14,27 @@ public class InvalidSqlSyntaxException extends LindbergException{
     public InvalidSqlSyntaxException() {
         //
     }
-    
-    public InvalidSqlSyntaxException(String msg) {
-        super(msg);
-    }
 
-    public InvalidSqlSyntaxException(String msg, Throwable cause) {
-        super(msg, cause);
-    }
-
-    public InvalidSqlSyntaxException(Throwable cause) {
-        super(cause);
+    public InvalidSqlSyntaxException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
     }
 
     public InvalidSqlSyntaxException(List<String> msgs) {
         super(msgs);
     }
 
-    public InvalidSqlSyntaxException(List<String> msgs, Throwable cause) {
-        super(msgs, cause);
+    public InvalidSqlSyntaxException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
     }
+
+    public InvalidSqlSyntaxException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
+
+    public InvalidSqlSyntaxException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
+    
+    
 }

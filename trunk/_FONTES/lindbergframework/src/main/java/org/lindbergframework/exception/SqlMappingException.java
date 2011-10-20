@@ -16,24 +16,27 @@ public class SqlMappingException extends PersistenceException{
 		//
 	}
 
-	public SqlMappingException(String msg) {
-		super(msg);
-	}
+    public SqlMappingException(List<String> msgs, Throwable cause) {
+        super(msgs, cause);
+    }
 
-	public SqlMappingException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    public SqlMappingException(List<String> msgs) {
+        super(msgs);
+    }
 
-	public SqlMappingException(Throwable cause) {
-		super(cause);
-	}
+    public SqlMappingException(String msg, String... causeMessages) {
+        super(msg, causeMessages);
+    }
 
-	public SqlMappingException(List<String> msgs) {
-		super(msgs);
-	}
+    public SqlMappingException(String msg, Throwable cause,
+        String... causeMessages) {
+        super(msg, cause, causeMessages);
+    }
 
-	public SqlMappingException(List<String> msgs, Throwable cause) {
-		super(msgs, cause);
-	}
+    public SqlMappingException(Throwable cause, String... causeMessages) {
+        super(cause, causeMessages);
+    }
+
+	
 
 }
