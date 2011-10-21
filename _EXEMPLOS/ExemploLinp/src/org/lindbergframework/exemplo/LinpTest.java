@@ -26,15 +26,26 @@ public class LinpTest {
         coreConfiguration.initializeContext();
         
         LinpTest linpTest = UserBeanContext.getInstance().getBean("linpTest");
-        linpTest.test();
+        
+        System.out.println("****** INICIANDO COM DAO ACESSANDO REPOSITORIO ******\n");
+        IPessoaDAO pessoaDAORepositorio = UserBeanContext.getInstance().getBean("pessoaDAOAcessandoRepositorio");
+        linpTest.test(pessoaDAORepositorio);
+        System.out.println("****** FINALIZADO COM DAO ACESSANDO REPOSITORIO ******\n");
+        
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        
+        System.out.println("****** INICIANDO COM DAO SEM ACESSAR REPOSITORIO ******\n");
+        IPessoaDAO pessoaDAOSemRepositorio = UserBeanContext.getInstance().getBean("pessoaDAOSemAcessarRepositorio");
+        linpTest.test(pessoaDAOSemRepositorio);
+        System.out.println("****** FINALIZADO COM DAO SEM ACESSAR REPOSITORIO ******\n");
     }
 
     //Annotation @Transax define que este método todo será executado dentro de um contexto transacional.
     //Ocorrendo alguma exception rollback é feito.
     @Transax
-    public void test() {
-        PessoaDAO pessoaDAO = new PessoaDAO();
-        
+    public void test(IPessoaDAO pessoaDAO) {
         Pessoa p1 = criarPessoa("João", "12365478900", "Bairro do João", "Rua do joão", 123, "12365-498");
         Pessoa p2 = criarPessoa("Maria", "65432198700", "Bairro da Maria", "Rua da Maria", 456, "98765-890");
         Pessoa p3 = criarPessoa("José", "65465465400", "Rua do José", "Rua do José", 789, "78978-789");
@@ -73,7 +84,7 @@ public class LinpTest {
         p1.getEndereco().setNumero(777);
         p1.getEndereco().setRua("rua nova");
         p1.getEndereco().getCep().setNumero("55555-555");
-        pessoaDAO.atualizarPessoa(p1);
+        pessoaDAO.atualizarEnderecoPessoa(p1);
         
         System.out.println("\n*** LISTANDO PESSOAS APÓS A ATUALIZAÇÃO DO ENDEREÇO DA PESSOA DE CPF 12365478900 ***\n");
         listaPessoas = pessoaDAO.listarPessoas();

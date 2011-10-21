@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.lindbergframework.beans.di.annotation.Bean;
 import org.lindbergframework.exemplo.beans.Endereco;
 import org.lindbergframework.exemplo.beans.Pessoa;
 import org.lindbergframework.persistence.dao.LinpDAO;
@@ -12,15 +13,16 @@ import org.lindbergframework.persistence.sql.SqlFunction;
 
 /**
  * 
- * @author Victor Lindberg (victor.silva@serpro.gov.br)
+ * @author Victor Lindberg
  * 
  */
-public class PessoaDAO extends LinpDAO{
+@Bean("pessoaDAOAcessandoRepositorio")
+public class PessoaDAOAcessandoRepositorio extends LinpDAO implements IPessoaDAO{
 
     /**
      * Construtor padrão.
      */
-    public PessoaDAO() {
+    public PessoaDAOAcessandoRepositorio() {
         //
     }
     
@@ -43,7 +45,7 @@ public class PessoaDAO extends LinpDAO{
         return getPersistTemplate().execQueryForObject(Pessoa.class, "consultarPessoa", cpf);
     }
     
-    public void atualizarPessoa(Pessoa pessoa){
+    public void atualizarEnderecoPessoa(Pessoa pessoa){
         Endereco endereco = pessoa.getEndereco();
         getPersistTemplate().execUpdate("atualizarEnderecoPessoa", endereco.getBairro(),
                                                                    endereco.getRua(),
