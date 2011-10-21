@@ -56,6 +56,7 @@ public class SqlProcedure extends SqlCommand{
 	 */
 	public SqlProcedure(String schema, String pack, String name,SqlOutCursorParam... outCursorParams) {
 		this(null,schema,pack,name);
+		setSqlOutCursorParams(outCursorParams);
 	}
 
 	/**
@@ -67,6 +68,7 @@ public class SqlProcedure extends SqlCommand{
 	 */
 	public SqlProcedure(String pack, String name,SqlOutCursorParam... outCursorParams) {
 		this(null,pack,name);
+		setSqlOutCursorParams(outCursorParams);
 	}
 
 	/**
@@ -77,6 +79,7 @@ public class SqlProcedure extends SqlCommand{
 	 */
 	public SqlProcedure(String name,SqlOutCursorParam... outCursorParams) {
 		this(null,name);
+		setSqlOutCursorParams(outCursorParams);
 	}
 
 	/**
@@ -109,6 +112,7 @@ public class SqlProcedure extends SqlCommand{
      */
 	public SqlProcedure(String catalog, String schema, String pack, String name,SqlOutCursorParam... outCursorParams) {
 		this(null, catalog, schema, pack, name);
+		setSqlOutCursorParams(outCursorParams);
 	}
 
 	public String getCatalog() {
