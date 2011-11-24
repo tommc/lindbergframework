@@ -69,3 +69,10 @@ begin
 
    delete from pessoa where nome like nomeExemplo || '%';
 end excPessoasRetornaExcluidosProc;
+
+Create or replace function qtdPessoas return number is
+  qtd number;
+begin 
+   select count(*) into qtd from pessoa;
+   return qtd;
+end qtdPessoas;

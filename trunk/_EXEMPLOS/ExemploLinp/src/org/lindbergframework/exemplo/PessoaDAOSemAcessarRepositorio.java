@@ -119,4 +119,14 @@ public class PessoaDAOSemAcessarRepositorio extends LinpDAO implements IPessoaDA
         Map parametrosOut = getPersistTemplate().callProcedure(procedure, new SqlArg("NOMEEXEMPLO", exemploNome));
         return (List<Pessoa>) parametrosOut.get("PESSOAS");
     }
+
+    public int getNumeroPessoasCadastradas() {
+        return getPersistTemplate().execSqlQueryForObject(Integer.class, "select count(*) from pessoa");
+    }
+    
+    public int getNumeroPessoasCadastradasUsandoFunction() {
+        SqlFunction function = new SqlFunction("qtdPessoas");
+        return (Integer) getPersistTemplate().callFunction(function).get(SqlFunction.DEFAULT_RESULT_NAME);
+    }
+
 }

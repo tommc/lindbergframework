@@ -50,6 +50,7 @@ public class LinpTest {
         Pessoa p2 = criarPessoa("Maria", "65432198700", "Bairro da Maria", "Rua da Maria", 456, "98765-890");
         Pessoa p3 = criarPessoa("José", "65465465400", "Rua do José", "Rua do José", 789, "78978-789");
         
+        
         pessoaDAO.inserirPessoa(p1);
         System.out.println("Cadastrou Pessoa 1");
         
@@ -58,6 +59,12 @@ public class LinpTest {
         
         pessoaDAO.inserirPessoa(p3);
         System.out.println("Cadastrou Pessoa 3");
+        
+        int qtdPessoasCadastradas = pessoaDAO.getNumeroPessoasCadastradas();
+        System.out.println("TOTAL PESSOAS CADASTRADAS: "+qtdPessoasCadastradas);
+        
+        qtdPessoasCadastradas = pessoaDAO.getNumeroPessoasCadastradasUsandoFunction();
+        System.out.println("TOTAL PESSOAS CADASTRADAS USANDO FUNCTION: "+qtdPessoasCadastradas);
         
         System.out.println("\n*** LISTANDO PESSOAS CADASTRADAS***\n");
         
