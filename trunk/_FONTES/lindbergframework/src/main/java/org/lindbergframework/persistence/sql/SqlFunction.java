@@ -17,6 +17,10 @@ public class SqlFunction extends SqlProcedure {
 	 * name of the result parameter.
 	 */
 	private String resultName = DEFAULT_RESULT_NAME;
+	
+	public SqlFunction(String name) {
+	    super(name);
+	}
 
 	/**
 	 * creates a function definition for specified output cursors parameters.

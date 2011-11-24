@@ -419,8 +419,18 @@ public class PersistenceTemplateTest extends LinpTestBase{
 		assertEquals(person3.getAddres().getStreet(), employee3.getAddres().getStreet());
 		assertEquals(person3.getAddres().getNumber(), employee3.getAddres().getNumber());
 		assertEquals(1000D, employee3.getWage());
-		
-		
+	}
+	
+	public void testQueryForObjectDirectValue(){
+	    Person person1 = createPerson(1, "nick1", "profession1", "street1", 111);
+        persistTemplateDaoTest.insertPerson(person1);
+        
+        Person person2 = createPerson(2, "testNick2", "profession2", "street2", 222);
+        persistTemplateDaoTest.insertPerson(person2);
+        
+        int qtd = this.persistTemplateDaoTest.getTotalPersons();
+        assertTrue(qtd == 2);
+        
 	}
 	
 	

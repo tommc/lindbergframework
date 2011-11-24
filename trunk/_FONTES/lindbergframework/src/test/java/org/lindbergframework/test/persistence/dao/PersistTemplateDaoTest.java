@@ -76,4 +76,8 @@ public class PersistTemplateDaoTest extends LinpDAO{
 		return getPersistTemplate().execQuery(Employee.class, "queryEmployees");
 	}
 	
+	public int getTotalPersons(){
+        return getPersistTemplate().execSqlQueryForObject(Integer.class, "select count(*) from person");
+    }
+	
 }

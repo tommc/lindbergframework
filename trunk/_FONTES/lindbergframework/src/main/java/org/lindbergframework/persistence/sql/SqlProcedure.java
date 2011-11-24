@@ -35,7 +35,11 @@ public class SqlProcedure extends SqlCommand{
 	/**
 	 * registered output cursor parameters.
 	 */
-	private List<SqlOutCursorParam> sqlOutCursorParams;
+	private List<SqlOutCursorParam> sqlOutCursorParams = new ArrayList<SqlOutCursorParam>();
+	
+	public SqlProcedure(String name){
+	    this.name = name;
+	}
 
 	/**
 	 * creates a {@link SqlProcedure} with the output parameters.

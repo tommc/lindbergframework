@@ -1,9 +1,13 @@
 package org.lindbergframework.persistence.beans;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Collection;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.Converter;
 import org.lindbergframework.beans.util.BeanUtil;
 import org.lindbergframework.exception.BeanPopulateException;
 import org.lindbergframework.persistence.sql.DataSet;
@@ -72,8 +76,27 @@ public class MultLevelsBeanPopulator extends BeanPopulatorBase{
 	/**
 	 * {@inheritDoc}
 	 */
-	public <E> E populate(Class<E> beanClass, DataSet dataSet) throws SQLException, BeanPopulateException {
+	public <E> E populate(Class<E> beanClass, DataSet dataSet) throws BeanPopulateException {
 		return populate(beanClass,new RowDataTree(dataSet));
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public <E> E populateDirectValue(Class<E> beanClass, DataSet dataSet) throws BeanPopulateException {
+	    try {
+	        if (dataSet.getMetaData().getColumnCount() != 1)
+	            throw new BeanPopulateException("Could not populate direct value. Query has more than one column. Try to use the populate method.");
+	    
+	        Converter converter = BeanUtil.getConverter(beanClass);
+	        if (converter == null)
+	            throw new BeanPopulateException("Could not populate bean. Converter not found for the specified type ["+beanClass+"]. Try to use the populate method");
+        
+            Object value = dataSet.getValue(1);
+            return (E) converter.convert(beanClass, value);
+        } catch (SQLException ex) {
+            throw new BeanPopulateException(ex);
+        }
 	}
 	
 	/**
@@ -107,5 +130,5 @@ public class MultLevelsBeanPopulator extends BeanPopulatorBase{
 		   }
 		}
 	}
-
+	
 }
