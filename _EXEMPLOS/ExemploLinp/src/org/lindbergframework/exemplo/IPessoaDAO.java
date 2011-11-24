@@ -36,4 +36,8 @@ public interface IPessoaDAO {
     public abstract Map excluirPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoProcedure(
         String exemploNome);
 
+    public int getNumeroPessoasCadastradasUsandoFunction();
+
+    public int getNumeroPessoasCadastradas();
+
 }

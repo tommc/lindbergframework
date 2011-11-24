@@ -34,6 +34,14 @@
           </Function>
        </Sql-Command>
        
+       <Sql-Command id="qtdPessoasUsandoFunction">
+          <Function name="qtdPessoas" />
+       </Sql-Command>
+       
+       <Sql-Command id="qtdPessoas">
+          <Sql-Statement>select count(*) from pessoa</Sql-Statement> 
+       </Sql-Command>
+       
        
     </Sql-Mapping>
        
