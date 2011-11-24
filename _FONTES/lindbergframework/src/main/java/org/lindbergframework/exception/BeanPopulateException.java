@@ -7,7 +7,7 @@ package org.lindbergframework.exception;
  * @author Victor Lindberg
  *
  */
-public class BeanPopulateException extends Exception{
+public class BeanPopulateException extends RuntimeException{
 	
 	private static final long serialVersionUID = 1L;
 

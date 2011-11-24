@@ -23,7 +23,8 @@ public interface BeanPopulator {
      * @throws SQLException accessing error {@link DataSet}.
      * @throws BeanPopulateException bean population failed.
      */
-	public <E> E populate(Class<E> beanClass, DataSet dataSet) 
-	 						throws SQLException, BeanPopulateException;
+	public <E> E populate(Class<E> beanClass, DataSet dataSet) throws BeanPopulateException;
+	
+	public <E> E populateDirectValue(Class<E> beanClass, DataSet dataSet) throws BeanPopulateException;
 	
 }

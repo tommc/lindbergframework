@@ -8,6 +8,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.ConstructorUtils;
 import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.Converter;
 import org.lindbergframework.exception.BeanPopulateException;
 import org.lindbergframework.exception.LoadXmlPropertyException;
 import org.lindbergframework.util.ReflectionUtil;
@@ -94,5 +95,9 @@ public class BeanUtil {
 			field.set(target, valueField);
 		}
 	}
+  	
+  	public static Converter getConverter(Class clazz){
+  	  return BeanUtilsBean.getInstance().getConvertUtils().lookup(clazz);
+  	}
 
 }

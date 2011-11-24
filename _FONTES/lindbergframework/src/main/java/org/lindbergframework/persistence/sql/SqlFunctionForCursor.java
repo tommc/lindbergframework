@@ -13,6 +13,10 @@ public class SqlFunctionForCursor extends SqlFunction {
      */
 	private Class beanResult;
 
+	public SqlFunctionForCursor(String name){
+	    super(name);
+	}
+	
 	/**
      * creates a function definition for specified output cursors parameters.
      *  

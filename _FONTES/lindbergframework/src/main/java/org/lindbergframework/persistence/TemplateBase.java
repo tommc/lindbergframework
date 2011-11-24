@@ -114,10 +114,15 @@ public abstract class TemplateBase implements PersistenceTemplate {
 		ds.beforeFirst();
 		List<E> list = new ArrayList<E>();
 		
+		boolean directValue = ds.getMetaData().getColumnCount() == 1;
 		while (ds.next()){
-			   E newBean = beanPopulator.populate(clazz, ds);
-			   list.add(newBean);
-			}
+		   E newBean;
+		   if (directValue)
+		      newBean = beanPopulator.populateDirectValue(clazz, ds);
+		   else
+		      newBean = beanPopulator.populate(clazz, ds);
+		   list.add(newBean);
+		}
 		
 		return list;
 	}

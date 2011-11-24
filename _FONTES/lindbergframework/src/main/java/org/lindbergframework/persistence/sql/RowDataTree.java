@@ -2,6 +2,7 @@ package org.lindbergframework.persistence.sql;
 
 import java.sql.SQLException;
 
+import org.lindbergframework.exception.BeanPopulateException;
 import org.lindbergframework.persistence.translate.SqlStringSyntaxTranslator;
 
 /**
@@ -14,7 +15,7 @@ import org.lindbergframework.persistence.translate.SqlStringSyntaxTranslator;
  * @author Victor Lindberg
  *
  */
-public class RowDataTree {
+public final class RowDataTree {
 	
     /**
      * Root sql node.
@@ -31,7 +32,7 @@ public class RowDataTree {
 	 * @param dataSet dataset to create the data tree.
 	 * @throws SQLException database access error.
 	 */
-	public RowDataTree(DataSet dataSet) throws SQLException{
+	public RowDataTree(DataSet dataSet) {
 	   this(dataSet,SqlStringSyntaxTranslator.PROPERTY_PATTERN_SPLIT_SEPARATOR);
 	}
 	
@@ -41,13 +42,21 @@ public class RowDataTree {
 	 * @param stringForSplitProperties split the string column name in levels. Default value  
 	 * @throws SQLException dataset access error.
 	 */
-	public RowDataTree(DataSet dataSet,String stringForSplitProperties) throws SQLException{
-		if (dataSet.isBeforeFirst() || dataSet.isAfterLast())//must to be pointing for some position valid in dataSet
-			   throw new SQLException("The DataSet can't to be pointing for before first position or after last position");
-		
-		this.stringForSplitProperties = stringForSplitProperties;
-		
-		tree = createTree(dataSet);
+	public RowDataTree(DataSet dataSet,String stringForSplitProperties) {
+		init(dataSet, stringForSplitProperties);
+	}
+	
+	private void init(DataSet dataSet,String stringForSplitProperties){
+	    try{
+	    if (dataSet.isBeforeFirst() || dataSet.isAfterLast())//must to be pointing for some position valid in dataSet
+            throw new SQLException("The DataSet can't to be pointing for before first position or after last position");
+     
+	    this.stringForSplitProperties = stringForSplitProperties;
+     
+	    tree = createTree(dataSet);
+	    }catch(SQLException ex){
+	        throw new BeanPopulateException(ex);
+	    }
 	}
 	
 	/**
