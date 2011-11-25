@@ -22,19 +22,15 @@ public interface IPessoaDAO {
 
     public abstract void atualizarEnderecoPessoa(Pessoa pessoa);
 
-    public abstract List<Pessoa> listarPessoasPorIniciaisNomeUsandoProcedure(
-        String exemploNome);
+    public abstract List<Pessoa> listarPessoasPorIniciaisNomeUsandoProcedure(String exemploNome);
 
     public abstract void excluirPessoaUsandoProcedure(String cpf);
 
-    public abstract List<Pessoa> listarPessoasPorIniciaisNomeUsandoFunction(
-        String exemploNome);
+    public abstract List<Pessoa> listarPessoasPorIniciaisNomeUsandoFunction(String exemploNome);
 
-    public abstract Map excluirPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoFunction(
-        String exemploNome);
+    public abstract Map excluirPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoFunction(String exemploNome);
 
-    public abstract Map excluirPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoProcedure(
-        String exemploNome);
+    public abstract Map excluirPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoProcedure(String exemploNome);
 
     public int getNumeroPessoasCadastradasUsandoFunction();
 
