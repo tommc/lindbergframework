@@ -1,5 +1,6 @@
 package org.lindbergframework.exemplo;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -126,7 +127,8 @@ public class PessoaDAOSemAcessarRepositorio extends LinpDAO implements IPessoaDA
     
     public int getNumeroPessoasCadastradasUsandoFunction() {
         SqlFunction function = new SqlFunction("qtdPessoas");
-        return (Integer) getPersistTemplate().callFunction(function).get(SqlFunction.DEFAULT_RESULT_NAME);
+        Map<String,BigDecimal> map = getPersistTemplate().callFunction(function);
+        return map.get(SqlFunction.DEFAULT_RESULT_NAME).intValue();
     }
 
 }

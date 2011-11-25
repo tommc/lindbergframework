@@ -38,7 +38,7 @@ public class SqlProcedure extends SqlCommand{
 	private List<SqlOutCursorParam> sqlOutCursorParams = new ArrayList<SqlOutCursorParam>();
 	
 	public SqlProcedure(String name){
-	    this.name = name;
+	    setName(name);
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class SqlProcedure extends SqlCommand{
 	    if (str != null)
 	        return str.toUpperCase();
 	    
-	    return str;
+	    return null;
 	}
 
 }
