@@ -56,27 +56,27 @@ public class PessoaDAOAcessandoRepositorio extends LinpDAO implements IPessoaDAO
     }
     
     public List<Pessoa> listarPessoasPorIniciaisNomeUsandoProcedure(String exemploNome){
-        Map parametrosOut = getPersistTemplate().callProcedure("listarPessoasPorIniciaisNomeUsandoProcedure", new SqlArg("NOMEEXEMPLO", exemploNome));
-        return (List<Pessoa>) parametrosOut.get("PESSOAS");
+        Map parametrosOut = getPersistTemplate().callProcedure("listarPessoasPorIniciaisNomeUsandoProcedure", new SqlArg("nomeexemplo", exemploNome));
+        return (List<Pessoa>) parametrosOut.get("pessoas");
     }
     
     public void excluirPessoaUsandoProcedure(String cpf){
         Map mapParam = new HashMap();
-        mapParam.put("P_CPF", cpf);
+        mapParam.put("p_cpf", cpf);
         getPersistTemplate().callProcedure("excluirPessoaUsandoProcedure", mapParam);
     }
     
     public List<Pessoa> listarPessoasPorIniciaisNomeUsandoFunction(String exemploNome){
-        Map parametrosOut = getPersistTemplate().callFunction("listarPessoasPorIniciaisNomeUsandoFunction", new SqlArg("NOMEEXEMPLO", exemploNome));
+        Map parametrosOut = getPersistTemplate().callFunction("listarPessoasPorIniciaisNomeUsandoFunction", new SqlArg("nomeexemplo", exemploNome));
         return (List<Pessoa>) parametrosOut.get(SqlFunction.DEFAULT_RESULT_NAME);
     }
     
     public Map excluirPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoFunction(String exemploNome){
-        return getPersistTemplate().callFunction("excPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoFunction", new SqlArg("NOMEEXEMPLO", exemploNome));
+        return getPersistTemplate().callFunction("excPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoFunction", new SqlArg("nomeexemplo", exemploNome));
     }
     
     public Map excluirPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoProcedure(String exemploNome){
-        return getPersistTemplate().callProcedure("excPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoProcedure", new SqlArg("NOMEEXEMPLO", exemploNome));
+        return getPersistTemplate().callProcedure("excPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoProcedure", new SqlArg("nomeexemplo", exemploNome));
     }
     
     public int getNumeroPessoasCadastradas(){
@@ -84,8 +84,8 @@ public class PessoaDAOAcessandoRepositorio extends LinpDAO implements IPessoaDAO
     }
     
     public int getNumeroPessoasCadastradasUsandoFunction(){
-        Map m = getPersistTemplate().callFunction("qtdPessoasUsandoFunction");
-        BigDecimal retorno = (BigDecimal) m.get(SqlFunction.DEFAULT_RESULT_NAME);
+        Map<String,BigDecimal> map = getPersistTemplate().callFunction("qtdPessoasUsandoFunction");
+        BigDecimal retorno = map.get(SqlFunction.DEFAULT_RESULT_NAME);
         return retorno.intValue();
     }
 }

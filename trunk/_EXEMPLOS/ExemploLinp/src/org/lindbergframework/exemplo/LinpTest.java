@@ -133,8 +133,8 @@ public class LinpTest {
         		"PARAMETRO OUT (DE SAIDA) OUTRO CURSOR COM AS PESSOAS QUE NÃO FORAM EXCLUIDAS***\n");
         
         Map map = pessoaDAO.excluirPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoFunction("M");
-        List<Pessoa> pessoasExcluidas = (List<Pessoa>) map.get("PESSOASEXCLUIDAS");
-        List<Pessoa> pessoasNaoExcluidas = (List<Pessoa>) map.get("PESSOASNAOEXCLUIDAS");
+        List<Pessoa> pessoasExcluidas = (List<Pessoa>) map.get("pessoasexcluidas");
+        List<Pessoa> pessoasNaoExcluidas = (List<Pessoa>) map.get("pessoasnaoexcluidas");
         
         System.out.println("\n*** (EXCLUIDOS) LISTANDO PESSOAS QUE FORAM EXCLUIDAS RETORNADAS COMO RESULTADO DA FUNCTION VIA CURSOR ***\n");
         imprimirPessoas(pessoasExcluidas);
@@ -146,8 +146,8 @@ public class LinpTest {
             "QUE EXCLUI E RETORNA 2 CURSORES DE SAÍDA SENDO O PRIMEIRO EXCLUIDOS E O SEGUNDO OS NÃO EXCLUIDOS ***\n");
         
         map = pessoaDAO.excluirPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoProcedure("Joã");
-        pessoasExcluidas = (List<Pessoa>) map.get("PESSOASEXCLUIDAS");
-        pessoasNaoExcluidas = (List<Pessoa>) map.get("PESSOASNAOEXCLUIDAS");
+        pessoasExcluidas = (List<Pessoa>) map.get("pessoasexcluidas");
+        pessoasNaoExcluidas = (List<Pessoa>) map.get("pessoasnaoexcluidas");
         
         System.out.println("\n*** (EXCLUIDOS) LISTANDO PESSOAS QUE FORAM EXCLUIDAS RETORNADAS COMO CURSOR NO PRIMEIRO PARAMETRO DE DAÍDA DA PROCEDURE) ***\n");
         imprimirPessoas(pessoasExcluidas);
