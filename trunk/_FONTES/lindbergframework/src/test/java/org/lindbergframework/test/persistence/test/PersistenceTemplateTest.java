@@ -433,5 +433,7 @@ public class PersistenceTemplateTest extends LinpTestBase{
         
 	}
 	
-	
+	public void testCallSimpleProcedure(){
+	    this.persistTemplateDaoTest.callSimpleProcedure();
+	}
 }

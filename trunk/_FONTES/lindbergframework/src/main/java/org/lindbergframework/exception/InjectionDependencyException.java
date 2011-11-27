@@ -10,9 +10,6 @@ import java.util.List;
  */
 public class InjectionDependencyException extends BeanException{
 	
-	/**
-     * 
-     */
     private static final long serialVersionUID = 1L;
 
     public InjectionDependencyException() {

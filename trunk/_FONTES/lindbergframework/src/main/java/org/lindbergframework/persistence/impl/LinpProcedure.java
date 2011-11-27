@@ -2,18 +2,22 @@ package org.lindbergframework.persistence.impl;
 
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javax.sql.DataSource;
 
+import org.lindbergframework.exception.IllegalParameterException;
 import org.lindbergframework.exception.PersistenceException;
 import org.lindbergframework.exception.RegisterParameterProceduresAndFunctionsFailedException;
 import org.lindbergframework.persistence.beans.MultiLevelBeanRowMapperForProcedureCursor;
@@ -23,6 +27,7 @@ import org.lindbergframework.persistence.sql.SqlFunction;
 import org.lindbergframework.persistence.sql.SqlFunctionForCursor;
 import org.lindbergframework.persistence.sql.SqlOutCursorParam;
 import org.lindbergframework.persistence.sql.SqlProcedure;
+import org.lindbergframework.util.StringUtil;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SqlInOutParameter;
@@ -56,13 +61,6 @@ class LinpProcedure extends StoredProcedure{
 	private SqlProcedure procedure;
 	
 	/**
-	 * default error message.
-	 */
-	public static final String DEFAULT_MESSAGE_ERROR = "Make sure the name of the procedure or function exists and is correct. " +
-			"There is another procedure or function with the " +
-			"same name in another schema or catalog?";
-	
-	/**
 	 * creates a LinpProcedure with the specified data source to call a stored function.
 	 * 
 	 * @param ds data source
@@ -73,19 +71,21 @@ class LinpProcedure extends StoredProcedure{
 		super(ds,function.getName());
 		this.procedure = function;
         setFunction(true);
-        ResultSet rsMapping = getProcedureMapping(ds, function);
+        ProcedureMetaData functionMeta = getProcedureMapping(ds, function);
 		
-        //Maps the function result. The function result is always the first record of the ResultSet
-		if (rsMapping.next()){
+        //The function result is always the first record of the ResultSet
+		if (functionMeta.hasData()){
 			if (function instanceof SqlFunctionForCursor)
 				declareParameter(new SqlOutParameter(function.getResultName(),LinpContext.getInstance().getCursorType(),
 						new MultiLevelBeanRowMapperForProcedureCursor(((SqlFunctionForCursor) function).getBeanResult())));
-			else
-			    declareParameter(getSqlParam(function.getResultName(), rsMapping.getInt(6), rsMapping.getShort(5)));
+			else{
+			    ProcedureColumnMetaData functionResultMeta = functionMeta.getFisrt();
+			    declareParameter(getSqlParam(function.getResultName(), functionResultMeta.getType(), functionResultMeta.getStereotype()));
+			}
 		}
 		
 		parametersDefined.add(function.getResultName());
-		registerParameters(rsMapping);
+		registerParameters(functionMeta);
 	}
 	
 	/**
@@ -97,8 +97,8 @@ class LinpProcedure extends StoredProcedure{
 	public LinpProcedure(DataSource ds,SqlProcedure procedure) throws SQLException{
 		super(ds,procedure.getName());
 		this.procedure = procedure;
-		ResultSet rsMapping = getProcedureMapping(ds, procedure);
-		registerParameters(rsMapping);
+		ProcedureMetaData procedureMeta = getProcedureMapping(ds, procedure);
+		registerParameters(procedureMeta);
 	}
 	
 	/**
@@ -106,13 +106,13 @@ class LinpProcedure extends StoredProcedure{
 	 * 
 	 * @param rsMapping result set with procedure (or function) metadata.
 	 */
-	public void registerParameters(ResultSet rsMapping){
+	private void registerParameters(ProcedureMetaData procedureMeta){
 		try {
-			while (rsMapping.next()){
-			   String name = rsMapping.getString(4);
-			   short stereotype = rsMapping.getShort(5);
+			for (ProcedureColumnMetaData columnMeta : procedureMeta.getColumnMetaData()){
+			   String name = columnMeta.getName();
+			   short stereotype = columnMeta.getStereotype();
 			   if (stereotype != RESULT_FUNCTION_STEREOTYPE && ! parametersDefined.contains(name)){	
-			      declareParameter(getSqlParam(name, rsMapping.getInt(6), stereotype));
+			      declareParameter(getSqlParam(name, columnMeta.getType(), stereotype));
 			      parametersDefined.add(name);
 			   }
 			}
@@ -128,15 +128,52 @@ class LinpProcedure extends StoredProcedure{
 	 * @return {@link ResultSet} with procedure metadata.
 	 * @throws SQLException error getting procedure metadata.
 	 */
-	public ResultSet getProcedureMapping(DataSource ds,SqlProcedure procedure) throws SQLException{
-		try{
-		   DatabaseMetaData meta =  ds.getConnection().getMetaData();
-		
-		   return meta.getProcedureColumns(procedure.getCatalog(), procedure.getSchema(), procedure.getName(), null);
-		}catch(SQLException ex){
-			throw new SQLException(ex.getMessage()+ " : " + DEFAULT_MESSAGE_ERROR);
-		}
+	public ProcedureMetaData getProcedureMapping(DataSource ds,SqlProcedure procedure) throws SQLException{
+	    String catalog = procedure.getCatalog();
+        String schema = procedure.getSchema();
+        String name = procedure.getName();
+        
+        ResultSet mapping = getProcedureMapping(ds, catalog, schema, name, null);
+        ProcedureMetaData procedureMeta = new ProcedureMetaData(mapping);
+        if (procedureMeta.hasData())
+            return procedureMeta;
+
+        //UPPER CASE
+        mapping = getProcedureMapping(ds, catalog, schema, name, true);
+        procedureMeta = new ProcedureMetaData(mapping);
+        if (procedureMeta.hasData())
+            return procedureMeta;
+        
+        //LOWER CASE
+        mapping = getProcedureMapping(ds, catalog, schema, name, false);
+        procedureMeta = new ProcedureMetaData(mapping);
+        if (procedureMeta.hasData())
+            return procedureMeta;
+	    
+	    throw new SQLException("Procedure/Function [Name: "+procedure.getName()+", Catalog: "+procedure.getCatalog()+
+	        ", Schema: "+procedure.getSchema()+"] not found. Make sure that the procedure or function exists");
 	}
+	
+    private ResultSet getProcedureMapping(DataSource ds, String catalog, String schema, String name, Boolean upperCase){
+        try {
+            if (upperCase != null){
+               if (upperCase){
+                  catalog = StringUtil.fieldValueToUpperCase(catalog);
+                  schema = StringUtil.fieldValueToUpperCase(schema);
+                  name = StringUtil.fieldValueToUpperCase(name);
+               }else{
+                  catalog = StringUtil.fieldValueToLowerCase(catalog);
+                  schema = StringUtil.fieldValueToLowerCase(schema);
+                  name = StringUtil.fieldValueToLowerCase(name);
+               }
+           }
+            
+            DatabaseMetaData meta = ds.getConnection().getMetaData();
+            return meta.getProcedureColumns(catalog, schema, name, null);
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
 	
 	/**
 	 * records the out cursors detected in this procedure.
@@ -145,7 +182,7 @@ class LinpProcedure extends StoredProcedure{
 	 */
 	public void declareOutCursors(SqlOutCursorParam... outCursors){
 		if (rowMappers.size() != outCursors.length)
-			throw new PersistenceException("Number of OUT CURSORS defined does not match expected in "+procedure.getName());
+			throw new PersistenceException("Number of OUTPUT CURSORS defined does not match expected in "+procedure.getName());
 			
 		for (int i = 0;i < outCursors.length;i++){
 			RowMapperAdapter rmad = rowMappers.get(i);
@@ -200,16 +237,62 @@ class LinpProcedure extends StoredProcedure{
 	public Map execute(Map inParams) {
 		compile();
 		
-		clear();
-		
 		if (inParams == null)
-			inParams = Collections.emptyMap();
+		   inParams = Collections.emptyMap();
+		else
+		   inParams = resolveInParams(inParams);
 		
 		try{
-		   return super.execute(inParams);
+		   Map map = super.execute(inParams);
+		   return formattMap(map,false);
 		}catch(DataAccessException ex){
-			throw new PersistenceException("Invalid data access : "+DEFAULT_MESSAGE_ERROR, ex); 
+			throw new PersistenceException("Unable to call to the procedure or function",ex); 
 		}
+	}
+	
+	private Map resolveInParams(Map inParams){
+	    Map map = new HashMap();
+	    Set keys = inParams.keySet();
+	    for (Object key : keys){
+	        String strKey = key.toString();
+	        boolean parameterResolved = false;
+	        for (String parameter : parametersDefined){
+	            if (parameter.equalsIgnoreCase(strKey)){
+	                map.put(parameter, inParams.get(key));
+	                parameterResolved = true;
+	            }
+	        }
+	        
+	        if (! parameterResolved)
+	            throw new IllegalParameterException("Input parameter not found ["+key+"] for Procedure/Function with name ["+procedure.getName()+"]");
+	    }
+	    
+	    return map;
+	}
+	
+	private Map formattMap(Map map, boolean upperCase){
+	    Map formattedMap = new HashMap();
+        Collection keys = map.keySet();
+        for (Object key : keys){
+            String strKey = key.toString();
+            
+            if (procedure instanceof SqlFunction){
+                SqlFunction function = (SqlFunction) procedure;
+                if (strKey.equals(function.getResultName())){
+                    formattedMap.put(strKey, map.get(key));
+                    continue;
+                }
+            }
+            
+            if (upperCase)
+               strKey = strKey.toUpperCase();
+            else
+                strKey = strKey.toLowerCase();
+                
+            formattedMap.put(strKey, map.get(key));
+        }
+
+        return formattedMap;
 	}
 
 	/**

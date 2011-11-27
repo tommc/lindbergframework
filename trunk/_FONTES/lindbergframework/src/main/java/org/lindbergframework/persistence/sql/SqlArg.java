@@ -23,9 +23,8 @@ public class SqlArg {
 	}
 	
 	public SqlArg(String name, Object value) {
-		super();
-		this.name = name;
-		this.value = value;
+		setName(name);
+		setValue(value);
 	}
 
 	public String getName() {

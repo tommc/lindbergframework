@@ -11,7 +11,6 @@ import java.util.List;
  */
 public class LoadXmlPropertyException extends XmlDocumentException{
 
-	
 	private static final long serialVersionUID = 1L;
 
     public LoadXmlPropertyException() {

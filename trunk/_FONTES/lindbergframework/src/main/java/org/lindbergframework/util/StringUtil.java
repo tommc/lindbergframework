@@ -31,6 +31,21 @@ public class StringUtil {
 	       chars[0] = Character.toUpperCase(chars[0]);
 	       
 	       return new String(chars);  
-	    }
+    }
+	
+	public static String fieldValueToUpperCase(String str){
+	   if (str != null)
+	      return str.toUpperCase();
+	        
+	   return null;
+	}
+	
+	public static String fieldValueToLowerCase(String str){
+	    if (str != null)
+	        return str.toLowerCase();
+	    
+	    return null;
+	}
+
 
 }
