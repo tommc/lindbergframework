@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.lindbergframework.util.StringUtil;
+
 /**
  * Sql command for stored procedures.
  * 
@@ -124,7 +126,7 @@ public class SqlProcedure extends SqlCommand{
 	}
 
 	public void setCatalog(String catalog) {
-		this.catalog = toUpperCase(catalog);
+		this.catalog = catalog;
 	}
 
 	public String getSchema() {
@@ -132,7 +134,7 @@ public class SqlProcedure extends SqlCommand{
 	}
 
 	public void setSchema(String schema) {
-		this.schema = toUpperCase(schema);
+		this.schema = schema;
 	}
 
 	public String getPack() {
@@ -140,7 +142,7 @@ public class SqlProcedure extends SqlCommand{
 	}
 
 	public void setPack(String pack) {
-		this.pack = toUpperCase(pack);
+		this.pack = pack;
 	}
 
 	public String getName() {
@@ -148,7 +150,7 @@ public class SqlProcedure extends SqlCommand{
 	}
 
 	public void setName(String name) {
-		this.name = toUpperCase(name);
+		this.name = name;
 	}
 	
 	public SqlOutCursorParam[] getSqlOutCursorParams() {
@@ -179,11 +181,4 @@ public class SqlProcedure extends SqlCommand{
 			sqlOutCursorParams.add(param);	
 	}
 	
-	private String toUpperCase(String str){
-	    if (str != null)
-	        return str.toUpperCase();
-	    
-	    return null;
-	}
-
 }

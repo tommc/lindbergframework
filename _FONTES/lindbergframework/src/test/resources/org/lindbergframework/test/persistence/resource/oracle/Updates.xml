@@ -19,11 +19,15 @@
        </Sql-Command>
        
        <Sql-Command id="updatePersonNickNameBirthDateProcedure">
-          <Procedure name="UPDATEPERSONNICKNAMEBIRTHDATE" />
+          <Procedure name="updatePersonNicknameBirthdate" />
        </Sql-Command>
        
        <Sql-Command id="updatePersonNickBirthDateFunction">
-          <Function name="UPDATEPERSONNICKBIRTHDATEFUNC" />
+          <Function name="updatePersonNickBirthdateFunc" />
+       </Sql-Command>
+       
+       <Sql-Command id="simpleProcedure">
+          <Procedure name="simpleProcedure" />
        </Sql-Command>
     </Sql-Mapping>          
 

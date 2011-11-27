@@ -46,7 +46,7 @@ public class SqlFunction extends SqlProcedure {
 	public SqlFunction(String id, String catalog, String schema, String pack, String name,
 			String nameResult,SqlOutCursorParam... outCursorParams) {
        super(id, catalog, schema, pack, name,outCursorParams);
-       this.resultName = nameResult;
+       setResultName(nameResult);
 	}
 	
 	/**

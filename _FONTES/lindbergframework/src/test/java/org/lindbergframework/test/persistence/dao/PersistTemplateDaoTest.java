@@ -80,4 +80,8 @@ public class PersistTemplateDaoTest extends LinpDAO{
         return getPersistTemplate().execSqlQueryForObject(Integer.class, "select count(*) from person");
     }
 	
+	public void callSimpleProcedure(){
+	    getPersistTemplate().callProcedure("simpleProcedure");
+	}
+	
 }

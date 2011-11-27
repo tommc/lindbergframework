@@ -48,4 +48,8 @@ begin
    return pbirth_date;
 end updatePersonNickBirthDateFunc;
 
-
+Create or replace procedure simpleProcedure as
+ n number;
+begin
+   n:= 0;
+end simpleProcedure;
