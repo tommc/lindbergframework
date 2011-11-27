@@ -58,7 +58,7 @@ public class PessoaDAOSemAcessarRepositorio extends LinpDAO implements IPessoaDA
     @Override
     public void excluirPessoaUsandoProcedure(String cpf) {
         Map mapParam = new HashMap();
-        mapParam.put("P_CPF", cpf);
+        mapParam.put("p_cpf", cpf);
         getPersistTemplate().callProcedure(new SqlProcedure("excluirPessoa"), mapParam);
     }
 
@@ -66,11 +66,11 @@ public class PessoaDAOSemAcessarRepositorio extends LinpDAO implements IPessoaDA
     public Map excluirPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoFunction(
         String exemploNome) {
         SqlFunctionForCursor function = new SqlFunctionForCursor("excPessoasRetornaExcluidosFunc", 
-                                               "PESSOASEXCLUIDAS", 
+                                               "pessoasexcluidas", 
                                                Pessoa.class, 
                                                new SqlOutCursorParam(Pessoa.class));
         
-       Map map = getPersistTemplate().callFunction(function, new SqlArg("NOMEEXEMPLO", exemploNome));
+       Map map = getPersistTemplate().callFunction(function, new SqlArg("nomeexemplo", exemploNome));
        return map;
     }
 
@@ -81,7 +81,7 @@ public class PessoaDAOSemAcessarRepositorio extends LinpDAO implements IPessoaDA
         procedure.registerSqlOutCursorsParam(new SqlOutCursorParam(Pessoa.class),
                                              new SqlOutCursorParam(Pessoa.class));
         
-        Map map = getPersistTemplate().callProcedure(procedure, new SqlArg("NOMEEXEMPLO", exemploNome));
+        Map map = getPersistTemplate().callProcedure(procedure, new SqlArg("nomeexemplo", exemploNome));
         return map;
     }
 
@@ -109,7 +109,7 @@ public class PessoaDAOSemAcessarRepositorio extends LinpDAO implements IPessoaDA
                                                                  SqlFunction.DEFAULT_RESULT_NAME, 
                                                                  Pessoa.class);
         
-        Map parametrosOut = getPersistTemplate().callFunction(function, new SqlArg("NOMEEXEMPLO", exemploNome));
+        Map parametrosOut = getPersistTemplate().callFunction(function, new SqlArg("nomeexemplo", exemploNome));
         return (List<Pessoa>) parametrosOut.get(SqlFunction.DEFAULT_RESULT_NAME);
     }
 
@@ -117,8 +117,8 @@ public class PessoaDAOSemAcessarRepositorio extends LinpDAO implements IPessoaDA
     public List<Pessoa> listarPessoasPorIniciaisNomeUsandoProcedure(
         String exemploNome) {
         SqlProcedure procedure = new SqlProcedure("listarPessoasPorNomeProc", new SqlOutCursorParam(Pessoa.class));
-        Map parametrosOut = getPersistTemplate().callProcedure(procedure, new SqlArg("NOMEEXEMPLO", exemploNome));
-        return (List<Pessoa>) parametrosOut.get("PESSOAS");
+        Map parametrosOut = getPersistTemplate().callProcedure(procedure, new SqlArg("nomeexemplo", exemploNome));
+        return (List<Pessoa>) parametrosOut.get("pessoas");
     }
 
     public int getNumeroPessoasCadastradas() {

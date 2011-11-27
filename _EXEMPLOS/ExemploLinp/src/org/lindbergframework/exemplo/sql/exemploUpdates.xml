@@ -23,7 +23,7 @@
        </Sql-Command>
        
        <Sql-Command id="excPessoasPorIniciaisRetornandoExcluidosENaoExcluidosUsandoFunction">
-          <Function name="excPessoasRetornaExcluidosFunc" resultName="PESSOASEXCLUIDAS">
+          <Function name="excPessoasRetornaExcluidosFunc" resultName="pessoasexcluidas">
              <OutCursor population-class="org.lindbergframework.exemplo.beans.Pessoa"/><!-- Não Excluidos São como resultado da função através de um cursor  -->
              <ResultCursor population-class="org.lindbergframework.exemplo.beans.Pessoa" /><!-- Excluidos -->
           </Function>
