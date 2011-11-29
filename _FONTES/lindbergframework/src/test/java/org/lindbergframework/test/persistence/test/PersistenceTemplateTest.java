@@ -430,10 +430,13 @@ public class PersistenceTemplateTest extends LinpTestBase{
         
         int qtd = this.persistTemplateDaoTest.getTotalPersons();
         assertTrue(qtd == 2);
-        
 	}
 	
 	public void testCallSimpleProcedure(){
 	    this.persistTemplateDaoTest.callSimpleProcedure();
+	}
+	
+	public void testCallSimpleFunction(){
+		this.persistTemplateDaoTest.callSimpleFunction();
 	}
 }
