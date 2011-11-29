@@ -56,3 +56,16 @@ begin
    return pbirth_date;
 end $$$
 
+DROP PROCEDURE IF EXISTS `simpleProcedure` $$$
+
+Create procedure `simpleProcedure`()
+begin
+   update person set nickname = '';
+end $$$
+
+DROP FUNCTION IF EXISTS `simpleFunction` $$$
+
+Create function `simpleFunction`() returns numeric
+begin
+   return 0;
+end $$$

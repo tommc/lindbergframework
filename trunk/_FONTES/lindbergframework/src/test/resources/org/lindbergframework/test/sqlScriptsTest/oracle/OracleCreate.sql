@@ -53,3 +53,8 @@ Create or replace procedure simpleProcedure as
 begin
    n:= 0;
 end simpleProcedure;
+
+Create or replace function simpleFunction return number is
+begin 
+   return 0;
+end simpleFunction;

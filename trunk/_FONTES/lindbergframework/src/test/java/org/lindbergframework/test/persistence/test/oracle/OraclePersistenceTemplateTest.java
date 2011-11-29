@@ -213,8 +213,4 @@ public class OraclePersistenceTemplateTest extends PersistenceTemplateTest imple
 		assertTrue(result.isEmpty());
 	}
 	
-	public static void main(String[] args) {
-        System.out.println("UPDATEPERSONNICKBIRTHDATEFUNC".toLowerCase());
-    }
-	
 }

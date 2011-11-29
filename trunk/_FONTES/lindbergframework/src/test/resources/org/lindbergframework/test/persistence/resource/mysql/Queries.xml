@@ -36,6 +36,13 @@
           <Function name="findPersonNickFunc" />
        </Sql-Command>
        
+       <Sql-Command id="simpleProcedure">
+          <Procedure name="simpleProcedure" />
+       </Sql-Command>
+       
+       <Sql-Command id="simpleFunction">
+          <Function name="simpleFunction" />
+       </Sql-Command>
     </Sql-Mapping>          
 
 </Linp-Mapping>
