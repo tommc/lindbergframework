@@ -2,6 +2,7 @@ package org.lindbergframework.beans.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -99,5 +100,10 @@ public class BeanUtil {
   	public static Converter getConverter(Class clazz){
   	  return BeanUtilsBean.getInstance().getConvertUtils().lookup(clazz);
   	}
-
+  	
+  	public static <E> E tryConvert(Object value, Class<E> convertType){
+  		Converter converter = getConverter(convertType);
+  		return (E) converter.convert(convertType, value);
+  	}
+  	
 }

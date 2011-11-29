@@ -84,4 +84,8 @@ public class PersistTemplateDaoTest extends LinpDAO{
 	    getPersistTemplate().callProcedure("simpleProcedure");
 	}
 	
+	public void callSimpleFunction(){
+		getPersistTemplate().callFunction("simpleFunction");
+	}
+	
 }
