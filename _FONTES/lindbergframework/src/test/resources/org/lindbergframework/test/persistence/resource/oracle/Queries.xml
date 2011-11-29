@@ -43,6 +43,14 @@
              <ResultCursor population-class="org.lindbergframework.test.testBeans.Person" />
           </Function>
        </Sql-Command>
+       
+       <Sql-Command id="simpleProcedure">
+          <Procedure name="simpleProcedure" />
+       </Sql-Command>
+       
+       <Sql-Command id="simpleFunction">
+          <Function name="simpleFunction" />
+       </Sql-Command>
               
     </Sql-Mapping>          
 

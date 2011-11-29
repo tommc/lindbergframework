@@ -26,9 +26,6 @@
           <Function name="updatePersonNickBirthdateFunc" />
        </Sql-Command>
        
-       <Sql-Command id="simpleProcedure">
-          <Procedure name="simpleProcedure" />
-       </Sql-Command>
     </Sql-Mapping>          
 
 </Linp-Mapping>
