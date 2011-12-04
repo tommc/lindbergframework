@@ -7,10 +7,11 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.lindbergframework.core.context.LindbergBeanContext;
 import org.lindbergframework.exception.BeanPopulateException;
 import org.lindbergframework.exception.PersistenceException;
 import org.lindbergframework.persistence.beans.BeanPopulator;
-import org.lindbergframework.persistence.context.LindbergPersistenceSpringBeanFactory;
+import org.lindbergframework.persistence.configuration.LinpConfiguration;
 import org.lindbergframework.persistence.context.LinpContext;
 import org.lindbergframework.persistence.sql.DataSet;
 import org.lindbergframework.persistence.sql.SqlCommandResolver;
@@ -70,8 +71,8 @@ public abstract class TemplateBase implements PersistenceTemplate {
 	 * {@inheritDoc}
 	 */
 	public void configureDefaultPopulator(){
-		setBeanPopulator((BeanPopulator) LindbergPersistenceSpringBeanFactory.getInstance()
-		               .getBean(PersistBeans.DEFAULT_BEAN_POPULATOR));
+		BeanPopulator beanPopulator = LindbergBeanContext.getInstance().getBean(LinpConfiguration.DEFAULT_BEAN_POPULATOR);
+		setBeanPopulator(beanPopulator);
 	}
 	
 	/**

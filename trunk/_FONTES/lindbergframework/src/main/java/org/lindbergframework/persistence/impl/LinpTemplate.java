@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.lindbergframework.beans.di.annotation.Bean;
 import org.lindbergframework.exception.BeanPopulateException;
 import org.lindbergframework.exception.MappingProcedureFailedExcpetion;
 import org.lindbergframework.exception.NoSuchSqlCommandException;
@@ -21,9 +22,7 @@ import org.lindbergframework.persistence.sql.SqlProcedure;
 import org.lindbergframework.persistence.sql.SqlRowDataSet;
 import org.lindbergframework.persistence.translate.SqlSelectFieldsTranslator;
 import org.lindbergframework.persistence.util.SqlTranslateUtil;
-import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.stereotype.Component;
 
 /**
  * Default Lindberg persistence template implementation. 
@@ -31,8 +30,7 @@ import org.springframework.stereotype.Component;
  * @author Victor Lindberg
  *
  */
-@Component("defaultLinpTemplate")
-@Scope("prototype")
+@Bean("defaultLinpTemplate")
 public class LinpTemplate extends TemplateBase 
 									implements PersistenceTemplate{
 	

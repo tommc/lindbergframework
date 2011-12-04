@@ -5,6 +5,7 @@ import org.lindbergframework.core.context.AllowIfContextActive;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.persistence.DataSourceConfig;
+import org.lindbergframework.persistence.PersistenceTemplate;
 import org.lindbergframework.persistence.context.LinpContext;
 import org.lindbergframework.persistence.sql.SqlCommandResolver;
 import org.lindbergframework.persistence.transaction.TransactionManager;
@@ -68,6 +69,14 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 	 * {@inheritDoc}
 	 */
 	@AllowIfContextActive
+	public PersistenceTemplate getPersistenceTemplate() {
+		return super.getPropertyValue(CONFIG_PROPERTY_PERSISTENCE_TEMPLATE);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@AllowIfContextActive
 	public String getDefaultSchema() {
 	    return super.getPropertyValue(CONFIG_PROPERTY_DEFAULT_SCHEMA);
 	}
@@ -92,6 +101,10 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 	protected void setDefaultSchema(String schema){
 	    registerProperty(CONFIG_PROPERTY_DEFAULT_SCHEMA, schema);
 	}
+	
+	protected void setPersistenceTemplate(PersistenceTemplate persistenceTemplate){
+		registerProperty(CONFIG_PROPERTY_PERSISTENCE_TEMPLATE, persistenceTemplate);
+	}
 
 	/**
 	 * load configuration.
@@ -103,6 +116,7 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 		setDataSourceConfig(configuration.getDataSourceConfig());
 		setSqlCommandResolver(configuration.getSqlCommandResolver());
 		setTransactionManager(configuration.getTransactionManager());
+		setPersistenceTemplate(configuration.getPersistenceTemplate());
 	}
 	
 	/**

@@ -1,21 +1,17 @@
 package org.lindbergframework.persistence.beans;
 
 import java.lang.reflect.Field;
-import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Collection;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.Converter;
+import org.lindbergframework.beans.di.annotation.Bean;
 import org.lindbergframework.beans.util.BeanUtil;
 import org.lindbergframework.exception.BeanPopulateException;
 import org.lindbergframework.persistence.sql.DataSet;
 import org.lindbergframework.persistence.sql.RowDataTree;
 import org.lindbergframework.persistence.sql.SqlNode;
 import org.lindbergframework.util.ReflectionUtil;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 /**
  * Bean populator that implements the mult level population.
@@ -42,8 +38,7 @@ import org.springframework.stereotype.Component;
  * @author Victor Lindberg
  *
  */
-@Component("multLevelsBeanPopulator")
-@Scope("prototype")
+@Bean("multLevelsBeanPopulator")
 public class MultLevelsBeanPopulator extends BeanPopulatorBase{
 	
 	public MultLevelsBeanPopulator(){

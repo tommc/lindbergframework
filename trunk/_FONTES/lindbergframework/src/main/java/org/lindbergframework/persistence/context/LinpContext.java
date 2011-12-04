@@ -11,6 +11,7 @@ import org.lindbergframework.exception.IllegalStateContextException;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.exception.PersistenceConfigurationException;
 import org.lindbergframework.persistence.DataSourceConfig;
+import org.lindbergframework.persistence.PersistenceTemplate;
 import org.lindbergframework.persistence.configuration.LinpConfiguration;
 import org.lindbergframework.persistence.sql.SqlCommandResolver;
 import org.lindbergframework.persistence.transaction.TransactionManager;
@@ -169,7 +170,15 @@ public class LinpContext implements ComponentContext<LinpContext,LinpConfigurati
 	@AllowIfContextActive
 	public TransactionManager getTransactionManager(){
 		return configuration.getTransactionManager();
-	};
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@AllowIfContextActive
+	public PersistenceTemplate getPersistenceTemplate() {
+		return configuration.getPersistenceTemplate();
+	}
 	
 	/**
 	 * {@inheritDoc}

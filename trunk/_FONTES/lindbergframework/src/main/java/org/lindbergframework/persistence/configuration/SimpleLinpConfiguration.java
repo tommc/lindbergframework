@@ -1,6 +1,7 @@
 package org.lindbergframework.persistence.configuration;
 
 import org.lindbergframework.persistence.DataSourceConfig;
+import org.lindbergframework.persistence.PersistenceTemplate;
 import org.lindbergframework.persistence.sql.SqlCommandResolver;
 import org.lindbergframework.persistence.transaction.TransactionManager;
 
@@ -36,6 +37,11 @@ public class SimpleLinpConfiguration extends AbstractLinpConfiguration{
 	
 	public void setDefaultSchema(String schema) {
 	    super.setDefaultSchema(schema);
+	}
+	
+	public void setPersistenceTemplate(
+			PersistenceTemplate persistenceTemplate) {
+		super.setPersistenceTemplate(persistenceTemplate);
 	}
 	
 }

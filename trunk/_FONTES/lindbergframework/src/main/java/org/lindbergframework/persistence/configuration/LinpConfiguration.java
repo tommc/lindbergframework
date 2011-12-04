@@ -4,6 +4,7 @@ import java.sql.Types;
 
 import org.lindbergframework.core.configuration.Configuration;
 import org.lindbergframework.persistence.DataSourceConfig;
+import org.lindbergframework.persistence.PersistenceTemplate;
 import org.lindbergframework.persistence.sql.SqlCommandResolver;
 import org.lindbergframework.persistence.transaction.TransactionManager;
 
@@ -37,6 +38,11 @@ public interface LinpConfiguration extends Configuration{
 	 */
 	public static final String CONFIG_PROPERTY_DEFAULT_SCHEMA =  "lindberg.persistence.DefaultSchema";
 	
+	/**
+	 * Configuration property name persistence template.
+	 */
+	public static final String CONFIG_PROPERTY_PERSISTENCE_TEMPLATE =  "lindberg.persistence.Template";
+	
 	//default values
 	/**
 	 * default cursor type.
@@ -44,9 +50,20 @@ public interface LinpConfiguration extends Configuration{
 	public static final Integer DEFAULT_INTEGER_CURSOR_TYPE = Types.OTHER;
 	
 	/**
-	 * default transaction manager bean id on spring linp context.
+	 * default transaction manager bean id in linp context.
 	 */
 	public static final String DEFAULT_ID_TRANSACTION_MANAGER = "defaultLinpTransactionManager";
+	
+	/**
+	 * default persistence template bean id in linp context.
+	 */
+	public static final String DEFAULT_ID_PERSISTENCE_TEMPLATE = "defaultLinpTemplate";
+	
+	/**
+     * bean id of default bean populator implementation.
+     */
+	public static final String DEFAULT_BEAN_POPULATOR = "multLevelsBeanPopulator";
+
 	
 	/**
 	 * Get the DataSourceConfig for this configuration.
@@ -82,5 +99,12 @@ public interface LinpConfiguration extends Configuration{
 	 * @return the default schema type defined.
 	 */
 	public String getDefaultSchema();
+	
+	/**
+	 * Get the persistence template defined on this configuration.
+	 * 
+	 * @return the transaction manager type defined.
+	 */
+	public PersistenceTemplate getPersistenceTemplate();
 	
 }

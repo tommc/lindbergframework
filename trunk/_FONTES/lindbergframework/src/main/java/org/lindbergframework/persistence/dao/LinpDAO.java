@@ -1,10 +1,9 @@
 package org.lindbergframework.persistence.dao;
 
 import org.lindbergframework.persistence.DataSourceConfig;
-import org.lindbergframework.persistence.PersistBeans;
 import org.lindbergframework.persistence.PersistenceTemplate;
 import org.lindbergframework.persistence.beans.BeanPopulator;
-import org.lindbergframework.persistence.context.LindbergPersistenceSpringBeanFactory;
+import org.lindbergframework.persistence.context.LinpContext;
 
 /**
  * 
@@ -37,6 +36,20 @@ public class LinpDAO {
     }
     
     /**
+     * creates a LinpDAO with the specified bean populator.
+     * 
+     * @param populator bean populator implementation
+     */
+    public LinpDAO(BeanPopulator populator){
+        persistTemplate = getTemplate(populator,null);
+    }
+    
+    public LinpDAO(PersistenceTemplate template, BeanPopulator populator){
+    	this.persistTemplate = template;
+    	template.setBeanPopulator(populator);
+    }
+    
+    /**
      * creates a LinpDAO with the specified template, bean populator and data source configuration.
      * 
      * @param template template for persistence operations.
@@ -50,21 +63,12 @@ public class LinpDAO {
     }
     
     /**
-     * creates a LinpDAO with the specified bean populator.
-     * 
-     * @param populator bean populator implementation
-     */
-    public LinpDAO(BeanPopulator populator){
-        persistTemplate = getDefaultTemplate(populator);
-    }
-    
-    /**
      * creates a LinpDAO with the specified data source configuration.
      * 
      * @param dsConfig data source configuration.
      */
     public LinpDAO(DataSourceConfig dsConfig){
-        persistTemplate = getDefaultTemplate(dsConfig);
+        this(null, dsConfig);
     }
     
     /**
@@ -74,7 +78,7 @@ public class LinpDAO {
      * @param dsConfig data source configuration.
      */
     public LinpDAO(BeanPopulator populator, DataSourceConfig dsConfig){
-        persistTemplate = getDefaultTemplate(populator,dsConfig);
+        persistTemplate = getTemplate(populator,dsConfig);
     }
     
     /**
@@ -84,8 +88,20 @@ public class LinpDAO {
      * 
      * @return default template instance
      */
-    private PersistenceTemplate getDefaultTemplate(Object... constructorArgs){
-        return LindbergPersistenceSpringBeanFactory.getInstance().getBean(PersistBeans.DEFAULT_PERSISTENCE_TEMPLATE,constructorArgs);
+    private PersistenceTemplate getTemplate(BeanPopulator beanPopulator, DataSourceConfig dataSourceConfig){
+        PersistenceTemplate template = getTemplate();
+        
+        if (beanPopulator != null)
+        	template.setBeanPopulator(beanPopulator);
+        
+        if (dataSourceConfig != null)
+        	template.setDataSourceConfig(dataSourceConfig);
+        
+        return template;
+    }
+    
+    private PersistenceTemplate getTemplate(){
+    	return LinpContext.getInstance().getPersistenceTemplate();
     }
     
     /**
@@ -97,7 +113,7 @@ public class LinpDAO {
      */
     public PersistenceTemplate getPersistTemplate() {
         if (persistTemplate == null)
-            persistTemplate = getDefaultTemplate();
+            persistTemplate = getTemplate();
         
         return persistTemplate;
     }

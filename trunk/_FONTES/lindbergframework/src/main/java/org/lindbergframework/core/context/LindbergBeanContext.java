@@ -8,7 +8,7 @@ import org.lindbergframework.beans.di.context.AnnotationBeanFactory;
  * @author Victor Lindberg
  *
  */
-public class LindbergBeanContext extends BeanContext{
+public final class LindbergBeanContext extends BeanContext{
 	
     /**
      * instance of context.
