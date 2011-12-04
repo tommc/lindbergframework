@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.lindbergframework.test.persistence.dao.DAOUsingAlternativePersistenceTemplate;
+import org.lindbergframework.test.persistence.dao.DAOUsingAlternativePersistenceTemplateAndBeanPopulatorIDOnly;
 import org.lindbergframework.test.persistence.dao.PersistTemplateDaoTest;
 import org.lindbergframework.test.testBeans.Employee;
 import org.lindbergframework.test.testBeans.Person;
@@ -438,5 +440,17 @@ public class PersistenceTemplateTest extends LinpTestBase{
 	
 	public void testCallSimpleFunction(){
 		this.persistTemplateDaoTest.callSimpleFunction();
+	}
+	
+	//the used BeanPopulator just populates ID property 
+	public void testUsingAlternativePersistenceTemplateAndBeanPopulatorIDOnly(){
+		DAOUsingAlternativePersistenceTemplateAndBeanPopulatorIDOnly dao = new DAOUsingAlternativePersistenceTemplateAndBeanPopulatorIDOnly();
+		Person person1 = createPerson(1, "nick1", "profession1", "street1", 111);
+		dao.insertPerson(person1);
+		person1 = dao.getPersonFromId(person1.getId());
+		assertNotNull(person1);
+		assertEquals(person1.getId(), new Integer(1));
+		assertEquals("Nickname should be null",person1.getNickname(), null);
+		assertEquals("Address should be null",person1.getAddres(), null);
 	}
 }

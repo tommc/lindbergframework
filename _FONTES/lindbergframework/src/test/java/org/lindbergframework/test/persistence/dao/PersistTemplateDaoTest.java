@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.lindbergframework.beans.di.annotation.Bean;
+import org.lindbergframework.persistence.DataSourceConfig;
+import org.lindbergframework.persistence.PersistenceTemplate;
+import org.lindbergframework.persistence.beans.BeanPopulator;
 import org.lindbergframework.persistence.dao.LinpDAO;
 import org.lindbergframework.persistence.sql.SqlArg;
 import org.lindbergframework.persistence.sql.SqlFunction;
@@ -23,10 +26,37 @@ public class PersistTemplateDaoTest extends LinpDAO{
 		//
 	}
 	
+	public PersistTemplateDaoTest(BeanPopulator populator,
+			DataSourceConfig dsConfig) {
+		super(populator, dsConfig);
+	}
+
+	public PersistTemplateDaoTest(BeanPopulator populator) {
+		super(populator);
+	}
+
+	public PersistTemplateDaoTest(DataSourceConfig dsConfig) {
+		super(dsConfig);
+	}
+
+	public PersistTemplateDaoTest(PersistenceTemplate template,
+			BeanPopulator populator, DataSourceConfig dsConfig) {
+		super(template, populator, dsConfig);
+	}
+
+	public PersistTemplateDaoTest(PersistenceTemplate template) {
+		super(template);
+	}
+	
+	public PersistTemplateDaoTest(PersistenceTemplate template,
+			BeanPopulator populator) {
+		super(template, populator);
+	}
+
 	public List<Person> listPersons(){
 		return getPersistTemplate().execQuery(Person.class, "queryPersons");
 	}
-	
+
 	public List<Person> listPersonsLikeNickName(String nickname){
 		return getPersistTemplate().execQuery(Person.class, "queryPersonsLikeNickname",nickname+"%");
 	}
