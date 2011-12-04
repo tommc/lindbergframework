@@ -1,0 +1,11 @@
+org.lindbergframework.test.beans
+org.lindbergframework.test.beans.di.test
+org.lindbergframework.test.persistence.dao
+org.lindbergframework.test.persistence.dao.mysql
+org.lindbergframework.test.persistence.dao.oracle
+org.lindbergframework.test.persistence.test
+org.lindbergframework.test.persistence.test.mysql
+org.lindbergframework.test.persistence.test.oracle
+org.lindbergframework.test.persistence.util
+org.lindbergframework.test.testBeans
+org.lindbergframework.test.validation.test

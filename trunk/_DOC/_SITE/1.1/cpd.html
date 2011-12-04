@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>lindbergframework - CPD Results</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            lindbergframework
+    
+            </span>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2011-12-04
+                      </div>
+            <div class="xright">            <a href="">lindbergframework</a>
+            
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                             <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+            
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+            <li class="expanded">
+                    <a href="project-reports.html">Project Reports</a>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="checkstyle.html">Checkstyle</a>
+          </li>
+                  
+    <li class="none">
+              <strong>CPD Report</strong>
+        </li>
+                  
+    <li class="none">
+                    <a href="apidocs/index.html">JavaDocs</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="pmd.html">PMD Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="xref/index.html">Source Xref</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="testapidocs/index.html">Test JavaDocs</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="xref-test/index.html">Test Source Xref</a>
+          </li>
+              </ul>
+        </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>CPD Results</h2>
+<p>The following document contains the results of PMD's  <a href="http://pmd.sourceforge.net/cpd.html" class="externalLink">CPD</a> 4.2.5.</p>
+</div>
+<div class="section"><h2>Duplications</h2>
+<table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org\lindbergframework\persistence\sql\ResultDataSet.java</td>
+<td><a href="./xref/org/lindbergframework/persistence/sql/ResultDataSet.html#47">47</a></td>
+</tr>
+<tr class="a"><td>org\lindbergframework\persistence\sql\SqlRowDataSet.java</td>
+<td><a href="./xref/org/lindbergframework/persistence/sql/SqlRowDataSet.html#43">43</a></td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>	   throw new UnsupportedOperationException(&quot;Close operation is not supported. A SqlRowDataSet is a disconnected DataSet&quot;);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean first() throws SQLException {
+		return rs.first();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public int getIndexRow() throws SQLException {
+		return rs.getRow();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@SuppressWarnings(&quot;unchecked&quot;)
+	public &lt;E&gt; E getResultTarget() {
+		return (E) rs;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Object getValue(String columnName) throws SQLException {
+		return rs.getObject(columnName);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Object getValue(int columnIndex) throws SQLException{
+		return rs.getObject(columnIndex);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isAfterLast() throws SQLException {
+		return rs.isAfterLast();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isBeforeFirst() throws SQLException {
+		return rs.isBeforeFirst();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isFirst() throws SQLException {
+		return rs.isFirst();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isLast() throws SQLException {
+		return rs.isLast();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean last() throws SQLException {
+		return rs.last();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean next() throws SQLException {
+		return rs.next();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean previous() throws SQLException {
+		return rs.previous();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public DataSetMetaDada getMetaData() throws SQLException {
+		return new SqlRowDataSetMetaData(rs.getMetaData());</pre>
+</div>
+</td></tr>
+</table>
+<table class="bodyTable"><tr class="a"><th>File</th>
+<th>Line</th>
+</tr>
+<tr class="b"><td>org\lindbergframework\persistence\sql\ResultDataSet.java</td>
+<td><a href="./xref/org/lindbergframework/persistence/sql/ResultDataSet.html#151">151</a></td>
+</tr>
+<tr class="a"><td>org\lindbergframework\persistence\sql\SqlRowDataSet.java</td>
+<td><a href="./xref/org/lindbergframework/persistence/sql/SqlRowDataSet.html#147">147</a></td>
+</tr>
+<tr class="b"><td colspan='2'><div class="source"><pre>		public SqlRowDataSetMetaData(SqlRowSetMetaData md) {
+			this.md = md;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getColumnClassName(int column) throws SQLException {
+			return md.getColumnClassName(column);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public int getColumnCount() throws SQLException {
+			return md.getColumnCount();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getColumnName(int columnIndex) throws SQLException {
+			return md.getColumnName(columnIndex);
+		}
+		
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getColumnLabel(int column) throws SQLException {
+			return md.getColumnLabel(column);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public int getColumnType(int column) throws SQLException {
+			return md.getColumnType(column);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getColumnTypeName(int column) throws SQLException {
+			return md.getColumnTypeName(column);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getSchemaName(int column) throws SQLException {
+			return md.getSchemaName(column);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getTableName(int column) throws SQLException {
+			return md.getTableName(column);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Object getTargetMetaData() {
+			return md;
+		}
+
+	}
+	
+
+
+}</pre>
+</div>
+</td></tr>
+</table>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2011
+    
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>
