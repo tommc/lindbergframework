@@ -15,6 +15,7 @@ import org.lindbergframework.exception.InvalidXmlDocumentException;
 import org.lindbergframework.exception.PersistenceConfigurationException;
 import org.lindbergframework.exception.PersistenceException;
 import org.lindbergframework.persistence.DataSourceConfig;
+import org.lindbergframework.persistence.PersistenceTemplate;
 import org.lindbergframework.persistence.sql.SqlCommandResolver;
 import org.lindbergframework.persistence.transaction.TransactionManager;
 import org.lindbergframework.schema.TconfigProperty;
@@ -42,7 +43,8 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 	 * configuration keys automatically formatted.
 	 */
 	private static final String[] keysAutomaticallyFormatted = new String[] {CONFIG_PROPERTY_SQL_COMMAND_RESOLVER,
-		                                                                    CONFIG_PROPERTY_TRANSACTION_MANAGER};
+		                                                                    CONFIG_PROPERTY_TRANSACTION_MANAGER,
+		                                                                    CONFIG_PROPERTY_PERSISTENCE_TEMPLATE};
 	
 	
 	public XmlLinpConfiguration(){
@@ -217,6 +219,24 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 			
 		setTransactionManager((TransactionManager) transactionManager);
 		return super.getTransactionManager();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public PersistenceTemplate getPersistenceTemplate() {
+		PersistenceTemplate persistenceTemplateCached = super.getPersistenceTemplate();
+		if (persistenceTemplateCached != null)
+			return persistenceTemplateCached;
+		
+		Object persistenceTemplate = getPropertyValue(CONFIG_PROPERTY_PERSISTENCE_TEMPLATE);
+		
+		if (persistenceTemplate == null)
+	       persistenceTemplate = LindbergBeanContext.getInstance().getBean(DEFAULT_ID_PERSISTENCE_TEMPLATE);
+			
+		setPersistenceTemplate((PersistenceTemplate) persistenceTemplate);
+		return super.getPersistenceTemplate();
 	}
 	
 	/**
