@@ -16,6 +16,7 @@
 		</dataSource>
   
 		<config-properties>
+			<config-property name="lindberg.persistence.Template" value="org.lindbergframework.test.persistence.dao.PersistenceTemplateImpl" />
 			<config-property name="lindberg.persistence.IntegerCursorType" value="#oracle.jdbc.OracleTypes.CURSOR" />
 			<config-property name="lindberg.persistence.SqlCommandResolver" value="org.lindbergframework.persistence.sql.ClassPathXmlSqlCommandResolver">
 				<property constructor-arg="true">
