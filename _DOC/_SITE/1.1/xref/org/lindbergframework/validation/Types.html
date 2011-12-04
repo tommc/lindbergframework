@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>Types xref</title>
+<link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../apidocs/org/lindbergframework/validation/Types.html">View Javadoc</a></div><pre>
+
+<a class="jxr_linenumber" name="1" href="#1">1</a>   <strong class="jxr_keyword">package</strong> org.lindbergframework.validation;
+<a class="jxr_linenumber" name="2" href="#2">2</a>   
+<a class="jxr_linenumber" name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> org.lindbergframework.validation.factory.ValidationFactory;
+<a class="jxr_linenumber" name="4" href="#4">4</a>   
+<a class="jxr_linenumber" name="5" href="#5">5</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="6" href="#6">6</a>   <em class="jxr_javadoccomment"> * Interface que contem um conjunto de constantes com os IDÂ´s dos beans de validaÃ§Ã£o. &lt;br&gt;&lt;br&gt;</em>
+<a class="jxr_linenumber" name="7" href="#7">7</a>   <em class="jxr_javadoccomment"> * </em>
+<a class="jxr_linenumber" name="8" href="#8">8</a>   <em class="jxr_javadoccomment"> * Para obter beans de validaÃ§Ã£o usando essa interface use {@link ValidationFactory} &lt;br&gt;</em>
+<a class="jxr_linenumber" name="9" href="#9">9</a>   <em class="jxr_javadoccomment"> * atravÃ©s do mÃ©todo &lt;i&gt;getValidationBean&lt;/i&gt; ou &lt;i&gt;getValidationBeanReturningNullIfNoSuchBean&lt;/i&gt; &lt;br&gt;</em>
+<a class="jxr_linenumber" name="10" href="#10">10</a>  <em class="jxr_javadoccomment"> * passando uma constante dessa interface como ID para obter uma instancia do bean.&lt;br&gt;&lt;br&gt;</em>
+<a class="jxr_linenumber" name="11" href="#11">11</a>  <em class="jxr_javadoccomment"> * </em>
+<a class="jxr_linenumber" name="12" href="#12">12</a>  <em class="jxr_javadoccomment"> * Essa interface deve ser usada tambÃ©m na utilizaÃ§Ã£o das validaÃ§Ãµes via annotation atravÃ©s da @Valid &lt;br&gt;</em>
+<a class="jxr_linenumber" name="13" href="#13">13</a>  <em class="jxr_javadoccomment"> * onde sendo passada qualquer uma dessas constantes para o atributo value dessa annotation &lt;br&gt;</em>
+<a class="jxr_linenumber" name="14" href="#14">14</a>  <em class="jxr_javadoccomment"> * entÃ£o a validaÃ§Ã£o criada serÃ¡ o baseada no bean de validaÃ§Ã£o ao qual a constante representa. &lt;br&gt;&lt;br&gt;</em>
+<a class="jxr_linenumber" name="15" href="#15">15</a>  <em class="jxr_javadoccomment"> * </em>
+<a class="jxr_linenumber" name="16" href="#16">16</a>  <em class="jxr_javadoccomment"> * Exemplo usando {@link ValidationFactory}&lt;br&gt;&lt;br&gt;</em>
+<a class="jxr_linenumber" name="17" href="#17">17</a>  <em class="jxr_javadoccomment"> * </em>
+<a class="jxr_linenumber" name="18" href="#18">18</a>  <em class="jxr_javadoccomment"> * ValidationFactory.getValidationBean(Types.NOT_NULL_VALIDATION)&lt;br&gt;&lt;br&gt;</em>
+<a class="jxr_linenumber" name="19" href="#19">19</a>  <em class="jxr_javadoccomment"> * </em>
+<a class="jxr_linenumber" name="20" href="#20">20</a>  <em class="jxr_javadoccomment"> *  Exemplo usando @Valid&lt;br&gt;&lt;br&gt;</em>
+<a class="jxr_linenumber" name="21" href="#21">21</a>  <em class="jxr_javadoccomment"> *  </em>
+<a class="jxr_linenumber" name="22" href="#22">22</a>  <em class="jxr_javadoccomment"> *  (Arroba)Valid(Types.NOT_NULL_VALIDATION)&lt;br&gt;</em>
+<a class="jxr_linenumber" name="23" href="#23">23</a>  <em class="jxr_javadoccomment">	private String campo;  </em>
+<a class="jxr_linenumber" name="24" href="#24">24</a>  <em class="jxr_javadoccomment"> * </em>
+<a class="jxr_linenumber" name="25" href="#25">25</a>  <em class="jxr_javadoccomment"> * </em>
+<a class="jxr_linenumber" name="26" href="#26">26</a>  <em class="jxr_javadoccomment"> * @author Victor Lindberg</em>
+<a class="jxr_linenumber" name="27" href="#27">27</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="28" href="#28">28</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="29" href="#29">29</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">interface</strong> <a href="../../../org/lindbergframework/validation/Types.html">Types</a> {
+<a class="jxr_linenumber" name="30" href="#30">30</a>  	
+<a class="jxr_linenumber" name="31" href="#31">31</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String REQUIRED_FIELD = <span class="jxr_string">"requiredFieldValidation"</span>;
+<a class="jxr_linenumber" name="32" href="#32">32</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String REQUIRED_FIELD_NO_INFORMATION_EMPTY = <span class="jxr_string">"requiredFieldDoesNotAllowInformationEmpty"</span>;
+<a class="jxr_linenumber" name="33" href="#33">33</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String NOT_NULL = <span class="jxr_string">"notNullValidation"</span>;
+<a class="jxr_linenumber" name="34" href="#34">34</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String NOT_EMPTY_LIST = <span class="jxr_string">"notEmptyListValidation"</span>;
+<a class="jxr_linenumber" name="35" href="#35">35</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String MUST_BE_NULL = <span class="jxr_string">"mustBeNullValidation"</span>;
+<a class="jxr_linenumber" name="36" href="#36">36</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CPF = <span class="jxr_string">"cpfValidation"</span>;
+<a class="jxr_linenumber" name="37" href="#37">37</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CNPJ = <span class="jxr_string">"cnpjValidation"</span>;
+<a class="jxr_linenumber" name="38" href="#38">38</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String CPF_CNPJ = <span class="jxr_string">"cpfAndCnpjValidation"</span>;
+<a class="jxr_linenumber" name="39" href="#39">39</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DATE_MUST_BE_FUTURE = <span class="jxr_string">"dateMustBeFutureValidation"</span>;
+<a class="jxr_linenumber" name="40" href="#40">40</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DATE_MUST_BE_PAST = <span class="jxr_string">"dateMustBePastValidation"</span>;
+<a class="jxr_linenumber" name="41" href="#41">41</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DATE_MUST_BE_PRESENT = <span class="jxr_string">"dateMustBePresent"</span>;
+<a class="jxr_linenumber" name="42" href="#42">42</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DATE_CAN_NOT_BE_FUTURE = <span class="jxr_string">"dateCanNotBeFutureValidation"</span>;
+<a class="jxr_linenumber" name="43" href="#43">43</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DATE_CAN_NOT_BE_PAST = <span class="jxr_string">"dateCanNotBePastValidation"</span>;
+<a class="jxr_linenumber" name="44" href="#44">44</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DATE_CAN_NOT_BE_PRESENT = <span class="jxr_string">"dateCanNotBePresentValidation"</span>;
+<a class="jxr_linenumber" name="45" href="#45">45</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String MUST_BE_EMPTY_LIST = <span class="jxr_string">"mustBeEmptyListValidation"</span>;
+<a class="jxr_linenumber" name="46" href="#46">46</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String NUMBER_COMPARABLE = <span class="jxr_string">"numberComparableValidation"</span>;
+<a class="jxr_linenumber" name="47" href="#47">47</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String STRING_MAX_LENGTH = <span class="jxr_string">"stringMaxMinLengthValidation"</span>;
+<a class="jxr_linenumber" name="48" href="#48">48</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String NO_INFORMATION_EMPTY = <span class="jxr_string">"doesNotAllowInformationEmptyValidation"</span>;
+<a class="jxr_linenumber" name="49" href="#49">49</a>  
+<a class="jxr_linenumber" name="50" href="#50">50</a>  }
+</pre>
+<hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
+</html>
+
