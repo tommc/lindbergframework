@@ -295,8 +295,6 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
         
 		try {
             buildConfiguration(XmlUtil.buildDocument(xmlConfig).getLinp());
-        } catch (PersistenceConfigurationException ex) {
-            throw ex;
         } catch (Exception ex) {
             throw new PersistenceConfigurationException(ex); 
         }

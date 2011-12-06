@@ -18,13 +18,6 @@ public class SimpleCoreConfiguration extends AbstractCoreConfiguration{
     /**
      * {@inheritDoc}
      */
-    public LinpConfiguration getLinpConfiguration() {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void setBeanFactory(BeanFactory beanFactory) {
         super.setBeanFactory(beanFactory);
