@@ -25,7 +25,7 @@ public class LinpSpringTransactionManager extends TransactionTemplate
     private static final long serialVersionUID = 1L;
 
     public LinpSpringTransactionManager(){
-        this(LinpContext.getInstance().getDataSource());
+        //
     }
     
     /**
@@ -49,6 +49,12 @@ public class LinpSpringTransactionManager extends TransactionTemplate
      */
     public Object execute(TransactionalContext transactionalContext)
         throws TransactionException {
+    	if (getTransactionManager() == null){
+    		DataSource definedDataSource = LinpContext.getInstance().getDataSource();
+    		PlatformTransactionManager platformTransactionManager = new DataSourceTransactionManager(definedDataSource);
+    		setTransactionManager(platformTransactionManager);
+    	}
+    	
         final TransactionalContext finalContext = transactionalContext;
         return super.execute(new TransactionCallback(){
            public Object doInTransaction(TransactionStatus status) {
