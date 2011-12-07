@@ -3,7 +3,6 @@ package org.lindbergframework.persistence.transaction;
 import javax.sql.DataSource;
 
 import org.lindbergframework.beans.di.annotation.Bean;
-import org.lindbergframework.exception.TransactionException;
 import org.lindbergframework.exception.TransactionFailureException;
 import org.lindbergframework.persistence.context.LinpContext;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -48,7 +47,7 @@ public class LinpSpringTransactionManager extends TransactionTemplate
      * {@inheritDoc}
      */
     public Object execute(TransactionalContext transactionalContext)
-        throws TransactionException {
+        throws TransactionFailureException {
     	if (getTransactionManager() == null){
     		DataSource definedDataSource = LinpContext.getInstance().getDataSource();
     		PlatformTransactionManager platformTransactionManager = new DataSourceTransactionManager(definedDataSource);

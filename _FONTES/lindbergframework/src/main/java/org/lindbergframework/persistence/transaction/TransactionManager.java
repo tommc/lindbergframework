@@ -1,6 +1,6 @@
 package org.lindbergframework.persistence.transaction;
 
-import org.lindbergframework.exception.TransactionException;
+import org.lindbergframework.exception.TransactionFailureException;
 
 /**
  * Interface that defines the contract for transaction manager implementations.
@@ -18,8 +18,8 @@ public interface TransactionManager {
      * @param transactionalContext context of transaction.
      * @return  result object of transaction.
      * 
-     * @throws TransactionException transaction failed.
+     * @throws TransactionFailureException transaction failed.
      */
-    public Object execute(TransactionalContext transactionalContext) throws TransactionException;
+    public Object execute(TransactionalContext transactionalContext) throws TransactionFailureException;
 
 }

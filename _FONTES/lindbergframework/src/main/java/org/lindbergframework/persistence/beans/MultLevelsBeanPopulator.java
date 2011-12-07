@@ -57,6 +57,7 @@ public class MultLevelsBeanPopulator extends BeanPopulatorBase{
 	public <E> E populate(Class<E> beanClass, RowDataTree rowDataTree) throws BeanPopulateException{
 		try {
 			E beanInstance = beanClass.newInstance();
+			beanInstance = applyContextsPrePopulate(beanInstance);
 			SqlNode root = rowDataTree.getTree();
 			populateMultLevel(beanInstance, root.getChildren());
 			
