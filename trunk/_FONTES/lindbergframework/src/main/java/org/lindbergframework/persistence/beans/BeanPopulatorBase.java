@@ -2,6 +2,7 @@ package org.lindbergframework.persistence.beans;
 
 import org.lindbergframework.persistence.translate.SqlColumnForJavaPropertyTranslator;
 import org.lindbergframework.persistence.util.SqlTranslateUtil;
+import org.lindbergframework.persistence.util.TransactionUtil;
 
 /**
  * abstract bean populator with main resources for all {@link BeanPopulator} implementations.
@@ -24,6 +25,13 @@ public abstract class BeanPopulatorBase implements BeanPopulator{
 	public String sqlColumnToJavaProperyPattern(String sqlColumn){
 		return SqlTranslateUtil.translateSqlString(sqlColumn,
                 new SqlColumnForJavaPropertyTranslator());
+	}
+	
+	protected <E> E applyContextsPrePopulate(E bean){
+		if (TransactionUtil.isTransactional(bean.getClass()))
+			return TransactionUtil.createTransactionProxy(bean.getClass());
+		
+		return bean;
 	}
 
 }
