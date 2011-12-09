@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.lindbergframework.test.persistence.dao.DAOUsingAlternativePersistenceTemplate;
 import org.lindbergframework.test.persistence.dao.DAOUsingAlternativePersistenceTemplateAndBeanPopulatorIDOnly;
 import org.lindbergframework.test.persistence.dao.PersistTemplateDaoTest;
 import org.lindbergframework.test.testBeans.Employee;

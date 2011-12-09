@@ -113,7 +113,7 @@ public class XmlCoreConfiguration extends AbstractCoreConfiguration implements C
         
         if (xmlConfig == null)
             throw new CoreConfigurationException(
-                    "Invalid core xmlConfig. Configuration File is Null");
+                    "Invalid core xmlConfig. Configuration file is null or not found");
 
         try {
             this.lindbergConfiguration = XmlUtil.buildDocument(xmlConfig);

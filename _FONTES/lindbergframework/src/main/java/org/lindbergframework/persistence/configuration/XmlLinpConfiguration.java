@@ -173,7 +173,7 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 		      
 		      BeanUtil.loadProperty(dataSource, driverPropertyName, driverValue);
 		      
-		      dataSourceConfig.setDataSource(dataSource);
+		      dataSourceConfig.configDataSource(dataSource);
 		      
 		      setDataSourceConfig(dataSourceConfig);
 		      return dataSourceConfig;

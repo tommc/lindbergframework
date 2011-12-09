@@ -29,6 +29,10 @@ public class SingleConnectionThreadLocalDataSource implements DataSource{
 	 */
 	private DataSource dataSource;
 	
+	public SingleConnectionThreadLocalDataSource(){
+		//
+	}
+	
 	/**
 	 * Creates a SingleConnectionThreadLocalDataSource for specified data source.
 	 * @param dataSource data source to get connections.
@@ -42,17 +46,21 @@ public class SingleConnectionThreadLocalDataSource implements DataSource{
 	 * If the connection for current thread is closed a new is created.
 	 */
 	public Connection getConnection() throws SQLException {
+		DataSource ds = getTargetDataSource();
+		if (ds == null)
+			throw new PersistenceException("Target Datasource is not defined");
+		
 		Connection conn = connThreadLocal.get();
 		if (conn == null || conn.isClosed())
 		try {
-			connThreadLocal.set(dataSource.getConnection());
+			connThreadLocal.set(ds.getConnection());
 		} catch (SQLException ex) {
 			throw new PersistenceException("Error initializing single connection per thread in SingleConnectionThreadLocalDataSource",ex);
 		}
 		
 		return connThreadLocal.get();
 	}
-
+	
 	/**
 	 * Get connection from cache to current thread for specified username and password. 
 	 * If the connection for current thread is closed a new is created.
@@ -62,35 +70,35 @@ public class SingleConnectionThreadLocalDataSource implements DataSource{
 	 */
 	public Connection getConnection(String username, String password)
 			throws SQLException {
-		return dataSource.getConnection(username, password);
+		return getTargetDataSource().getConnection(username, password);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public PrintWriter getLogWriter() throws SQLException {
-		return dataSource.getLogWriter();
+		return getTargetDataSource().getLogWriter();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public int getLoginTimeout() throws SQLException {
-		return dataSource.getLoginTimeout();
+		return getTargetDataSource().getLoginTimeout();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void setLogWriter(PrintWriter out) throws SQLException {
-		dataSource.setLogWriter(out);
+		getTargetDataSource().setLogWriter(out);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void setLoginTimeout(int seconds) throws SQLException {
-		dataSource.setLoginTimeout(seconds);
+		getTargetDataSource().setLoginTimeout(seconds);
 	}
 
 	/**
@@ -116,6 +124,8 @@ public class SingleConnectionThreadLocalDataSource implements DataSource{
 		return connThreadLocal.get() != null;
 	}
 	
-	
+	public DataSource getTargetDataSource(){
+		return dataSource;
+	}
 	
 }

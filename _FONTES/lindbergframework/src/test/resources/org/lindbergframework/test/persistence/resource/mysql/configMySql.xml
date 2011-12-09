@@ -21,7 +21,7 @@
   
 		<config-properties>
 			<config-property name="lindberg.persistence.DefaultSchema" value="test" />
-			<config-property name="lindberg.persistence.TransactionManager" value="org.lindbergframework.persistence.transaction.LinpSpringTransactionManager" />
+			<config-property name="lindberg.persistence.TransactionManager" value="org.lindbergframework.persistence.transaction.LinpTransactionManager" />
 			<config-property name="lindberg.persistence.SqlCommandResolver" value="org.lindbergframework.persistence.sql.ClassPathXmlSqlCommandResolver">
 				<property  constructor-arg="true">
 					<array> 

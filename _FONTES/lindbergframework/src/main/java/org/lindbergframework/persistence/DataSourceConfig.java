@@ -19,8 +19,9 @@ public class DataSourceConfig {
     /**
      * Data source implementation.
      */
-	private DataSource dataSource;
+	private SingleConnectionThreadLocalDataSource dataSource;
 	
+	private DataSource targetDataSource;
 	/**
 	 * driver class.
 	 */
@@ -31,16 +32,21 @@ public class DataSourceConfig {
 	}
 
 	public DataSourceConfig(DataSource dataSource, Class driver) {
-		setDataSource(dataSource);
+		configDataSource(dataSource);
 		setDriver(driver);
 	}
 
-	public DataSource getDataSource() {
+	public SingleConnectionThreadLocalDataSource getDataSource() {
 		return dataSource;
 	}
+	
+	public DataSource getTargetDataSource() {
+		return targetDataSource;
+	}
 
-	public final void setDataSource(DataSource dataSource) {
+	public final void configDataSource(DataSource dataSource) {
 		this.dataSource = new SingleConnectionThreadLocalDataSource(dataSource);
+		this.targetDataSource = dataSource;
 	}
 
 	public Class getDriver() {
