@@ -18,19 +18,19 @@ import org.springframework.transaction.support.TransactionTemplate;
  *
  */
 @Bean("defaultLinpTransactionManager")
-public class LinpSpringTransactionManager extends TransactionTemplate
+public class LinpTransactionManager extends TransactionTemplate
                               implements TransactionManager{
     
     private static final long serialVersionUID = 1L;
 
-    public LinpSpringTransactionManager(){
+    public LinpTransactionManager(){
         //
     }
     
     /**
      * constructor that uses DataSourceTransactionManager as PlatformTransactionManager implementation.
      */
-    public LinpSpringTransactionManager(DataSource dataSource){
+    public LinpTransactionManager(DataSource dataSource){
         this(new DataSourceTransactionManager(dataSource));
     }
 
@@ -39,7 +39,7 @@ public class LinpSpringTransactionManager extends TransactionTemplate
      * 
      * @param transactionManager PlatformTransactionManager imlementation.
      */
-    public LinpSpringTransactionManager(PlatformTransactionManager transactionManager){
+    public LinpTransactionManager(PlatformTransactionManager transactionManager){
         super(transactionManager);
     }
     

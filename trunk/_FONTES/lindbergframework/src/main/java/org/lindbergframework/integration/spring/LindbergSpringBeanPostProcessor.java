@@ -1,4 +1,4 @@
-package org.lindbergframework.persistence.integration.spring;
+package org.lindbergframework.integration.spring;
 
 import org.lindbergframework.beans.util.BeanUtil;
 import org.lindbergframework.exception.BeanException;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * @author Victor Lindberg
  *
  */
-public class LinpTransactionBeanPostProcessor implements BeanPostProcessor{
+public class LindbergSpringBeanPostProcessor implements BeanPostProcessor{
 	
     /**
      * Creates lindberg transaction proxy for bean if necessary. 
