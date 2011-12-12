@@ -1,7 +1,6 @@
 package org.lindbergframework.integration.flex.factory;
 
 import org.lindbergframework.beans.di.context.BeanFactory;
-import org.lindbergframework.beans.di.context.UserBeanContext;
 
 import flex.messaging.FactoryInstance;
 import flex.messaging.FlexFactory;
