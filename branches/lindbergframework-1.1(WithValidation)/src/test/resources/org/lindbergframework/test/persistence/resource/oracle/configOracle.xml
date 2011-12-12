@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lindberg-configuration xmlns="http://www.lindbergframework.org/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.lindbergframework.org/schema lindberg-config.xsd ">
+
+
+<core>
+   <config-property name="lindberg.core.di-basepackage" value="org.lindbergframework.test.*"/>
+   <config-property name="lindberg.core.beanfactory" value="org.lindbergframework.beans.di.context.AnnotationBeanFactory"/>
+</core>
+
+<linp>
+		<dataSource class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
+		    driver="oracle.jdbc.OracleDriver" driverPropertyName="driverClassName">
+			<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+			<property name="username" value="SYSTEM" />
+			<property name="password" value="admin" />
+		</dataSource>
+  
+		<config-properties>
+			<config-property name="lindberg.persistence.Template" value="org.lindbergframework.test.persistence.dao.PersistenceTemplateImpl" />
+			<config-property name="lindberg.persistence.IntegerCursorType" value="#oracle.jdbc.OracleTypes.CURSOR" />
+			<config-property name="lindberg.persistence.SqlCommandResolver" value="org.lindbergframework.persistence.sql.ClassPathXmlSqlCommandResolver">
+				<property constructor-arg="true">
+					<list> 
+                       org/lindbergframework/test/persistence/resource/oracle/Updates.xml;
+                       org/lindbergframework/test/persistence/resource/oracle/Queries.xml
+					</list>
+				</property>
+			</config-property>
+		</config-properties>
+
+	</linp>
+
+</lindberg-configuration>

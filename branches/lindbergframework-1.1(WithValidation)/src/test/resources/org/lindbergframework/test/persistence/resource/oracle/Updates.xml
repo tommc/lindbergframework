@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Linp-Mapping xmlns="http://www.lindbergframework.org/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.lindbergframework.org/schema ../org/lindbergframework/schemas/linp-sqlMapping.xsd ">
+
+    <Description>Updates</Description>
+    
+    <Sql-Mapping>
+       <Sql-Command id="updatePersonpNicknameAndProfession">
+          <Sql-Statement>
+              update person set nickname = ?, profession = ? where id = ?
+          </Sql-Statement>
+       </Sql-Command>
+       
+       <Sql-Command id="insertPerson">
+          <Sql-Statement>insert into person(id,nickname,profession,street,addres_num,birth_date) values(?,?,?,?,?,?)</Sql-Statement>
+       </Sql-Command>
+       
+       <Sql-Command id="deletePerson">
+          <Sql-Statement>delete from person where id = ?</Sql-Statement>
+       </Sql-Command>
+       
+       <Sql-Command id="updatePersonNickNameBirthDateProcedure">
+          <Procedure name="updatePersonNicknameBirthdate" />
+       </Sql-Command>
+       
+       <Sql-Command id="updatePersonNickBirthDateFunction">
+          <Function name="updatePersonNickBirthdateFunc" />
+       </Sql-Command>
+       
+    </Sql-Mapping>          
+
+</Linp-Mapping>
