@@ -40,11 +40,10 @@ class ClassMappingUtil {
 	 */
 	private static Collection<String> scan(String basePackage, ClassLoader classLoader) throws URISyntaxException {
 		List<String> classes = new ArrayList<String>();
-		
 		if (!(classLoader instanceof URLClassLoader)) {
 			return classes;
 		}
-        
+
 		boolean findInSubPackages = isFindSubPackages(basePackage);
 		basePackage = removeTokenSubPackages(basePackage);
 		
@@ -54,6 +53,8 @@ class ClassMappingUtil {
 		basePackage = removeTokenExclusions(basePackage);
 		
 		LindbergDIClassLoader lindbergClassLoader = new LindbergDIClassLoader();
+		String formatBasePackage = formatBasepackage(basePackage);
+	    formatBasePackage = StringUtils.removeStart(formatBasePackage, "/");
 		for (URL url : urls){
 		   List<String> classList = null;
 		   if (url.getPath().startsWith("jar:") ||
@@ -62,7 +63,9 @@ class ClassMappingUtil {
 		       classList = cleanClasses(basePackage, classList, findInSubPackages);
 		       classes.addAll(classList);
 		   }else{
-		      File location = new File(url.getPath()+formatBasepackage(basePackage));
+			  String path = StringUtils.removeEnd(url.getPath(),"/") + "/"; 
+			  
+		      File location = new File(path + formatBasePackage);
 	          getClassesInDirectory(basePackage,null,
 				    location,classes, findInSubPackages,exclusions);
 		   }
@@ -226,6 +229,5 @@ class ClassMappingUtil {
 			}
 		}
 	}
-	
 	
 }
