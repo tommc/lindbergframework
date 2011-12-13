@@ -6,7 +6,7 @@ import java.lang.reflect.Modifier;
 
 import org.apache.commons.lang.StringUtils;
 import org.lindbergframework.exception.BeanException;
-import org.lindbergframework.exception.FieldValueInaccessibleValidationException;
+import org.lindbergframework.exception.FieldValueInaccessibleException;
 import org.springframework.util.ReflectionUtils;
 
 /**
@@ -33,14 +33,14 @@ public class ReflectionUtil {
 		}
 	}
 	
-	public static void setFieldValue(Field field, Object bean,Object value, boolean setAsAccessible) throws FieldValueInaccessibleValidationException{
+	public static void setFieldValue(Field field, Object bean,Object value, boolean setAsAccessible) throws FieldValueInaccessibleException{
 		Method setterMethod = getSetterMethod(bean.getClass(), field.getName(), value.getClass(), true);
 		
 		if (setterMethod != null){
 		   try {
 		      setterMethod.invoke(bean, value);
 		   } catch (Exception e) {
-		      throw new FieldValueInaccessibleValidationException("Error invoking setter method for "+field.getName()+" in "+bean.getClass(),e);
+		      throw new FieldValueInaccessibleException("Error invoking setter method for "+field.getName()+" in "+bean.getClass(),e);
 		   }
 		}
 		else{	
@@ -50,9 +50,9 @@ public class ReflectionUtil {
 		   try {
 			  field.set(bean, value);
 		   } catch (IllegalArgumentException ex) {
-			  throw new FieldValueInaccessibleValidationException(ex);
+			  throw new FieldValueInaccessibleException(ex);
 		   } catch (IllegalAccessException ex) {
-			  throw new FieldValueInaccessibleValidationException(ex);
+			  throw new FieldValueInaccessibleException(ex);
 		   }
 	   }
 	}
