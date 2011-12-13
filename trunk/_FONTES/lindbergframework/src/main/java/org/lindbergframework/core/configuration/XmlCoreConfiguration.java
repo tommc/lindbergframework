@@ -20,9 +20,6 @@ import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfig
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Core;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Linp;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Linv;
-import org.lindbergframework.validation.configuration.ValidationConfiguration;
-import org.lindbergframework.validation.configuration.XmlValidationConfiguration;
-import org.lindbergframework.validation.configuration.XmlValidationConfigurationInitializer;
 
 /**
  * Core configuration implementation to work with xml configuration based.
@@ -193,37 +190,6 @@ public class XmlCoreConfiguration extends AbstractCoreConfiguration implements C
         return linpConfigCache;
     }
     
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ValidationConfiguration getValidationConfiguration() {
-        ValidationConfiguration validConfigCache = super.getValidationConfiguration();
-        if (validConfigCache != null)
-            return validConfigCache;
-        if (lindbergConfiguration.getLinv() == null)
-            return null;
-        
-        String strClassParser = getParserValidationConfig();
-        if (strClassParser == null){
-            validConfigCache = new XmlValidationConfiguration(lindbergConfiguration.getLinv());
-        }else
-            try{
-                Class validationConfigClazz = Class.forName(strClassParser);
-                validConfigCache = BeanUtil.createInstance(validationConfigClazz);
-                if (validConfigCache instanceof XmlValidationConfigurationInitializer){
-                    XmlValidationConfigurationInitializer validInitializer = (XmlValidationConfigurationInitializer) validConfigCache;
-                    validInitializer.initialize(lindbergConfiguration.getLinv());
-                }else
-                    throw new InvalidConfigurationException("Xml validation configuration parser does not implements XmlValidationConfigurationInitializer");
-            }catch(Exception ex){
-                throw new BeanException("Could not create Validation Configuration Parser",ex);
-            }
-            
-            super.setValidationConfiguration(validConfigCache);
-            return validConfigCache;
-    }
-
     /**
      * Get the lindberg persistence configuration implementation parser.
      * 
