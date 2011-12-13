@@ -19,7 +19,6 @@ import org.lindbergframework.schema.TconfigProperty;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Core;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Linp;
-import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration.Linv;
 
 /**
  * Core configuration implementation to work with xml configuration based.
@@ -200,14 +199,6 @@ public class XmlCoreConfiguration extends AbstractCoreConfiguration implements C
         if (coreConfiguration != null && linp != null)
            return linp.getParser(); 
            
-        return null;
-    }
-    
-    public String getParserValidationConfig(){
-        Linv valid = lindbergConfiguration.getLinv();
-        if (coreConfiguration != null && valid != null)
-            return valid.getParser(); 
-        
         return null;
     }
     

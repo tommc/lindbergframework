@@ -33,25 +33,6 @@
                      </xs:sequence>
 			      </xs:complexType>   
 			   </xs:element>
-			   <xs:element  name="linv" minOccurs="0" maxOccurs="1">
-			      <xs:annotation>
-			         <xs:documentation>Configurations of VALIDATION</xs:documentation>
-			      </xs:annotation>
-			      <xs:complexType>
-			         <xs:sequence>
-			            <xs:element  name="config-property" type="tconfig-property" minOccurs="0" maxOccurs="unbounded">
-			               <xs:annotation>
-	                          <xs:documentation>Defines the lindbergframework validation configuration properties</xs:documentation>
-	                       </xs:annotation>
-			            </xs:element>
-                     </xs:sequence>
-                     <xs:attribute name="parser" type="xs:string">
-                        <xs:annotation>
-                           <xs:documentation>ValidationConfiguration implementation to load XML validation configuration on validation context</xs:documentation>
-                        </xs:annotation>
-                  	</xs:attribute>
-			      </xs:complexType>   
-			   </xs:element>
 			   <xs:element  name="linp" minOccurs="0" maxOccurs="1">
 			      <xs:annotation>
 			         <xs:documentation>Configurations of Lindberg Persistence - LINP</xs:documentation>
