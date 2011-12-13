@@ -3,16 +3,11 @@ package org.lindbergframework.persistence.configuration;
 import org.lindbergframework.core.configuration.ConfigurationRepository;
 import org.lindbergframework.core.context.AllowIfContextActive;
 import org.lindbergframework.exception.InvalidConfigurationException;
-import org.lindbergframework.exception.ValidationException;
 import org.lindbergframework.persistence.DataSourceConfig;
 import org.lindbergframework.persistence.PersistenceTemplate;
 import org.lindbergframework.persistence.context.LinpContext;
 import org.lindbergframework.persistence.sql.SqlCommandResolver;
 import org.lindbergframework.persistence.transaction.TransactionManager;
-import org.lindbergframework.validation.IExecutorValidationItems;
-import org.lindbergframework.validation.Item;
-import org.lindbergframework.validation.executors.factory.ExecutorFactory;
-import org.lindbergframework.validation.factory.ValidationFactory;
 
 /**
  * abstract lindberg persistence configuration base for linp configuration
@@ -131,16 +126,14 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 	 * {@inheritDoc}
 	 */
 	public void validate() throws InvalidConfigurationException {
-		IExecutorValidationItems engine = ExecutorFactory.newExecutorValidationItems();
-		try{
-		   engine.addValidationForSeveralItems(ValidationFactory.newNotNull(), 
-				       new Item(getMapKeys().get(DATA_SOURCE_KEY), "DataSource configuration is not defined"),
-				       new Item(getMapKeys().get(CONFIG_PROPERTY_SQL_COMMAND_RESOLVER), 
-				                CONFIG_PROPERTY_SQL_COMMAND_RESOLVER+" linp configuration key is not defined"));
-		   engine.execute();
-		}catch(ValidationException ex){
-			throw new InvalidConfigurationException("Invalid Configuration",ex);
-		}
+		InvalidConfigurationException ex = new InvalidConfigurationException();
+		if (getMapKeys().get(DATA_SOURCE_KEY) == null)
+			ex.addMessage("DataSource configuration is not defined");
+		
+		if (getMapKeys().get(CONFIG_PROPERTY_SQL_COMMAND_RESOLVER) == null)
+			ex.addMessage(CONFIG_PROPERTY_SQL_COMMAND_RESOLVER+" linp configuration key is not defined");
+		
+		ex.throwIfContainsErrorMessages();
 	}
 	
 	public void initializeContext() {
