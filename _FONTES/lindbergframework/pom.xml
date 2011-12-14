@@ -4,7 +4,7 @@
 	<groupId>org.lindbergframework</groupId>
 	<artifactId>lindbergframework</artifactId>
 	<name>lindbergframework</name>
-	<version>1.0</version>
+	<version>1.0-snapshot</version>
 	<packaging>jar</packaging>
 	<description>lindbergframework</description>
     <url>http://www.lindbergframework.org</url>
@@ -34,6 +34,10 @@
             <id>sonatype</id>
             <url>dav:https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
+        <snapshotRepository>
+            <id>sonatype</id>
+            <url>dav:https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
     </distributionManagement>
     
 	<properties>
