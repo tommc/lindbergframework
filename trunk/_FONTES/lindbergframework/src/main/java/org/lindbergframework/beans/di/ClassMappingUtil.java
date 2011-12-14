@@ -86,7 +86,7 @@ class ClassMappingUtil {
 	 * 
 	 * @return true if is subpackages ou false if is not subpackage.
 	 */
-	private static boolean isFindSubPackages(String basePackage){
+	public static boolean isFindSubPackages(String basePackage){
 	    return basePackage.endsWith("*");
 	}
 	
@@ -97,7 +97,7 @@ class ClassMappingUtil {
 	 * 
 	 * @return basepackeage param without subpackage token.
 	 */
-	private static String removeTokenSubPackages(String basePackage){
+	public static String removeTokenSubPackages(String basePackage){
 	    int indexSubPackages = basePackage.lastIndexOf("*");
         if (indexSubPackages == -1)
             return basePackage;
@@ -105,7 +105,7 @@ class ClassMappingUtil {
         return  basePackage.substring(0, indexSubPackages - 1);
 	}
 	
-	private static String formatBasepackage(String basePackage){
+	public static String formatBasepackage(String basePackage){
 	    return basePackage.replace( ".", "/");
 	}
 	
@@ -116,7 +116,7 @@ class ClassMappingUtil {
 	 * 
 	 * @return list of stirngs with exclusions packages.
 	 */
-	private static List<String> extractExclusions(String base){
+	public static List<String> extractExclusions(String base){
 	    List<String> list = CollectionsUtil.asList(base.split(":"));
 	    base = removeTokenExclusions(base);
 	    if (! list.isEmpty())
@@ -135,7 +135,7 @@ class ClassMappingUtil {
 	 * @param base base package param.
 	 * @return string from basepackage param without exclusion token.
 	 */
-	private static String removeTokenExclusions(String base){
+	public static String removeTokenExclusions(String base){
 	    int indexExclusionsToken = base.indexOf(":");
 	    if (indexExclusionsToken == -1)
 	        return base;
@@ -156,7 +156,7 @@ class ClassMappingUtil {
 	    basePack = removeTokenSubPackages(basePack);
 	    List<String> cleanList = new ArrayList<String>();
 	    for (String clazz : classes)
-	        if (clazz.contains(basePack) && clazz.endsWith(".class")){
+	        if (clazz.endsWith(".class") && clazz.startsWith(basePack + ".")){
 	            if (! findInSubPackage){
 	               int indexDocClass = clazz.lastIndexOf(".class");
 	               String sub = clazz.substring(basePack.length() + 1,indexDocClass);
