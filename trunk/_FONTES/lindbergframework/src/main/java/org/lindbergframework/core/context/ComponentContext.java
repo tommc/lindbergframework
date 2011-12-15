@@ -10,25 +10,22 @@ import org.lindbergframework.exception.IllegalStateContextException;
  * @author Victor Lindberg
  *
  */
-public interface ComponentContext<C extends ComponentContext,E extends Configuration> {
+public interface ComponentContext<E extends Configuration> {
   
     /**
      * load a configuration in context.
      * @param configuration configuration to load.
      * @return instance of context loaded.
      */
-    public C loadConfiguration(E configuration);
+    public void initialize(E configuration);
+    
+    public void finalize();
     
     /**
      * checks if the context is active.
      * @return true if this context is active.
      */
     public boolean isActive();
-    
-    /**
-     * close the context.
-     */
-    public void close();
     
     /**
      * verify the context.

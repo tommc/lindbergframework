@@ -27,8 +27,7 @@ import org.lindbergframework.util.ProxyUtil;
  * @author Victor Lindberg
  *
  */
-public class LinpContext implements ComponentContext<LinpContext,LinpConfiguration>, 
-                                    LinpConfiguration{
+public class LinpContext implements ComponentContext<LinpConfiguration>, LinpConfiguration{
 	
     /**
      * singleton instance of context.
@@ -53,16 +52,7 @@ public class LinpContext implements ComponentContext<LinpContext,LinpConfigurati
 		if (instance == null){
 		    try{
 		       Class clazz = LinpContext.class;
-		       Method[] noProxyMethods = new Method[]{
-		                            clazz.getDeclaredMethod("getInstance"),
-                                    clazz.getDeclaredMethod("loadConfiguration", LinpConfiguration.class),
-                                    clazz.getDeclaredMethod("verifyContext"),
-                                    clazz.getDeclaredMethod("isActive"),
-                                    clazz.getDeclaredMethod("validate"),
-                                    clazz.getDeclaredMethod("initializeContext"),
-                                    clazz.getDeclaredMethod("close")};
-		    
-			   instance = ProxyUtil.createProxy(LinpContext.class, new ContextProxy(noProxyMethods));
+			   instance = ProxyUtil.createProxy(LinpContext.class, new ContextProxy());
 		    }catch(Exception ex){
 		        throw new PersistenceConfigurationException("Init LinpContext Failed",ex);
 		    }
@@ -74,7 +64,7 @@ public class LinpContext implements ComponentContext<LinpContext,LinpConfigurati
 	/**
 	 * {@inheritDoc}
 	 */
-	public LinpContext loadConfiguration(LinpConfiguration configuration){
+	public void initialize(LinpConfiguration configuration){
 		if (configuration == null)
 			throw new IllegalStateException("Could not to set linp configuration. Configuration is null");
 			
@@ -84,7 +74,6 @@ public class LinpContext implements ComponentContext<LinpContext,LinpConfigurati
 					"Close the linp context calling the close method before of to load a new configuration");
 			
 		context.activate(configuration);
-		return context;
 	}
 
 	/**
@@ -105,7 +94,7 @@ public class LinpContext implements ComponentContext<LinpContext,LinpConfigurati
 	/**
 	 * {@inheritDoc}
 	 */
-	public void close(){
+	public void finalize() {
 		configuration = null;
 		LogUtil.logInfo("Lindberg Persistence Context finalized");
 	}
@@ -155,6 +144,7 @@ public class LinpContext implements ComponentContext<LinpContext,LinpConfigurati
 		return configuration.getSqlCommandResolver();
 	}
 
+	
 	@AllowIfContextActive
 	public DataSource getDataSource(){
 		DataSourceConfig dataSourceConfig = getDataSourceConfig();
@@ -198,7 +188,17 @@ public class LinpContext implements ComponentContext<LinpContext,LinpConfigurati
 		configuration.validate();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void initializeContext() {
 	    throw new UnsupportedOperationException();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public ComponentContext<?> getParentContext() {
+		return this;
 	}
 }

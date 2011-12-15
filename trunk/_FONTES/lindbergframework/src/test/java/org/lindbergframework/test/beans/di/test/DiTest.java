@@ -27,14 +27,14 @@ public class DiTest extends TestCase{
     @Override
     protected void setUp() throws Exception {
         CoreConfiguration configuration = new ClassPathXmlCoreConfiguration("org/lindbergframework/test/di/resource/configDI.xml");
-        CoreContext.getInstance().loadConfiguration(configuration);
+        CoreContext.getInstance().initialize(configuration);
         super.setUp();
     }
     
 	@Override
 	protected void tearDown() throws Exception {
 		super.tearDown();
-		CoreContext.getInstance().close();
+		CoreContext.getInstance().finalize();
 	}
 	
 	public void testSimpleDependencyInjection() throws Exception {
@@ -94,14 +94,14 @@ public class DiTest extends TestCase{
 	}
 	
 	public void testNoSubPackageBeanMapping(){
-	    CoreContext.getInstance().close();
+	    CoreContext.getInstance().finalize();
 	    SimpleCoreConfiguration configuration = new SimpleCoreConfiguration();
              	    
 	    configuration.setDiBasePackage("org.lindbergframework.test");
 	    AnnotationBeanFactory factory = new AnnotationBeanFactory(); 
 	    configuration.setBeanFactory(factory);
 	    
-	    CoreContext.getInstance().loadConfiguration(configuration);
+	    CoreContext.getInstance().initialize(configuration);
 	    AClass aClass = null;
 	    try{
 	       UserBeanContext.getInstance().renew(); 
@@ -113,14 +113,14 @@ public class DiTest extends TestCase{
 	}
 	
 	public void testSubPackageBeanMapping(){
-        CoreContext.getInstance().close();
+        CoreContext.getInstance().finalize();
         SimpleCoreConfiguration configuration = new SimpleCoreConfiguration();
                     
         configuration.setDiBasePackage("org.lindbergframework.test.*");
         AnnotationBeanFactory factory = new AnnotationBeanFactory(); 
         configuration.setBeanFactory(factory);
         
-        CoreContext.getInstance().loadConfiguration(configuration);
+        CoreContext.getInstance().initialize(configuration);
         AClass aClass = null;
         try{
            UserBeanContext.getInstance().renew(); 
@@ -133,13 +133,13 @@ public class DiTest extends TestCase{
     }
 	
 	public void testNoBasepackage(){
-	    CoreContext.getInstance().close();
+	    CoreContext.getInstance().finalize();
 	    SimpleCoreConfiguration configuration = new SimpleCoreConfiguration();
 	    
 	    AnnotationBeanFactory factory = new AnnotationBeanFactory(); 
 	    configuration.setBeanFactory(factory);
 	    
-	    CoreContext.getInstance().loadConfiguration(configuration);
+	    CoreContext.getInstance().initialize(configuration);
 	    UserBeanContext.getInstance().renew();
 	    UserBeanContext bc = UserBeanContext.getInstance();
 	    assertNotNull(bc);

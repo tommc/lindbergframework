@@ -71,7 +71,7 @@ public abstract class TemplateBase implements PersistenceTemplate {
 	 * {@inheritDoc}
 	 */
 	public void configureDefaultPopulator(){
-		BeanPopulator beanPopulator = LindbergBeanContext.getInstance().getBean(LinpConfiguration.DEFAULT_BEAN_POPULATOR);
+		BeanPopulator beanPopulator = LindbergBeanContext.getInstance().getBean(LinpConfiguration.DEFAULT_ID_BEAN_POPULATOR);
 		setBeanPopulator(beanPopulator);
 	}
 	

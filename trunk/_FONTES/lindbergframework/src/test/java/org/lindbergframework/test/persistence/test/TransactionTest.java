@@ -38,7 +38,7 @@ public class TransactionTest extends TestCase {
 		if (!CoreContext.getInstance().isActive()) {
 			configuration = new ClassPathXmlCoreConfiguration(
 					configResourceLocation);
-			CoreContext.getInstance().loadConfiguration(configuration);
+			CoreContext.getInstance().initialize(configuration);
 		}
 
 		super.setUp();
@@ -48,7 +48,7 @@ public class TransactionTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		super.tearDown();
-		CoreContext.getInstance().close();
+		CoreContext.getInstance().finalize();
 	}
 
 	public void testInsertPersonsSameID() {

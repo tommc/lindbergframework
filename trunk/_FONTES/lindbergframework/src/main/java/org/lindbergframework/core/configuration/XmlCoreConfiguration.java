@@ -7,13 +7,13 @@ import java.net.URL;
 import org.apache.commons.lang.StringUtils;
 import org.lindbergframework.beans.di.context.BeanFactory;
 import org.lindbergframework.beans.util.BeanUtil;
+import org.lindbergframework.core.context.LindbergBeanContext;
 import org.lindbergframework.core.context.xml.util.XmlUtil;
 import org.lindbergframework.exception.BeanException;
 import org.lindbergframework.exception.CoreConfigurationException;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.exception.InvalidXmlDocumentException;
 import org.lindbergframework.persistence.configuration.LinpConfiguration;
-import org.lindbergframework.persistence.configuration.XmlLinpConfiguration;
 import org.lindbergframework.persistence.configuration.XmlLinpConfigurationInitializer;
 import org.lindbergframework.schema.TconfigProperty;
 import org.lindbergframework.schema.LindbergConfigurationDocument.LindbergConfiguration;
@@ -171,7 +171,7 @@ public class XmlCoreConfiguration extends AbstractCoreConfiguration implements C
         
         String strClassParser = getParserLinpConfig();
         if (strClassParser == null){
-            linpConfigCache = new XmlLinpConfiguration(lindbergConfiguration.getLinp());
+        	linpConfigCache = LindbergBeanContext.getInstance().getBean(LinpConfiguration.DEFAULT_ID_LINP_CONFIGURATION, lindbergConfiguration.getLinp());
         }else
            try{
               Class linpConfigClazz = Class.forName(strClassParser);

@@ -6,6 +6,7 @@ import java.net.URL;
 
 import javax.sql.DataSource;
 
+import org.lindbergframework.beans.di.annotation.Bean;
 import org.lindbergframework.beans.util.BeanUtil;
 import org.lindbergframework.core.context.LindbergBeanContext;
 import org.lindbergframework.core.context.xml.util.XmlUtil;
@@ -32,6 +33,7 @@ import org.lindbergframework.util.ConfigUtil;
  * @author Victor Lindberg
  *
  */
+@Bean("defaultXmlLinpConfiguration")
 public class XmlLinpConfiguration extends AbstractLinpConfiguration implements XmlLinpConfigurationInitializer{
 	
     /**

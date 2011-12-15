@@ -1,7 +1,5 @@
 package org.lindbergframework.core.context;
 
-import java.lang.reflect.Method;
-
 import org.lindbergframework.beans.di.context.BeanFactory;
 import org.lindbergframework.core.configuration.Configuration;
 import org.lindbergframework.core.configuration.CoreConfiguration;
@@ -9,7 +7,6 @@ import org.lindbergframework.exception.CoreConfigurationException;
 import org.lindbergframework.exception.IllegalStateContextException;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.exception.PersistenceConfigurationException;
-import org.lindbergframework.persistence.context.LinpContext;
 import org.lindbergframework.util.LogUtil;
 import org.lindbergframework.util.ProxyUtil;
 
@@ -19,7 +16,7 @@ import org.lindbergframework.util.ProxyUtil;
  * @author Victor Lindberg
  *
  */
-public class CoreContext implements ComponentContext<CoreContext,CoreConfiguration>, CoreConfiguration{
+public class CoreContext implements ComponentContext<CoreConfiguration>, CoreConfiguration{
    
     /**
      * core context instance.
@@ -44,15 +41,7 @@ public class CoreContext implements ComponentContext<CoreContext,CoreConfigurati
         if (instance == null){
            try{
               Class clazz = CoreContext.class;
-              Method[] noProxyMethods = new Method[]{
-                                 clazz.getDeclaredMethod("getInstance"),
-                                 clazz.getDeclaredMethod("loadConfiguration", CoreConfiguration.class),
-                                 clazz.getDeclaredMethod("verifyContext"),
-                                 clazz.getDeclaredMethod("isActive"),
-                                 clazz.getDeclaredMethod("validate"),
-                                 clazz.getDeclaredMethod("initializeContext"),
-                                 clazz.getDeclaredMethod("close")};
-              instance = ProxyUtil.createProxy(CoreContext.class, new ContextProxy(noProxyMethods));
+              instance = ProxyUtil.createProxy(CoreContext.class, new ContextProxy());
            }catch(Exception ex){
                throw new PersistenceConfigurationException("Init CoreContext Failed",ex);
            }
@@ -64,7 +53,7 @@ public class CoreContext implements ComponentContext<CoreContext,CoreConfigurati
     /**
      * {@inheritDoc}
      */
-    public CoreContext loadConfiguration(CoreConfiguration configuration){
+    public void initialize(CoreConfiguration configuration){
         if (configuration == null)
             throw new IllegalStateException("Could not to set core configuration. Configuration is null");
             
@@ -74,8 +63,6 @@ public class CoreContext implements ComponentContext<CoreContext,CoreConfigurati
                     "Close the core context calling the close method before of to load a new configuration");
             
         context.activate(configuration);
-        
-        return context;
     }
     
     protected void activate(CoreConfiguration configuration){
@@ -126,16 +113,21 @@ public class CoreContext implements ComponentContext<CoreContext,CoreConfigurati
     }
     
     /**
-     * {@inheritDoc}
-     */
-    public void close() {
-       if (LinpContext.getInstance().isActive()){
-           LinpContext.getInstance().close();
-       }
-       
-       configuration = null;
-       LogUtil.logInfo("Lindberg Core Context finalized");
-       
+	 * {@inheritDoc}
+	 */
+    public void finalize() {
+    	if (! isActive())
+    		return;
+    	
+    	Configuration[] modules = configuration.getModules();
+    	for (Configuration module : modules){
+    		ComponentContext context = module.getParentContext();
+    		if (context.isActive())
+    			context.finalize();
+    	}
+        
+        configuration = null;
+        LogUtil.logInfo("Lindberg Core Context finalized");
     }
     
     /**
@@ -164,8 +156,18 @@ public class CoreContext implements ComponentContext<CoreContext,CoreConfigurati
             moduleConfiguration.initializeContext();
     }
     
+    /**
+	 * {@inheritDoc}
+	 */
     public void initializeContext() {
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("CoreContext must be initialized from the CoreConfiguration");
+    }
+    
+    /**
+	 * {@inheritDoc}
+	 */
+    public ComponentContext<?> getParentContext() {
+    	return this;
     }
 
 }

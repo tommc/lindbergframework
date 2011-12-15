@@ -2,6 +2,7 @@ package org.lindbergframework.persistence.configuration;
 
 import org.lindbergframework.core.configuration.ConfigurationRepository;
 import org.lindbergframework.core.context.AllowIfContextActive;
+import org.lindbergframework.core.context.ComponentContext;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.persistence.DataSourceConfig;
 import org.lindbergframework.persistence.PersistenceTemplate;
@@ -136,7 +137,17 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 		ex.throwIfContainsErrorMessages();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void initializeContext() {
-	    LinpContext.getInstance().loadConfiguration(this);
+	    LinpContext.getInstance().initialize(this);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	public ComponentContext<?> getParentContext() {
+		return LinpContext.getInstance();
 	}
 }

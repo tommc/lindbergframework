@@ -44,7 +44,7 @@ public class PersistenceTransactionSpringIntegrationTest extends TestCase{
 
     @Override
     protected void tearDown() throws Exception {
-        CoreContext.getInstance().close();
+        CoreContext.getInstance().finalize();
     }
     
     public void testTransactionFail(){

@@ -1,5 +1,6 @@
 package org.lindbergframework.core.configuration;
 
+import org.lindbergframework.core.context.ComponentContext;
 import org.lindbergframework.exception.InvalidConfigurationException;
 
 /**
@@ -26,5 +27,7 @@ public interface Configuration {
 	public <E> E getPropertyValue(String key);
 	
 	public void initializeContext();
+	
+	public ComponentContext<?> getParentContext();
 	
 }
