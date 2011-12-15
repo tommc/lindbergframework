@@ -2,6 +2,7 @@ package org.lindbergframework.core.configuration;
 
 import org.lindbergframework.beans.di.context.BeanFactory;
 import org.lindbergframework.core.context.AllowIfContextActive;
+import org.lindbergframework.core.context.ComponentContext;
 import org.lindbergframework.core.context.CoreContext;
 import org.lindbergframework.exception.InvalidConfigurationException;
 import org.lindbergframework.persistence.configuration.LinpConfiguration;
@@ -66,16 +67,26 @@ public abstract class AbstractCoreConfiguration extends ConfigurationRepository 
         //
     }
     
+    /**
+	 * {@inheritDoc}
+	 */
     public void initializeContext() {
-        CoreContext.getInstance().loadConfiguration(this);
+        CoreContext.getInstance().initialize(this);
     }
     
+    /**
+	 * {@inheritDoc}
+	 */
     public Configuration[] getModules() {
         Configuration linpConfiguration = getLinpConfiguration();
         if (linpConfiguration != null)
             return new Configuration[]{linpConfiguration};
         
         return new Configuration[]{};
+    }
+    
+    public ComponentContext<?> getParentContext() {
+    	return CoreContext.getInstance();
     }
 
 }

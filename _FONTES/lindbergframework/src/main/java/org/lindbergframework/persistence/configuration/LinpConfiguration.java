@@ -62,7 +62,12 @@ public interface LinpConfiguration extends Configuration{
 	/**
      * bean id of default bean populator implementation.
      */
-	public static final String DEFAULT_BEAN_POPULATOR = "multLevelsBeanPopulator";
+	public static final String DEFAULT_ID_BEAN_POPULATOR = "multLevelsBeanPopulator";
+	
+	/**
+	 * bean id of default linp configuration implementation.
+	 */
+	public static final String DEFAULT_ID_LINP_CONFIGURATION = "defaultXmlLinpConfiguration";
 
 	
 	/**

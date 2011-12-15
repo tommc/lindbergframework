@@ -37,7 +37,7 @@ public class LinpTestBase extends
     @Override
     protected void onTearDown() throws Exception {
         super.onTearDown();
-        CoreContext.getInstance().close();
+        CoreContext.getInstance().finalize();
     }
 
 

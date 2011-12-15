@@ -14,13 +14,8 @@ import net.sf.cglib.proxy.MethodProxy;
  */
 public class ContextProxy implements MethodInterceptor{
 	
-    /**
-     * No proxy methods.
-     */
-    private Method[] noProxyMethods;
-    
-	public ContextProxy(Method... noProxyMethods){
-		this.noProxyMethods = noProxyMethods;
+	public ContextProxy(){
+		//
 	}
 	
 	/**
