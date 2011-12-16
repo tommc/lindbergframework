@@ -15,9 +15,10 @@
     	</license>
     </licenses>
   
-    <scm>
-    	<url>https://lindbergframework.googlecode.com/svn/</url>
-    	<connection>https://lindbergframework.googlecode.com/svn/</connection>
+   <scm>
+    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/trunk</connection>
+    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/trunk</developerConnection>
+    	<url>http://code.google.com/p/lindbergframework/source/browse</url>
     </scm>
     
     <developers>
