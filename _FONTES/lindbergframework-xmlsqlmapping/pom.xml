@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.lindbergframework.persistence.sqlmapping</groupId>
   <artifactId>lindbergframework-xmlsqlmapping</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>lindbergframework-xmlsqlmapping</name>
   <description>lindbergframework-xmlsqlmapping</description>
   <url>http://www.lindbergframework.org</url>
@@ -16,9 +16,9 @@
     </licenses>
   
     <scm>
-    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/trunk</connection>
-    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/trunk</developerConnection>
-    	<url>http://code.google.com/p/lindbergframework/source/browse</url>
+    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/tags/lindbergframework-xmlsqlmapping-1.0</connection>
+    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/tags/lindbergframework-xmlsqlmapping-1.0</developerConnection>
+    	<url>http://code.google.com/p/lindbergframework/source/browse/tags/lindbergframework-xmlsqlmapping-1.0</url>
     </scm>
     
     <developers>
@@ -82,8 +82,10 @@
 			<resource>
 				<directory>src/main/java</directory>
 				<includes>
-					<include>schemaorg_apache_xmlbeans/**.*</include>
+					<include>schemaorg_apache_xmlbeans/javaname/org/lindbergframework/schema/**.*</include>
+					<include>schemaorg_apache_xmlbeans/element/**.*</include>
 					<include>schemaorg_apache_xmlbeans/system/s91172342D13B33D787C1EF15C0A6C401/TypeSystemHolder.class</include>
+					<include>schemaorg_apache_xmlbeans/system/s91172342D13B33D787C1EF15C0A6C401/**.*</include>
 				</includes>
 			</resource>
 		</resources>
