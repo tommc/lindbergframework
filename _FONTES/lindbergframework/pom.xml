@@ -196,12 +196,21 @@
 
 	<!-- Repositórios -->
 	<repositories>
-		<repository>
-      		<id>oss.sonatype.org</id>
-      		<name>Maven Repository Switchboard</name>
-      		<url>http://oss.sonatype.org/content/groups/public</url>
-    	</repository>
-    	
+		<repository> 
+       		<id>sonatype-snapshots</id> 
+       		<name>Sonatype Snapshots Repository</name> 
+       		<url>http://oss.sonatype.org/content/repositories/snapshots/</url> 
+       		<snapshots> 
+         		<enabled>true</enabled> 
+       		</snapshots> 
+     	</repository> 
+
+     	<repository> 
+       		<id>sonatype-releases</id> 
+       		<name>Sonatype Releases Repository</name> 
+       		<url>http://oss.sonatype.org/content/repositories/releases/</url> 
+     	</repository> 
+     
 		<!-- Repositórios para jars da sun (maven2) -->
 		<repository>
 			<id>maven2-repository.dev.java.net</id>
