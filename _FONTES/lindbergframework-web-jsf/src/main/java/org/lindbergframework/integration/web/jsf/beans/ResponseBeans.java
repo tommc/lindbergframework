@@ -53,7 +53,7 @@ class ResponseBeans {
         E bean = (E) cacheBeans.get(id);
 
         if (bean == null) {
-            bean = beanFactory.getBean(id);
+            bean = (E) beanFactory.getBean(id);
             cacheBeans.put(id, bean);
         }
 
