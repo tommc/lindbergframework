@@ -15,7 +15,7 @@ import org.springframework.jdbc.core.RowMapper;
  * @author Victor Lindberg
  *
  */
-public class MultiLevelBeanRowMapperForProcedureCursor extends MultLevelsBeanPopulator implements RowMapper{
+public class MultiLevelBeanRowMapperForProcedureCursor extends MultiLevelsBeanPopulator implements RowMapper{
 	
     /**
      * Bean class to populate.

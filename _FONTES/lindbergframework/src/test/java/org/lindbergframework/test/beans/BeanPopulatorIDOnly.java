@@ -2,7 +2,7 @@ package org.lindbergframework.test.beans;
 
 import org.lindbergframework.beans.util.BeanUtil;
 import org.lindbergframework.exception.BeanPopulateException;
-import org.lindbergframework.persistence.beans.MultLevelsBeanPopulator;
+import org.lindbergframework.persistence.beans.MultiLevelsBeanPopulator;
 import org.lindbergframework.persistence.sql.DataSet;
 import org.lindbergframework.util.ReflectionUtil;
 
@@ -11,7 +11,7 @@ import org.lindbergframework.util.ReflectionUtil;
  * @author Victor Lindberg (victor.silva@serpro.gov.br)
  *  
  */
-public class BeanPopulatorIDOnly extends MultLevelsBeanPopulator{
+public class BeanPopulatorIDOnly extends MultiLevelsBeanPopulator{
 
 	/**
 	 * Default Constructor.

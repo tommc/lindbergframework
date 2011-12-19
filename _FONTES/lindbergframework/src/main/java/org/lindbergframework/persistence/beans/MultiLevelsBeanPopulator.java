@@ -14,7 +14,7 @@ import org.lindbergframework.persistence.sql.SqlNode;
 import org.lindbergframework.util.ReflectionUtil;
 
 /**
- * Bean populator that implements the mult level population.
+ * Bean populator that implements the multi level population.
  * 
  * The mult level population occurs setting properties values
  * in several levels. 
@@ -39,9 +39,9 @@ import org.lindbergframework.util.ReflectionUtil;
  *
  */
 @Bean("multLevelsBeanPopulator")
-public class MultLevelsBeanPopulator extends BeanPopulatorBase{
+public class MultiLevelsBeanPopulator extends BeanPopulatorBase{
 	
-	public MultLevelsBeanPopulator(){
+	public MultiLevelsBeanPopulator(){
 		//
 	}
 	
