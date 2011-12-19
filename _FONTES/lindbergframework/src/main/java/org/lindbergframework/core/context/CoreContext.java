@@ -99,7 +99,7 @@ public class CoreContext implements ComponentContext<CoreConfiguration>, CoreCon
      */
     @AllowIfContextActive
     public <E> E getPropertyValue(String key) {
-        return configuration.getPropertyValue(key);
+        return (E) configuration.getPropertyValue(key);
     }
 
     /**

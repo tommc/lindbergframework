@@ -35,7 +35,7 @@ public class BeanContext {
      * @throws BeanNotFoundException bean with specified id not found.
      */
     public <E> E getBean(String id,Object... constructorArgs) throws BeanNotFoundException{
-        return factory.getBean(id,constructorArgs);
+        return (E) factory.getBean(id,constructorArgs);
     }
     
     /**

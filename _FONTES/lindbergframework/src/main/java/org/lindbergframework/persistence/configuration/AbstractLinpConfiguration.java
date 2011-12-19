@@ -120,7 +120,7 @@ public abstract class AbstractLinpConfiguration extends ConfigurationRepository 
 	 */
 	@AllowIfContextActive
 	public <E> E getPropertyValue(String key) {
-	    return super.getPropertyValue(key);
+	    return (E) super.getPropertyValue(key);
 	}
 	
 	/**

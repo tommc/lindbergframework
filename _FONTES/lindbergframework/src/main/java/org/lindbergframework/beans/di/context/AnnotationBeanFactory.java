@@ -95,10 +95,10 @@ public class AnnotationBeanFactory extends AbstractBeanFactory{
 
 		try {
 			if (beanMapping.isSingleton())
-				return getSingleton(beanMapping,args);
+				return (E) getSingleton(beanMapping,args);
 			else {
 
-				return createInstance(beanMapping.getClazz(),args);
+				return (E) createInstance(beanMapping.getClazz(),args);
 			}
 
 		} catch (Exception ex) {
@@ -126,7 +126,8 @@ public class AnnotationBeanFactory extends AbstractBeanFactory{
 	 * {@inheritDoc}
 	 */
 	public Class getType(String id) throws BeanNotFoundException {
-		return getBean(id).getClass();
+		Object bean = getBean(id);
+		return bean.getClass();
 	}
 	
 	/**
@@ -155,7 +156,7 @@ public class AnnotationBeanFactory extends AbstractBeanFactory{
 	                       NoSuchMethodException, InvocationTargetException{
 	   E bean;
 	   if (isTransactionContext(clazz))
-		  bean = TransactionUtil.createTransactionProxy(clazz,args);
+		  bean = (E) TransactionUtil.createTransactionProxy(clazz,args);
 	   else
 	      bean = (E) BeanUtil.createInstance(clazz, args);
 	   

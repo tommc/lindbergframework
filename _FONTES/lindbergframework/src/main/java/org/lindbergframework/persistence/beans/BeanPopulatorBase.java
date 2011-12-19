@@ -29,7 +29,7 @@ public abstract class BeanPopulatorBase implements BeanPopulator{
 	
 	protected <E> E applyContextsPrePopulate(E bean){
 		if (TransactionUtil.isTransactional(bean.getClass()))
-			return TransactionUtil.createTransactionProxy(bean.getClass());
+			return (E) TransactionUtil.createTransactionProxy(bean.getClass());
 		
 		return bean;
 	}

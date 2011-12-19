@@ -43,7 +43,7 @@ public class ConfigUtil {
 		   
 		   try{
 		      Class clazz = Class.forName(valueStr);
-		      return BeanUtil.createInstance(clazz, constructorArgs);
+		      return (E) BeanUtil.createInstance(clazz, constructorArgs);
 		   }catch(ClassNotFoundException exception){
 			  //value does not correspond to a class
 		   }catch(Exception ex){
