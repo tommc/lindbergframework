@@ -18,7 +18,7 @@ import org.springframework.util.ReflectionUtils;
 public class ReflectionUtil {
 	
 	/**
-	 * retorna o valor do campo. Se o campo for public retorna o valor de forma direta <br.
+	 * retorna o valor do campo. Se o campo for public retorna o valor de forma direta <br>
 	 * caso não o seja tenta invocar o método get do campo.
 	 * 
 	 */

@@ -23,7 +23,7 @@ public class TransactionUtil {
      * @return proxy instance.
      */
 	public static <E> E createTransactionProxy(Class clazz,Object... constructorArgs){
-        return ProxyUtil.createProxy(clazz, new TransactionProxy(), constructorArgs);   	
+        return (E) ProxyUtil.createProxy(clazz, new TransactionProxy(), constructorArgs);   	
 	}
 	
 	/**

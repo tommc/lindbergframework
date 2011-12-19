@@ -87,7 +87,7 @@ public final class XmlUtil {
                 if (ArrayUtils.contains(keysAutomaticallyFormatted, property.getName()))
                     value = formatInstanceProperty(value);
                 
-                E bean =  ConfigUtil.getValueObject(value,getConstructorArg(property));
+                E bean =  (E) ConfigUtil.getValueObject(value,getConstructorArg(property));
                 try {
                     loadTProperties(bean, property.getName(),property.getPropertyArray());
                     return bean;

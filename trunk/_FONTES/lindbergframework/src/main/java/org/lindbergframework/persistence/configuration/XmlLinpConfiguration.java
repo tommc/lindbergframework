@@ -329,12 +329,12 @@ public class XmlLinpConfiguration extends AbstractLinpConfiguration implements X
 	 * {@inheritDoc}
 	 */
 	public <E> E getPropertyValue(String key) {
-	    E value = super.getPropertyValue(key);
+	    E value = (E) super.getPropertyValue(key);
 	    if (value != null)
 	        return value;
 	    
 	    TconfigProperty tconfigProperty = getPropertyFromKey(key);
-	    value = XmlUtil.getPropertyValue(tconfigProperty, keysAutomaticallyFormatted);
+	    value = (E) XmlUtil.getPropertyValue(tconfigProperty, keysAutomaticallyFormatted);
 	    
 	    return value;
 	}

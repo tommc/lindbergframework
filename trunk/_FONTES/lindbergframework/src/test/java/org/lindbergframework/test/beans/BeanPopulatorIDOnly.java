@@ -2,7 +2,6 @@ package org.lindbergframework.test.beans;
 
 import org.lindbergframework.beans.util.BeanUtil;
 import org.lindbergframework.exception.BeanPopulateException;
-import org.lindbergframework.persistence.beans.BeanPopulator;
 import org.lindbergframework.persistence.beans.MultLevelsBeanPopulator;
 import org.lindbergframework.persistence.sql.DataSet;
 import org.lindbergframework.util.ReflectionUtil;
@@ -25,7 +24,7 @@ public class BeanPopulatorIDOnly extends MultLevelsBeanPopulator{
 			throws BeanPopulateException {
 		try{
 			E bean = super.populate(beanClass, dataSet);
-			E copy = BeanUtil.createInstance(beanClass);
+			E copy = (E) BeanUtil.createInstance(beanClass);
 			Object id = ReflectionUtil.getValueByReflection("id", bean);
 			ReflectionUtil.setValueByReflection("id", copy, id);
 			return copy;
