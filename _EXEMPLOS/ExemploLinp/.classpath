@@ -6,13 +6,13 @@
 	<classpathentry kind="lib" path="lib/commons-beanutils-1.7.0.jar"/>
 	<classpathentry kind="lib" path="lib/commons-lang-2.4.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="lib/lindbergXmlConfigurationBeans-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/lindbergXmlLinpSqlMappingBeans-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/asm-1.5.3.jar"/>
 	<classpathentry kind="lib" path="lib/ojdbc-14.jar"/>
 	<classpathentry kind="lib" path="lib/xmlbeans-2.4.0.jar"/>
+	<classpathentry kind="lib" path="lib/spring-2.5.5.jar"/>
 	<classpathentry kind="lib" path="lib/lindbergframework-1.0-sources.jar"/>
 	<classpathentry kind="lib" path="lib/lindbergframework-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/spring-2.5.5.jar"/>
+	<classpathentry kind="lib" path="lib/lindbergframework-xmlconfiguration-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/lindbergframework-xmlsqlmapping-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
