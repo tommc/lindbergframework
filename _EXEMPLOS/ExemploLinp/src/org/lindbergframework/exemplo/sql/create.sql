@@ -1,10 +1,10 @@
-CREATE TABLE  "PESSOA" 
-   (	"NOME" VARCHAR2(4000), 
-	"CPF" VARCHAR2(4000), 
-	"BAIRRO" VARCHAR2(4000), 
-	"RUA" VARCHAR2(4000), 
-	"NUMERO" NUMBER, 
-	"NUMEROCEP" VARCHAR2(4000)
+CREATE TABLE  PESSOA 
+   (	NOME VARCHAR2(4000), 
+	CPF VARCHAR2(4000), 
+	BAIRRO VARCHAR2(4000), 
+	RUA VARCHAR2(4000), 
+	NUMERO NUMBER, 
+	NUMEROCEP VARCHAR2(4000)
    );
 
 Create or replace procedure listarPessoasPorNomeProc(nomeExemplo in varchar, pessoas out sys_refcursor) as
