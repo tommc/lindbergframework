@@ -1,7 +1,5 @@
 package org.lindbergframework.persistence.context;
 
-import java.lang.reflect.Method;
-
 import javax.sql.DataSource;
 
 import org.lindbergframework.core.context.AllowIfContextActive;
@@ -104,7 +102,8 @@ public class LinpContext implements ComponentContext<LinpConfiguration>, LinpCon
 	 */
 	public void verifyContext() throws IllegalStateContextException{
 		if (! isActive())
-			throw new IllegalStateContextException("Linp Context is not active. Call loadConfiguration static method in LinpContext to active it");
+			throw new IllegalStateContextException("Linp Context is not active. Call initialize method in LinpContext " +
+					"or initializeContext method in LinpConfiguration implementation to active it");
 	}
 	
 	/**

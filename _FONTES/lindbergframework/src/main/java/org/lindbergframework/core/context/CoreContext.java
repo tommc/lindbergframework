@@ -142,7 +142,8 @@ public class CoreContext implements ComponentContext<CoreConfiguration>, CoreCon
      */
     public void verifyContext() throws IllegalStateContextException{
         if (! isActive())
-            throw new IllegalStateContextException("Core Context is not active. Call loadConfiguration static method in CoreContext or initializeContext static method in CoreConfiguration to active it");
+            throw new IllegalStateContextException("Core Context is not active. Call initialize method in CoreContext " +
+            		"or initializeContext method in CoreConfiguration implementation to active it");
     }
     
     /**
@@ -160,7 +161,7 @@ public class CoreContext implements ComponentContext<CoreConfiguration>, CoreCon
 	 * {@inheritDoc}
 	 */
     public void initializeContext() {
-        throw new UnsupportedOperationException("CoreContext must be initialized from the CoreConfiguration");
+        throw new UnsupportedOperationException("CoreContext must be initialized from the CoreConfiguration. Call initialize method.");
     }
     
     /**
