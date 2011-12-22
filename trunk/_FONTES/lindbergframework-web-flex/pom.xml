@@ -164,11 +164,5 @@
 			<url>http://download.java.net/maven/1</url>
 		</repository>
 
-		<!-- Repositórios para jars da jboss -->
-		<repository>
-			<id>repository.jboss.com</id>
-			<name>Jboss Repository for Maven</name>
-			<url>http://repository.jboss.com/maven2</url>
-		</repository>
 	</repositories>
 </project>
