@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.lindbergframework.configuration</groupId>
   <artifactId>lindbergframework-xmlconfiguration</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>lindbergframework-xmlconfiguration</name>
   <description>lindbergframework-xmlconfiguration</description>
   <url>http://www.lindbergframework.org</url>

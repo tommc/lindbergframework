@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.lindbergframework.persistence.sqlmapping</groupId>
   <artifactId>lindbergframework-xmlsqlmapping</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.0</version>
   <name>lindbergframework-xmlsqlmapping</name>
   <description>lindbergframework-xmlsqlmapping</description>
   <url>http://www.lindbergframework.org</url>
