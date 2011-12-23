@@ -40,9 +40,6 @@ public abstract class AbstractCoreConfiguration extends ConfigurationRepository 
         return super.getPropertyValue(CONFIG_PROPERTY_BEAN_FACTORY);
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @AllowIfContextActive
     public LinpConfiguration getLinpConfiguration() {
         return super.getPropertyValue(LINP_CONFIGURATION_KEY);
