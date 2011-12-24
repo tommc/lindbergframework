@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.lindbergframework.web</groupId>
   <artifactId>lindbergframework-flex</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <name>lindbergframework-flex</name>
   <description>lindbergframework-flex</description>
     <url>http://www.lindbergframework.org</url>
@@ -16,9 +16,9 @@
     </licenses>
   
    <scm>
-    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/trunk</connection>
-    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/trunk</developerConnection>
-    	<url>http://code.google.com/p/lindbergframework/source/browse</url>
+    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/tags/lindbergframework-flex-1.0</connection>
+    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/tags/lindbergframework-flex-1.0</developerConnection>
+    	<url>http://code.google.com/p/lindbergframework/source/browse/tags/lindbergframework-flex-1.0</url>
     </scm>
     
     <developers>
