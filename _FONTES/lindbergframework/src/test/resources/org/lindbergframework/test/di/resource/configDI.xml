@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<lindberg-configuration xmlns="http://www.lindbergframework.org/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.lindbergframework.org/schema lindberg-config.xsd ">
-
-<core>
-   <config-property name="lindberg.core.di-basepackage" value="org.lindbergframework.test:schema.*"/>
-   <config-property name="lindberg.core.beanfactory" value="org.lindbergframework.beans.di.context.AnnotationBeanFactory"/>
-</core>
-
-</lindberg-configuration>
