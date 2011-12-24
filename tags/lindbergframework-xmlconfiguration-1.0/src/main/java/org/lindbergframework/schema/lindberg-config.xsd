@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.lindbergframework.org/schema"
+           xmlns="http://www.lindbergframework.org/schema"
+           elementFormDefault="qualified">
+
+    <!-- Autor: Victor Lindberg -->
+
+	<xs:annotation>
+		<xs:documentation>
+		    Lindberg XML configuration schema version 1.0. Author: Victor Lindberg.
+	    </xs:documentation>
+	</xs:annotation>
+
+	<xs:element name="lindberg-configuration">
+	    <xs:annotation>
+			   <xs:documentation>Root element of lindbergframework configuration</xs:documentation>
+		</xs:annotation>
+        
+        <xs:complexType>
+            <xs:all> 
+			   <xs:element  name="core" minOccurs="0" maxOccurs="1">
+			      <xs:annotation>
+			         <xs:documentation>Configurations of CORE</xs:documentation>
+			      </xs:annotation>
+			      <xs:complexType>
+                     <xs:sequence>
+			            <xs:element  name="config-property" type="tconfig-property" minOccurs="0" maxOccurs="unbounded">
+			               <xs:annotation>
+	                          <xs:documentation>Defines the lindbergframework core configuration properties</xs:documentation>
+	                       </xs:annotation>
+			            </xs:element>
+                     </xs:sequence>
+			      </xs:complexType>   
+			   </xs:element>
+			   <xs:element  name="linp" minOccurs="0" maxOccurs="1">
+			      <xs:annotation>
+			         <xs:documentation>Configurations of Lindberg Persistence - LINP</xs:documentation>
+			      </xs:annotation>
+			      <xs:complexType>
+                     <xs:all> 
+			            <xs:element  name="dataSource" type="tdataSource" minOccurs="1" maxOccurs="1">
+			               <xs:annotation>
+			                  <xs:documentation>Configurations of datasource</xs:documentation>
+			               </xs:annotation>
+			            </xs:element>
+			            <xs:element name="config-properties" minOccurs="0" maxOccurs="1">
+			               <xs:annotation>
+			                  <xs:documentation>Configuration Properties to LINP</xs:documentation>
+			      		   </xs:annotation>
+			               <xs:complexType>
+                              <xs:sequence>
+			                     <xs:element  name="config-property" type="tconfig-property" minOccurs="0" maxOccurs="unbounded">
+			                        <xs:annotation>
+	                                    <xs:documentation>Defines a lindbergframework configuration property. 
+	                                            Eg: lindberg.CursorType (int representation), lindberg.TransactionManager, lindberg.SqlCommandResolver...</xs:documentation>
+	                                </xs:annotation>
+			                     </xs:element>
+                               </xs:sequence>
+                           </xs:complexType>			               
+			            </xs:element>
+                     </xs:all>
+                     <xs:attribute name="parser" type="xs:string">
+                        <xs:annotation>
+                           <xs:documentation>LinpConfiguration implementation to load XML linp configuration on LinpContext</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                  </xs:complexType>
+			   </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Complex Types -->
+	<xs:complexType name="tconfig-property" >
+	    <xs:annotation>
+	       <xs:documentation>Configuration property</xs:documentation>
+	    </xs:annotation>
+        <xs:sequence> 
+		   <xs:element name="property" type="tproperty" minOccurs="0" maxOccurs="unbounded"/>   
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" >
+           <xs:annotation>
+	          <xs:documentation>Configuration property name</xs:documentation>
+	       </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="value" type="xs:string">
+           <xs:annotation>
+	          <xs:documentation>Configuration property value. Use '#' as prefix to Public Static properties or Static getter Methods.
+	          					eg. #com.myapplication.MyClass.myStaticProperty (Static property)
+	          					eg. #com.myapplication.MyClass.myStaticGetterMethod (Static Getter Method without the 'get' prefix)   
+	          					eg. #com.myapplication.MyClass.getProperty (Static Getter Method)   
+	          						
+	          </xs:documentation>
+	       </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+	<xs:complexType name="tproperty">
+	    <xs:annotation>
+	          <xs:documentation>Property of the value of configuration property. This will be setted in value of configuration property</xs:documentation>
+	    </xs:annotation>
+		<xs:choice>
+			<xs:element name="list" minOccurs="0" maxOccurs="1">
+			   <xs:annotation>
+	              <xs:documentation>Use this tag when the property value is a List. Use ';' to separate each element 
+	                                eg. a/b/c/file.xml;
+	                                    a/b/c/file2.xml; 
+	               </xs:documentation>
+	           </xs:annotation>
+			      <xs:simpleType>
+					 <xs:restriction base="xs:string">
+				     <xs:whiteSpace value="collapse" />
+			      </xs:restriction>
+			   </xs:simpleType>
+			</xs:element>
+			
+			<xs:element name="array" minOccurs="0" maxOccurs="1">
+			   <xs:annotation>
+	              <xs:documentation>Use this tag when the property value is a Array. Use ';' to separate each element 
+	                                eg. a/b/c/file.xml;
+	                                    a/b/c/file2.xml; 
+	               </xs:documentation>
+	           </xs:annotation>
+			      <xs:simpleType>
+					 <xs:restriction base="xs:string">
+				     <xs:whiteSpace value="collapse" />
+			      </xs:restriction>
+			   </xs:simpleType>
+			</xs:element>
+		</xs:choice>
+        <xs:attribute name="name" type="xs:string" >
+           <xs:annotation>
+              <xs:documentation>Property name</xs:documentation>
+           </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="value" type="xs:string">
+           <xs:annotation>
+              <xs:documentation>Property value. 
+              					Property value. Use '#' as prefix to Public Static properties or Static getter Methods.
+	          					eg. #com.myapplication.MyClass.myStaticProperty (Static property)
+	          					eg. #com.myapplication.MyClass.myStaticGetterMethod (Static Getter Method without the 'get' prefix)   
+	          					eg. #com.myapplication.MyClass.getProperty (Static Getter Method)</xs:documentation>
+           </xs:annotation>
+        </xs:attribute>   
+        <xs:attribute name="constructor-arg" type="xs:boolean" default="false">
+           <xs:annotation>
+              <xs:documentation>True when this property is an constructor parameter, false otherwise. Default value is false</xs:documentation>
+           </xs:annotation>
+        </xs:attribute>
+	</xs:complexType>	
+      
+    <xs:complexType name="tdataSource">
+       <xs:sequence>
+          <xs:element name="property" type="tproperty" minOccurs="0" maxOccurs="unbounded"/>
+       </xs:sequence>
+       <xs:attribute name="class" type="xs:string" use="required" >
+          <xs:annotation>
+	         <xs:documentation>Class of datasource</xs:documentation>
+	      </xs:annotation>
+       </xs:attribute>
+       <xs:attribute name="driver" type="xs:string" >
+          <xs:annotation>
+			    <xs:documentation>Class of Driver. Must be defined when the datasource to need a driver.
+			    				Use '#' as prefix to Public Static properties or Static getter Methods.
+	          					eg. #com.myapplication.MyClass.myStaticProperty (Static property)
+	          					eg. #com.myapplication.MyClass.myStaticGetterMethod (Static Getter Method without the 'get' prefix)   
+	          					eg. #com.myapplication.MyClass.getProperty (Static Getter Method)
+	            </xs:documentation>
+		  </xs:annotation>
+       </xs:attribute>
+       <xs:attribute name="driverPropertyName" type="xs:string" default="driver">
+          <xs:annotation>
+			    <xs:documentation>Defines the property name corresponding to driver in the DataSource. Default value : "driver"</xs:documentation>
+		  </xs:annotation>
+       </xs:attribute>
+    </xs:complexType>
+    
+    
+</xs:schema>
