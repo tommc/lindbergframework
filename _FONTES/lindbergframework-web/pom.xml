@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.lindbergframework.web</groupId>
   <artifactId>lindbergframework-web</artifactId>
-  <version>1.0</version>
+  <version>1.1-SNAPSHOT</version>
   <name>lindbergframework-web</name>
   <description>lindbergframework-web</description>
   <url>http://www.lindbergframework.org</url>
@@ -16,9 +16,9 @@
     </licenses>
     
     <scm>
-    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/tags/lindbergframework-web-1.0</connection>
-    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/tags/lindbergframework-web-1.0</developerConnection>
-    	<url>http://code.google.com/p/lindbergframework/source/browse/tags/lindbergframework-web-1.0</url>
+    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/trunk</connection>
+    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/trunk</developerConnection>
+    	<url>http://code.google.com/p/lindbergframework/source/browse</url>
     </scm>
     
     <developers>
