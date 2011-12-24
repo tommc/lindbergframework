@@ -3,7 +3,7 @@
 	<groupId>org.lindbergframework</groupId>
 	<artifactId>lindbergframework</artifactId>
 	<name>lindbergframework</name>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 	<description>The idea and motivation of the lindbergframework  is to provide resources and simple 
 	solutions to problems based on the concept 'Plug and Use'. In the current version, the framework 
@@ -23,9 +23,9 @@
     </licenses>
   
     <scm>
-    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/trunk</connection>
-    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/trunk</developerConnection>
-    	<url>http://code.google.com/p/lindbergframework/source/browse</url>
+    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/tags/lindbergframework-1.0</connection>
+    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/tags/lindbergframework-1.0</developerConnection>
+    	<url>http://code.google.com/p/lindbergframework/source/browse/tags/lindbergframework-1.0</url>
     </scm>
     
     <developers>
