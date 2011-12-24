@@ -16,9 +16,9 @@
     </licenses>
   
     <scm>
-    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/trunk</connection>
-    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/trunk</developerConnection>
-    	<url>http://code.google.com/p/lindbergframework/source/browse</url>
+    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/tags/lindbergframework-xmlsqlmapping-1.0</connection>
+    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/tags/lindbergframework-xmlsqlmapping-1.0</developerConnection>
+    	<url>http://code.google.com/p/lindbergframework/source/browse/tags/lindbergframework-xmlsqlmapping-1.0</url>
     </scm>
     
     <developers>
