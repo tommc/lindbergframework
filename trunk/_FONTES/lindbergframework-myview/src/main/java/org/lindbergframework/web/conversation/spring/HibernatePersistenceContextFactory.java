@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
+ * {@link PersistenceContextFactory} that creates {@link PersistenceContext} to hibernate.
  * 
  * @author Victor Lindberg
  * 

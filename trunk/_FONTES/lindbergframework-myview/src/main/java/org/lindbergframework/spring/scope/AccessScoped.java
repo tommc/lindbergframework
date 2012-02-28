@@ -8,7 +8,8 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Scope;
 
 /**
- *
+ * Keeps alive the bean as long as it´s being accessed by a view.
+ * 
  * @author Victor Lindberg
  *
  */

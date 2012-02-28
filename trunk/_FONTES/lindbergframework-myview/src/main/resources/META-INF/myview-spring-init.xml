@@ -33,8 +33,6 @@
 	
 	<bean id="persistentContextConversationInterceptor"
                     class="org.lindbergframework.web.conversation.spring.MyViewPersistenceContextConversationInterceptor"
-                    init-method="init">
-       
-    </bean>
+                    init-method="init"/>
 
 </beans>

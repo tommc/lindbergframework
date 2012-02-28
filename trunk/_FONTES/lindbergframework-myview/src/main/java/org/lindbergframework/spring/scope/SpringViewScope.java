@@ -9,6 +9,7 @@ import org.springframework.beans.factory.config.Scope;
 import org.springframework.web.context.request.FacesRequestAttributes;
 
 /**
+ * MyView scope implementation to {@link SameViewScoped}.
  * 
  * @author Victor Lindberg
  * 
