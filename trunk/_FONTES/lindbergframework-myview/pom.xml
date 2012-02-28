@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.lindbergframework.web</groupId>
   	<artifactId>lindbergframework-myview</artifactId>
-  	<version>1.0</version>
+  	<version>1.1-SNAPSHOT</version>
   	<name>lindbergframework-myview</name>
   	<description>lindbergframework-myview</description>
 	
@@ -15,9 +15,9 @@
     </licenses>
   
     <scm>
-    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/tags/lindbergframework-myview-1.0</connection>
-    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/tags/lindbergframework-myview-1.0</developerConnection>
-    	<url>http://code.google.com/p/lindbergframework/source/browse/tags/lindbergframework-myview-1.0</url>
+    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/trunk</connection>
+    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/trunk</developerConnection>
+    	<url>http://code.google.com/p/lindbergframework/source/browse</url>
     </scm>
     
     <url>http://www.lindbergframework.org/myview</url>
