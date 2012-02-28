@@ -6,7 +6,8 @@ import org.hibernate.FlushMode;
 import org.springframework.orm.hibernate3.support.OpenSessionInViewFilter;
 
 /**
- *
+ * {@link OpenSessionInViewFilter} extension that works with FlushMode.AUTO by default.
+ * 
  * @author Victor Lindberg
  *
  */
@@ -16,6 +17,6 @@ public class MyViewScopesOpenSessionInViewFilter extends OpenSessionInViewFilter
 	
 	public MyViewScopesOpenSessionInViewFilter() {
 		setFlushMode(FlushMode.AUTO);
-		logger.info("Using [MyViewScopesOpenSessionInViewFilter] as OpenSessionInViewFilter implementation with FlushMode.AUTO. In AccessScope, FlushMode.COMMIT is used.");
+		logger.info("Usando [MyViewScopesOpenSessionInViewFilter] como implementação de OpenSessionInViewFilter com FlushMode.AUTO. Em AccessScope, FlushMode.COMMIT é usado.");
 	}
 }

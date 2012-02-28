@@ -1,7 +1,8 @@
 package org.lindbergframework.spring.scope;
 
 /**
- *
+ * MyView Bean Scopes.
+ * 
  * @author Victor Lindberg
  *
  */

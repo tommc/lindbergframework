@@ -3,8 +3,8 @@
 	<groupId>org.lindbergframework.web</groupId>
   	<artifactId>lindbergframework-myview</artifactId>
   	<version>1.0-SNAPSHOT</version>
-  	<name>springfaces</name>
-  	<description>springfaces</description>
+  	<name>lindbergframework-myview</name>
+  	<description>lindbergframework-myview</description>
 	<packaging>jar</packaging>
 	
     <licenses>

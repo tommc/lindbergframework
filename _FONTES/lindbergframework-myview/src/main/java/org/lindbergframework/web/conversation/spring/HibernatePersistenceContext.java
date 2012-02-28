@@ -9,6 +9,9 @@ import org.springframework.orm.hibernate3.SessionHolder;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 /**
+ * {@link PersistenceContext} implementation to {@link SessionFactory} from hibernate.
+ * This is used to persistence contexts into conversation scope.
+ * It´s solves problems like lazy initialization in conversations.
  * 
  * @author Victor Lindberg
  *

@@ -11,7 +11,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
- *
+ * {@link PersistenceContextConversationInterceptor} extension that verify automatically the 
+ * defined {@link PersistenceContextFactory} and decides if the conversation interceptor must be applied.
+ *  
  * @author Victor Lindberg
  *
  */
