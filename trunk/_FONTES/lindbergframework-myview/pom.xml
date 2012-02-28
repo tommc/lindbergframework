@@ -5,7 +5,6 @@
   	<version>1.0-SNAPSHOT</version>
   	<name>lindbergframework-myview</name>
   	<description>lindbergframework-myview</description>
-	<packaging>jar</packaging>
 	
     <licenses>
     	<license>
@@ -130,8 +129,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.0.2</version>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -160,12 +159,7 @@
           			</execution>
         		</executions>
 			</plugin>
-			 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.0</version>
-			</plugin> 
+			  
 
 		</plugins>
 	</build>
@@ -223,11 +217,6 @@
 			   <keywords>true</keywords>
 			</configuration>
 		</plugin>
-		<plugin>
-        	<groupId>org.apache.maven.plugins</groupId>
-        	<artifactId>maven-site-plugin</artifactId>
-        	<version>2.3</version>
-         </plugin>
 	</plugins>
 	</reporting>
 
