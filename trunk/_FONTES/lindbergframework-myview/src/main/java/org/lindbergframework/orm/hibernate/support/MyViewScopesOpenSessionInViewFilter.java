@@ -17,6 +17,6 @@ public class MyViewScopesOpenSessionInViewFilter extends OpenSessionInViewFilter
 	
 	public MyViewScopesOpenSessionInViewFilter() {
 		setFlushMode(FlushMode.AUTO);
-		logger.info("Usando [MyViewScopesOpenSessionInViewFilter] como implementação de OpenSessionInViewFilter com FlushMode.AUTO. Em AccessScope, FlushMode.COMMIT é usado.");
+		logger.info("Usando [MyViewScopesOpenSessionInViewFilter] como extensão de OpenSessionInViewFilter com FlushMode.AUTO.");
 	}
 }
