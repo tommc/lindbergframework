@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.lindbergframework.web</groupId>
   	<artifactId>lindbergframework-myview</artifactId>
-  	<version>1.0.2-SNAPSHOT</version>
+  	<version>1.0-SNAPSHOT</version>
   	<name>lindbergframework-myview</name>
   	<description>lindbergframework-myview</description>
 	
