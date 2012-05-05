@@ -48,13 +48,7 @@ public class MyViewPersistenceContextConversationInterceptor extends Persistence
 		if (applyInterceptor){
 			PersistenceContextFactory factory = (PersistenceContextFactory) context.getBean(beanNamesForContextFactory[0]);
 			setPersistenceContextFactory(factory);
-		}else
-			logger.warning("Nenhum PersistenceContextFactory foi definido dentro do contexto do spring. Isto pode ocasionar " +
-					"alguns problemas, de lazy por exemplo, referentes a Sessions do hibernate e EntityManagers da JPA. " +
-					"Defina um em seu arquivo de configuração do spring. " +
-					"Para hibernate, use [org.lindbergframework.web.conversation.spring.HibernatePersistenceContextFactory] " +
-					"passando [sessionFactory]. Para JPA use [org.apache.myfaces.orchestra.conversation.spring.JpaPersistenceContextFactory] " +
-					"passando [entityManagerFactory].");
+		}
 	}
 	
 	@Override
