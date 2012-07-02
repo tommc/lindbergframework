@@ -8,6 +8,8 @@
 				   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
 	<import resource="classpath*:/META-INF/spring-orchestra-init.xml" />
+	
+	<bean class="org.lindbergframework.spring.scope.SessionObjectFactory" scope="session" />
 			
 	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
     	<property name="scopes">
@@ -17,7 +19,7 @@
             	</entry>
 
           		<entry key="access">
-            		<bean class="org.apache.myfaces.orchestra.conversation.spring.SpringConversationScope">
+            		<bean class="org.apache.myfaces.orchestra.conversation.spring.SpringConversationScope" >
               			<property name="timeout" value="30" />
               			<property name="lifetime" value="access"/>
               			<property name="advices">
