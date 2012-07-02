@@ -34,21 +34,20 @@ public class SpringViewScope implements Scope, ApplicationContextAware {
 	}
 
 	public synchronized Object get(String name, ObjectFactory<?> objectFactory) {
-		SessionObjectFactory factory = applicationContext.getBean(SessionObjectFactory.class);
-		//Object instance = getViewMap().get(name);
-		FacesContext ctx = FacesContext.getCurrentInstance();
-		String path = ctx.getViewRoot().getViewId();
-		Object instance = FacesContext.getCurrentInstance().getViewRoot().getAttributes().get(name);
-		if (instance == null) {
-			instance = objectFactory.getObject();
-			//getViewMap().put(name, instance);
-			FacesContext.getCurrentInstance().getViewRoot().getAttributes().put(name, instance);
-		}
-		return instance;
+		SessionObjectFactory factory = getSessionObjectFactory();
+		return factory.get(getRequestPage(), name, objectFactory);
+	}
+	
+	private String getRequestPage(){
+		return FacesContext.getCurrentInstance().getViewRoot().getViewId();
+	}
+	
+	private SessionObjectFactory getSessionObjectFactory(){
+		return applicationContext.getBean(SessionObjectFactory.class);
 	}
 
 	public Object remove(String name) {
-		Object instance = getViewMap().remove(name);
+		Object instance = getSessionObjectFactory().remove(name);
 		if (instance != null) {
 			Map<String, Runnable> callbacks = (Map<String, Runnable>) getViewMap()
 					.get(VIEW_SCOPE_CALLBACKS);
@@ -60,8 +59,7 @@ public class SpringViewScope implements Scope, ApplicationContextAware {
 	}
 
 	public void registerDestructionCallback(String name, Runnable runnable) {
-		Map<String, Runnable> callbacks = (Map<String, Runnable>) getViewMap()
-				.get(VIEW_SCOPE_CALLBACKS);
+		Map<String, Runnable> callbacks = (Map<String, Runnable>) getViewMap().get(VIEW_SCOPE_CALLBACKS);
 		if (callbacks != null) {
 			callbacks.put(name, runnable);
 		}
