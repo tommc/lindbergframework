@@ -4,8 +4,11 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.request.FacesRequestAttributes;
 
 /**
@@ -14,19 +17,32 @@ import org.springframework.web.context.request.FacesRequestAttributes;
  * @author Victor Lindberg
  * 
  */
-public class SpringViewScope implements Scope {
-
+public class SpringViewScope implements Scope, ApplicationContextAware {
+	
+	private ApplicationContext applicationContext;
+	
 	public SpringViewScope() {
 		//
 	}
 
 	public static final String VIEW_SCOPE_CALLBACKS = "viewScope.callbacks";
+	
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext)
+			throws BeansException {
+		this.applicationContext = applicationContext;
+	}
 
 	public synchronized Object get(String name, ObjectFactory<?> objectFactory) {
-		Object instance = getViewMap().get(name);
+		SessionObjectFactory factory = applicationContext.getBean(SessionObjectFactory.class);
+		//Object instance = getViewMap().get(name);
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		String path = ctx.getViewRoot().getViewId();
+		Object instance = FacesContext.getCurrentInstance().getViewRoot().getAttributes().get(name);
 		if (instance == null) {
 			instance = objectFactory.getObject();
-			getViewMap().put(name, instance);
+			//getViewMap().put(name, instance);
+			FacesContext.getCurrentInstance().getViewRoot().getAttributes().put(name, instance);
 		}
 		return instance;
 	}
