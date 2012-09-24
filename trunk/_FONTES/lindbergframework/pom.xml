@@ -67,6 +67,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring</artifactId>
 			<version>${versao-spring}</version>
+			<scope>provided</scope>
 		</dependency>
 		
 		<dependency>
