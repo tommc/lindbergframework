@@ -1,0 +1,228 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.lindbergframework.web</groupId>
+  	<artifactId>lindbergframework-myview</artifactId>
+  	<version>1.0</version>
+  	<name>lindbergframework-myview</name>
+  	<description>lindbergframework-myview</description>
+	
+    <licenses>
+    	<license>
+      		<name>GNU Lesser General Public License</name>
+      		<url>http://www.gnu.org/licenses/lgpl.html</url>
+      		<distribution>repo</distribution>
+    	</license>
+    </licenses>
+  
+    <scm>
+    	<connection>scm:svn:http://lindbergframework.googlecode.com/svn/tags/lindbergframework-myview-1.0</connection>
+    	<developerConnection>scm:svn:https://lindbergframework.googlecode.com/svn/tags/lindbergframework-myview-1.0</developerConnection>
+    	<url>http://code.google.com/p/lindbergframework/source/browse/tags/lindbergframework-myview-1.0</url>
+    </scm>
+    
+    <url>http://www.lindbergframework.org/myview</url>
+    <developers>
+       <developer>
+          <name>Victor Lindberg</name>
+          <email>victorlindberg713@gmail.com</email>
+       </developer>
+    </developers>
+    
+    <distributionManagement>
+        <repository>
+            <id>sonatype</id>
+            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>sonatype</id>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.myfaces.orchestra</groupId>
+			<artifactId>myfaces-orchestra-core20</artifactId>
+			<version>1.5</version>
+		</dependency>
+		
+		<dependency>
+        	<groupId>javax.servlet</groupId>
+        	<artifactId>servlet-api</artifactId>
+        	<version>2.5</version>
+        	<scope>provided</scope>
+    	</dependency>
+		
+		<dependency>
+        	<groupId>com.sun.faces</groupId>
+        	<artifactId>jsf-api</artifactId>
+        	<version>2.1.6</version>
+        	<scope>provided</scope>
+      	</dependency>
+      	
+      	<dependency>
+  			<groupId>org.springframework</groupId>
+  			<artifactId>spring-web</artifactId>
+  			<version>3.1.0.RELEASE</version>
+  			<scope>provided</scope>
+		</dependency>
+      	
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.1.0.RELEASE</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+  			<groupId>org.springframework</groupId>
+  			<artifactId>spring-orm</artifactId>
+  			<version>3.1.0.RELEASE</version>
+  			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+	   		<groupId>org.springframework</groupId>
+	   		<artifactId>spring-beans</artifactId>
+	   		<version>3.1.0.RELEASE</version>
+	   		<scope>provided</scope>
+		</dependency>
+		
+		 <dependency>  
+        	<groupId>org.hibernate</groupId>  
+        	<artifactId>hibernate-core</artifactId>  
+        	<version>3.5.0-Final</version>
+        	<scope>provided</scope>
+    	</dependency>
+	</dependencies>
+
+
+	<profiles>
+		<profile>
+			<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.1</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+	</profiles>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+				   <excludes>
+				      <exclude>**/.svn/**</exclude>	
+				      <exclude>**/.svn/text-base/**</exclude>	
+				      <exclude>**/test/**</exclude>
+				   </excludes>
+				</configuration>
+			</plugin>
+ 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+          			<execution>
+            			<id>attach-sources</id>
+            			<phase>verify</phase>
+            			<goals>
+              				<goal>jar-no-fork</goal>
+            			</goals>
+          			</execution>
+        		</executions>
+			</plugin>
+			  
+
+		</plugins>
+	</build>
+
+	<!-- Repositórios -->
+	<repositories>
+		<repository> 
+       		<id>sonatype-snapshots</id> 
+       		<name>Sonatype Snapshots Repository</name> 
+       		<url>http://oss.sonatype.org/content/repositories/snapshots/</url> 
+       		<snapshots> 
+         		<enabled>true</enabled> 
+       		</snapshots> 
+     	</repository> 
+
+     	<repository> 
+       		<id>sonatype-releases</id> 
+       		<name>Sonatype Releases Repository</name> 
+       		<url>http://oss.sonatype.org/content/repositories/releases/</url> 
+     	</repository> 
+     
+		<!-- Repositórios para jars da sun (maven2) -->
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+
+		<repository>
+			<id>maven2</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+		
+		<!-- Repósitório antigo da Sun (maven1) -->
+		<repository>
+			<id>java.net</id>
+			<url>http://download.java.net/maven/1</url>
+		</repository>
+
+	</repositories>
+	
+	<reporting>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-javadoc-plugin</artifactId>
+			<version>2.8</version>
+			<configuration>
+			   <charset>UTF-8</charset>
+			   <encoding>UTF-8</encoding>
+			   <docencoding>UTF-8</docencoding>
+			   <version>true</version>
+			   <author>true</author>
+			   <keywords>true</keywords>
+			</configuration>
+		</plugin>
+	</plugins>
+	</reporting>
+
+</project>
