@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-        targetNamespace="http://www.lindbergframework.org/schema" 
-        xmlns="http://www.lindbergframework.org/schema" 
+        targetNamespace="https://lindbergframework.googlecode.com/files"
+        xmlns="https://lindbergframework.googlecode.com/files" 
         elementFormDefault="qualified">
         
     <!-- Autor: Victor Lindberg -->
